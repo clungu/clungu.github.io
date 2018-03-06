@@ -3,6 +3,11 @@ main:
       url: /posts/
     - title: "Contact"
       url: /contact/
+    - title: "Sample Posts"
+      url: /year-archive/
+    - title: "Sample Collections"
+      url: /collection-archive/
+
 
 posts:
     - title: ML projects

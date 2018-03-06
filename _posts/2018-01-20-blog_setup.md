@@ -1,8 +1,7 @@
 ---
 title: "Setup of and ML blog"
 header:
-  image: /assets/images/page-header-image.png
-  og_image: /assets/images/page-header-og-image.png
+  image: /assets/images/unplash-gallery-image-1.jpg
 categories:
   - Setup
 tags:
