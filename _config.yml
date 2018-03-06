@@ -1,39 +1,19 @@
 # theme: jekyll-theme-tactile
 remote_theme: mmistakes/so-simple-theme
 
-minimal_mistakes_skin    : "dark" # "default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
-locale                   : "en-US"
 title                    : "Machine Learning Blog"
-title_separator          : "-"
-url                      : http://clungu.com
+#title_separator          : "-"
+#url                      : http://clungu.com
 name                     : &name "Cristian Lungu" # &name is a YAML anchor which can be *referenced later
 description              : &description "Experiments and failures on training humans and computers."
-words_per_minute         : 200
+#words_per_minute         : 200
 
 
-# Conversion
-markdown: kramdown
-highlighter: rouge
-lsi: false
-excerpt_separator: "\n\n"
-incremental: false
-
-
-# Markdown Processing
-kramdown:
-  input: GFM
-  hard_wrap: false
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  smart_quotes: lsquo,rsquo,ldquo,rdquo
-enable_coderay: false
 
 # Site Author
 author:
   name             : *name # *name is a YAML reference pointing to the &anchor earlier
-  avatar           : "/assets/images/michael-rose.jpg"
+  avatar           : # "/path/to_image.jpg"
   bio              : "Stuff."
   location         : "Cluj-Napoca, Romania, EU"
   email            :
