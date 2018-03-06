@@ -48,6 +48,10 @@ author:
   xing             :
   youtube          :
 
+# Reading Files
+include:
+  - .htaccess
+  - _pages
 
 defaults:
   # _posts
