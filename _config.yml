@@ -4,7 +4,7 @@ remote_theme: mmistakes/minimal-mistakes
 
 title                    : "Machine Learning Blog"
 title_separator          : "-"
-url                      : https://www.clungu.com
+#url                      : https://www.clungu.com
 name                     : &name "Cristian Lungu" # &name is a YAML anchor which can be *referenced later
 description              : &description "Experiments and failures on training humans and computers."
 words_per_minute         : 200
@@ -18,8 +18,8 @@ author:
   bio              : "Stuff."
   location         : "Cluj-Napoca, Romania, EU"
   email            :
-  uri              : "https://www.clungu.com"
-  home             : "https://www.clungu.com"
+#  uri              : "https://www.clungu.com"
+#  home             : "https://www.clungu.com"
   bitbucket        :
   codepen          :
   dribbble         :
