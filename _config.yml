@@ -1,4 +1,4 @@
 # theme: jekyll-theme-tactile
-remote_theme: next
+remote_theme: "mmistakes/minimal-mistakes"
 
 url: http://isfeiben.com
