@@ -18,7 +18,7 @@ search                   : true
 # Site Author
 author:
   name             : *name # *name is a YAML reference pointing to the &anchor earlier
-  avatar           : "/assets/images/bio_photo.jpg"
+  avatar           : "/assets/images/bio-photo.jpg"
   bio              : "Stuff."
   location         : "Cluj-Napoca, Romania, EU"
   email            :
