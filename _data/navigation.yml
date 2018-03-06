@@ -1,6 +1,6 @@
 main:
     - title: "Posts"
-      url: /posts/
+      url: /post-archive-feature-rows/
     - title: "Contact"
       url: /contact/
     - title: "Sample Posts"
