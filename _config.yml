@@ -1,3 +1,46 @@
 # theme: jekyll-theme-tactile
 # remote_theme: mmistakes/so-simple-theme
 remote_theme: mmistakes/minimal-mistakes
+
+title                    : "Machine Learning Blog"
+title_separator          : "-"
+url                      : https://www.clungu.com
+name                     : &name "Cristian Lungu" # &name is a YAML anchor which can be *referenced later
+description              : &description "Experiments and failures on training humans and computers."
+words_per_minute         : 200
+
+
+
+# Site Author
+author:
+  name             : *name # *name is a YAML reference pointing to the &anchor earlier
+  avatar           : # "/path/to_image.jpg"
+  bio              : "Stuff."
+  location         : "Cluj-Napoca, Romania, EU"
+  email            :
+  uri              : "https://www.clungu.com"
+  home             : "https://www.clungu.com"
+  bitbucket        :
+  codepen          :
+  dribbble         :
+  flickr           :
+  facebook         :
+  foursquare       :
+  github           :
+  gitlab           :
+  google_plus      :
+  keybase          :
+  instagram        :
+  lastfm           :
+  linkedin         :
+  pinterest        :
+  soundcloud       :
+  stackoverflow    : # https://stackoverflow.com/users/123456/username
+  steam            :
+  tumblr           :
+  twitter          :
+  vine             :
+  weibo            :
+  xing             :
+  youtube          :
+
