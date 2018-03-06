@@ -44,3 +44,21 @@ author:
   xing             :
   youtube          :
 
+
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      author_profile: true
+
+  # _toc
+  - scope:
+      path: ""
+      type: posts
+    values:
+      toc: true
+      toc_label: "My Table of Contents"
+      toc_icon: "cog"
+
