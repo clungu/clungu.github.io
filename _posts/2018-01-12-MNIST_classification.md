@@ -1,3 +1,6 @@
+---
+category: posts
+---
 
 
 ```python

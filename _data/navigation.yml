@@ -1,0 +1,17 @@
+main:
+    - title: "Posts"
+      url: /posts/
+    - title: "Contact"
+      url: /contact/
+
+posts:
+    - title: ML projects
+      children: 
+         - title: MNIST classification
+           url: /posts/MNIST_classification
+
+    - title: Posts
+      children:
+         - title: Blog Setup
+           url: /posts/blog_setup
+ 
