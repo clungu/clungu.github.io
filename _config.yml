@@ -1,7 +1,11 @@
 # theme: jekyll-theme-tactile
 # remote_theme: mmistakes/so-simple-theme
+
 remote_theme: mmistakes/minimal-mistakes
 
+minimal_mistakes_skin    : "dark" # "default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+
+locale                   : "en-US"
 title                    : "Machine Learning Blog"
 title_separator          : "-"
 #url                      : https://www.clungu.com
@@ -14,7 +18,7 @@ search                   : true
 # Site Author
 author:
   name             : *name # *name is a YAML reference pointing to the &anchor earlier
-  avatar           : # "/path/to_image.jpg"
+  avatar           : "/assets/images/bio_photo.jpg"
   bio              : "Stuff."
   location         : "Cluj-Napoca, Romania, EU"
   email            :
@@ -65,4 +69,44 @@ defaults:
       # toc: true
       # toc_label: "My Table of Contents"
       # toc_icon: "cog"
+
+
+# Conversion
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
+# Markdown Processing
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+
+permalink: /:categories/:title/
+
+# Archives
+#  Type
+#  - GitHub Pages compatible archive pages built with Liquid ~> type: liquid (default)
+#  - Jekyll Archives plugin archive pages ~> type: jekyll-archives
+#  Path (examples)
+#  - Archive page should exist at path when using Liquid method or you can
+#    expect broken links (especially with breadcrumbs enabled)
+#  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
+#  - <base_path/categories/my-awesome-category/index.html ~> path: /categories/
+#  - <base_path/my-awesome-category/index.html ~> path: /
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
+
 

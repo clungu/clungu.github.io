@@ -1,3 +1,15 @@
+---
+title: "Setup of and ML blog"
+header:
+  image: /assets/images/page-header-image.png
+  og_image: /assets/images/page-header-og-image.png
+categories:
+  - Setup
+tags:
+  - blog
+  - setup
+---
+
 # Register domain
 
 # Create a GitHub Pagest repository
