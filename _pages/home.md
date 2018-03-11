@@ -1,5 +1,5 @@
 ---
-title: "Splash Page"
+title: "Machine Learning Blog"
 layout: splash
 permalink: /
 date: 2016-03-23T11:48:41-04:00
@@ -7,28 +7,41 @@ header:
   overlay_color: "#000"
   overlay_filter: "0.5"
   overlay_image: /assets/images/unsplash-image-1.jpg
-  cta_label: "Download"
-  cta_url: "https://github.com/mmistakes/minimal-mistakes/"
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
-excerpt: "Bacon ipsum dolor sit amet salami ham hock ham, hamburger corned beef short ribs kielbasa biltong t-bone drumstick tri-tip tail sirloin pork chop."
+
+  cta_label: "Portfolio"
+  cta_url: "/post-archive-feature-rows/"
+
+  cta_label: "Trainer"
+  cta_url: "/post-archive-feature-rows/"
+
+  cta_label: "Consulting"
+  cta_url: "/post-archive-feature-rows/"
+
+excerpt: "“People worry that computers will get too smart and take over the world, but the real problem is computer are too stupid and are already ruling over the world.“ -Pedro Domingos  
+“Forget artificial intelligence - in the brave new world of big data, it's artificial idiocy we should be looking out for.” —Tom Chatfield"
 intro: 
-  - excerpt: 'Nullam suscipit et nam, tellus velit pellentesque at malesuada, enim eaque. Quis nulla, netus tempor in diam gravida tincidunt, *proin faucibus* voluptate felis id sollicitudin. Centered with `type="center"`'
+  - excerpt: 'A collection of random thoughts and experiments on machine learning topics.'
 feature_row:
   - image_path: assets/images/unsplash-image-3.jpg
-    alt: "placeholder image 1"
-    title: "Placeholder 1"
-    excerpt: "This is some sample content that goes here with **Markdown** formatting."
-  - image_path: /assets/images/unsplash-image-9.jpg
-    alt: "placeholder image 2"
-    title: "Placeholder 2"
-    excerpt: "This is some sample content that goes here with **Markdown** formatting."
-    url: "#test-link"
+    alt: "Super resolution"
+    title: "Super Resolution"
+    excerpt: "A qualitative and quantitative comparision of three various architectures that can be used as generators for super-resolution."
+    url: "/compare-super-resolution/"
     btn_label: "Read More"
-    btn_class: "btn--primary"
+    btn_class: "btn--light-outline"
+
+  - image_path: /assets/images/unsplash-image-9.jpg
+    alt: "beating mnist"
+    title: "Beating MNIST"
+    excerpt: "An iterative notebook that highlights how by applying recent **best practices** i nimage processing you can achieve state-of-the art results on the MNIST dataset."
+    url: "/beating-mnist/"
+    btn_label: "Read More"
+    btn_class: "btn--light-outline"
   - image_path: /assets/images/unsplash-image-1.jpg
-    title: "Placeholder 3"
-    excerpt: "This is some sample content that goes here with **Markdown** formatting."
-feature_row2:
+    title: "Scrikit-learn"
+    excerpt: "Some introductory material on the scikit-learn framework."
+<!-- feature_row2:
   - image_path: /assets/images/unsplash-image-3.jpg
     alt: "placeholder image 2"
     title: "Placeholder Image Left Aligned"
@@ -51,15 +64,15 @@ feature_row4:
     excerpt: 'This is some sample content that goes here with **Markdown** formatting. Centered with `type="center"`'
     url: "#test-link"
     btn_label: "Read More"
-    btn_class: "btn--primary"
+    btn_class: "btn--primary" -->
 ---
 
 {% include feature_row id="intro" type="center" %}
 
 {% include feature_row %}
 
-{% include feature_row id="feature_row2" type="left" %}
+<!-- {% include feature_row id="feature_row2" type="left" %}
 
 {% include feature_row id="feature_row3" type="right" %}
 
-{% include feature_row id="feature_row4" type="center" %}
+{% include feature_row id="feature_row4" type="center" %} -->
