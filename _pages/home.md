@@ -10,9 +10,7 @@ header:
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
   cta_label: "Portfolio"
   cta_url: "/post-archive-feature-rows/"
-excerpt: "'People worry that computers will get too smart and take over the world, but the real problem is computer are too stupid and are already ruling over the world.' -Pedro Domingos    
-
-'Forget artificial intelligence - in the brave new world of big data, it's artificial idiocy we should be looking out for.' —Tom Chatfield"
+excerpt: "'People worry that computers will get too smart and take over the world, but the real problem is computer are too stupid and are already ruling over the world.' -Pedro Domingos 'Forget artificial intelligence - in the brave new world of big data, it's artificial idiocy we should be looking out for.' —Tom Chatfield"
 intro: 
   - excerpt: 'A collection of random thoughts and experiments on machine learning topics.'
 feature_row:
@@ -36,6 +34,7 @@ feature_row:
     url: "/scikit-learn/"
     btn_label: "Read More"
     btn_class: "btn--light-outline"
+classes: wide
 ---
 
 
