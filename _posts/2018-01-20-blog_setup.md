@@ -1,12 +1,5 @@
 ---
-title: "Setup of and ML blog"
-header:
-  image: /assets/images/unplash-gallery-image-1.jpg
-categories:
-  - Setup
-tags:
-  - blog
-  - setup
+categories: posts
 ---
 
 # Register domain
@@ -36,3 +29,14 @@ An empty commit will get the job done too if you don't have anything to push at 
 git commit --allow-empty -m "Force rebuild of site"
 ```
 
+# Publishing a jupter notebook 
+
+In order to publish a jupyer notebook to a blog you need to first convert it to either markdown or html. 
+
+You usually do this by calling the following command:
+
+```
+jupyter nbconvert --to markdown
+```
+
+Unfortunately this doesn't work that easily because 
