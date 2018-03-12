@@ -1,5 +1,6 @@
 ---
 category: posts
+classes: wide
 ---
 
 
@@ -38,11 +39,11 @@ plots(x_train[:10])
 
 
 
-![png](MNIST%20classification_files/MNIST%20classification_4_1.png)
+![png](_posts/MNIST%20classification_files/MNIST%20classification_4_1.png)
 
 
 
-![png](MNIST%20classification_files/MNIST%20classification_4_2.png)
+![png](_posts/MNIST%20classification_files/MNIST%20classification_4_2.png)
 
 
 #### Prepare data for VGG like computations.
@@ -63,7 +64,7 @@ plots(X[:10], titles=y_train[:10])
 
 
 
-![png](MNIST%20classification_files/MNIST%20classification_7_1.png)
+![png](_posts/MNIST%20classification_files/MNIST%20classification_7_1.png)
 
 
 Then we need to change the labels to one_hot_encodings
@@ -270,7 +271,7 @@ plots(img[:10])
 ```
 
 
-![png](MNIST%20classification_files/MNIST%20classification_21_0.png)
+![png](_posts/MNIST%20classification_files/MNIST%20classification_21_0.png)
 
 
 
@@ -548,5 +549,5 @@ plots(x)
 
 
 
-![png](MNIST%20classification_files/MNIST%20classification_32_1.png)
+![png](_posts/MNIST%20classification_files/MNIST%20classification_32_1.png)
 
