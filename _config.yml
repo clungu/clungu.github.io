@@ -69,8 +69,8 @@ defaults:
       breadcrumbs: true
       sidebar:
          nav: "posts"
-      # toc: true
-      # toc: true
+      toc: true
+      classes: wide
       # toc_label: "My Table of Contents"
       # toc_icon: "cog"
   # _pages
