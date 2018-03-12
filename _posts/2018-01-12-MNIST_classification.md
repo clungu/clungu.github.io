@@ -1,6 +1,7 @@
 ---
 category: posts
 classes: wide
+toc: true 
 ---
 
 
