@@ -1,3 +1,6 @@
+---
+categories: scikit-learn, regression, tutorial
+---
 
 # Scikit-learn
 

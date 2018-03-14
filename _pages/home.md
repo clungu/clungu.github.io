@@ -28,9 +28,9 @@ feature_row:
     btn_label: "Read More"
     btn_class: "btn--light-outline"
   - image_path: /assets/images/unsplash-image-1.jpg
-    title: "Scrikit-learn"
+    title: "Scikit-learn"
     excerpt: "Some introductory material on the scikit-learn framework."
-    url: "/scikit-learn/"
+    url: "/Scikit-learn/"
     btn_label: "Read More"
     btn_class: "btn--light-outline"
 ---
