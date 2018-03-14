@@ -1,5 +1,11 @@
 ---
-categories: posts
+categories: 
+	- posts
+tags:
+	- setup
+	- domain
+	- github pages
+	- jekyll
 ---
 
 # Register domain

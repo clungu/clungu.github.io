@@ -1,5 +1,11 @@
 ---
-categories: scikit-learn, regression, tutorial
+categories: 
+    - scikit-learn
+    - tutorial
+tags:
+    - regression
+    - tutorial
+    - price prediction
 ---
 
 # Scikit-learn
