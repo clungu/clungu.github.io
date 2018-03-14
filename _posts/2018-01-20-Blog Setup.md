@@ -99,7 +99,7 @@ Other conventions:
 * a post should have `YYYY-MM-DD` prefix for it to be indexed and sorted by data.
 * the notebook should be stored under `_notebooks` directory
 
-In the end, because all the required steps were too labourious to do by hand each time, I've written the following bash function and added it to my `~/.bashrc`:
+In the end, because all the required steps were <tfoot></tfoot> labourious to do by hand each time, I've written the following bash function and added it to my `~/.bashrc`:
 
 ```
 function publish() {
