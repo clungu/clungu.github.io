@@ -9,7 +9,7 @@ locale                   : "en-US"
 title                    : "Machine Learning Blog"
 title_separator          : "-"
 #url                      : https://www.clungu.com
-name                     : &name "Cristian Lungu" # &name is a YAML anchor which can be *referenced later
+name                     : &name "C. Lungu" # &name is a YAML anchor which can be *referenced later
 description              : &description "Experiments and failures on training humans and computers."
 words_per_minute         : 200
 search                   : true
