@@ -30,7 +30,7 @@ feature_row:
   - image_path: /assets/images/unsplash-image-1.jpg
     title: "Scikit-learn"
     excerpt: "Some introductory material on the scikit-learn framework."
-    url: "/Scikit-learn/"
+    url: "/scikit-learn/tutorial/Scikit-learn/"
     btn_label: "Read More"
     btn_class: "btn--light-outline"
 ---
