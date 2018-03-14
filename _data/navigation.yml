@@ -1,11 +1,11 @@
 main:
-    - title: "Posts"
-      url: /post-archive-feature-rows/
+    - title: "Recent Posts"
+      url: /post-archive/
     - title: "Contact"
       url: /contact/
-    - title: "Sample Posts"
+    - title: "Archive"
       url: /year-archive/
-    - title: "Sample Collections"
+    - title: "Tags and Collections"
       url: /collection-archive/
 
 

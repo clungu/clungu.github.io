@@ -8,7 +8,7 @@ header:
   overlay_image: /assets/images/unsplash-image-1.jpg
   caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
   cta_label: "Portfolio"
-  cta_url: "/post-archive-feature-rows/"
+  cta_url: "/post-archive/"
 excerpt: "'People worry that computers will get too smart and take over the world, but the real problem is computer are too stupid and are already ruling over the world.' —Pedro Domingos"
 intro: 
   - excerpt: 'A collection of random thoughts and experiments on machine learning topics.'
