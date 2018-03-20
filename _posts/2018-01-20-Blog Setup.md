@@ -132,11 +132,13 @@ By default themes don't render LaTex expression so you need to do a few things i
 * Paste inside the following snippet
 
 ```
+<!--
 {% if page.mathjax %}
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 {% endif %}
+-->
 ```
 
 * Edit the `_config.yaml` file and in the `include` section, add a line that says `_includes`. You should have something like this in the end:
