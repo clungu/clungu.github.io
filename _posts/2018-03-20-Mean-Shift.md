@@ -1,8 +1,8 @@
 ---
 categories:
-	- clustering
-	- unsupervised
-	- mean-shift
+    - clustering
+    - unsupervised
+    - mean-shift
 mathjax: true
 ---
 
@@ -67,7 +67,7 @@ print(all_points.shape)
 
 The probability density function of a normally distributed random variable with expected value μ (mean) and variance $σ^2$ is given by the bellow **[gaussian function](https://en.wikipedia.org/wiki/Gaussian_function)**:
 
-![svg](../assets/images/2018-03-20-Mean-Shift_files/gaussian-function.svg)
+#![svg](../assets/images/2018-03-20-Mean-Shift_files/gaussian-function.svg)
 
 Because it's a probability distribution, the sum (integral) of this function is 1, this by the definition above is a **gaussian kernel**
 
