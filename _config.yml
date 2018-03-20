@@ -83,6 +83,12 @@ defaults:
       author_profile: true
 
 
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "UA-53253619-2"
+
+
 # Conversion
 markdown: kramdown
 highlighter: rouge
