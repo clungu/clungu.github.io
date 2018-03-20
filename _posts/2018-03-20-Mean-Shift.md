@@ -201,7 +201,7 @@ We then multiply the coordinates (second axis) of each point with their correspo
 
 We then do a weighted average of the points and weights. We're saying that we want to move towards each point but using the weight as the acceleration parameter.
 
-$(x, y) = (\frac{\sum_{i=1}^{n}{x_i*weight_i}}{\sum_{i=1}^{n}{weight_i}}, \frac{\sum_{i=1}^{n}{y_i*weight_i}}{\sum_{i=1}^{n}{weight_i}})$
+$(x, y) = (\frac{\sum_{i=1}^{n}{x_i\*weight_i}}{\sum_{i=1}^{n}{weight_i}}, \frac{\sum_{i=1}^{n}{y_i\*weight_i}}{\sum_{i=1}^{n}{weight_i}})$
 
 The final result (the new x) should be a point as well, n-dimensional.
 
