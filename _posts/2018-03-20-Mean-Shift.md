@@ -1,8 +1,5 @@
 ---
-categories:
-    - clustering
-    - unsupervised
-    - mean-shift
+mathjax: true
 ---
 
 
