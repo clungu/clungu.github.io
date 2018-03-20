@@ -84,7 +84,7 @@ defaults:
 
 
 analytics:
-  provider: "google-gtag"
+  provider: "google"
   google:
     tracking_id: "UA-53253619-2"
 
