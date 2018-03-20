@@ -1,7 +1,15 @@
+---
+categories:
+	- clustering
+	- unsupervised
+	- mean-shift
+mathjax: true
+---
+
 
 # Mean Shift Clustering
 
-The algorithm was proposed by Dorin Comaniciu (a fellow romanian) [here](https://courses.csail.mit.edu/6.869/handouts/PAMIMeanshift.pdf).
+The algorithm was proposed by [Dorin Comaniciu](http://comaniciu.net/) (a fellow romanian) [here](https://courses.csail.mit.edu/6.869/handouts/PAMIMeanshift.pdf).
 
 ## Idea of mean-shift
 
@@ -59,7 +67,7 @@ print(all_points.shape)
 
 The probability density function of a normally distributed random variable with expected value μ (mean) and variance $σ^2$ is given by the bellow **[gaussian function](https://en.wikipedia.org/wiki/Gaussian_function)**:
 
-![image.png](attachment:image.png)
+![svg](../assets/images/2018-03-20-Mean-Shift_files/gaussian-function.svg)
 
 Because it's a probability distribution, the sum (integral) of this function is 1, this by the definition above is a **gaussian kernel**
 
