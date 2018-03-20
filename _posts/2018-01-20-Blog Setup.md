@@ -132,3 +132,51 @@ function publish() {
 	cd "${ORIG_DIR}"
 }
 ```
+
+# Enabling LaTex renderings
+
+By default themes don't render LaTex expression so you need to do a few things in order to make them work:
+
+* Create a new directory called `_includes`
+* Create a file inside called `scripts.html`
+* Paste inside the following snippet
+
+```
+{% if page.mathjax %}
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+{% endif %}
+```
+
+* Edit the `_config.yaml` file and in the `include` section, add a line that says `_includes`. You should have something like this in the end:
+
+```
+# Reading Files
+include:
+  - .htaccess
+  - _pages
+  - _includes
+```
+
+* On all pages that have expressions, add the following Front Matter
+
+```
+---
+mathjax: true
+---
+```
+
+## Enabling $ start/end delimiter
+
+By default the delimiter the mark the beggining and ending of LaTex expressions is `$$`. If you also want to enable `$` which in some settings is also used, add the following snippet inside the `_includes/scripts.html` `{% if page.mathjax %}` tag
+
+
+```
+<!-- Enable $ as delimiter. Otherwise we need to use $$ as the delimiter.-->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+```
