@@ -48,6 +48,13 @@ author:
   xing             :
   youtube          :
 
+
+analytics:
+  provider: "google-universal"
+  google:
+    tracking_id: "UA-53253619-2"
+
+
 # Reading Files
 include:
   - .htaccess
@@ -81,12 +88,6 @@ defaults:
     values:
       layout: single
       author_profile: true
-
-
-analytics:
-  provider: "google"
-  google:
-    tracking_id: "UA-53253619-2"
 
 
 # Conversion
