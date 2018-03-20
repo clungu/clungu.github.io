@@ -1,13 +1,3 @@
----
-categories: 
-	- posts
-tags:
-	- setup
-	- domain
-	- github pages
-	- jekyll
----
-
 # Register domain
 
 Buy a domain from a known registrar. You can use your AWS for this or anyother one (I also used Namecheap sometimes).
