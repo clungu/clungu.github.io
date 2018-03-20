@@ -1,5 +1,5 @@
 main:
-    - title: "Recent Posts"
+    - title: "Posts"
       url: /post-archive/
     - title: "Contact"
       url: /contact/

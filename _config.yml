@@ -3,7 +3,7 @@
 
 remote_theme: mmistakes/minimal-mistakes
 
-minimal_mistakes_skin    : "dark" # "default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "default" # "default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 locale                   : "en-US"
 title                    : "Machine Learning Blog"
@@ -22,8 +22,8 @@ author:
   bio              : "Stuff."
   location         : "Cluj-Napoca, Romania, EU"
   email            : 
-#  uri              : "https://www.clungu.com"
-#  home             : "https://www.clungu.com"
+  uri              : "http://www.clungu.com"
+  home             : "http://www.clungu.com"
   bitbucket        :
   codepen          :
   dribbble         :
@@ -36,7 +36,7 @@ author:
   keybase          :
   instagram        :
   lastfm           :
-  linkedin         :
+  linkedin         : https://www.linkedin.com/in/cristianlungu/
   pinterest        :
   soundcloud       :
   stackoverflow    : # https://stackoverflow.com/users/123456/username
