@@ -5,10 +5,10 @@ author_profile: true
 ---
 
 I'm Cristian Lungu  
-	* a machine learning engineer
-	* a PhD.c at the Technical University of Cluj Napoca
-	* an advocate for eliminating biases from ML models
-	* entreprenour
+* a machine learning engineer
+* a PhD.c at the Technical University of Cluj Napoca
+* an advocate for eliminating biases from ML models
+* entreprenour
 
 
 ## Consulting
