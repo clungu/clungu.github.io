@@ -7,7 +7,7 @@ Summary:
 * Rough segmentation of the data
 * Data cleaning and enriching
 * Embeddings
-* Cluster the similar stuff togheter
+* Cluster the similar stuff together
 
 # Setup
 
@@ -753,7 +753,7 @@ print(classification_report(classification_test_lables, gs_clf.predict(classific
 
 So using the above classifier we can filter out really fast, any media article that we're not interested in and then focus on the specific use case we want to handle.
 
-There's A TON of other approached that you could try to improve the above result. Nowadays, in NPL you don't want to do '[bag-of-words](https://en.wikipedia.org/wiki/Bag-of-words_model)' models as we just did above, but instead you would vectorize the text using [word vectors](https://en.wikipedia.org/wiki/Word_embedding).  
+There's A TON of other approached that you could try to improve the above result. Nowadays, in NLP you don't want to do '[bag-of-words](https://en.wikipedia.org/wiki/Bag-of-words_model)' models as we just did above, but instead you would vectorize the text using [word vectors](https://en.wikipedia.org/wiki/Word_embedding).  
 
 You might also want to try some other advanced stuff like:
 * Vectorize by passing the word vectors through an RNN
@@ -1495,7 +1495,7 @@ EthnicityEnhancer()._get_ethnicity('Karl Armstrong'), next(EthnicityEnhancer().e
 
 
 
-## Putting it all togheter
+## Putting it all together
 
 
 ```python
@@ -1608,38 +1608,38 @@ We've showed some of the ways in which you can enrich a profile with more inform
 * extract phone numbers
     * phone numbers like names, have lots of embedded information in them that can be extracted (carrier network, region, country, etc..)
 * Age retrieval
-* Geo triangularisation of addresses, etc..
+* Geo triangularization of addresses, etc..
 
 # Event2Vec
 
-Now that we have rich events, we may need to be able to index them and have the ones that share a common theme grouped togheter.
+Now that we have rich events, we may need to be able to index them and have the ones that share a common theme grouped together.
 
-This is usefull when looking for insights and "not-so-obvious" links between people's interests. Usually, such a grouping reveals a common agenda like:
-    * a common terrorisit cell
+This is useful when looking for insights and "not-so-obvious" links between people's interests. Usually, such a grouping reveals a common agenda like:
+    * a common terrorist cell
     * a common corruption ring
-    * an organized crime cartell
+    * an organized crime cartel
 
 Were going to do this by deriving [event embeddings](https://machinelearningmastery.com/what-are-word-embeddings/).
 
-They will act as coordinated in a multidimensional space that we can later use fo cluster the similar ones together.
+They will act as coordinated in a multidimensional space that we can later use of cluster the similar ones together.
 
 ## Model discussions
 
-One approach for getting these embeddings is replicate the [skip-gram model](https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b) published by Google in teir famous [Word2Vec paper](https://arxiv.org/pdf/1310.4546) but with some modifications.
+One approach for getting these embeddings is replicate the [skip-gram model](https://towardsdatascience.com/word2vec-skip-gram-model-part-1-intuition-78614e4d6e0b) published by Google in their famous [Word2Vec paper](https://arxiv.org/pdf/1310.4546) but with some modifications.
 
 * We will use all the elements of an event that look like unique name identifiers as "words". 
 * We define "context" to be the set of "words" found in a single event.
 * We will build a model whose task is, given a pair of "words" to:
     * output 1, if they appear in the same "context" 
     * output 0, if the "words" don't share a "context"
-    * this is unlike the original model where they use a hyerarchical softmax approach.
+    * this is unlike the original model where they use a hierarchical softmax approach.
 * The training will happen in the embedding layer, where "words" (ids) will be converted to a multidimensional array that will model the latent variables of where "words".
 
 * The final step will be, for each "event", to add all the "word" embeddings up. The result it the "event" embedding.
 
 We will implement this model in [keras](https://keras.io).
 
-## Usefull tokens 
+## Useful tokens 
 
 
 ```python
@@ -2212,7 +2212,7 @@ model.load_weights("./embedding_model.hdf5")
 
 ## Event embeddings
 
-So now, all we need to do to compute an event embedding is add all the embeddings togheter.
+So now, all we need to do to compute an event embedding is add all the embeddings together.
 
 
 ```python
@@ -2283,16 +2283,16 @@ These can be used as indexes in a database, similar elements being close to one 
 
 
 
-The interesting thing about embeddings right now is that we can also use them to make inteligent "Google-like" queries:
-    - "Air force" + "New York" + "Bombbings" + "1980" -> "John Malcom"
+The interesting thing about embeddings right now is that we can also use them to make intelligent "Google-like" queries:
+    - "Air force" + "New York" + "Bombings" + "1980" -> "John Malcom"
 
 # Clustering the event_embeddings
 
-The final step in our jurney is to cluster all the embeddings into common groups.
+The final step in our journey is to cluster all the embeddings into common groups.
 
-Most of the known clustering algorithms require us to input the desired number of clusters beforehad, which obviously is not the case for us. 
+Most of the known clustering algorithms require us to input the desired number of clusters beforehand, which obviously is not the case for us. 
 
-Foretunately there are a couple of algorithms that automatically estimate the "best" number of clusters.
+Fortunately there are a couple of algorithms that automatically estimate the "best" number of clusters.
 
 We will be using AffinityPropagation, but [MeanShift](http://www.clungu.com/Mean-Shift/) is another good approach whose internals I've [described previously on my blog](http://www.clungu.com/Mean-Shift/).
 
@@ -2434,7 +2434,7 @@ event_data[23], event_data[196]
 
 # Conclusions
 
-To recap our jurney today:
+To recap our journey today:
 * Trained a "terrorism" media filter (to weed out all the can-can stories)
 * Parsed the text into structured format
 * Enriched data with external or implicit information
@@ -2442,7 +2442,7 @@ To recap our jurney today:
 * Clustered similar events into groups
 
 Key takeaways:
-* Media articles contain a rich source of information
+* Media articles are a rich source of information
 * Machine Learning allows us to process this information into queryiable format
 * There are multiple frameworks and strategies that we can use for this
     * usually a blend of them is the most pragmatic choice
