@@ -4,7 +4,7 @@ permalink: /contact/
 author_profile: true
 ---
 
-I'm Cristian Lungu  
+I'm:
 * a machine learning engineer
 * a PhD.c at the Technical University of Cluj Napoca
 * an advocate for eliminating biases from ML models
@@ -14,7 +14,7 @@ I'm Cristian Lungu
 ## Consulting
 
 I advise young startpus on AI / ML  
-Sometime offer consulting to corporosations that seek my help  
+Sometime offer consulting to corporations that seek my help  
 
 I also teach and held several training sessions on applyed ML.  
 

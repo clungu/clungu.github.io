@@ -2435,12 +2435,13 @@ event_data[23], event_data[196]
 # Conclusions
 
 To recap our jurney today:
-    * Trained a "terrorism" media filter (to weed out all the can-can stories)
-    * Parsed the text into structured format
-    * Enriched data with external or implicit information
-    * Derived event embeddings for querying and search
-    * Clustered similar events into groups
+* Trained a "terrorism" media filter (to weed out all the can-can stories)
+* Parsed the text into structured format
+* Enriched data with external or implicit information
+* Derived event embeddings for querying and search
+* Clustered similar events into groups
 
+Key takeaways:
 * Media articles contain a rich source of information
 * Machine Learning allows us to process this information into queryiable format
 * There are multiple frameworks and strategies that we can use for this
