@@ -1,10 +1,3 @@
-
-# About me
-
-* Cristian Lungu, Phd.c. UTCN, AI
-* ML Researcher, Trainer, Consultant 
-* www.clungu.com
-
 # Intuition
 
 Everypresentation starts with a cat
@@ -1013,6 +1006,3 @@ def plots(ims, figsize=(12, 6), rows=1, interp=False, titles=None, display=False
 * NLP stands on the sholders of word2vec, glove, fasttext
 * Usually, embeddings are additive
 
-# QA
-
-* www.clungu.com
