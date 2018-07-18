@@ -1,6 +1,6 @@
 # Intuition
 
-Everypresentation starts with a cat
+Every presentation starts with a cat
 
 ![image.png](https://r.hswstatic.com/w_907/gif/tesla-cat.jpg)
 
@@ -21,7 +21,7 @@ If I show you one, what do you see?
 
 # Maths embeddings
 
-In mathematics, an embedding (or imbedding[1]) is one instance of some mathematical structure contained within another instance, such as a group that is a subgroup. (wikipedia)
+In mathematics, an embedding (or imbedding) is one instance of some mathematical structure contained within another instance, such as a group that is a subgroup. (wikipedia)
 
 .... (!)
 
@@ -50,7 +50,7 @@ from matplotlib import pyplot as plt
 from scipy import io
 from keras.utils.np_utils import to_categorical
 
-mat = io.loadmat("/home/cristi/Applications/GITHub/keras/tensor_flow/data/word-embeddings.mat")
+mat = io.loadmat("./data/word-embeddings.mat")
 data = mat['data']['trainData'][0][0] - 1 # in octave arrays start from one
 
 vocab = np.array([element[0] for element in mat['data']['vocab'][0][0].reshape(250)])
@@ -179,7 +179,7 @@ word_model.fit([inputs[:, 0], inputs[:, 1], inputs[:, 2]], labels)
 
 
 
-Building a reversable dictionary
+Building a reversible dictionary
 
 
 ```python
@@ -229,9 +229,9 @@ most_similar_words('war')
 
 In NLP, the above is just the first thing that you usually do before you want to process text (i.e. substituting words with their embeddings).
 
-Fortunately, there were many attempts (and many companies) that trained word embeddings on large corpuses (and their expense) but made available the results.
+Fortunately, there were many attempts (and many companies) that trained word embeddings on large corpus-es (and their expense) but made available the results.
 
-Examples of public word embeddinge libraries:
+Examples of public word embeddings libraries:
 * [Word2Vec](https://code.google.com/archive/p/word2vec/) (Google)
 * [GloVe](https://nlp.stanford.edu/projects/glove/) (Stanford)
 * [FastText](https://github.com/facebookresearch/fastText/blob/master/pretrained-vectors.md) (Facebook)
@@ -240,22 +240,22 @@ The most famous one, word2vec has the following two strategies used to training 
 
 ![image.png](https://raw.githubusercontent.com/rohan-varma/paper-analysis/master/word2vec-papers/models.png)
 
-(Continous Bag of Words), (Skip Gram model)
+(Continuous Bag of Words), (Skip Gram model)
 
 These embeddings have some pretty cool properties:
 
 ![image.png](https://shanelynnwebsite-mid9n9g1q9y8tt.netdna-ssl.com/wp-content/uploads/2018/02/vocabulary-linear-relationships.png)
 
 One downside of embeddings is that they are specific to what they have been trained on.
-In this case, english word embeddings are specific, to english and don't relate in any way to embeddings of other languages (except for the fact that distances between equivalent words should have roughtly the same values)
+In this case, English word embeddings are specific, to English and don't relate in any way to embeddings of other languages (except for the fact that distances between equivalent words should have roughly the same values)
 
-### Same space alligned embeddings
+### Same space aligned embeddings
 
-You can also have embeddings alligned in the same vector space
+You can also have embeddings aligned in the same vector space
 
-FastText embeddings have a [git repo](https://github.com/Babylonpartners/fastText_multilingual) that you can use to allign all the 190 language embeddings on the same vector space.
+FastText embeddings have a [git repo](https://github.com/Babylonpartners/fastText_multilingual) that you can use to align all the 190 language embeddings on the same vector space.
 
-One thing that you can use them for is to do a quick, dirty and imperfect transaltion mechanism, where for each word in language A, you take it's embeddings, and search the closest embedding form language B. Having found that embedding you can now substitute it with the word it stands for.
+One thing that you can use them for is to do a quick, dirty and imperfect translation mechanism, where for each word in language A, you take it's embeddings, and search the closest embedding form language B. Having found that embedding you can now substitute it with the word it stands for.
 
 Bellow is a translation done using this mechanism.
 
@@ -385,7 +385,7 @@ display(table.head())
 </div>
 
 
-We're only going to take 'taster_name', 'variety' and 'country' fields into acount.
+We're only going to take 'taster_name', 'variety' and 'country' fields into account.
 
 
 ```python
@@ -435,7 +435,7 @@ table['taster_name'].unique()
 
 
 
-Let's make some reversible dictionaries so we can restore the strings from ids and viceversa
+Let's make some reversible dictionaries so we can restore the strings from ids and vice-versa
 
 
 ```python
@@ -449,7 +449,7 @@ country2id = {taster: id for id, taster in enumerate(table['country'].unique())}
 id2country = {id: taster for id, taster in enumerate(table['country'].unique())}
 ```
 
-Compiling a dataset that has only the above values and uses 'points' as lables
+Compiling a dataset that has only the above values and uses 'points' as labels
 
 
 ```python
@@ -683,16 +683,17 @@ These can be used as indexes in a database (similar elements being close to one 
 
 The interesting thing about embeddings right now is that we can also use them to make intelligent “Google-like” queries: 
 * “Air force” + “New York” + “Bombings” + “1980” -> “John Malcom”
+	* [note: the above is just a made-up example]
 
-# Sparse matrixes to embeddings
+# Sparse matrices to embeddings
 
 Another example of embeddings usage is the case where we want to take a really large / sparse matrix and convert it to a reduced set value.
 
-Arguably, Word2Vec has been [shown to do exactly this](http://www.aclweb.org/anthology/Q15-1016) (build the coocurence matrix and factor it down into a low-dimensional representation).
+Arguably, Word2Vec has been [shown to do exactly this](http://www.aclweb.org/anthology/Q15-1016) (build the concurrence matrix and factor it down into a low-dimensional representation).
 
 ## PCA
 
-Just to exemplify how this might work, we're going to take the [iris dataset](http://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html) and use it to deribe embeddings for each element.
+Just to exemplify how this might work, we're going to take the [iris dataset](http://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html) and use it to derive embeddings for each element.
 
 Some ETL..
 
@@ -761,13 +762,13 @@ plt.show()
 ![png](../assets/images/2018-07-18-Embeddings_in_ML_models_files/2018-07-18-Embeddings_in_ML_models_72_0.png)
 
 
-## Autoencoders
+## Auto-encoders
 
-We can also create embeddings for multidimensional data using autoencoders.
+We can also create embeddings for multidimensional data using auto-encoders.
 
-Autoencoders model the function f, where f(x) = x
+Auto-encoders model the function f, where f(x) = x
 
-Autoencoders have a "bottleneck" part where data is reduced to a low dimensional representation and then expanded back into the same dimension as the one we've started from.
+Auto-encoders have a "bottleneck" part where data is reduced to a low dimensional representation and then expanded back into the same dimension as the one we've started from.
 
 The "bottleneck" output will be our encoding. 
 
@@ -856,7 +857,7 @@ x = UpSampling2D((2, 2))(x)
 decoded = Convolution2D(1, 3, 3, activation='sigmoid', border_mode='same')(x)
 
 autoencoder = Model(input_img, decoded)
-autoencoder.compile(optimizer='adadelta', loss='binary_crossentropy')
+autoencoder.compile(optimizer='adadelta', loss='mae')
 
 autoencoder.summary()
 ```
@@ -908,32 +909,14 @@ autoencoder.fit(X, X,
 ```
 
     Train on 60000 samples, validate on 10000 samples
-    Epoch 1/10
-    60000/60000 [==============================] - 79s - loss: -523.6325 - val_loss: -531.9488
-    Epoch 2/10
-    60000/60000 [==============================] - 79s - loss: -524.6607 - val_loss: -532.4966
-    Epoch 3/10
-    60000/60000 [==============================] - 81s - loss: -525.0491 - val_loss: -532.7882
-    Epoch 4/10
-    60000/60000 [==============================] - 82s - loss: -525.2669 - val_loss: -532.9055
-    Epoch 5/10
-    60000/60000 [==============================] - 78s - loss: -525.4088 - val_loss: -533.0264
-    Epoch 6/10
-    60000/60000 [==============================] - 85s - loss: -525.5086 - val_loss: -533.1522
-    Epoch 7/10
-    60000/60000 [==============================] - 79s - loss: -525.5668 - val_loss: -533.2292
-    Epoch 8/10
-    60000/60000 [==============================] - 80s - loss: -525.6431 - val_loss: -533.2739
-    Epoch 9/10
-    60000/60000 [==============================] - 85s - loss: -525.7007 - val_loss: -533.2745
-    Epoch 10/10
-    60000/60000 [==============================] - 89s - loss: -525.7559 - val_loss: -533.1048
+    Epoch 1/3
+    60000/60000 [==============================] - 79s - loss: 23.6325 - val_loss: 32.9488
+    Epoch 2/3
+    60000/60000 [==============================] - 79s - loss: 22.6607 - val_loss: 31.4966
+    Epoch 3/3
+    60000/60000 [==============================] - 81s - loss: 21.0491 - val_loss: 30.7882
 
 
-
-
-
-    <keras.callbacks.History at 0x7fc77956f610>
 
 
 
@@ -945,8 +928,9 @@ plots(autoencoder.predict(np.array([X[0]])))
 ```
 
 
-![png](../assets/images/2018-07-18-Embeddings_in_ML_models_files/2018-07-18-Embeddings_in_ML_models_86_0.png)
+![png](../assets/images/2018-07-18-Embeddings_in_ML_models_files/2018-07-18-Embeddings_in_ML_models_86_1.png)
 
+![png](../assets/images/2018-07-18-Embeddings_in_ML_models_files/2018-07-18-Embeddings_in_ML_models_80_1.png)
 
 
 ```python
@@ -1003,6 +987,6 @@ def plots(ims, figsize=(12, 6), rows=1, interp=False, titles=None, display=False
 # Conclusions
 
 * IDs always mean embeddings!
-* NLP stands on the sholders of word2vec, glove, fasttext
+* NLP stands on the shoulders of word2vec, glove, fasttext
 * Usually, embeddings are additive
 
