@@ -90,6 +90,9 @@ defaults:
       author_profile: true
 
 
+plugins:
+  - jekyll-include-cache
+
 # Conversion
 markdown: kramdown
 highlighter: rouge
