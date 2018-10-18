@@ -2,12 +2,12 @@
 # Building a recommender system
 
 Agenda:
-        * What is a recommender system?
-        * Defining a metrics system 
-        [3 possible approaches]
-        * The popularity model
-        * Content based filtering
-        * Collaborative filtering
+* What is a recommender system?
+* Defining a metrics system 
+[3 possible approaches]
+* The popularity model
+* Content based filtering
+* Collaborative filtering
 
 ## The problem
 
