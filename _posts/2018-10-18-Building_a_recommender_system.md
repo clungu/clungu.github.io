@@ -1,8 +1,8 @@
 
-# Building a recomender system
+# Building a recommender system
 
 Agenda:
-        * What is a recomender system?
+        * What is a recommender system?
         * Defining a metrics system 
         [3 possible approaches]
         * The popularity model
@@ -13,7 +13,7 @@ Agenda:
 
 ![image.png](http://labs.criteo.com/wp-content/uploads/2017/08/CustomersWhoBought3.jpg)
 
-Some examples of where you might find / use  a recomendation engine? 
+Some examples of where you might find / use  a recommendation engine? 
 
 ### Global examples
 
@@ -34,9 +34,9 @@ Some examples of where you might find / use  a recomendation engine?
 
 Let's just say that I know many people from Amazon :D
 
-We will be using a [book dataset](https://github.com/zygmuntz/goodbooks-10k) found here. It contains 10k books and 5mil reviews (scores 1, 5).
+We will be using a [book dataset](https://github.com/zygmuntz/goodbooks-10k) found here. It contains 10k books and 6 mil reviews (scores 1, 5).
 
-Our task is to take those ratings and suggest for each user `new` things to read beased on his previous feedback.
+Our task is to take those ratings and suggest for each user `new` things to read based on his previous feedback.
 
 
 
@@ -48,10 +48,10 @@ Given
     * a set of possible elements [E1, E2, ... ] 
     * some prior interactions (relation) between Us and Es ( {seen, clicked, subscribed, bought} or a rating, or a feedback, etc..), 
     
-for a given user U, predict a list of top N elements from E such as U maximises the defined relation.
+for a given user U, predict a list of top N elements from E such as U maximizes the defined relation.
 
 
-As i've said, usually the relation is an something numeric, business defined ( amount of money, click-through-rates, churn, etc..)
+As I've said, usually the relation is an something numeric, business defined ( amount of money, click-through-rates, churn, etc..)
 
 ## Loading the data
 
@@ -62,12 +62,12 @@ import pandas as pd
 
 
 ```python
-books = pd.read_csv("./Building a recomender system/books.csv")
-ratings = pd.read_csv("./Building a recomender system/ratings.csv")
-tags = pd.read_csv("./Building a recomender system/tags.csv")
+books = pd.read_csv("./Building a recommender system/books.csv")
+ratings = pd.read_csv("./Building a recommender system/ratings.csv")
+tags = pd.read_csv("./Building a recommender system/tags.csv")
 tags = tags.set_index('tag_id')
 
-book_tags = pd.read_csv("./Building a recomender system/book_tags.csv")
+book_tags = pd.read_csv("./Building a recommender system/book_tags.csv")
 ```
 
 # Data exploration
@@ -405,11 +405,6 @@ ratings.rating.hist( bins = 5, grid=False)
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0x7f10cb7b55c0>
-
-
-
-
 ![png](../assets/images/2018-10-18-Building_a_recommender_system_files/2018-10-18-Building_a_recommender_system_25_1.png)
 
 
@@ -503,7 +498,7 @@ reviews_per_book.to_frame().describe()
 
 # Train test split
 
-Of course we need to first follow the best practicies and split the data into training and testing sets. 
+Of course we need to first follow the best practices and split the data into training and testing sets. 
 
 
 ```python
@@ -525,11 +520,11 @@ len(train_df), len(test_df)
 
 # Evaluation metrics
 
-Let's think a bit about how would we measure a recomendation engine..
+Let's think a bit about how would we measure a recommendation engine..
 
 Any ideas?
 
-*If you say either of {precision, recall, fscore, accuracy} you're wrong*
+*If you say either of {precision, recall, f-score, accuracy} you're wrong*
 
 ## Top-N accuracy metrics
 
@@ -857,15 +852,15 @@ book_popularity.head(n=20)
 
 ![image.png](https://upload.wikimedia.org/wikipedia/en/f/fa/Calvin_and_Hobbes_6_Sep_1987.jpg)
 
-This of course is insufficient advice for good books. Title fanatics may give high scores for unkown books. Since they are the only ones that do reviews, the books generaly get good scores.
+This of course is insufficient advice for good books. Title fanatics may give high scores for unknown books. Since they are the only ones that do reviews, the books generally get good scores.
 
 # Content based filtering
 
-![image](content-based-filtering.png)
+![image](../assets/images/2018-10-18-Building_a_recommender_system_files/content-based-filtering.png)
 
 [Reference for slide](https://www.slideshare.net/gabrielspmoreira/discovering-users-topics-of-interest-in-recommender-systems-tdc-sp-2016)
 
-The aim of thise approach is to group similar object together and recomend new objects from the same categories that the user already purchased
+The aim of this approach is to group similar object together and recommend new objects from the same categories that the user already purchased
 
 We already have tags for books in this dataset, let's use them!
 
@@ -964,104 +959,6 @@ for book_id, tag_id, _ in tqdm(book_tags.values):
 ```
 
 
-    HBox(children=(IntProgress(value=0, max=999912), HTML(value='')))
-
-
-    
-
-
-
-    --------------------------------------------------------
-
-    KeyError               Traceback (most recent call last)
-
-    ~/Envs/deep3.6/lib/python3.6/site-packages/pandas/core/indexes/base.py in get_loc(self, key, method, tolerance)
-       3077             try:
-    -> 3078                 return self._engine.get_loc(key)
-       3079             except KeyError:
-
-
-    pandas/_libs/index.pyx in pandas._libs.index.IndexEngine.get_loc()
-
-
-    pandas/_libs/index.pyx in pandas._libs.index.IndexEngine.get_loc()
-
-
-    pandas/_libs/hashtable_class_helper.pxi in pandas._libs.hashtable.PyObjectHashTable.get_item()
-
-
-    pandas/_libs/hashtable_class_helper.pxi in pandas._libs.hashtable.PyObjectHashTable.get_item()
-
-
-    KeyError: 100
-
-    
-    During handling of the above exception, another exception occurred:
-
-
-    KeyError               Traceback (most recent call last)
-
-    <ipython-input-210-61af2624da86> in <module>
-          5     tags_of_book |= get_tag_name(tag_id)
-          6 
-    ----> 7 book_tags[100]
-    
-
-    ~/Envs/deep3.6/lib/python3.6/site-packages/pandas/core/frame.py in __getitem__(self, key)
-       2686             return self._getitem_multilevel(key)
-       2687         else:
-    -> 2688             return self._getitem_column(key)
-       2689 
-       2690     def _getitem_column(self, key):
-
-
-    ~/Envs/deep3.6/lib/python3.6/site-packages/pandas/core/frame.py in _getitem_column(self, key)
-       2693         # get column
-       2694         if self.columns.is_unique:
-    -> 2695             return self._get_item_cache(key)
-       2696 
-       2697         # duplicate columns & possible reduce dimensionality
-
-
-    ~/Envs/deep3.6/lib/python3.6/site-packages/pandas/core/generic.py in _get_item_cache(self, item)
-       2487         res = cache.get(item)
-       2488         if res is None:
-    -> 2489             values = self._data.get(item)
-       2490             res = self._box_item_values(item, values)
-       2491             cache[item] = res
-
-
-    ~/Envs/deep3.6/lib/python3.6/site-packages/pandas/core/internals.py in get(self, item, fastpath)
-       4113 
-       4114             if not isna(item):
-    -> 4115                 loc = self.items.get_loc(item)
-       4116             else:
-       4117                 indexer = np.arange(len(self.items))[isna(self.items)]
-
-
-    ~/Envs/deep3.6/lib/python3.6/site-packages/pandas/core/indexes/base.py in get_loc(self, key, method, tolerance)
-       3078                 return self._engine.get_loc(key)
-       3079             except KeyError:
-    -> 3080                 return self._engine.get_loc(self._maybe_cast_indexer(key))
-       3081 
-       3082         indexer = self.get_indexer([key], method=method, tolerance=tolerance)
-
-
-    pandas/_libs/index.pyx in pandas._libs.index.IndexEngine.get_loc()
-
-
-    pandas/_libs/index.pyx in pandas._libs.index.IndexEngine.get_loc()
-
-
-    pandas/_libs/hashtable_class_helper.pxi in pandas._libs.hashtable.PyObjectHashTable.get_item()
-
-
-    pandas/_libs/hashtable_class_helper.pxi in pandas._libs.hashtable.PyObjectHashTable.get_item()
-
-
-    KeyError: 100
-
-
 Let's see the tags for one book
 
 
@@ -1122,7 +1019,7 @@ books.loc[books.goodreads_book_id == 105][['book_id', 'title', 'authors']]
 
 
 
-There are two types of ids in this dataset: `goodreads_book_id` and `book_id` we will make two dicts to switch from one to the other
+There are two types of ids in this dataset: `goodreads_book_id` and `book_id` we will make two `dict`s to switch from one to the other
 
 
 ```python
@@ -1203,7 +1100,7 @@ class LemmaTokenizer(object):
 
 After this we're ready to process the data. 
 
-We will build a `sklearn` pipline to process the tags. 
+We will build a `sklearn` pipeline to process the tags. 
 
 We will first be using a tf-idf metric customized to tokenize words with the above implemented Lemmer and Stemmer class. Then we will use a StandardScaler transform to 
 make all the values in the resulting matrix [0, 1] bound.
@@ -1241,9 +1138,9 @@ trans.shape
 
 
 After this point, the `trans` variable contains a row for each book, each suck row 
-corresponds to a 1000 dimensional array.  Each element of that 1000, is a score for the most `important` 1000 words that the TfidfVectorizer decided to keep (1000 words choosen from all the book tags provided). 
+corresponds to a 1000 dimensional array.  Each element of that 1000, is a score for the most `important` 1000 words that the TfidfVectorizer decided to keep (1000 words chosen from all the book tags provided). 
 
-This is the vectorized represnetation of the book, the vector the contains (many 0 values) the most important (cumulated for all users) words with which people tagged the books.
+This is the vectorized representation of the book, the vector the contains (many 0 values) the most important (cumulated for all users) words with which people tagged the books.
 
 Next up, let's see how many users do we have and let's extract them into a single list.
 
@@ -1533,11 +1430,11 @@ The last piece of the puzzle at this stage is making a link between the `book_ve
 Since both of them are computed on the same feature space, we simply need a distance metric that would rank a given `user_vector` to all the `book_vectors`.
 
 One such metric is the `cosine_similarity` that we're using bellow. It computes a distance between two n-dimensional vectors and returns a score between -1 and 1 where:
-* something close to -1 means that the vectors have opposite relations (e.g. commedy and drama)
+* something close to -1 means that the vectors have opposite relations (e.g. comedy and drama)
 * something close to 0 means that the vectors have no relation between them
 * something close to 1 means that the vectors are quite similar
 
-The code bellow will compute a recomendation for a single user.
+The code bellow will compute a recommendation for a single user.
 
 
 ```python
@@ -1700,7 +1597,7 @@ This approach gives way better predictions than the popularity model but, on the
 
 # Collaborative filtering
 
-![image.png](collaborative-filtering.png)
+![image.png](../assets/images/2018-10-18-Building_a_recommender_system_files/collaborative-filtering.png)
 
 The idea of this approach is that users fall into `interest buckets`. 
 
@@ -1886,9 +1783,9 @@ books.head()
 
 Our goal here is to express each user and each book into some `semantic` representation derived from the ratings we have.
 
-We will model each id (both user_id, and book_id) as a `hidden` latent variable sequence (also called `embedding`). The user_id `embeddings` would represent that user's personal tastes. The book_id `embeddings` would represent the book caracteristics. 
+We will model each id (both user_id, and book_id) as a `hidden` latent variable sequence (also called `embedding`). The user_id `embeddings` would represent that user's personal tastes. The book_id `embeddings` would represent the book characteristics. 
 
-We then assume that the rating of a user would be the product between his personal tastes (the user's embeddings) multiplied with the books caracteristics (the book embeddings).
+We then assume that the rating of a user would be the product between his personal tastes (the user's embeddings) multiplied with the books characteristics (the book embeddings).
 
 Basically, this means we will try to model the formula
 
@@ -1899,7 +1796,7 @@ rating = user_preferences * book_charatersitcs + user_bias + book_bias
 * `user_bias` is a tendency of a user to give higher or lower scores.
 * `book_bias` is a tendency of a book to be more known, publicized, talked about so rated higher because of this.
 
-We expect that while training, the ratings will backpropagate enough information into the embeddings so as to jointly decompose both the `user_preferences` vectors and `book_characteristics` vectors.
+We expect that while training, the ratings will back-propagate enough information into the embeddings so as to jointly decompose both the `user_preferences` vectors and `book_characteristics` vectors.
 
 
 ```python
@@ -2067,12 +1964,7 @@ model.fit(x=[u, b], y=r, validation_data=([vu, vb], vr), epochs=1)
 
 
 
-
-    <keras.callbacks.History at 0x7f10cbc237b8>
-
-
-
-After the training is done, we can retrieve the embedding values for the books, the users and the biases in order to reproduce the computations ourselvs for a single user.
+After the training is done, we can retrieve the embedding values for the books, the users and the biases in order to reproduce the computations ourselves for a single user.
 
 
 ```python
@@ -2090,13 +1982,13 @@ book_embeddings.shape, "10000 books each with 10 hidden features (the embedding)
 
 ```python
 user_embeddings = emb_u_w.get_weights()[0]
-user_embeddings.shape, "54k users each with 10 hidden prefferences"
+user_embeddings.shape, "54k users each with 10 hidden preferences"
 ```
 
 
 
 
-    ((53424, 10), '54k users each with 10 hidden prefferences')
+    ((53424, 10), '54k users each with 10 hidden preferences')
 
 
 
@@ -2240,10 +2132,10 @@ Again you can imagine this being all this code tied up into a single system.
 
 # Conclusions
 
-* Recomender systems are (needed) everywhere
+* Recommender systems are (needed) everywhere
 * The metrics used to evaluate one are more exotic (ex. NDCG@N, MAP@N, etc..)
-* We've shown how to implement 3 recomendation engine models:
-    * Populariy model
+* We've shown how to implement 3 recommendation engine models:
+    * Popularity model
     * Content based model
     * Collaboration based model
     
