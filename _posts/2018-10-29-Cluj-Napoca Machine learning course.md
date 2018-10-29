@@ -5,4 +5,4 @@ Many people asked me details about this and if you're one of them and want to be
 
 This isn't a registration form, only a show of interest. I'll reply to everyone with the details that I have.
 
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScSg7YXfSq-_lWK1G6b1XwHZEl3WWRz0AKT3axaTjfDQchBUA/viewform?embedded=true" width="640" height="1672" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScSg7YXfSq-_lWK1G6b1XwHZEl3WWRz0AKT3axaTjfDQchBUA/viewform?embedded=true" width="840" height="1672" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
