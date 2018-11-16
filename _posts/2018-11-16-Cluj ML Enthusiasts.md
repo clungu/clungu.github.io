@@ -1,16 +1,16 @@
 
-My last post received quite some responses, but before actually settling on the curricula of the upcomming ML course, I've decided to "eat my own lunch" and use ML to analiyze what the data is telling me.
+My last post received quite some responses, but before actually settling on the curricula of the upcoming ML course, I've decided to "eat my own lunch" and use ML to analyze what the data is telling me.
 
 More specifically I'm interested in the classes of ML enthusiasts that exist in Cluj-Napoca, and try to identify what those classes represent. I'd like to understand who my audience is, what they know, and what they'd like to learn next.
 
 I'd also like to get an insight into why are they interested in joining this course.
 
 The basic strategy that I'm going to use, is:
-* data cleanining 
+* data cleaning 
 * feature engineering
-* feature analisys
+* feature analysis
 * clustering
-* cluster analisys
+* cluster analysis
 
 In the end I'll end up with the insight I'm seeking, so let's proceed!
 
@@ -132,7 +132,7 @@ df.drop(columns=['WorkAt']).head()
 
 
 
-The `Knowledge` field contains values that represent, in ascending order, the self-assesment of ML knowledge. The actual number-to-question relation is found bellow: 
+The `Knowledge` field contains values that represent, in ascending order, the self-assessment of ML knowledge. The actual number-to-question relation is found bellow: 
 * 1 - I heard about ML
 * 2 - I understand what ML is and should be doing
 * 3 - I've used some packaged libraries / API's that used ML in the background 
@@ -160,155 +160,6 @@ The `Degree` field is a 4 value list for the following enumeration:
 * 4 - PhD
 
 The other `Is..` fields are just expansions of the information contained in `Knowledge`, `Degree` and `WorkAt` columns taken as a whole which I've filled them myself.
-
-
-```python
-from random import randint
-df_syntetic = df.copy()
-
-def noisy_knowledge(knowledge):
-    sign = randint(0, 1) * 2 - 1
-    noise = randint(0, 3)
-    return max(1, (knowledge + sign * noise) % 15)
-
-def noisy_degree(degree):
-    sign = randint(0, 1) * 2 - 1
-    noise = randint(0, 1)
-    return max(1, (degree + sign * noise) % 4)
-    
-    
-df_syntetic.Degree = df_syntetic.Degree.apply(noisy_degree)
-df_syntetic.Knowledge = df_syntetic.Knowledge.apply(noisy_knowledge)    
-df_syntetic.head()
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Timestamp</th>
-      <th>Knowledge</th>
-      <th>Effort</th>
-      <th>Degree</th>
-      <th>IsResearcher</th>
-      <th>IsML</th>
-      <th>IsDeveloper</th>
-      <th>IsTeaching</th>
-      <th>IsStudent</th>
-      <th>WorkAt</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>29/10/2018 16:05:09</td>
-      <td>12</td>
-      <td>16</td>
-      <td>1</td>
-      <td>True</td>
-      <td>True</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Comply Advantage</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>29/10/2018 16:11:16</td>
-      <td>7</td>
-      <td>32</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Comply Advantage</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>29/10/2018 17:18:45</td>
-      <td>3</td>
-      <td>16</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Emerson</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>29/10/2018 17:21:18</td>
-      <td>7</td>
-      <td>4</td>
-      <td>1</td>
-      <td>False</td>
-      <td>False</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Stratec Biomedical</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>29/10/2018 17:25:51</td>
-      <td>8</td>
-      <td>4</td>
-      <td>1</td>
-      <td>False</td>
-      <td>True</td>
-      <td>True</td>
-      <td>False</td>
-      <td>False</td>
-      <td>Tecknoworks</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-```python
-df = pd.concat([df, df_syntetic], ignore_index=True)
-len(df), df.head()
-```
-
-
-
-
-    (72,              Timestamp  Knowledge  Effort  Degree  IsResearcher   IsML  \
-     0  29/10/2018 16:05:09         15      16       4          True   True   
-     1  29/10/2018 16:11:16          7      32       3         False  False   
-     2  29/10/2018 17:18:45          6      16       3         False  False   
-     3  29/10/2018 17:21:18          6       4       3         False  False   
-     4  29/10/2018 17:25:51         10       4       3         False   True   
-     
-        IsDeveloper  IsTeaching  IsStudent               WorkAt  
-     0         True       False      False     Comply Advantage  
-     1         True       False      False     Comply Advantage  
-     2         True       False      False              Emerson  
-     3         True       False      False  Stratec Biomedical   
-     4         True       False      False          Tecknoworks  )
 
 
 
@@ -570,7 +421,7 @@ The `HoursElapsed` per se, are just a quick proxy for measuring how enthusiastic
 
 I'll do a simple transformation on the `HourElapsed` by which most recent ones will have a high number and the more distant ones will fade to 0 enthusiasm.
 
-Modeling the enthusiasm of people by assuming that the velocity of their reponse is relative to a positive gausian kernel, that defines the `Enthusiasm`
+Modeling the enthusiasm of people by assuming that the velocity of their response is relative to a positive Gaussian kernel, that defines the `Enthusiasm`
 
 
 ```python
@@ -725,7 +576,7 @@ df_num.tail()
 
 
 
-Now that we've added the `Enthusiasm` column, we can remove the `HoursElapsed` and `Timestamp` columns since they are corelated with the `Enthusiasm`
+Now that we've added the `Enthusiasm` column, we can remove the `HoursElapsed` and `Timestamp` columns since they are correlated with the `Enthusiasm`
 
 
 ```python
@@ -734,7 +585,7 @@ df_num = df_num.drop(columns=['Timestamp', 'HoursElapsed'])
 
 # Feature analisys
 
-Do a feature analisys and remove highly correlated features
+Do a feature analysis and remove highly correlated features
 
 
 ```python
@@ -908,7 +759,7 @@ df_num.head()
 
 # Data plotting 
 
-We will attempt to plot the data that we have on a 2D plot. In order to do this, we will reduce the dimensionality of it using PCA. This is usefull because we want to get a rough idea of how many clusters do we have.
+We will attempt to plot the data that we have on a 2D plot. In order to do this, we will reduce the dimensionality of it using PCA. This is useful because we want to get a rough idea of how many clusters do we have.
 
 
 ```python
@@ -954,12 +805,6 @@ pipe = Pipeline([
 df_['Cluster'] = pipe.fit_predict(df_num)
 df_.sort_values('Cluster')
 ```
-
-    /home/cristi/Envs/deep3.6/lib/python3.6/site-packages/sklearn/preprocessing/data.py:617: DataConversionWarning: Data with input dtype bool, int64, float64 were all converted to float64 by StandardScaler.
-      return self.partial_fit(X, y)
-    /home/cristi/Envs/deep3.6/lib/python3.6/site-packages/sklearn/base.py:462: DataConversionWarning: Data with input dtype bool, int64, float64 were all converted to float64 by StandardScaler.
-      return self.fit(X, **fit_params).transform(X)
-
 
 
 
@@ -1609,11 +1454,11 @@ df_.sort_values('Cluster')
 
 
 
-From the initial looks of it, the clusters have the following caracteristics:
+From the initial looks of it, the clusters have the following characteristics:
 * 1 - Quick win Developers (36,1%)
 * 2 - Unemployed students (16,7%)
-* 3 - High comitement Developers (36,1%)
-* 4 - Accademics / Researchers (11,1%)
+* 3 - High commitment Developers (36,1%)
+* 4 - Academics / Researchers (11,1%)
 
 `AffinityPropagation` is a clustering algo that doesn't require a number of clusters as its inputs. I'm going to use it for estimating the number of clusters, because maybe I'm missing something some clusters. 
 
@@ -1642,7 +1487,7 @@ It seems that there's roughly the same amount of clusters that it finds. After s
     - 16+ hours / week
     - employed
     
-4 - Accademics ( 11,1% )
+4 - Academics ( 11,1% )
     - high commitment (>16h/week) ( 5,6% )
         - low commitment  (<4h/week) ( 5,6% )
 
@@ -2554,48 +2399,4 @@ df_.sort_values('Cluster')
 </table>
 <p>72 rows × 11 columns</p>
 </div>
-
-
-
-
-```python
-for i in np.unique(df_.Cluster):
-    print(df_[df_.Cluster == i][['Name', 'Knowledge', 'Effort', 'IsDeveloper', 'IsStudent']])
-```
-
-
-    ---------------------------------------------------------------------------
-
-    KeyError                                  Traceback (most recent call last)
-
-    <ipython-input-21-fc0e7a33fa82> in <module>
-          1 for i in np.unique(df_.Cluster):
-    ----> 2     print(df_[df_.Cluster == i][['Name', 'Knowledge', 'Effort', 'IsDeveloper', 'IsStudent']])
-    
-
-    ~/Envs/deep3.6/lib/python3.6/site-packages/pandas/core/frame.py in __getitem__(self, key)
-       2680         if isinstance(key, (Series, np.ndarray, Index, list)):
-       2681             # either boolean or fancy integer index
-    -> 2682             return self._getitem_array(key)
-       2683         elif isinstance(key, DataFrame):
-       2684             return self._getitem_frame(key)
-
-
-    ~/Envs/deep3.6/lib/python3.6/site-packages/pandas/core/frame.py in _getitem_array(self, key)
-       2724             return self._take(indexer, axis=0)
-       2725         else:
-    -> 2726             indexer = self.loc._convert_to_indexer(key, axis=1)
-       2727             return self._take(indexer, axis=1)
-       2728 
-
-
-    ~/Envs/deep3.6/lib/python3.6/site-packages/pandas/core/indexing.py in _convert_to_indexer(self, obj, axis, is_setter)
-       1325                 if mask.any():
-       1326                     raise KeyError('{mask} not in index'
-    -> 1327                                    .format(mask=objarr[mask]))
-       1328 
-       1329                 return com._values_from_object(indexer)
-
-
-    KeyError: "['Name'] not in index"
 
