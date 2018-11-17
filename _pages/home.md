@@ -20,14 +20,14 @@ feature_row:
     url: "/compare-super-resolution/"
     btn_label: "Read More"
     btn_class: "btn--light-outline"
-  - image_path: /assets/images/unsplash-image-9.jpg
+  - image_path: /assets/images/mnist.png
     alt: "beating mnist"
     title: "Beating MNIST"
     excerpt: "An iterative notebook that highlights how by applying recent **best practices** i nimage processing you can achieve state-of-the art results on the MNIST dataset."
-    url: "/beating-mnist/"
+    url: "/Beating-MNIST/"
     btn_label: "Read More"
     btn_class: "btn--light-outline"
-  - image_path: /assets/images/unsplash-image-1.jpg
+  - image_path: /assets/images/scikit-learn.png
     title: "Scikit-learn"
     excerpt: "Some introductory material on the scikit-learn framework."
     url: "/scikit-learn/tutorial/Scikit-learn/"
