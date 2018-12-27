@@ -1660,5 +1660,5 @@ function generate_name(){
 <input id="pattern" type="text" value="Name.."/>
 <button onclick="generate_name()">Generate</button>
 
-<div id="generated-name">
-</div>
+<b><div id="generated-name">
+</div></b>
