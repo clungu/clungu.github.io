@@ -1633,31 +1633,31 @@ If this name wins, and you'll see a billion dollar company with this name in the
 
 This is the age of ML.
 
+# DEMO 
 
-
-<script>
-$(document).ready( function(){
-
+<script type="text/javascript">
+function generate_name(){
     $.ajax({
-        type: "GET",
-        url: "api.clungu.com:5000/name",
+        type: "POST",
+        url: "http://www.api.clungu.com:5000/name",
+        crossDomain: true,
         contentType: "application/json",
         dataType: "json",
-        data: {
-           "pattern": "Name..",
-           "affinity": ["myth", "greek", "names", "startups"],
-           "timeout": 10
-        },
+        data: JSON.stringify({
+           pattern: "Name..",
+           affinity: ["myth", "greek", "names", "startups"],
+           timeout: 10
+        }),
         success: function(data, textStatus, jqXHR){
            alert(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-           alert(data);
+           alert(textStatus);
         },
-        timeout: 100,
     });
-});
+}
 </script>
+<button onclick="generate_name()">Generate</button>
 
 <div id="ajax-content">
 </div>
