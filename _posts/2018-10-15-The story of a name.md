@@ -1649,15 +1649,17 @@ function generate_name(){
            timeout: 10
         }),
         success: function(data, textStatus, jqXHR){
+           $(".generated-name").text(data);
            alert(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-           alert(textStatus);
+           $(".generated-name").text(textStatus);
         },
     });
 }
 </script>
+<input id="pattern" type="text" value="Name.."/>
 <button onclick="generate_name()">Generate</button>
 
-<div id="ajax-content">
+<div id="generated-name">
 </div>
