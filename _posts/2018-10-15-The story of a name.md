@@ -1632,3 +1632,24 @@ nd_generate_weights("Name")
 If this name wins, and you'll see a billion dollar company with this name in the future, you'll know where it came from and how was it obtained.
 
 This is the age of ML.
+
+
+
+<script>
+$.ajax({
+    type: "GET",
+    url: "api.clungu.com:5000/name",
+    contentType: "application/json",
+    data: {
+       "pattern": "Name..",
+       "affinity": ["myth", "greek", "names", "startups"],
+       "timeout": 10
+    },
+    success: function(data){
+        alert(data);
+    }
+});
+</script>
+
+<div id="ajax-content">
+</div>
