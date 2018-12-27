@@ -1627,7 +1627,7 @@ nd_generate_weights("Name")
 
 
 
-**`Namera`** this is it! 
+**`Namera`**, this is it! 
 
 If this name wins, and you'll see a billion dollar company with this name in the future, you'll know where it came from and how was it obtained.
 
@@ -1639,7 +1639,7 @@ This is the age of ML.
 function generate_name(){
     $.ajax({
         type: "POST",
-        url: "api.clungu.com:5000/name",
+        url: "http://api.clungu.com:5000/name",
         crossDomain: true,
         contentType: "application/json",
         dataType: "json",
