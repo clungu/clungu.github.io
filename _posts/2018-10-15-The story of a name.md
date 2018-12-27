@@ -1636,18 +1636,26 @@ This is the age of ML.
 
 
 <script>
-$.ajax({
-    type: "GET",
-    url: "api.clungu.com:5000/name",
-    contentType: "application/json",
-    data: {
-       "pattern": "Name..",
-       "affinity": ["myth", "greek", "names", "startups"],
-       "timeout": 10
-    },
-    success: function(data){
-        alert(data);
-    }
+$(document).ready( function(){
+
+    $.ajax({
+        type: "GET",
+        url: "api.clungu.com:5000/name",
+        contentType: "application/json",
+        dataType: "json",
+        data: {
+           "pattern": "Name..",
+           "affinity": ["myth", "greek", "names", "startups"],
+           "timeout": 10
+        },
+        success: function(data, textStatus, jqXHR){
+           alert(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+           alert(data);
+        },
+        timeout: 100,
+    });
 });
 </script>
 
