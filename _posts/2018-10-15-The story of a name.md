@@ -1633,13 +1633,13 @@ If this name wins, and you'll see a billion dollar company with this name in the
 
 This is the age of ML.
 
-# DEMO 
+# Interactive demo 
 
 <script type="text/javascript">
 function generate_name(){
     $.ajax({
         type: "POST",
-        url: "http://www.api.clungu.com:5000/name",
+        url: "api.clungu.com:5000/name",
         crossDomain: true,
         contentType: "application/json",
         dataType: "json",
