@@ -11,12 +11,11 @@
 <!-- Adding JQuery for interactive demos -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<script>
+<script type="text/javascript">
 $(document).ready( function(){
-
     $.ajax({
         type: "GET",
-        url: "www.api.clungu.com:5000/name",
+        url: "http://www.api.clungu.com:5000/name",
         contentType: "application/json",
         dataType: "json",
         data: {
