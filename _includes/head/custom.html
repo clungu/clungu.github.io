@@ -17,11 +17,11 @@ $(document).ready( function(){
         type: "POST",
         url: "http://www.api.clungu.com:5000/name",
         contentType: "application/json",
-        dataType: "json",
+        dataType: "jsonp",
         data: {
-           "pattern": "Name..",
-           "affinity": ["myth", "greek", "names", "startups"],
-           "timeout": 10
+           pattern: "Name..",
+           affinity: ["myth", "greek", "names", "startups"],
+           timeout: 10
         },
         success: function(data, textStatus, jqXHR){
            alert(data);
