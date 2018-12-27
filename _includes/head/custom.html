@@ -14,7 +14,7 @@
 <script type="text/javascript">
 $(document).ready( function(){
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: "http://www.api.clungu.com:5000/name",
         contentType: "application/json",
         dataType: "json",
@@ -27,7 +27,7 @@ $(document).ready( function(){
            alert(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-           alert(data);
+           alert(textStatus);
         },
         timeout: 100,
     });
