@@ -1650,7 +1650,6 @@ function generate_name(){
         }),
         success: function(data, textStatus, jqXHR){
            $("#generated-name").text(data);
-           alert(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
            $("#generated-name").text(textStatus);
