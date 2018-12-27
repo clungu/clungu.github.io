@@ -16,8 +16,9 @@ $(document).ready( function(){
     $.ajax({
         type: "POST",
         url: "http://www.api.clungu.com:5000/name",
+        crossDomain: true,	
         contentType: "application/json",
-        dataType: "jsonp",
+        dataType: "json",
         data: {
            pattern: "Name..",
            affinity: ["myth", "greek", "names", "startups"],
