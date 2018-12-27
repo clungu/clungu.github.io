@@ -1644,16 +1644,16 @@ function generate_name(){
         contentType: "application/json",
         dataType: "json",
         data: JSON.stringify({
-           pattern: "Name..",
+           pattern: $("#pattern").val(),
            affinity: ["myth", "greek", "names", "startups"],
            timeout: 10
         }),
         success: function(data, textStatus, jqXHR){
-           $(".generated-name").text(data);
+           $("#generated-name").text(data);
            alert(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
-           $(".generated-name").text(textStatus);
+           $("#generated-name").text(textStatus);
         },
     });
 }
