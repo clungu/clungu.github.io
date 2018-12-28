@@ -904,15 +904,19 @@ In this case, `n` will be called a `window_size` because we will treat each name
 
 For example `Lochmias` will have the following windows and predictions:
 
-```inp y
-......
-   L o
-  Lo c
- Loc h
-Loch m
-ochm i
-chmi a
-hmia s```
+```
+
+	inp y
+	......
+	   L o
+	  Lo c
+	 Loc h
+	Loch m
+	ochm i
+	chmi a
+	hmia s
+
+```
 
 ## Model implementation
 
