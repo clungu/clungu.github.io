@@ -5,11 +5,11 @@ permalink: /
 header:
   overlay_color: "#000"
   overlay_filter: "0.5"
-  overlay_image: /assets/images/front_cover/robot_piano.jpg
-  caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
+  overlay_image: /assets/images/front_cover/cpu_assembly.jpg
+  #caption: "Photo credit: [**Unsplash**](https://unsplash.com)"
   cta_label: "Portfolio"
   cta_url: "/post-archive/"
-excerpt: "'People worry that computers will get too smart and take over the world, but the real problem is computer are too stupid and are already ruling over the world.' —Pedro Domingos"
+excerpt: "'People worry that computers will get too smart and take over the world. The real problem is that computers are too stupid and are already ruling the world.' —Pedro Domingos"
 intro: 
   - excerpt: 'A collection of random thoughts and experiments on machine learning topics.'
 feature_row:
