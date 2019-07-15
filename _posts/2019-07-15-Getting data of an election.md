@@ -1,7 +1,7 @@
 
 # Getting data of an election
 
-![image.png](attachment:image.png)
+![image.png](https://www.ifri.org/sites/default/files/styles/image_contenu_article/public/thumbnails/image/image_site_-_etude_collective_-_elections_europeennes.png)
 
 On the 26th of May, we had the european parliamentary elections. In Romania, the results and progress of the vote were published online in real time on the [official electoral site](https://prezenta.bec.ro/europarlamentare26052019).
 
@@ -19,7 +19,7 @@ An example of how you interogate the BEC site, for the `presence` data. You need
 
 
 ```python
-!curl 'https://prezenta.bec.ro/europarlamentare26052019/data/pv/json//pv_AR.json' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8' -H 'accept: */*' -H 'referer: https://prezenta.bec.ro/europarlamentare26052019/romania-pv-part' -H 'authority: prezenta.bec.ro' --compressed -o "_data/AR.json"
+!curl 'https://prezenta.bec.ro/europarlamentare26052019/data/pv/json//pv_AR.json' -H 'accept: */*' -H 'referer: https://prezenta.bec.ro/europarlamentare26052019/romania-pv-part' -H 'authority: prezenta.bec.ro' --compressed -o "_data/AR.json"
 ```
 
       % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -31,7 +31,7 @@ There is also an endpoint publishing the `presence` count (the number of people 
 
 
 ```python
-!curl 'https://prezenta.bec.ro/europarlamentare26052019/data/presence/json/presence_AR_now.json?_=1561376443437' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36' -H 'accept: */*' -H 'referer: https://prezenta.bec.ro/europarlamentare26052019/romania-precincts' -H 'authority: prezenta.bec.ro' -H 'cookie: _ga=GA1.2.772980748.1558943895; _gid=GA1.2.1466959792.1561374632; _gat=1' --compressed -o "_data/AR-presence.json"
+!curl 'https://prezenta.bec.ro/europarlamentare26052019/data/presence/json/presence_AR_now.json' -H 'accept: */*' -H 'referer: https://prezenta.bec.ro/europarlamentare26052019/romania-precincts' -H 'authority: prezenta.bec.ro' --compressed -o "_data/AR-presence.json"
 ```
 
       % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -59,8 +59,6 @@ len(counties)
 
 
 
-    50
-
 
 
 The `vote` information is stored on the `data/pv/json/` route, specific for each county. In order not to make multiple queries while testing, we first cache all the results localy and we can refer to them later on.
@@ -81,155 +79,6 @@ counties = ["AR", "AB", "AR", "AG", "BC", "BH", "BN", "BT", "BV", "BR", "BZ", "C
 for county in tqdm(counties):
     !curl 'https://prezenta.bec.ro/europarlamentare26052019/data/pv/json//pv_{county}.json' -H 'accept-encoding: gzip, deflate, br'  -H 'accept: */*' -H 'referer: https://prezenta.bec.ro/europarlamentare26052019/romania-pv-part' -H 'authority: prezenta.bec.ro' --compressed -o "_data/{county}.json"
 ```
-
-
-    HBox(children=(IntProgress(value=0, max=48), HTML(value='')))
-
-
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 73925    0 73925    0     0   322k      0 --:--:-- --:--:-- --:--:--  323k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 69866    0 69866    0     0   710k      0 --:--:-- --:--:-- --:--:--  710k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 73925    0 73925    0     0   707k      0 --:--:-- --:--:-- --:--:--  707k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 81264    0 81264    0     0   583k      0 --:--:-- --:--:-- --:--:--  583k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 86624    0 86624    0     0   790k      0 --:--:-- --:--:-- --:--:--  790k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 94116    0 94116    0     0   647k      0 --:--:-- --:--:-- --:--:--  647k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 58807    0 58807    0     0   574k      0 --:--:-- --:--:-- --:--:--  574k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 68673    0 68673    0     0   677k      0 --:--:-- --:--:-- --:--:--  677k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 65855    0 65855    0     0   535k      0 --:--:-- --:--:-- --:--:--  535k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 49724    0 49724    0     0   398k      0 --:--:-- --:--:-- --:--:--  398k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 69989    0 69989    0     0   704k      0 --:--:-- --:--:-- --:--:--  704k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 61196    0 61196    0     0   635k      0 --:--:-- --:--:-- --:--:--  629k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 45214    0 45214    0     0   367k      0 --:--:-- --:--:-- --:--:--  367k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 90718    0 90718    0     0   843k      0 --:--:-- --:--:-- --:--:--  851k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 81888    0 81888    0     0   987k      0 --:--:-- --:--:-- --:--:--  987k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 42897    0 42897    0     0   367k      0 --:--:-- --:--:-- --:--:--  364k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 69615    0 69615    0     0   548k      0 --:--:-- --:--:-- --:--:--  548k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 78540    0 78540    0     0   983k      0 --:--:-- --:--:-- --:--:--  983k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 66710    0 66710    0     0   626k      0 --:--:-- --:--:-- --:--:--  626k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 47053    0 47053    0     0   675k      0 --:--:-- --:--:-- --:--:--  685k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 55629    0 55629    0     0   571k      0 --:--:-- --:--:-- --:--:--  571k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 52381    0 52381    0     0   527k      0 --:--:-- --:--:-- --:--:--  527k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 80778    0 80778    0     0   939k      0 --:--:-- --:--:-- --:--:--  950k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 46099    0 46099    0     0   600k      0 --:--:-- --:--:-- --:--:--  600k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100   99k    0   99k    0     0   683k      0 --:--:-- --:--:-- --:--:--  678k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 46391    0 46391    0     0   462k      0 --:--:-- --:--:-- --:--:--  462k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 67883    0 67883    0     0   534k      0 --:--:-- --:--:-- --:--:--  534k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 52690    0 52690    0     0   767k      0 --:--:-- --:--:-- --:--:--  767k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 84437    0 84437    0     0  1099k      0 --:--:-- --:--:-- --:--:-- 1099k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 75024    0 75024    0     0   711k      0 --:--:-- --:--:-- --:--:--  711k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 63881    0 63881    0     0   611k      0 --:--:-- --:--:-- --:--:--  611k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 91785    0 91785    0     0   622k      0 --:--:-- --:--:-- --:--:--  622k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 57896    0 57896    0     0   576k      0 --:--:-- --:--:-- --:--:--  576k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 55698    0 55698    0     0   597k      0 --:--:-- --:--:-- --:--:--  597k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 60674    0 60674    0     0   502k      0 --:--:-- --:--:-- --:--:--  502k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 83476    0 83476    0     0   783k      0 --:--:-- --:--:-- --:--:--  783k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 53441    0 53441    0     0   573k      0 --:--:-- --:--:-- --:--:--  573k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 88150    0 88150    0     0   789k      0 --:--:-- --:--:-- --:--:--  782k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 41482    0 41482    0     0   440k      0 --:--:-- --:--:-- --:--:--  440k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 83029    0 83029    0     0  1053k      0 --:--:-- --:--:-- --:--:-- 1066k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 69303    0 69303    0     0   697k      0 --:--:-- --:--:-- --:--:--  697k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 60976    0 60976    0     0   838k      0 --:--:-- --:--:-- --:--:--  838k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 34155    0 34155    0     0   333k      0 --:--:-- --:--:-- --:--:--  333k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 37625    0 37625    0     0   371k      0 --:--:-- --:--:-- --:--:--  371k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 46264    0 46264    0     0   645k      0 --:--:-- --:--:-- --:--:--  645k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 34691    0 34691    0     0   428k      0 --:--:-- --:--:-- --:--:--  434k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 36823    0 36823    0     0   589k      0 --:--:-- --:--:-- --:--:--  589k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 40941    0 40941    0     0   571k      0 --:--:-- --:--:-- --:--:--  571k
     
 
 
@@ -243,15 +92,6 @@ for county in tqdm(counties[-8:-6]):
 ```
 
 
-    HBox(children=(IntProgress(value=0, max=2), HTML(value='')))
-
-
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 92928    0 92928    0     0   810k      0 --:--:-- --:--:-- --:--:--  810k
-      % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                     Dload  Upload   Total   Spent    Left  Speed
-    100 41312    0 41312    0     0   458k      0 --:--:-- --:--:-- --:--:--  458k
 
 
 Let's also get the `all in one` data about the `presence`.
@@ -526,179 +366,6 @@ for county in tqdm(counties):
 ```
 
 
-    HBox(children=(IntProgress(value=0, max=43), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=437), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=440), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=437), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=520), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=635), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=653), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=313), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=425), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=454), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=280), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=426), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=365), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=235), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=664), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=556), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=214), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=433), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=531), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=436), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=245), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=332), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=290), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=524), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=220), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=746), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=258), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=437), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=290), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=568), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=488), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=380), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=623), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=337), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=312), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=373), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=560), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=334), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=599), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=204), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=536), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=430), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=358), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=441), HTML(value='')))
 
 
 Bucharest is a special case. It's treated as a county but the results are stored by sectors so we need to do things a bit different.
@@ -725,49 +392,6 @@ for id_sector in tqdm(df_county.id_locality.unique()):
 ```
 
 
-    HBox(children=(IntProgress(value=0, max=6), HTML(value='')))
-
-
-    Processing: S1
-
-
-
-    HBox(children=(IntProgress(value=0, max=166), HTML(value='')))
-
-
-    Processing: S5
-
-
-
-    HBox(children=(IntProgress(value=0, max=197), HTML(value='')))
-
-
-    Processing: S6
-
-
-
-    HBox(children=(IntProgress(value=0, max=234), HTML(value='')))
-
-
-    Processing: S2
-
-
-
-    HBox(children=(IntProgress(value=0, max=202), HTML(value='')))
-
-
-    Processing: S3
-
-
-
-    HBox(children=(IntProgress(value=0, max=287), HTML(value='')))
-
-
-    Processing: S4
-
-
-
-    HBox(children=(IntProgress(value=0, max=183), HTML(value='')))
 
 
 In `SR` we have data about the foreign offices.
@@ -1920,11 +1544,6 @@ df_results.shape
 ```
 
 
-    HBox(children=(IntProgress(value=0, max=19171), HTML(value='')))
-
-
-
-
 
     (19171, 36)
 
@@ -2940,59 +2559,6 @@ This is the perfect job of the disjoint-set datastructure.
 
 
 ```python
-from collections import defaultdict
-
-class DisjointSets:
-    class Node:
-        def __init__(self, value, hash):
-            self.hash = hash
-            self.value = value
-            self.parent = self
-            self.rank = 0
-
-    def __init__(self, fn_hash=lambda x: x):
-        self._nodes = []
-        self._values = {}
-        self._fn_hash = fn_hash
-
-    def sets(self):
-        results = defaultdict(list)
-        for node in self._nodes:
-            results[self.find(node.value).hash].append(node.value)
-
-        return list(results.values())
-
-    def make_set(self, value):
-        hash = self._fn_hash(value)
-        if hash in self._values: return
-
-        node = DisjointSets.Node(value, hash=hash)
-        self._values[node.hash] = node
-        self._nodes.append(node)
-
-    def link(self, node_x, node_y):
-        if node_x.rank > node_y.rank:
-            node_y.parent = node_x
-        else:
-            node_x.parent = node_y
-            if node_x.rank == node_y.rank:
-                node_y.rank += 1
-
-    def find(self, x):
-        x_node = self._values.get(self._fn_hash(x))
-        if x_node is None: return None
-        if x_node != x_node.parent:
-            x_node.parent = self.find(x_node.parent.value)
-        return x_node.parent
-
-    def union(self, x, y):
-        self._ensure(x, y)
-        self.link(self.find(x), self.find(y))
-
-    def _ensure(self, x, y):
-        self.make_set(x)
-        self.make_set(y)
-        
 _groups = DisjointSets()
 for _a, _b in _pairs:
     _groups.union(_a, _b)
