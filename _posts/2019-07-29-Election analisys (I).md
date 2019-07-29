@@ -540,98 +540,8 @@ list(df.columns)
 
 
 
-    ['liste_permanente',
-     'lista_suplimentare',
-     'total',
-     'urna_mobila',
-     'county_code',
-     'county_name',
-     'id_county',
-     'id_locality',
-     'id_precinct',
-     'id_uat',
-     'latitude',
-     'locality_name',
-     'longitude',
-     'medium',
-     'precinct_name',
-     'precinct_nr',
-     'presence',
-     'siruta',
-     'uat_code',
-     'uat_name',
-     'men_18_24',
-     'men_25_34',
-     'men_35_44',
-     'men_45_64',
-     'men_65+',
-     'women_18_24',
-     'women_25_34',
-     'women_35_44',
-     'women_45_64',
-     'women_65+',
-     'Cod birou electoral',
-     'Localitate_x',
-     'Secție',
-     'Tip',
-     'Total alegatori',
-     'Total lista permanenta',
-     'Total urna mobila',
-     'Total prezenti',
-     'Prezenti lista permanenta',
-     'Prezenti urna mobila',
-     'Prezenti lista suplimentara',
-     'Total voturi',
-     'Voturi nefolosite',
-     'Voturi valabile',
-     'Voturi anulate',
-     'Contestatii',
-     'Starea sigiliilor',
-     'PSD',
-     'USR-PLUS',
-     'PRO Romania',
-     'UDMR',
-     'PNL',
-     'ALDE',
-     'PRODEMO',
-     'PMP',
-     'Partidul Socialist Roman',
-     'Partidul Social Democrat Independent',
-     'Partidul Romania Unita',
-     'Uniunea Nationala Pentur Progresul Romaniei',
-     'Blocul Unitatii Nationale',
-     'Gregoriana-Carmen Tudoran',
-     'George-Nicaolae Simion',
-     'Peter Costea',
-     'Siruta',
-     'Votanti lista',
-     'Barbati 18',
-     'Barbati 19',
-    ...
-     'Barbati 100',
-     'Barbati 101',
-     'Barbati 102',
-     'Barbati 103',
-     'Barbati 105',
-     'Barbati 107',
-     'Barbati 111',
-     'Femei 18',
-     'Femei 19',
-     'Femei 20',
-     'Femei 21',
-     'Femei 22',
-   ...
-     'Femei 99',
-     'Femei 100',
-     'Femei 101',
-     'Femei 102',
-     'Femei 103',
-     'Femei 104',
-     'Femei 109']
-
-
-
-# Score validations
+    [
+     'liste_permanente', 'lista_suplimentare', 'total', 'urna_mobila', 'county_code', 'county_name', 'id_county', 'id_locality', 'id_precinct', 'id_uat', 'latitude', 'locality_name', 'longitude', 'medium', 'precinct_name', 'precinct_nr', 'presence', 'siruta', 'uat_code', 'uat_name', 'men_18_24', 'men_25_34', 'men_35_44', 'men_45_64', 'men_65+', 'women_18_24', 'women_25_34', 'women_35_44', 'women_45_64', 'women_65+', 'Cod birou electoral', 'Localitate_x', 'Secție', 'Tip', 'Total alegatori', 'Total lista permanenta', 'Total urna mobila', 'Total prezenti', 'Prezenti lista permanenta', 'Prezenti urna mobila', 'Prezenti lista suplimentara', 'Total voturi', 'Voturi nefolosite', 'Voturi valabile', 'Voturi anulate', 'Contestatii', 'Starea sigiliilor', 'PSD', 'USR-PLUS', 'PRO Romania', 'UDMR', 'PNL', 'ALDE', 'PRODEMO', 'PMP', 'Partidul Socialist Roman', 'Partidul Social Democrat Independent', 'Partidul Romania Unita', 'Uniunea Nationala Pentur Progresul Romaniei', 'Blocul Unitatii Nationale', 'Gregoriana-Carmen Tudoran', 'George-Nicaolae Simion', 'Peter Costea', 'Siruta', 'Votanti lista', 'Barbati 18', 'Barbati 19',... 'Barbati 100', 'Barbati 101', 'Barbati 102', 'Barbati 103', 'Barbati 105', 'Barbati 107', 'Barbati 111', 'Femei 18', 'Femei 19', 'Femei 20', 'Femei 21', 'Femei 22',... 'Femei 99', 'Femei 100', 'Femei 101', 'Femei 102', 'Femei 103', 'Femei 104', 'Femei 109'# Score validations
 
 The first thing I'd like to see is the percentage of votes that each party has received.
 
@@ -822,17 +732,17 @@ Both of them show how likely two variables are correlated, but using a slightly 
 
 ***Pearson correlation***
 
-    ..evaluates the linear relationship between two continuous variables. A relationship is linear when a change in one variable is associated with a proportional change in the other variable.
+..evaluates the linear relationship between two continuous variables. A relationship is linear when a change in one variable is associated with a proportional change in the other variable.
 
-    For example, you might use a Pearson correlation to evaluate whether increases in temperature at your production facility are associated with decreasing thickness of your chocolate coating.
+For example, you might use a Pearson correlation to evaluate whether increases in temperature at your production facility are associated with decreasing thickness of your chocolate coating.
 
 ***Spearman rank-order correlation***
 
-    ..evaluates the monotonic relationship between two continuous or ordinal variables. In a monotonic relationship, the variables tend to change together, but not necessarily at a constant rate. The Spearman correlation coefficient is based on the ranked values for each variable rather than the raw data.
+..evaluates the monotonic relationship between two continuous or ordinal variables. In a monotonic relationship, the variables tend to change together, but not necessarily at a constant rate. The Spearman correlation coefficient is based on the ranked values for each variable rather than the raw data.
 
-    Spearman correlation is often used to evaluate relationships involving ordinal variables. For example, you might use a Spearman correlation to evaluate whether the order in which employees complete a test exercise is related to the number of months they have been employed.
+Spearman correlation is often used to evaluate relationships involving ordinal variables. For example, you might use a Spearman correlation to evaluate whether the order in which employees complete a test exercise is related to the number of months they have been employed.
 
-> `Pearson` measures (for two data series $F_1$ and $F_2$) how well a change of size `a` in the series $F_1$ leads to a change of size `C * a` (proportionally large) in $F_2$ when `C` is a constant
+> `Pearson` measures (for two data series `F1` and `F2`) how well a change of size `a` in the series `F1` leads to a change of size `C * a` (proportionally large) in `F2` when `C` is a constant
 
 > `Spearman` measures how common is for two variables to move in the same direction (not by how much)
 
