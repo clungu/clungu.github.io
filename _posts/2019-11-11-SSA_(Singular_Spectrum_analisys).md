@@ -791,12 +791,6 @@ plt.bar(np.arange(d),S[:d])
 
 
 
-
-    <BarContainer object of 70 artists>
-
-
-
-
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_95_1.png)
 
 
@@ -3734,10 +3728,10 @@ b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU3LjgzLjEwMA==
 The wikipedia article and the kaggle kernel diverge somewhat at this point. There are 3 steps that still need to be done:
 1. Group the elementary matrices into disjoint groups, summing the groups into a new set of (still) elementary matrices 
 
-\begin{align*}
+$$\begin{align*}
 \mathbf{X} &  = \sum_{k \in \mathcal{S}}\mathbf{X}_k + \sum_{l \in \mathcal{T}}\mathbf{X}_l + \ldots \\
              &  = \sum_j \mathbf{X}^{(j)}
-\end{align*}
+\end{align*}$$
 
 2. Hankelise the elementary matrices by diagonal averaging.
 3. Derive the timeseries components from the Henkel matrices.
