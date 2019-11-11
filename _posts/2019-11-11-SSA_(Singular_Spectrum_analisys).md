@@ -61,6 +61,7 @@ import math
 ```
 
 <details>
+
 ```python
 def trend(t):
     """
@@ -72,6 +73,7 @@ T = list(range(-100, 100))
 Trend = [trend(t) for t in T]
 plt.plot(Trend)
 ```
+
 </details>
 
 
@@ -81,7 +83,8 @@ plt.plot(Trend)
 
 Then we add two periodical function to the mix (essentialy these are what we're after)
 
-<details>
+<details><summary>Code</summary>
+
 ```python
 def apply(func, T):
     """
@@ -96,13 +99,15 @@ def period_1(t, period = 20):
 
 plt.plot(apply(period_1, T))
 ```
+
 </details>
 
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_14_1.png)
 
 
-<details>
+<details><summary>Code</summary>
+
 ```python
 def period_2(t, period = 40):
     return math.cos(math.pi * t / period)
@@ -117,14 +122,15 @@ plt.plot(apply(period_2, T))
 
 And add in some noise to make the problem hard.
 
-
+<details><summary>Code</summary>
+ 
 ```python
 def noise(t):
     return np.random.randint(0, 3)
 
 plt.plot(apply(noise, T))
 ```
-
+</details>
 
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_17_1.png)
@@ -149,7 +155,8 @@ f(10)
 
 
 
-
+<details><summary>Code</summary>
+ 
 ```python
 plt.figure(figsize=(8, 6))
 plt.plot(apply(trend, T), alpha=0.4)
@@ -160,7 +167,7 @@ plt.plot(apply(f, T))
 plt.legend(["trend", "period_1", "period_2", "noise", "function"], loc='upper right')
 plt.title("All the components of the function")
 ```
-
+</details>
 
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_20_1.png)
