@@ -266,7 +266,7 @@ $$\displaystyle \mathbf {X} =[X_{1}:\ldots :X_{K}]=(x_{ij})_{i,j=1}^{L,K}={\begi
 ```
 where $$X_{i}=(x_{i},\ldots ,x_{{i+L-1}})^{{\mathrm  {T}}}\;\quad (1\leq i\leq K)$$ are lagged vectors of size $L$. 
 ```
-The matrix $\mathbf {X}$  is a *Hankel matrix* which means that $\mathbf {X}$  has equal elements $x_{ij}$ on the anti-diagonals $i+j=\,{{\rm {const}}}$.
+The matrix $\mathbf {X}$  is a *Hankel matrix* which means that $\mathbf {X}$  has equal elements $x_{ij}$ on the anti-diagonals $i+j=\,{\rm {const}}$.
 
 ###  Step 2: Singular Value Decomposition (SVD)
 
