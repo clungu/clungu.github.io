@@ -289,7 +289,7 @@ The collection ($\sqrt  {\lambda_{i}},U_{i},V_{i}$) will be called the $i$th eig
 
 Partition the set of indices $\{1,\ldots ,d\}$ into $m$ disjoint subsets $I_{1},\ldots ,I_{m}$.
 
-Let $I=\{i_{1},\ldots ,i_{p}\}$. Then the resultant matrix ${\mathbf {X}}_I$ corresponding to the group $I$ is defined as ${\mathbf  {X}}_{I}={\mathbf  {X}}_{i_{1}}+\ldots +{\mathbf  {X}}_{i_{p}}$. The resultant matrices are computed for the groups $I=I_{1},\ldots ,I_{m}$ and the grouped SVD expansion of $\mathbf {X}$  can now be written as
+Let $I=\{i_{1},\ldots ,i_{p}\}$. Then the resultant matrix ${{\mathbf {X}}_{I}}$ corresponding to the group $I$ is defined as ${\mathbf  {X}}_{I}={\mathbf  {X}}_{i_{1}}+\ldots +{\mathbf  {X}}_{i_{p}}$. The resultant matrices are computed for the groups $I=I_{1},\ldots ,I_{m}$ and the grouped SVD expansion of $\mathbf {X}$  can now be written as
 
 $${\mathbf  {X}}={\mathbf  {X}}_{I_{1}}+\ldots +{\mathbf  {X}}_{I_{m}}$$
 
