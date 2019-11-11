@@ -61,6 +61,7 @@ import math
 ```
 
 <details><summary>Code</summary>
+
 <p>
 
 ```python
@@ -76,6 +77,7 @@ plt.plot(Trend)
 ```
 
 </p>
+
 </details>
 
 
