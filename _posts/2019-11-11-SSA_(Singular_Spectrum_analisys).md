@@ -60,7 +60,7 @@ from matplotlib import pyplot as plt
 import math
 ```
 
-
+<details>
 ```python
 def trend(t):
     """
@@ -72,19 +72,16 @@ T = list(range(-100, 100))
 Trend = [trend(t) for t in T]
 plt.plot(Trend)
 ```
-
-
-
-
-    [<matplotlib.lines.Line2D at 0x7ffb36807f98>]
-
-
+</details>
 
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_11_1.png)
 
 
 
+Then we add two periodical function to the mix (essentialy these are what we're after)
+
+<details>
 ```python
 def apply(func, T):
     """
@@ -93,41 +90,26 @@ def apply(func, T):
     return [func(t) for t in T]
 ```
 
-Then we add two periodical function to the mix (essentialy these are what we're after)
-
-
 ```python
 def period_1(t, period = 20):
     return math.sin(math.pi * t / period)
 
 plt.plot(apply(period_1, T))
 ```
-
-
-
-
-    [<matplotlib.lines.Line2D at 0x7ffb3472a9b0>]
-
-
+</details>
 
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_14_1.png)
 
 
-
+<details>
 ```python
 def period_2(t, period = 40):
     return math.cos(math.pi * t / period)
 
 plt.plot(apply(period_2, T))
 ```
-
-
-
-
-    [<matplotlib.lines.Line2D at 0x7ffb346a2198>]
-
-
+</details>
 
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_15_1.png)
@@ -142,12 +124,6 @@ def noise(t):
 
 plt.plot(apply(noise, T))
 ```
-
-
-
-
-    [<matplotlib.lines.Line2D at 0x7ffb346104a8>]
-
 
 
 
@@ -184,12 +160,6 @@ plt.plot(apply(f, T))
 plt.legend(["trend", "period_1", "period_2", "noise", "function"], loc='upper right')
 plt.title("All the components of the function")
 ```
-
-
-
-
-    Text(0.5, 1.0, 'All the components of the function')
-
 
 
 
