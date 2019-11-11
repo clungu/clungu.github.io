@@ -295,7 +295,7 @@ $${\mathbf  {X}}={\mathbf  {X}}_{I_{1}}+\ldots +{\mathbf  {X}}_{I_{m}}$$
 
 ### Step 4: Diagonal averaging
 
-Each matrix ${\mathbf  {X}}_{I_{j}}$ of the grouped decomposition is hankelized and then the obtained Hankel matrix is transformed into a new series of length $N$ using the one-to-one correspondence between Hankel matrices and time series. Diagonal averaging applied to a resultant matrix ${\mathbf  {X}}_{I_{k}}$ produces a reconstructed series 
+Each matrix $${\mathbf  {X}}_{I_{j}}$$ of the grouped decomposition is hankelized and then the obtained Hankel matrix is transformed into a new series of length $N$ using the one-to-one correspondence between Hankel matrices and time series. Diagonal averaging applied to a resultant matrix $${\mathbf  {X}}_{I_{k}}$$ produces a reconstructed series 
 
 $$\widetilde {\mathbb  {X}}^{(k)}=(\widetilde {x}_{1}^{(k)},\ldots ,\widetilde {x}_{N}^{(k)})$$ 
 
