@@ -283,13 +283,13 @@ where
 $${\mathbf  {X}}_{i}={\sqrt  {\lambda _{i}}}U_{i}V_{i}^{\mathrm  {T}}$$
 are matrices having rank 1; these are called elementary matrices. 
 
-The collection ($\sqrt  {\lambda_{i}},U_{i},V_{i}$) will be called the $i$th eigentriple (abbreviated as ET) of the SVD. Vectors $U_{i}$ are the left singular vectors of the matrix $\mathbf {X}$ , numbers ${\sqrt  {\lambda_{i}}}$ are the singular values and provide the singular spectrum of $\mathbf {X}$ ; this gives the name to SSA. Vectors ${\sqrt  {\lambda _{i}}}V_{i}={\mathbf  {X}}^{\mathrm  {T}}U_{i}$ are called vectors of principal components (PCs).
+The collection ($\sqrt  {\lambda_{i}},U_{i},V_{i}$) will be called the $i$th eigentriple (abbreviated as ET) of the SVD. Vectors $U_{i}$ are the left singular vectors of the matrix $\mathbf {X}$ , numbers ${\sqrt  {\lambda_{i}}}$ are the singular values and provide the singular spectrum of $\mathbf {X}$ ; this gives the name to SSA. Vectors ${\sqrt  {\lambda_{i}}}V_{i}={\mathbf  {X}}^{\mathrm  {T}}U_{i}$ are called vectors of principal components (PCs).
 
 ### Step 3: Eigentriple grouping
 
 Partition the set of indices $\{1,\ldots ,d\}$ into $m$ disjoint subsets $I_{1},\ldots ,I_{m}$.
 
-Let $I=\{i_{1},\ldots ,i_{p}\}$. Then the resultant matrix ${\mathbf  {X}}_{I}$ corresponding to the group $I$ is defined as ${\mathbf  {X}}_{I}={\mathbf  {X}}_{i_{1}}+\ldots +{\mathbf  {X}}_{i_{p}}$. The resultant matrices are computed for the groups $I=I_{1},\ldots ,I_{m}$ and the grouped SVD expansion of $\mathbf {X}$  can now be written as
+Let $I=\{i_{1},\ldots ,i_{p}\}$. Then the resultant matrix ${\mathbf {X}}_{I}$ corresponding to the group $I$ is defined as ${\mathbf  {X}}_{I}={\mathbf  {X}}_{i_{1}}+\ldots +{\mathbf  {X}}_{i_{p}}$. The resultant matrices are computed for the groups $I=I_{1},\ldots ,I_{m}$ and the grouped SVD expansion of $\mathbf {X}$  can now be written as
 
 $${\mathbf  {X}}={\mathbf  {X}}_{I_{1}}+\ldots +{\mathbf  {X}}_{I_{m}}$$
 
