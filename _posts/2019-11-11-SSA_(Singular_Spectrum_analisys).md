@@ -462,11 +462,6 @@ plt.matshow(V)
 
 
 
-    <matplotlib.image.AxesImage at 0x7ffb32c09b38>
-
-
-
-
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_58_1.png)
 
 
@@ -493,11 +488,6 @@ plt.matshow(_S)
 
 
 
-    <matplotlib.image.AxesImage at 0x7ffb329492b0>
-
-
-
-
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_60_1.png)
 
 
@@ -515,12 +505,6 @@ plt.title(r"Original matrix X")
 
 
 
-
-    Text(0.5, 1.05, 'Original matrix X')
-
-
-
-
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_63_1.png)
 
 
@@ -529,7 +513,7 @@ plt.title(r"Original matrix X")
 
 
 Now let's compute the elementary matrices 
-$${\mathbf  {X}}_{i}={\sqrt  {\lambda _{i}}}U_{i}V_{i}^{{\mathrm  {T}}}$$
+$${\mathbf  {X}}_{i}={\sqrt  {\lambda_{i}}}U_{i}V_{i}^{\mathrm  {T}}$$
 
 
 ```python
