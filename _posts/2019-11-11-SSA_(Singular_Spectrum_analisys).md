@@ -273,7 +273,7 @@ The matrix $\mathbf {X}$  is a *Hankel matrix* which means that $\mathbf {X}$  h
 Perform the singular value decomposition (SVD) of the trajectory matrix $\mathbf {X}$. Set ${\mathbf  {S}}={\mathbf  {X}}{\mathbf  {X}}^{\mathrm  {T}}$ and denote by:
 * $\lambda _{1},\ldots ,\lambda _{L}$ the eigenvalues of $\mathbf {S}$  taken in the decreasing order of magnitude ($\lambda _{1}\geq \ldots \geq \lambda _{L}\geq 0$)
 * $U_{1},\ldots ,U_{L}$ the orthonormal system of the eigenvectors of the matrix $\mathbf {S}$  corresponding to these eigenvalues.
-* $V_{i}={\mathbf  {X}}^{{\mathrm  {T}}}U_{i}/{\sqrt  {\lambda _{i}}} (i=1,\ldots ,d)$, where $d={\mathop  {{\mathrm  {rank}}}}({\mathbf  {X}})=\max\{i,\ {\mbox{such that}}\ \lambda _{i}>0\}$ (note that $d=L$ for a typical real-life series)
+* $V_{i}={\mathbf  {X}}^{\mathrm  {T}}U_{i}/{\sqrt  {\lambda _{i}}} (i=1,\ldots ,d)$, where $d={\mathop  {\mathrm  {rank}}}({\mathbf  {X}})=\max\{i,\ {\mbox{such that}}\ \lambda _{i}>0\}$ (note that $d=L$ for a typical real-life series)
 
 In this notation, the SVD of the trajectory matrix $\mathbf {X}$  can be written as
 
