@@ -432,7 +432,7 @@ plt.plot(S[:10])
 
 
 If we follow the algorithm, we should be constructing $V$ as follows:
-* $$V_{i}={\mathbf  {X}}^{{\mathrm  {T}}}U_{i}/{\sqrt  {\lambda _{i}}} (i=1,\ldots ,d)$, where $d={\mathop  {{\mathrm  {rank}}}}({\mathbf  {X}})=\max\{i,\ {\mbox{such that}}\ \lambda _{i}>0\}$$ (note that $d=L$ for a typical real-life series)
+* $$V_{i}={\mathbf  {X}}^{\mathrm  {T}}U_{i}/{\sqrt  {\lambda_{i}}} (i=1,\ldots ,d)$$, where $$d={\mathop  {\mathrm  {rank}}}({\mathbf  {X}})=\max\{i,\ {\mbox{such that}}\ \lambda_{i}>0\}$$ (note that $d=L$ for a typical real-life series)
 
 The $rank$ of the matrix is the cardinal of the last index $i$, where number $S_i > 0$. If the rank is lower than the dimentions of $U$ this means that the matrix can be decomposed without loss into fewer dimensions. In most real world examples we're not that lucky, and $rank == U.shape[0]$
 
