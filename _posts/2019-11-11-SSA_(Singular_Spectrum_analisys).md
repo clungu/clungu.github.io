@@ -1,10 +1,17 @@
 ---
 mathjax: true
+categories: 
+    - fundamental
+    - tutorial
+tags:
+    - timeseries
+    - svd
+    - decomposition
 ---
 
-# Problem description
-
 We have some data. Our goal for today would be to find the cyclical pattern that the data presents. 
+
+# Problem description
 
 To give one use case for this, let's say we work for an online store company. We're planning to increase our sales by promoting (through advertising) some products, discounts or special offers. The end goal would be to have people that see ads, buy these stuff. Someone seeing an ad, then making a purchase is called a `conversion`.
 
@@ -60,6 +67,7 @@ from matplotlib import pyplot as plt
 import math
 ```
 
+[//]: # If you came here to see how to hide the code in markdown use the snippet bellow but make sure that you have a \n after the (end summary) otherwise the kramdown engine will fail to parse properly (see here https://github.com/gettalong/kramdown/issues/155) 
 <details><summary markdown='span'>Code</summary>
 
 ```python
