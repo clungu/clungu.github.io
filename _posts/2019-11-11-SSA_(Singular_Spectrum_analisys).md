@@ -81,7 +81,7 @@ plt.plot(Trend)
 
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_11_1.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_11_1.png)
 
 
 
@@ -111,7 +111,7 @@ plt.plot(apply(period_1, T))
 
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_14_1.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_14_1.png)
 
 
 
@@ -130,7 +130,7 @@ plt.plot(apply(period_2, T))
 
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_15_1.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_15_1.png)
 
 
 And add in some noise to make the problem hard.
@@ -151,7 +151,7 @@ plt.plot(apply(noise, T))
 
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_17_1.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_17_1.png)
 
 
 Our final function is then:
@@ -193,7 +193,7 @@ plt.title("All the components of the function")
 
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_20_1.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_20_1.png)
 
 
 
@@ -337,7 +337,7 @@ plt.title("First few examples of values in X");
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_41_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_41_0.png)
 
 
 An alternative way of composing the above is as follows (using `np.column_stack`)
@@ -394,7 +394,7 @@ plt.matshow(X @ X.T)
 
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_50_1.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_50_1.png)
 
 
 
@@ -427,7 +427,7 @@ plt.plot(S[:10])
 
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_53_1.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_53_1.png)
 
 
 If we follow the algorithm, we should be constructing $V$ as follows:
@@ -466,7 +466,7 @@ plt.matshow(V)
 
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_58_1.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_58_1.png)
 
 
 Numpy decomposes our $\Sigma$ value into a 1D array of singular values, but mathematically, $\Sigma$ should have the shape `(U.shape[-1], V.shape[0])` for the computation to be well defined.
@@ -497,7 +497,7 @@ plt.matshow(_S)
 
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_60_1.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_60_1.png)
 
 
 While $\Sigma$ looks empty, if you look closely you can barely see on the (0, 0), (1, 1) and (2, 2) - the first diagonal- some non zero values.  So it's working properly.
@@ -520,11 +520,11 @@ plt.title(r"Original matrix X")
 
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_63_1.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_63_1.png)
 
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_63_2.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_63_2.png)
 
 
 Now let's compute the elementary matrices 
@@ -607,7 +607,7 @@ show_elementary_matrices(X_elem=_X, rank=rank, max_matices_to_show=15)
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_69_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_69_0.png)
 
 
 We're expecting that the elementarry matrices in _X will all sum up to X.
@@ -660,7 +660,7 @@ plot_original_vs_rec(X, _X)
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_73_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_73_0.png)
 
 
 #### The kaggle way
@@ -739,7 +739,7 @@ show_elementary_matrices(X_elem=X_, rank=d, max_matices_to_show=15)
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_84_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_84_0.png)
 
 
 Let's show in more detail the result of the reconstructions.
@@ -750,7 +750,7 @@ plot_original_vs_rec(X, X_)
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_86_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_86_0.png)
 
 
 We observe that in actual fact, there are some errors in the reconstruction, but the total MSE over all pixels is null. This is given by the fact, that the errors are subunitary, on the order of 1e-10. Raising by the power 2 makes these number even furter small. 
@@ -812,7 +812,7 @@ plt.bar(np.arange(d),S[:d])
 
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_95_1.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_95_1.png)
 
 
 
@@ -883,7 +883,7 @@ ax[1].set_ylabel("Contribution (%)");
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_100_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_100_0.png)
 
 
 
@@ -946,7 +946,7 @@ fig.tight_layout();
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_104_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_104_0.png)
 
 
 Let's also show an animation of that looks like for more components.
@@ -3816,7 +3816,7 @@ plt.xticks([]), plt.yticks([]);
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_112_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_112_0.png)
 
 
 It's maybe easyer to show these in a short animation
@@ -4205,7 +4205,7 @@ fig.tight_layout();
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_119_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_119_0.png)
 
 
 Quoting the original source, 
@@ -4232,7 +4232,7 @@ show_elementary_matrices(X_hat, d, max_matices_to_show=15)
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_122_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_122_0.png)
 
 
 
@@ -6082,7 +6082,7 @@ plot_original_vs_rec(X, X_hat)
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_124_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_124_0.png)
 
 
 #### Extracting the elementary timeseries
@@ -6099,7 +6099,7 @@ plt.legend([f"X_hat[{i}]" for i in range(10)], loc=(1.05,0.1));
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_127_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_127_0.png)
 
 
 Visually we can assume that:
@@ -6135,7 +6135,7 @@ ax2.set_title("Original components");
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_129_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_129_0.png)
 
 
 There are a few observations we can draw from the above image:
@@ -6182,7 +6182,7 @@ ax3.set_title("Original components");
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_133_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_133_0.png)
 
 
 Testing that we get the same reconstructed values from both methods.
@@ -6232,7 +6232,7 @@ fig.suptitle("Related components to the top 5 elements (by variance contribution
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_140_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_140_0.png)
 
 
 #### Computing a similarity matrix
@@ -6291,7 +6291,7 @@ ax2.set_title("Unrolled dimension of antidiagonal containing each element (the W
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_147_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_147_0.png)
 
 
 
@@ -6337,7 +6337,7 @@ plt.title("Wcorr similarity matrix");
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_150_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_150_0.png)
 
 
 ##### Similarity method 2: Covariance matrix
@@ -6361,7 +6361,7 @@ plt.title("Perason correlation similarity matrix");
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_153_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_153_0.png)
 
 
 ##### Similarity method 3: Cosine similarity 
@@ -6385,7 +6385,7 @@ plt.title("Cosine similarity matrix");
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_156_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_156_0.png)
 
 
 ##### Comparing the metrics and choosing one
@@ -6423,7 +6423,7 @@ fig.suptitle("Comparision between the three similarity metrics");
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_158_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_158_0.png)
 
 
 Plotting the distance between each similarity method pair we can see that:
@@ -6488,7 +6488,7 @@ fig.suptitle("Automatically computed groupings using unsupervised clustering");
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_165_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_165_0.png)
 
 
 Comparing the seasonality of the reconstruction and the original seasionality (2)
@@ -6503,7 +6503,7 @@ plt.xticks([]); plt.yticks([]);
 ```
 
 
-![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_files/2019-11-11-SSA_%28Singular_Spectrum_167_0.png)
+![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_167_0.png)
 
 
 # Conclusions
