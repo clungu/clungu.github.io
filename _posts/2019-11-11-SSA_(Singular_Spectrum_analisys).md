@@ -4190,11 +4190,11 @@ fig.tight_layout();
 Quoting the original source, 
 
 >it is important to note that $\hat{\mathcal{H}}$ is a linear operator, i.e.  $\hat{\mathcal{H}}(\mathbf{A} + \mathbf{B}) = \hat{\mathcal{H}}\mathbf{A} + \hat{\mathcal{H}}\mathbf{B}$. Then, for a trajectory matrix $\mathbf{X}$, 
-\begin{align*}
+$$\begin{align*}
 \hat{\mathcal{H}}\mathbf{X} & = \hat{\mathcal{H}} \left( \sum_{i=0}^{d-1} \mathbf{X}_i \right) \\
                             &  = \sum_{i=0}^{d-1} \hat{\mathcal{H}} \mathbf{X}_i \\
                             &  \equiv \sum_{i=0}^{d-1} \tilde{\mathbf{X}_i}
-\end{align*} 
+\end{align*}$$ 
 As $\mathbf{X}$ is already a Hankel matrix, then by definition $\hat{\mathcal{H}}\mathbf{X} = \mathbf{X}$. Therefore, the trajectory matrix can be expressed in terms of its Hankelised elementary matrices:
 $$\mathbf{X} = \sum_{i=0}^{d-1} \tilde{\mathbf{X}_i}$$
 
