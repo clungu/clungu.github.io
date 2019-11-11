@@ -60,7 +60,10 @@ from matplotlib import pyplot as plt
 import math
 ```
 
-<details> <summary> Code </summary> 
+<details> 
+    <summary>
+        Code 
+    </summary> 
 
 <p>
 
