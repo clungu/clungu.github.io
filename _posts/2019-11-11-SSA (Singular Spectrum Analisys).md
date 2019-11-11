@@ -61,6 +61,7 @@ import math
 ```
 
 [//]: # If you came here to see how to hide the code in markdown use the snippet bellow but make sure that you have a \n after the (end summary) otherwise the kramdown engine will fail to parse properly (see here https://github.com/gettalong/kramdown/issues/155) 
+{::options parse_block_html="true" /}
 <details><summary markdown='span'>Code</summary>
 
 ```python

@@ -23,7 +23,7 @@ feature_row:
   - image_path: /assets/images/mnist.png
     alt: "beating mnist"
     title: "Beating MNIST"
-    excerpt: "An iterative notebook that highlights how by applying recent **best practices** i nimage processing you can achieve state-of-the art results on the MNIST dataset."
+    excerpt: "An iterative notebook that highlights how by applying recent **best practices** in image processing you can achieve state-of-the art results on the MNIST dataset."
     url: "/Beating-MNIST/"
     btn_label: "Read More"
     btn_class: "btn--light-outline"
