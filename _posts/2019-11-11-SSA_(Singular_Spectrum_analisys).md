@@ -60,9 +60,7 @@ from matplotlib import pyplot as plt
 import math
 ```
 
-<details> 
-    <summary>
-        Code 
+<details><summary>Code 
     </summary> 
 
 <p>
@@ -90,7 +88,8 @@ plt.plot(Trend)
 
 Then we add two periodical function to the mix (essentialy these are what we're after)
 
-<details><summary>Code</summary>
+<details><summary>Code
+</summary>
 
 ```python
 def apply(func, T):
@@ -113,7 +112,7 @@ plt.plot(apply(period_1, T))
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_14_1.png)
 
 
-<details><summary>Code</summary>
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def period_2(t, period = 40):
