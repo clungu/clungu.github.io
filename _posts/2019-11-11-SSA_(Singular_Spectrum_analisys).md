@@ -6083,7 +6083,7 @@ plt.legend([f"X_hat[{i}]" for i in range(10)], loc=(1.05,0.1));
 
 Visually we can assume that:
 
-\begin{align*}
+$$\begin{align*}
 \tilde{\mathbf{X}}^{\text{(trend)}} & = \tilde{\mathbf{X}}_0 + \tilde{\mathbf{X}}_1 
     & \implies &  \tilde{F}^{\text{(trend)}} = \tilde{F}_0 + \tilde{F}_1 \\
 \tilde{\mathbf{X}}^{\text{(periodic 1)}} & = \tilde{\mathbf{X}}_2 + \tilde{\mathbf{X}}_3 
@@ -6092,7 +6092,7 @@ Visually we can assume that:
     & \implies & \tilde{F}^{\text{(periodic 2)}} = \tilde{F}_4 + \tilde{F}_5\\
 \tilde{\mathbf{X}}^{\text{(noise)}} & = \tilde{\mathbf{X}}_6 + \tilde{\mathbf{X}}_7 + \ldots + \tilde{\mathbf{X}}_{69}
     & \implies & \tilde{F}^{\text{(noise)}} = \tilde{F}_6 + \tilde{F}_7 + \ldots + \tilde{F}_{69}
-\end{align*}
+\end{align*}$$
 
 
 ```python
