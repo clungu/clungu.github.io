@@ -60,10 +60,7 @@ from matplotlib import pyplot as plt
 import math
 ```
 
-<details><summary>Code 
-    </summary> 
-
-<p>
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def trend(t):
@@ -76,9 +73,6 @@ T = list(range(-100, 100))
 Trend = [trend(t) for t in T]
 plt.plot(Trend)
 ```
-
-</p>
-
 </details>
 
 
@@ -88,8 +82,7 @@ plt.plot(Trend)
 
 Then we add two periodical function to the mix (essentialy these are what we're after)
 
-<details><summary>Code
-</summary>
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def apply(func, T):
@@ -128,8 +121,8 @@ plt.plot(apply(period_2, T))
 
 And add in some noise to make the problem hard.
 
-<details><summary>Code</summary>
- 
+<details><summary markdown='span'>Code</summary>
+
 ```python
 def noise(t):
     return np.random.randint(0, 3)
@@ -161,8 +154,8 @@ f(10)
 
 
 
-<details><summary>Code</summary>
- 
+<details><summary markdown='span'>Code</summary>
+
 ```python
 plt.figure(figsize=(8, 6))
 plt.plot(apply(trend, T), alpha=0.4)
