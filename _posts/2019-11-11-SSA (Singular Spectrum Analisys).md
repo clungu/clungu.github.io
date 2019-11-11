@@ -1,9 +1,9 @@
 ---
 mathjax: true
 categories: 
-    - fundamental
     - tutorial
 tags:
+    - fundamental
     - timeseries
     - svd
     - decomposition
