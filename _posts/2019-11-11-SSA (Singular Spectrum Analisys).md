@@ -1,12 +1,5 @@
 ---
 mathjax: true
-categories: 
-    - tutorial
-tags:
-    - fundamental
-    - timeseries
-    - svd
-    - decomposition
 ---
 
 We have some data. Our goal for today would be to find the cyclical pattern that the data presents. 
