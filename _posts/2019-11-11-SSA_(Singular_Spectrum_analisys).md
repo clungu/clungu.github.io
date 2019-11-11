@@ -60,7 +60,8 @@ from matplotlib import pyplot as plt
 import math
 ```
 
-<details>
+<details><summary>Code</summary>
+<p>
 
 ```python
 def trend(t):
@@ -74,6 +75,7 @@ Trend = [trend(t) for t in T]
 plt.plot(Trend)
 ```
 
+</p>
 </details>
 
 
