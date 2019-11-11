@@ -263,7 +263,8 @@ Form the *trajectory matrix* of the series $\mathbf X$ , which is the $L * K$
 
 $$\displaystyle \mathbf {X} =[X_{1}:\ldots :X_{K}]=(x_{ij})_{i,j=1}^{L,K}={\begin{bmatrix}x_{1}&x_{2}&x_{3}&\ldots &x_{K}\\x_{2}&x_{3}&x_{4}&\ldots &x_{K+1}\\x_{3}&x_{4}&x_{5}&\ldots &x_{K+2}\\\vdots &\vdots &\vdots &\ddots &\vdots \\x_{L}&x_{L+1}&x_{L+2}&\ldots &x_{N}\\\end{bmatrix}}$$
 
-where $${\displaystyle X_{i}=(x_{i},\ldots ,x_{i+L-1})^{\mathrm {T} }\;\quad (1\leq i\leq K)}X_{i}=(x_{{i}},\ldots ,x_{{i+L-1}})^{{\mathrm  {T}}}\;\quad (1\leq i\leq K)$$ are lagged vectors of size $L$. 
+
+where $$X_{i}=(x_{{i}},\ldots ,x_{{i+L-1}})^{{\mathrm  {T}}}\;\quad (1\leq i\leq K)$$ are lagged vectors of size $L$. 
 
 The matrix $\mathbf {X}$  is a *Hankel matrix* which means that $\mathbf {X}$  has equal elements $x_{ij}$ on the anti-diagonals $i+j=\,{{\rm {const}}}$.
 
