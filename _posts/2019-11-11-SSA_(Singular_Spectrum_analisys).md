@@ -304,14 +304,16 @@ f_{L-1} & f_{L} & f_{L+1} & f_{L+2} & \ldots & f_{N-1} \\
 ```python
 L = 70 # window size
 N = len(T) # number of observations
+X = np.array([F[offset:(offset+L)] for offset in range(0, N - L)]).T
 ```
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
-X = np.array([F[offset:(offset+L)] for offset in range(0, N - L)]).T
 plt.matshow(X[:30])
 plt.title("First few examples of values in X");
 ```
+</details>
 
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_41_0.png)
@@ -359,15 +361,12 @@ np.allclose(X @ X.T, np.matmul(X, X.T))
 We're going to print the $X*X^T$ matrix to have a visual idea of what that looks like.
 
 
+<details><summary markdown='span'>Code</summary>
+
 ```python
 plt.matshow(X @ X.T)
 ```
-
-
-
-
-    <matplotlib.image.AxesImage at 0x7ffb32cea208>
-
+</details>
 
 
 
@@ -392,16 +391,12 @@ U.shape, S.shape, _V.shape
 Now S consists of L `eigenvalues` $\lambda _{1},\ldots ,\lambda _{L}$ of $\mathbf {S}$  taken in the decreasing order of magnitude ($\lambda _{1}\geq \ldots \geq \lambda _{L}\geq 0$)
 
 
+<details><summary markdown='span'>Code</summary>
+
 ```python
 plt.plot(S[:10])
 ```
-
-
-
-
-    [<matplotlib.lines.Line2D at 0x7ffb32c2aef0>]
-
-
+</details>
 
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_53_1.png)
@@ -471,6 +466,7 @@ While $\Sigma$ looks empty, if you look closely you can barely see on the (0, 0)
 
 Now let's see what the actual $U * \Sigma * V^T$ looks like. It will obviously not be the same matrix reconstruction as $X$ since we'r using $U$ and $\Sigma$ from the decomposition of the matrix $X * X_T$, and V is a derivative of these two ($U$ and $\Sigma$)
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 plt.matshow(U @ _S @ V.T)
@@ -478,7 +474,7 @@ plt.title(r"Pseudo decomposition of $X * X^T$")
 plt.matshow(X)
 plt.title(r"Original matrix X")
 ```
-
+</details>
 
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_63_1.png)
@@ -517,6 +513,7 @@ np.allclose(
 
 
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def is_square(integer):
@@ -566,7 +563,7 @@ def show_elementary_matrices(X_elem, rank, max_matices_to_show = 9):
 ```python
 show_elementary_matrices(X_elem=_X, rank=rank, max_matices_to_show=15)
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_69_0.png)
 
@@ -587,6 +584,7 @@ np.allclose(np.sum(_X, axis=0), X, atol=1e-10)
 
 So the difference between them is not significant! We're all set.
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def plot_original_vs_rec(X, X_elem):
@@ -619,7 +617,7 @@ def plot_original_vs_rec(X, X_elem):
 
 plot_original_vs_rec(X, _X)
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_73_0.png)
 
@@ -694,21 +692,24 @@ X_.shape
 
 
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 show_elementary_matrices(X_elem=X_, rank=d, max_matices_to_show=15)
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_84_0.png)
 
 
 Let's show in more detail the result of the reconstructions.
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 plot_original_vs_rec(X, X_)
 ```
+</details>
 
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_86_0.png)
@@ -760,11 +761,12 @@ So whichever route you choose (wikipedia or kaggle) both will yield the same dec
 
 We expect that the values in S be sorted descending (the first component being the dominant one) 
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 plt.bar(np.arange(d),S[:d])
 ```
-
+</details>
 
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_95_1.png)
@@ -819,6 +821,7 @@ This suggests that we can take the ratio $\sigma_i^2 / \lvert\lvert \mathbf{X} \
 
 If we're only insterested on the order of the components and their magnitude we could get away without dividing on the norm, as it is the same computation on all the sigular values.
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 s_sumsq = (S**2).sum()
@@ -836,7 +839,7 @@ ax[1].set_title("Cumulative Contribution of $\mathbf{X}_i$ to Trajectory Matrix"
 ax[1].set_xlabel("$i$")
 ax[1].set_ylabel("Contribution (%)");
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_100_0.png)
 
@@ -879,6 +882,7 @@ We see that only the first 4 components (maybe even 3) contribute some meaningfu
 
 Let's see what happens if we remove them and only reconstruct X from the first few elementary matrices.
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 fig, (ax1, ax3) = plt.subplots(1, 2, figsize=(10, 6))
@@ -899,13 +903,14 @@ ax3.set_title("Original matrix")
 
 fig.tight_layout();
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_104_0.png)
 
 
 Let's also show an animation of that looks like for more components.
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 from matplotlib import animation, rc
@@ -932,7 +937,7 @@ anim = animation.FuncAnimation(fig, animate, fargs=(plot,), frames=min(100, d), 
 display(HTML(anim.to_html5_video()))
 plt.close()
 ```
-
+</details>
 
 <video width="720" height="360" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAAJfsm1kYXQAAAKtBgX//6ncRem9
@@ -3733,6 +3738,7 @@ It's because of this that we actually seek **to force** the elementary matrices 
 
 A simple and not so efficient way of computing the indices of the elements that compose the diagonal of a certain point is shown bellow
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 elem, shape = (3, 5), (5, 10)
@@ -3769,13 +3775,14 @@ plt.matshow(a)
 plt.title(f"Showing the diagonal of the {elem} point")
 plt.xticks([]), plt.yticks([]);
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_112_0.png)
 
 
 It's maybe easyer to show these in a short animation
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 elem, shape = (2, 2), (5, 10)
@@ -3807,7 +3814,7 @@ anim = animation.FuncAnimation(fig, animate, fargs=(plot,), frames=8, interval=5
 display(HTML(anim.to_html5_video()))
 plt.close()
 ```
-
+</details>
 
 <video width="576" height="360" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAAAXkG1kYXQAAAKtBgX//6ncRem9
@@ -3940,6 +3947,7 @@ NTcuODMuMTAw
 
 What we actually want is to compute the **anti**diagonal. Which is...
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 elem, shape = (2, 0), (5, 10)
@@ -3985,7 +3993,7 @@ anim = animation.FuncAnimation(fig, animate, fargs=(plot,), frames=10, interval=
 display(HTML(anim.to_html5_video()))
 plt.close()
 ```
-
+</details>
 
 <video width="576" height="360" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAAAZo21kYXQAAAKtBgX//6ncRem9
@@ -4145,6 +4153,7 @@ def henkelize(X):
     return X_hat
 ```
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 5))
@@ -4158,7 +4167,7 @@ ax2.set_title(r"Henkelized elementary matrix $X_{hat}$")
 fig.suptitle("Henkelisation result")
 fig.tight_layout();
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_119_0.png)
 
@@ -4181,15 +4190,17 @@ Which means that doing the henkelisation on all the elementary matrices X result
 X_hat = np.array([henkelize(X_i) for X_i in _X])
 ```
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 show_elementary_matrices(X_hat, d, max_matices_to_show=15)
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_122_0.png)
 
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 from matplotlib import animation, rc
@@ -4218,7 +4229,7 @@ anim = animation.FuncAnimation(fig, animate, fargs=(plot,), frames=min(d, 100), 
 display(HTML(anim.to_html5_video()))
 plt.close()
 ```
-
+</details>
 
 <video width="720" height="360" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAAGLMm1kYXQAAAKuBgX//6rcRem9
@@ -6031,11 +6042,12 @@ AAAAAExhdmY1Ny44My4xMDA=
 </video>
 
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 plot_original_vs_rec(X, X_hat)
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_124_0.png)
 
@@ -6070,6 +6082,7 @@ $$\begin{align*}
     & \implies & \tilde{F}^{\text{(noise)}} = \tilde{F}_6 + \tilde{F}_7 + \ldots + \tilde{F}_{69}
 \end{align*}$$
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
@@ -6088,7 +6101,7 @@ ax2.plot(apply(noise, T), alpha=0.4)
 ax2.legend(["trend", "period_1", "period_2", "noise", "function"], loc='upper right')
 ax2.set_title("Original components");
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_129_0.png)
 
@@ -6110,6 +6123,7 @@ def timeseries_from_elementary_matrix(X_i):
     return np.array([X_rev.diagonal(i).mean() for i in range(-X_i.shape[0]+1, X_i.shape[1])])
 ```
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(15, 5))
@@ -6135,7 +6149,7 @@ ax3.plot(apply(noise, T), alpha=0.4)
 ax3.legend(["trend", "period_1", "period_2", "noise", "function"], loc='upper right')
 ax3.set_title("Original components");
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_133_0.png)
 
@@ -6164,6 +6178,7 @@ components = np.array([timeseries(X_h) for X_h in X_hat])
 last_relevant = relevant_elements(S, variance=0.97)[-1]
 ```
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def show_top_correlations(ax, component, top=10, variance=0.96):
@@ -6185,7 +6200,7 @@ show_top_correlations(ax4, 3, 10)
 show_top_correlations(ax5, 4, 10)
 fig.suptitle("Related components to the top 5 elements (by variance contribution)");
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_140_0.png)
 
@@ -6219,6 +6234,7 @@ It's important to note here that both $x_i$ and $x_j$ are values found **at the 
 
 Let's compute the w array first (the weights).
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 shape = (5, 10)
@@ -6250,7 +6266,7 @@ ax2.xaxis.tick_bottom()
 ax2.set_xlim((-0.5, a.shape[0] + a.shape[1] - 1.5))
 ax2.set_title("Unrolled dimension of antidiagonal containing each element (the W array)");
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_147_0.png)
 
@@ -6351,6 +6367,7 @@ plt.title("Cosine similarity matrix");
 
 ##### Comparing the metrics and choosing one
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def _diff(sim1, sim2):
@@ -6382,7 +6399,7 @@ ax3.set_title(r"$|cos\_sim - Corr\_pearson|^2$")
 
 fig.suptitle("Comparision between the three similarity metrics");
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_158_0.png)
 
@@ -6422,6 +6439,7 @@ clusters
 
 Ok, we've come this far, and... let's see what we've got!
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 # Plotting of the clusters
@@ -6447,13 +6465,14 @@ ax2.set_title("Original components")
 ax2.set_ylim(-2, 10)
 fig.suptitle("Automatically computed groupings using unsupervised clustering");
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_165_0.png)
 
 
 Comparing the seasonality of the reconstruction and the original seasionality (2)
 
+<details><summary markdown='span'>Code</summary>
 
 ```python
 plt.plot(apply(period_1, T), "--", alpha=0.4)
@@ -6462,7 +6481,7 @@ plt.plot(series.sum(axis=0))
 plt.title("Comparing the original seasionality with the reconstruction")
 plt.xticks([]); plt.yticks([]);
 ```
-
+</details>
 
 ![png](../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_167_0.png)
 
