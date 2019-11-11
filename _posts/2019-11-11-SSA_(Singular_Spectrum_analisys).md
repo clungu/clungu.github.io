@@ -283,7 +283,7 @@ where
 $${\mathbf  {X}}_{i}={\sqrt  {\lambda _{i}}}U_{i}V_{i}^{\mathrm  {T}}$$
 are matrices having rank 1; these are called elementary matrices. 
 
-The collection ($\sqrt  {\lambda_{i}},U_{i},V_{i}$) will be called the $i$th eigentriple (abbreviated as ET) of the SVD. Vectors $U_{i}$ are the left singular vectors of the matrix $\mathbf {X}$ , numbers ${\sqrt  {\lambda _{i}}}$ are the singular values and provide the singular spectrum of $\mathbf {X}$ ; this gives the name to SSA. Vectors ${\sqrt  {\lambda _{i}}}V_{i}={\mathbf  {X}}^{\mathrm  {T}}U_{i}$ are called vectors of principal components (PCs).
+The collection ($\sqrt  {\lambda_{i}},U_{i},V_{i}$) will be called the $i$th eigentriple (abbreviated as ET) of the SVD. Vectors $U_{i}$ are the left singular vectors of the matrix $\mathbf {X}$ , numbers ${\sqrt  {\lambda_{i}}}$ are the singular values and provide the singular spectrum of $\mathbf {X}$ ; this gives the name to SSA. Vectors ${\sqrt  {\lambda _{i}}}V_{i}={\mathbf  {X}}^{\mathrm  {T}}U_{i}$ are called vectors of principal components (PCs).
 
 ### Step 3: Eigentriple grouping
 
