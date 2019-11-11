@@ -6222,9 +6222,9 @@ We're going to explore multiple ways of comparing the timeseries components and 
 
 The kernel uses a weighted, normalized dot product of two vectors as the similarity matrix.
 
->For two reconstructed time series, $\tilde{F}_i$ and $\tilde{F}_j$, of length $N$, and a window length $L$, we define the *weighted inner product*, $(\tilde{F}_i, \tilde{F}_j)_w$ as:
+>For two reconstructed time series, $$\tilde{F}_i$$ and $$\tilde{F}_j$$, of length $N$, and a window length $L$, we define the *weighted inner product*, $$(\tilde{F}_i, \tilde{F}_j)_w$$ as:
 $$(\tilde{F}_i, \tilde{F}_j)_w = \sum_{k=0}^{N-1} w_k \tilde{f}_{i,k} \tilde{f}_{j,k}$$
-where $\tilde{f}_{i,k}$ and $\tilde{f}_{j,k}$ are the $k$th values of $\tilde{F}_i$ and $\tilde{F}_j$, respectively
+where $$\tilde{f}_{i,k}$ and $\tilde{f}_{j,k}$$ are the $k$th values of $$\tilde{F}_i$$ and $$\tilde{F}_j$$, respectively
 
 >Put simply, if $(\tilde{F}_i, \tilde{F}_j)_w = 0$, $\tilde{F}_i$ and $\tilde{F}_j$ are *w-orthogonal* and the time series components are separable. Of course, total w-orthogonality does not occur in real life, so instead we define a $d \times d$ ***weighted correlation*** matrix, $\mathbf{W}_{\text{corr}}$, which measures the deviation of the components $\tilde{F}_i$ and $\tilde{F}_j$ from w-orthogonality. The elements of $\mathbf{W}_{\text{corr}}$ are given by
 $$W_{i,j} = \frac{(\tilde{F}_i, \tilde{F}_j)_w}{\lVert \tilde{F}_i \rVert_w \lVert \tilde{F}_j \rVert_w}$$
