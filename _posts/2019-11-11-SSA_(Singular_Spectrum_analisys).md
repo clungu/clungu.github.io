@@ -299,7 +299,7 @@ Each matrix $${\mathbf  {X}}_{I_{j}}$$ of the grouped decomposition is hankelize
 
 $$\widetilde {\mathbb  {X}}^{(k)}=(\widetilde {x}_{1}^{(k)},\ldots ,\widetilde {x}_{N}^{(k)})$$ 
 
-In this way, the initial series $x_1,\ldots,x_N$ is decomposed into a sum of {\displaystyle m}m reconstructed subseries:
+In this way, the initial series $x_1,\ldots,x_N$ is decomposed into a sum of $${\displaystyle m}m$$ reconstructed subseries:
 
 $$x_{n}=\sum \limits _{k=1}^{m}\widetilde {x}_{n}^{(k)}\ \ (n=1,2,\ldots ,N)$$
 This decomposition is the main result of the SSA algorithm. The decomposition is meaningful if each reconstructed subseries could be classified as a part of either trend or some periodic component or noise.
@@ -432,7 +432,7 @@ plt.plot(S[:10])
 
 
 If we follow the algorithm, we should be constructing $V$ as follows:
-* $V_{i}={\mathbf  {X}}^{{\mathrm  {T}}}U_{i}/{\sqrt  {\lambda _{i}}} (i=1,\ldots ,d)$, where $d={\mathop  {{\mathrm  {rank}}}}({\mathbf  {X}})=\max\{i,\ {\mbox{such that}}\ \lambda _{i}>0\}$ (note that $d=L$ for a typical real-life series)
+* $$V_{i}={\mathbf  {X}}^{{\mathrm  {T}}}U_{i}/{\sqrt  {\lambda _{i}}} (i=1,\ldots ,d)$, where $d={\mathop  {{\mathrm  {rank}}}}({\mathbf  {X}})=\max\{i,\ {\mbox{such that}}\ \lambda _{i}>0\}$$ (note that $d=L$ for a typical real-life series)
 
 The $rank$ of the matrix is the cardinal of the last index $i$, where number $S_i > 0$. If the rank is lower than the dimentions of $U$ this means that the matrix can be decomposed without loss into fewer dimensions. In most real world examples we're not that lucky, and $rank == U.shape[0]$
 
