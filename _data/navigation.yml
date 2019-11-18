@@ -22,9 +22,3 @@ posts:
            url: /tutorial/Mean-Shift/ 
          - title: Scikit-Learn
            url: /scikit-learn/tutorial/Scikit-learn/
-
-    - title: Posts
-      children:
-         - title: Blog Setup
-           url: /posts/blog_setup
- 
