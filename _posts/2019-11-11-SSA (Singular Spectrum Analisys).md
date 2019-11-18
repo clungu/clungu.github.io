@@ -8,6 +8,8 @@ tags:
 mathjax: true
 ---
 
+![png](../../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_167_0.png)
+
 We have some data. Our goal for today would be to find the cyclical pattern that the data presents. 
 
 # Problem description
