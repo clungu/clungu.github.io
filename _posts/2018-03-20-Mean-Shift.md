@@ -1,4 +1,8 @@
 ---
+categories: 
+    - tutorial
+tags:
+    - clustering
 mathjax: true
 ---
 
@@ -43,7 +47,7 @@ plot_clusters(centroids, clusters)
 ```
 
 
-![png](../assets/images/2018-03-20-Mean-Shift_files/2018-03-20-Mean-Shift_5_0.png)
+![png](../../assets/images/2018-03-20-Mean-Shift_files/2018-03-20-Mean-Shift_5_0.png)
 
 
 We know the clusters that we generated but we want to forget the grouping. We reshape the clusters into a single large array that contains nD (in this case 2D) points.
@@ -63,7 +67,7 @@ print(all_points.shape)
 
 The probability density function of a normally distributed random variable with expected value μ (mean) and variance $σ^2$ is given by the bellow **[gaussian function](https://en.wikipedia.org/wiki/Gaussian_function)**:
 
-![image.png](../assets/images/2018-03-20-Mean-Shift_files/gaussian-function.png)
+![image.png](../../assets/images/2018-03-20-Mean-Shift_files/gaussian-function.png)
 
 Because it's a probability distribution, the sum (integral) of this function is 1, this by the definition above is a **gaussian kernel**
 
@@ -117,7 +121,7 @@ plt.scatter(x, gaussian(x, 1))
 
 
 
-![png](../assets/images/2018-03-20-Mean-Shift_files/2018-03-20-Mean-Shift_19_1.png)
+![png](../../assets/images/2018-03-20-Mean-Shift_files/2018-03-20-Mean-Shift_19_1.png)
 
 
 We are interested only on the >0 half of the gaussian because we will use it as a continous weighting function. When a x is close to 0 (i.e. a distance between two close points) we will want to assign a large weight to it, and inversly, when x is large, we want a really small weight.
@@ -136,12 +140,8 @@ plt.scatter(x, gaussian(x, std))
 
 
 
-    <matplotlib.collections.PathCollection at 0x7f4e5e023450>
 
-
-
-
-![png](../assets/images/2018-03-20-Mean-Shift_files/2018-03-20-Mean-Shift_21_1.png)
+![png](../../assets/images/2018-03-20-Mean-Shift_files/2018-03-20-Mean-Shift_21_1.png)
 
 
 ## Step by step implementation
@@ -255,12 +255,8 @@ plt.scatter(update[:, 0], update[:, 1], c='green')
 
 
 
-    <matplotlib.collections.PathCollection at 0x7f4e590bf310>
 
-
-
-
-![png](../assets/images/2018-03-20-Mean-Shift_files/2018-03-20-Mean-Shift_36_1.png)
+![png](../../assets/images/2018-03-20-Mean-Shift_files/2018-03-20-Mean-Shift_36_1.png)
 
 
 ## Std and iteration discussions
@@ -1350,15 +1346,6 @@ ms = MeanShift(bandwidth=1.18)
 ms.fit(all_points)
 ```
 
-
-
-
-    MeanShift(bandwidth=1.18, bin_seeding=False, cluster_all=True, min_bin_freq=1,
-         n_jobs=1, seeds=None)
-
-
-
-
 ```python
 centroids_found = ms.cluster_centers_
 plt.scatter(centroids_found[:, 0], centroids_found[:, 1], c='g', marker='+')
@@ -1368,12 +1355,7 @@ plt.scatter(centroids[:, 0], centroids[:, 1], c='r', marker='x')
 
 
 
-    <matplotlib.collections.PathCollection at 0x7f4e58b98b10>
-
-
-
-
-![png](../assets/images/2018-03-20-Mean-Shift_files/2018-03-20-Mean-Shift_60_1.png)
+![png](../../assets/images/2018-03-20-Mean-Shift_files/2018-03-20-Mean-Shift_60_1.png)
 
 
 The `MeanShift` version also impements the "early stopping" strategy by using the follwing metric:
