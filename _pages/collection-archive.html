@@ -61,12 +61,15 @@ author_profile: true
 
 
 {% include group-by-array collection=site.posts field="tags" %}
-<h3 id="{{ label | slugify }}" class="archive__title">Tags</h3>
+<h3 id="{{ label | slugify }}" class="archive__title" style="text-align: center;">Tags</h3>
 {% for tag in group_names %}
   {% assign posts = group_items[forloop.index0] %}
   <h4 id="{{ tag | slugify }}" class="archive__subtitle">{{ tag }}</h4>
   {% for post in posts %}
-    {% include archive-single.html %}
+    <article class="archive-item">
+      <h5><a href="{{ site.baseurl }}{{ post.url }}" style="padding-left:5em">{{post.title}}</a></h5>
+    </article>
+    <!-- {% include archive-single.html %} -->
   {% endfor %}
 {% endfor %}
 
