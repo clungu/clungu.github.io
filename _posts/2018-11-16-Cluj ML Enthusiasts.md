@@ -1,3 +1,11 @@
+---
+categories: 
+    - course ml
+tags:
+    - analysis
+    - real data
+    - correlation
+---
 
 My last post received quite some responses, but before actually settling on the curricula of the upcoming ML course, I've decided to "eat my own lunch" and use ML to analyze what the data is telling me.
 
@@ -16,6 +24,8 @@ In the end I'll end up with the insight I'm seeking, so let's proceed!
 
 # Load the data
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 %matplotlib inline
@@ -25,14 +35,19 @@ import numpy as np
 from matplotlib import pyplot as plt
 ```
 
+</details>
+
 I have a `WorkAt` field that I'm going to drop it as it contains sensitive information.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 df = pd.read_csv("Cluj_ML_Enthusiasts.csv", sep='\t', na_values=['-']).drop(columns=['Email address', 'Name'])
 df.drop(columns=['WorkAt']).head()
 ```
 
+</details>
 
 
 
@@ -167,13 +182,19 @@ The other `Is..` fields are just expansions of the information contained in `Kno
 
 Making the `WorkAt` column a categorical column. This both hides the sensitive information while at the same time, converts everything into numbers. ML models love numbers!
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 df.WorkAt = df.WorkAt.astype('category').cat.as_ordered().cat.codes + 1
 ```
 
+</details>
+
 Making a numerical copy of the dataframe and anonymising the data
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 df_num = df.copy()
@@ -181,6 +202,7 @@ df_num.WorkAt = df.WorkAt.astype('category').cat.as_ordered().cat.codes + 1
 df_num.tail()
 ```
 
+</details>
 
 
 
@@ -288,15 +310,21 @@ df_num.tail()
 
 Converting the `Timestamp` column to `datatime`. This needs some attention and this case a specific `format` parameter was required for pandas. It usually infers the date format correctly but in this instance some of the November entries were detected as being from February.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 df_num.Timestamp = pd.to_datetime(df_num.Timestamp, dayfirst=True, format="%d/%m/%Y %H:%M:%S")
 ```
 
+</details>
+
 # Some feature engineering
 
 Adding an `HoursElapsed` column, infered from the `Timestamp` column. The `HoursElapsed` represent a synthetic feature that counts the number of hours passed between me publishing the news and the actual registration. It's usefull to know how fast a certain user reacted when seeing the event.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 import numpy as np
@@ -306,7 +334,7 @@ df_num['HoursElapsed'] = hours_elapsed
 df_num.head()
 ```
 
-
+</details>
 
 
 <div>
@@ -423,6 +451,8 @@ I'll do a simple transformation on the `HourElapsed` by which most recent ones w
 
 Modeling the enthusiasm of people by assuming that the velocity of their response is relative to a positive Gaussian kernel, that defines the `Enthusiasm`
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 from math import pi
@@ -436,19 +466,20 @@ from matplotlib import pyplot as plt
 plt.scatter(df_num.HoursElapsed, gaussian(df_num.HoursElapsed, 40))
 ```
 
+</details>
 
 
 
-    <matplotlib.collections.PathCollection at 0x7fcc543c4d30>
 
 
 
-
-![png](../assets/images/2018-11-16-Cluj_ML_Enthusiasts_files/2018-11-16-Cluj_ML_Enthusiasts_23_1.png)
+![png](../../assets/images/2018-11-16-Cluj_ML_Enthusiasts_files/2018-11-16-Cluj_ML_Enthusiasts_23_1.png)
 
 
 We are going to add the `Enthusiasm` values to our data, bellow.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 kernel = gaussian(df_num.HoursElapsed, 40)
@@ -459,7 +490,7 @@ df_num['Enthusiasm'] = kernel
 df_num.tail()
 ```
 
-
+</details>
 
 
 <div>
@@ -578,15 +609,21 @@ df_num.tail()
 
 Now that we've added the `Enthusiasm` column, we can remove the `HoursElapsed` and `Timestamp` columns since they are correlated with the `Enthusiasm`
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 df_num = df_num.drop(columns=['Timestamp', 'HoursElapsed'])
 ```
 
+</details>
+
 # Feature analisys
 
 Do a feature analysis and remove highly correlated features
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def plot_correlation(df_num):
@@ -601,10 +638,13 @@ def plot_correlation(df_num):
 corr = plot_correlation(df_num)
 ```
 
+</details>
 
-![png](../assets/images/2018-11-16-Cluj_ML_Enthusiasts_files/2018-11-16-Cluj_ML_Enthusiasts_30_0.png)
+![png](../../assets/images/2018-11-16-Cluj_ML_Enthusiasts_files/2018-11-16-Cluj_ML_Enthusiasts_30_0.png)
 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 # https://stackoverflow.com/questions/17778394/list-highest-correlation-pairs-from-a-large-correlation-matrix-in-pandas
@@ -626,7 +666,7 @@ def get_top_abs_correlations(df, n=5):
 get_top_abs_correlations(df_num, n=20)
 ```
 
-
+</details>
 
 
     IsResearcher  IsTeaching      0.624758
@@ -663,13 +703,15 @@ IsML, Degree, IsResearcher
 
 In addition, `WorkAt` brings no evident value, drop it.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 df_num = df_num.drop(columns=['IsML', 'Degree', 'IsResearcher', 'WorkAt'])
 df_num.head()
 ```
 
-
+</details>
 
 
 <div>
@@ -755,6 +797,8 @@ df_num.head()
 
 We will attempt to plot the data that we have on a 2D plot. In order to do this, we will reduce the dimensionality of it using PCA. This is useful because we want to get a rough idea of how many clusters do we have.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 from sklearn.pipeline import Pipeline
@@ -782,12 +826,15 @@ for i, (x, y) in enumerate(reduced[:, [0, 1]]):
     plt.text(x, y, "Name " + str(df.index[i]))
 ```
 
+</details>
 
-![png](../assets/images/2018-11-16-Cluj_ML_Enthusiasts_files/2018-11-16-Cluj_ML_Enthusiasts_38_0.png)
+![png](../../assets/images/2018-11-16-Cluj_ML_Enthusiasts_files/2018-11-16-Cluj_ML_Enthusiasts_38_0.png)
 
 
 If you squint, it seems we have roughly 4 generic clusters (with a couple of outliers). We will use KMeans clustering with this value, but only after we normalize all the features. Let's see what we get!
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 df_ = df_num.copy()
@@ -800,7 +847,7 @@ df_['Cluster'] = pipe.fit_predict(df_num)
 df_.sort_values('Cluster')
 ```
 
-
+</details>
 
 
 <div>
@@ -1457,12 +1504,15 @@ From the initial looks of it, the clusters have the following characteristics:
 
 `AffinityPropagation` is a clustering algo that doesn't require a number of clusters as its inputs. I'm going to use it for estimating the number of clusters, because maybe I'm missing some clusters. 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 nr_clusters = np.unique(AffinityPropagation().fit_predict(df_num))
 nr_clusters
 ```
 
+</details>
 
 
 

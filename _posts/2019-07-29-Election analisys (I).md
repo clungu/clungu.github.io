@@ -7,6 +7,9 @@ tags:
     - correlation
 ---
 
+![image.png](https://www.ifri.org/sites/default/files/styles/image_contenu_article/public/thumbnails/image/image_site_-_etude_collective_-_elections_europeennes.png)
+
+
 On the 26th of May, we had the European parliamentary elections. In Romania, the results and progress of the vote were published online in real time on the official electoral site.
 
 As far as I know it's the first time we had such data exposed to the public, and with such granularity.
