@@ -1,3 +1,9 @@
+---
+categories: 
+    - application
+tags:
+    - real data
+---
 
 # Getting data of an election
 
@@ -17,6 +23,8 @@ Maybe there's better way to do this, but what I did was start the developer cons
 
 An example of how you interogate the BEC site, for the `presence` data. You need to know the `county` (in this case AR, code for ARAD).
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 !curl 'https://prezenta.bec.ro/europarlamentare26052019/data/pv/json//pv_AR.json' -H 'accept: */*' -H 'referer: https://prezenta.bec.ro/europarlamentare26052019/romania-pv-part' -H 'authority: prezenta.bec.ro' --compressed -o "_data/AR.json"
@@ -26,9 +34,12 @@ An example of how you interogate the BEC site, for the `presence` data. You need
                                      Dload  Upload   Total   Spent    Left  Speed
     100 73871    0 73871    0     0   319k      0 --:--:-- --:--:-- --:--:--  319k
 
+</details>
 
 There is also an endpoint publishing the `presence` count (the number of people that voted so far ). Again, we also need to query this for each `county`.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 !curl 'https://prezenta.bec.ro/europarlamentare26052019/data/presence/json/presence_AR_now.json' -H 'accept: */*' -H 'referer: https://prezenta.bec.ro/europarlamentare26052019/romania-precincts' -H 'authority: prezenta.bec.ro' --compressed -o "_data/AR-presence.json"
@@ -38,25 +49,32 @@ There is also an endpoint publishing the `presence` count (the number of people 
                                      Dload  Upload   Total   Spent    Left  Speed
     100 60786    0 60786    0     0   690k      0 --:--:-- --:--:-- --:--:--  690k
 
+</details>
 
 There is also another csv that we can use, which contains the `presence` data in a single big file.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 !curl 'https://prezenta.bec.ro/europarlamentare26052019/data/presence/csv/presence_now.csv' -H 'Referer: https://prezenta.bec.ro/europarlamentare26052019/abroad-pv-part' --compressed -o "_data/all_presence.csv"
 ```
 
+</details>
+
 # Fetching the data
 
 Getting all the data ouf of the site. Each county has a dedicated page which contains information about its stats. By looking over the source of the site we can compile a list of all counties that we need to inspect. It's instersting that the S1..S6 (Bucharest's sectors) were modeled as counties. 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 counties = ["AR", "AB", "AR", "AG", "BC", "BH", "BN", "BT", "BV", "BR", "BZ", "CS", "CL", "CJ", "CT", "CV", "DB", "DJ", "GL", "GR", "GJ", "HR", "HD", "IL", "IS", "IF", "MM", "MH", "MS", "NT", "OT", "PH", "SM", "SJ", "SB", "SV", "TR", "TM", "TL", "VS", "VL", "VN", "B", "SR", "S1", "S2", "S3", "S4", "S5", "S6"]
 len(counties)
 ```
 
-
+</details>
 
 
 
@@ -67,6 +85,9 @@ Above we've deduced the counties we can have, but I've found that there are slig
 
 It's because of this that we need to handle the counties list in a case-by-case fashion.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 
 ```python
 import json
@@ -80,10 +101,13 @@ for county in tqdm(counties):
     !curl 'https://prezenta.bec.ro/europarlamentare26052019/data/pv/json//pv_{county}.json' -H 'accept-encoding: gzip, deflate, br'  -H 'accept: */*' -H 'referer: https://prezenta.bec.ro/europarlamentare26052019/romania-pv-part' -H 'authority: prezenta.bec.ro' --compressed -o "_data/{county}.json"
 ```
     
-
+</details>
 
 The `presence` data is (as above) stored in a different (`data/presence/json/`) route specific to each county. Again, we fetch everything an cache localy.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 
 ```python
 counties = ["AR", "AB", "AR", "AG", "BC", "BH", "BN", "BT", "BV", "BR", "BZ", "CS", "CL", "CJ", "CT", "CV", "DB", "DJ", "GL", "GR", "GJ", "HR", "HD", "IL", "IS", "IF", "MM", "MH", "MS", "NT", "OT", "PH", "SM", "SJ", "SB", "SV", "TR", "TM", "TL", "VS", "VL", "VN", "B", "SR"]
@@ -91,11 +115,14 @@ for county in tqdm(counties[-8:-6]):
     !curl 'https://prezenta.bec.ro/europarlamentare26052019/data/presence/json/presence_{county}_now.json' -H 'accept: */*' -H 'referer: https://prezenta.bec.ro/europarlamentare26052019/romania-precincts' -H 'authority: prezenta.bec.ro' --compressed -o "_data/{county}-presence.json"
 ```
 
-
+</details>
 
 
 Let's also get the `all in one` data about the `presence`.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 
 ```python
 !curl 'https://prezenta.bec.ro/europarlamentare26052019/data/presence/csv/presence_now.csv' -H 'Referer: https://prezenta.bec.ro/europarlamentare26052019/abroad-pv-part' --compressed -o "_data/all_presence.csv"
@@ -105,6 +132,7 @@ Let's also get the `all in one` data about the `presence`.
                                      Dload  Upload   Total   Spent    Left  Speed
     100 2618k    0 2618k    0     0  5729k      0 --:--:-- --:--:-- --:--:-- 5729k
 
+</details>
 
 # Compiling the data
 
@@ -114,7 +142,9 @@ When reading the `presence` file, there's some manipulation that we need to do b
 
 There was also the `age_ranges` field which was contained actually a list of values, that I needed to exapend into individual columns, by using a transform function.
 
-
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 ```python
 def process_row(row):
     return tuple(row.age_ranges.values())
@@ -163,6 +193,7 @@ tulcea = load_presence("_data/TL-presence.json")
 tulcea.head()
 ```
 
+</details>
 
 
 
@@ -347,7 +378,9 @@ So the final strategy that worked was something along the following lines:
 * inspect all the `precint_nr` that is contains
 * individually query the api for the results of that `precint_nr`. 
 
-
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 ```python
 counties = ["AR", "AB", "AR", "AG", "BC", "BH", "BN", "BT", "BV", "BR", "BZ", "CS", "CL", "CJ", "CT", "CV", "DB", "DJ", "GL", "GR", "GJ", "HR", "HD", "IL", "IS", "IF", "MM", "MH", "MS", "NT", "OT", "PH", "SM", "SJ", "SB", "SV", "TR", "TM", "TL", "VS", "VL", "VN", "SR"]
 for county in tqdm(counties):
@@ -365,12 +398,14 @@ for county in tqdm(counties):
                 !curl 'https://prezenta.bec.ro/europarlamentare26052019/data/pv/csv/pv_{county}_{precinct_nr}_EUP_PART.csv' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36' -H 'accept: */*' -H 'referer: https://prezenta.bec.ro/europarlamentare26052019/romania-pv-part' -H 'authority: prezenta.bec.ro' -H 'cookie: _ga=GA1.2.772980748.1558943895; _gid=GA1.2.1466959792.1561374632' --compressed --silent -o "_data/{county}_results_{precinct_nr}.json"
 ```
 
-
+</details>
 
 
 Bucharest is a special case. It's treated as a county but the results are stored by sectors so we need to do things a bit different.
 
-
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 ```python
 county = "B"
 df_county = load_presence(f"_data/{county}-presence.json")
@@ -391,16 +426,19 @@ for id_sector in tqdm(df_county.id_locality.unique()):
                 !curl 'https://prezenta.bec.ro/europarlamentare26052019/data/pv/csv/pv_{county}_{precinct_nr}_EUP_PART.csv' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-GB,en-US;q=0.9,en;q=0.8' -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36' -H 'accept: */*' -H 'referer: https://prezenta.bec.ro/europarlamentare26052019/romania-pv-part' -H 'authority: prezenta.bec.ro' -H 'cookie: _ga=GA1.2.772980748.1558943895; _gid=GA1.2.1466959792.1561374632' --compressed --silent -o "_data/{county}_results_{precinct_nr}.json"
 ```
 
-
+</details>
 
 
 In `SR` we have data about the foreign offices.
 
-
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 ```python
 load_presence("_data/SR-presence.json").head().T
 ```
 
+</details>
 
 
 
@@ -688,7 +726,9 @@ load_presence("_data/SR-presence.json").head().T
 
 We now have all the `presence` data cached, and we'll read it into a single dataframe.
 
-
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 ```python
 counties = ["AR", "AB", "AR", "AG", "BC", "BH", "BN", "BT", "BV", "BR", "BZ", "CS", "CL", "CJ", "CT", "CV", "DB", "DJ", "GL", "GR", "GJ", "HR", "HD", "IL", "IS", "IF", "MM", "MH", "MS", "NT", "OT", "PH", "SM", "SJ", "SB", "SV", "TR", "TM", "TL", "VS", "VL", "VN", "SR", "B"]
  
@@ -696,23 +736,22 @@ df_precints = pd.concat((load_presence(f) for f in tqdm(glob("_data/*-presence.j
 df_precints.shape
 ```
 
-
-    HBox(children=(IntProgress(value=0, max=43), HTML(value='')))
-
-
+</details>
 
 
 
     (19171, 31)
 
 
-
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 
 ```python
 df_precints.head().T
 ```
 
-
+</details>
 
 
 <div>
@@ -997,16 +1036,18 @@ df_precints.head().T
 
 The `all_presence.csv` file contains information about age groups, more granular than the bucketed info found in the county files. We will merge it with the current dataframe.
 
-
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 ```python
 _all_df = pd.read_csv("_data/all_presence.csv")
 ```
-
 
 ```python
 _all_df.head().T
 ```
 
+</details>
 
 
 
@@ -1537,23 +1578,22 @@ It's interesting that this file contains presence data on a per year-of-birth gr
 
 The individual results files we've got from two steps above, we will load them into a single big pandas `DataFrame`
 
-
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 ```python
 df_results = pd.concat((pd.read_csv(f) for f in tqdm(glob("_data/*_results_*"))), ignore_index=True)
 df_results.shape
 ```
 
-
-
     (19171, 36)
-
-
 
 
 ```python
 df_results.head().T
 ```
 
+</details>
 
 
 
@@ -1881,7 +1921,9 @@ df_results.head().T
 
 Some code cleanup are neede. In order to join the two dataframes we need to make slight conversions to make all the keys from both side match.
 
-
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 ```python
 df_results.loc[df_results.Județ == "STRĂINĂTATE", "Județ"] = "STRAINATATE"
 df_results.loc[df_results.Uat == "OMAN", "Uat"] = "SULTANATUL OMAN"
@@ -1892,15 +1934,19 @@ df_results.loc[df_results.Județ == "SECTOR 4", "Județ"] = "MUNICIPIUL BUCUREŞ
 df_results.loc[df_results.Județ == "SECTOR 5", "Județ"] = "MUNICIPIUL BUCUREŞTI"
 df_results.loc[df_results.Județ == "SECTOR 6", "Județ"] = "MUNICIPIUL BUCUREŞTI"
 ```
+</details>
 
 Now, if we merge the two we will get a single big dataframe with the same number of rows but double the columns.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 df_precint_with_results = pd.merge(left=df_precints, right=df_results, left_on=["county_name", "uat_name", "precinct_nr"], right_on=["Județ", "Uat", "Nr"])
 df_precint_with_results.shape
 ```
 
+</details>
 
 
 
@@ -1910,11 +1956,14 @@ df_precint_with_results.shape
 
 Let's print one example of how one entry this looks like in practice.
 
-
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 ```python
 dict(df_precint_with_results.iloc[0])
 ```
 
+</details>
 
 
 
@@ -1991,16 +2040,18 @@ dict(df_precint_with_results.iloc[0])
 We will also join the data with the `all_presence.csv` file.
 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 ```python
 df_full = pd.merge(left=df_precint_with_results, right=_all_df, left_on=["county_code", "uat_name", "precinct_nr"], right_on=["Judet", "UAT", "Nr sectie de votare"])
 df_full.shape
 ```
 
 
-
-
     (19171, 295)
 
+</details>
 
 
 ## Applying the legend
@@ -2010,6 +2061,9 @@ Some of the columns in the above dataframe are not quite obvious (`g1`, .., `g16
 We also need to convert these column names into more meaningfull lables.
 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 ```python
 df_full.rename(columns={
     "g1": "PSD",
@@ -2044,15 +2098,20 @@ df_full.rename(columns={
 }, inplace=True)
 ```
 
+</details>
+
 Ok, let's check for the amount of missing data
 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 ```python
 na_series = df_full.isna().sum()
 na_series[na_series != 0]
 ```
 
-
+</details>
 
 
     latitude               479
@@ -2062,7 +2121,6 @@ na_series[na_series != 0]
     Contestatii             19
     Starea sigiliilor        8
     Siruta                 441
-    dtype: int64
 
 
 
@@ -2074,13 +2132,16 @@ We want to eliminate those. We will find the duplicated columns by:
 * using the `pandas.duplicated` method (used on the transposed matix - duplicated only works on rows)
 * looking at the correlation matrix of the resulting columns and get the pairs of columns that have the highes correlation.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 
 ```python
 duplicate_columns = df_full.columns[df_full.T.duplicated(keep=False)]
 duplicate_columns
 ```
 
-
+</details>
 
 
     Index(['liste_permanente', 'lista_suplimentare', 'total', 'urna_mobila',
@@ -2105,7 +2166,9 @@ duplicate_columns
 
 With these, we will compare each with each and see what searies are equals. This will results in a long list of pairs of columns that are duplicates of one another.
 
-
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 ```python
 _pairs = set()
 for i, _a in enumerate(duplicate_columns):
@@ -2115,309 +2178,13 @@ for i, _a in enumerate(duplicate_columns):
 _pairs
 ```
 
-
+</details>
 
 
     {('Barbati 104', 'Barbati 106'),
      ('Barbati 104', 'Barbati 108'),
      ('Barbati 104', 'Barbati 109'),
-     ('Barbati 104', 'Barbati 110'),
-     ('Barbati 104', 'Barbati 112'),
-     ('Barbati 104', 'Barbati 113'),
-     ('Barbati 104', 'Barbati 114'),
-     ('Barbati 104', 'Barbati 115'),
-     ('Barbati 104', 'Barbati 116'),
-     ('Barbati 104', 'Barbati 117'),
-     ('Barbati 104', 'Barbati 118'),
-     ('Barbati 104', 'Barbati 119'),
-     ('Barbati 104', 'Barbati 120'),
-     ('Barbati 104', 'Femei 105'),
-     ('Barbati 104', 'Femei 106'),
-     ('Barbati 104', 'Femei 107'),
-     ('Barbati 104', 'Femei 108'),
-     ('Barbati 104', 'Femei 110'),
-     ('Barbati 104', 'Femei 111'),
-     ('Barbati 104', 'Femei 112'),
-     ('Barbati 104', 'Femei 113'),
-     ('Barbati 104', 'Femei 114'),
-     ('Barbati 104', 'Femei 115'),
-     ('Barbati 104', 'Femei 116'),
-     ('Barbati 104', 'Femei 117'),
-     ('Barbati 104', 'Femei 118'),
-     ('Barbati 104', 'Femei 119'),
-     ('Barbati 104', 'Femei 120'),
-     ('Barbati 106', 'Barbati 108'),
-     ('Barbati 106', 'Barbati 109'),
-     ('Barbati 106', 'Barbati 110'),
-     ('Barbati 106', 'Barbati 112'),
-     ('Barbati 106', 'Barbati 113'),
-     ('Barbati 106', 'Barbati 114'),
-     ('Barbati 106', 'Barbati 115'),
-     ('Barbati 106', 'Barbati 116'),
-     ('Barbati 106', 'Barbati 117'),
-     ('Barbati 106', 'Barbati 118'),
-     ('Barbati 106', 'Barbati 119'),
-     ('Barbati 106', 'Barbati 120'),
-     ('Barbati 106', 'Femei 105'),
-     ('Barbati 106', 'Femei 106'),
-     ('Barbati 106', 'Femei 107'),
-     ('Barbati 106', 'Femei 108'),
-     ('Barbati 106', 'Femei 110'),
-     ('Barbati 106', 'Femei 111'),
-     ('Barbati 106', 'Femei 112'),
-     ('Barbati 106', 'Femei 113'),
-     ('Barbati 106', 'Femei 114'),
-     ('Barbati 106', 'Femei 115'),
-     ('Barbati 106', 'Femei 116'),
-     ('Barbati 106', 'Femei 117'),
-     ('Barbati 106', 'Femei 118'),
-     ('Barbati 106', 'Femei 119'),
-     ('Barbati 106', 'Femei 120'),
-     ('Barbati 108', 'Barbati 109'),
-     ('Barbati 108', 'Barbati 110'),
-     ('Barbati 108', 'Barbati 112'),
-     ('Barbati 108', 'Barbati 113'),
-     ('Barbati 108', 'Barbati 114'),
-     ('Barbati 108', 'Barbati 115'),
-     ('Barbati 108', 'Barbati 116'),
-     ('Barbati 108', 'Barbati 117'),
-     ('Barbati 108', 'Barbati 118'),
-     ('Barbati 108', 'Barbati 119'),
-     ('Barbati 108', 'Barbati 120'),
-     ('Barbati 108', 'Femei 105'),
-     ('Barbati 108', 'Femei 106'),
-     ('Barbati 108', 'Femei 107'),
-     ('Barbati 108', 'Femei 108'),
-     ('Barbati 108', 'Femei 110'),
-     ('Barbati 108', 'Femei 111'),
-     ('Barbati 108', 'Femei 112'),
-     ('Barbati 108', 'Femei 113'),
-     ('Barbati 108', 'Femei 114'),
-     ('Barbati 108', 'Femei 115'),
-     ('Barbati 108', 'Femei 116'),
-     ('Barbati 108', 'Femei 117'),
-     ('Barbati 108', 'Femei 118'),
-     ('Barbati 108', 'Femei 119'),
-     ('Barbati 108', 'Femei 120'),
-     ('Barbati 109', 'Barbati 110'),
-     ('Barbati 109', 'Barbati 112'),
-     ('Barbati 109', 'Barbati 113'),
-     ('Barbati 109', 'Barbati 114'),
-     ('Barbati 109', 'Barbati 115'),
-     ('Barbati 109', 'Barbati 116'),
-     ('Barbati 109', 'Barbati 117'),
-     ('Barbati 109', 'Barbati 118'),
-     ('Barbati 109', 'Barbati 119'),
-     ('Barbati 109', 'Barbati 120'),
-     ('Barbati 109', 'Femei 105'),
-     ('Barbati 109', 'Femei 106'),
-     ('Barbati 109', 'Femei 107'),
-     ('Barbati 109', 'Femei 108'),
-     ('Barbati 109', 'Femei 110'),
-     ('Barbati 109', 'Femei 111'),
-     ('Barbati 109', 'Femei 112'),
-     ('Barbati 109', 'Femei 113'),
-     ('Barbati 109', 'Femei 114'),
-     ('Barbati 109', 'Femei 115'),
-     ('Barbati 109', 'Femei 116'),
-     ('Barbati 109', 'Femei 117'),
-     ('Barbati 109', 'Femei 118'),
-     ('Barbati 109', 'Femei 119'),
-     ('Barbati 109', 'Femei 120'),
-     ('Barbati 110', 'Barbati 112'),
-     ('Barbati 110', 'Barbati 113'),
-     ('Barbati 110', 'Barbati 114'),
-     ('Barbati 110', 'Barbati 115'),
-     ('Barbati 110', 'Barbati 116'),
-     ('Barbati 110', 'Barbati 117'),
-     ('Barbati 110', 'Barbati 118'),
-     ('Barbati 110', 'Barbati 119'),
-     ('Barbati 110', 'Barbati 120'),
-     ('Barbati 110', 'Femei 105'),
-     ('Barbati 110', 'Femei 106'),
-     ('Barbati 110', 'Femei 107'),
-     ('Barbati 110', 'Femei 108'),
-     ('Barbati 110', 'Femei 110'),
-     ('Barbati 110', 'Femei 111'),
-     ('Barbati 110', 'Femei 112'),
-     ('Barbati 110', 'Femei 113'),
-     ('Barbati 110', 'Femei 114'),
-     ('Barbati 110', 'Femei 115'),
-     ('Barbati 110', 'Femei 116'),
-     ('Barbati 110', 'Femei 117'),
-     ('Barbati 110', 'Femei 118'),
-     ('Barbati 110', 'Femei 119'),
-     ('Barbati 110', 'Femei 120'),
-     ('Barbati 112', 'Barbati 113'),
-     ('Barbati 112', 'Barbati 114'),
-     ('Barbati 112', 'Barbati 115'),
-     ('Barbati 112', 'Barbati 116'),
-     ('Barbati 112', 'Barbati 117'),
-     ('Barbati 112', 'Barbati 118'),
-     ('Barbati 112', 'Barbati 119'),
-     ('Barbati 112', 'Barbati 120'),
-     ('Barbati 112', 'Femei 105'),
-     ('Barbati 112', 'Femei 106'),
-     ('Barbati 112', 'Femei 107'),
-     ('Barbati 112', 'Femei 108'),
-     ('Barbati 112', 'Femei 110'),
-     ('Barbati 112', 'Femei 111'),
-     ('Barbati 112', 'Femei 112'),
-     ('Barbati 112', 'Femei 113'),
-     ('Barbati 112', 'Femei 114'),
-     ('Barbati 112', 'Femei 115'),
-     ('Barbati 112', 'Femei 116'),
-     ('Barbati 112', 'Femei 117'),
-     ('Barbati 112', 'Femei 118'),
-     ('Barbati 112', 'Femei 119'),
-     ('Barbati 112', 'Femei 120'),
-     ('Barbati 113', 'Barbati 114'),
-     ('Barbati 113', 'Barbati 115'),
-     ('Barbati 113', 'Barbati 116'),
-     ('Barbati 113', 'Barbati 117'),
-     ('Barbati 113', 'Barbati 118'),
-     ('Barbati 113', 'Barbati 119'),
-     ('Barbati 113', 'Barbati 120'),
-     ('Barbati 113', 'Femei 105'),
-     ('Barbati 113', 'Femei 106'),
-     ('Barbati 113', 'Femei 107'),
-     ('Barbati 113', 'Femei 108'),
-     ('Barbati 113', 'Femei 110'),
-     ('Barbati 113', 'Femei 111'),
-     ('Barbati 113', 'Femei 112'),
-     ('Barbati 113', 'Femei 113'),
-     ('Barbati 113', 'Femei 114'),
-     ('Barbati 113', 'Femei 115'),
-     ('Barbati 113', 'Femei 116'),
-     ('Barbati 113', 'Femei 117'),
-     ('Barbati 113', 'Femei 118'),
-     ('Barbati 113', 'Femei 119'),
-     ('Barbati 113', 'Femei 120'),
-     ('Barbati 114', 'Barbati 115'),
-     ('Barbati 114', 'Barbati 116'),
-     ('Barbati 114', 'Barbati 117'),
-     ('Barbati 114', 'Barbati 118'),
-     ('Barbati 114', 'Barbati 119'),
-     ('Barbati 114', 'Barbati 120'),
-     ('Barbati 114', 'Femei 105'),
-     ('Barbati 114', 'Femei 106'),
-     ('Barbati 114', 'Femei 107'),
-     ('Barbati 114', 'Femei 108'),
-     ('Barbati 114', 'Femei 110'),
-     ('Barbati 114', 'Femei 111'),
-     ('Barbati 114', 'Femei 112'),
-     ('Barbati 114', 'Femei 113'),
-     ('Barbati 114', 'Femei 114'),
-     ('Barbati 114', 'Femei 115'),
-     ('Barbati 114', 'Femei 116'),
-     ('Barbati 114', 'Femei 117'),
-     ('Barbati 114', 'Femei 118'),
-     ('Barbati 114', 'Femei 119'),
-     ('Barbati 114', 'Femei 120'),
-     ('Barbati 115', 'Barbati 116'),
-     ('Barbati 115', 'Barbati 117'),
-     ('Barbati 115', 'Barbati 118'),
-     ('Barbati 115', 'Barbati 119'),
-     ('Barbati 115', 'Barbati 120'),
-     ('Barbati 115', 'Femei 105'),
-     ('Barbati 115', 'Femei 106'),
-     ('Barbati 115', 'Femei 107'),
-     ('Barbati 115', 'Femei 108'),
-     ('Barbati 115', 'Femei 110'),
-     ('Barbati 115', 'Femei 111'),
-     ('Barbati 115', 'Femei 112'),
-     ('Barbati 115', 'Femei 113'),
-     ('Barbati 115', 'Femei 114'),
-     ('Barbati 115', 'Femei 115'),
-     ('Barbati 115', 'Femei 116'),
-     ('Barbati 115', 'Femei 117'),
-     ('Barbati 115', 'Femei 118'),
-     ('Barbati 115', 'Femei 119'),
-     ('Barbati 115', 'Femei 120'),
-     ('Barbati 116', 'Barbati 117'),
-     ('Barbati 116', 'Barbati 118'),
-     ('Barbati 116', 'Barbati 119'),
-     ('Barbati 116', 'Barbati 120'),
-     ('Barbati 116', 'Femei 105'),
-     ('Barbati 116', 'Femei 106'),
-     ('Barbati 116', 'Femei 107'),
-     ('Barbati 116', 'Femei 108'),
-     ('Barbati 116', 'Femei 110'),
-     ('Barbati 116', 'Femei 111'),
-     ('Barbati 116', 'Femei 112'),
-     ('Barbati 116', 'Femei 113'),
-     ('Barbati 116', 'Femei 114'),
-     ('Barbati 116', 'Femei 115'),
-     ('Barbati 116', 'Femei 116'),
-     ('Barbati 116', 'Femei 117'),
-     ('Barbati 116', 'Femei 118'),
-     ('Barbati 116', 'Femei 119'),
-     ('Barbati 116', 'Femei 120'),
-     ('Barbati 117', 'Barbati 118'),
-     ('Barbati 117', 'Barbati 119'),
-     ('Barbati 117', 'Barbati 120'),
-     ('Barbati 117', 'Femei 105'),
-     ('Barbati 117', 'Femei 106'),
-     ('Barbati 117', 'Femei 107'),
-     ('Barbati 117', 'Femei 108'),
-     ('Barbati 117', 'Femei 110'),
-     ('Barbati 117', 'Femei 111'),
-     ('Barbati 117', 'Femei 112'),
-     ('Barbati 117', 'Femei 113'),
-     ('Barbati 117', 'Femei 114'),
-     ('Barbati 117', 'Femei 115'),
-     ('Barbati 117', 'Femei 116'),
-     ('Barbati 117', 'Femei 117'),
-     ('Barbati 117', 'Femei 118'),
-     ('Barbati 117', 'Femei 119'),
-     ('Barbati 117', 'Femei 120'),
-     ('Barbati 118', 'Barbati 119'),
-     ('Barbati 118', 'Barbati 120'),
-     ('Barbati 118', 'Femei 105'),
-     ('Barbati 118', 'Femei 106'),
-     ('Barbati 118', 'Femei 107'),
-     ('Barbati 118', 'Femei 108'),
-     ('Barbati 118', 'Femei 110'),
-     ('Barbati 118', 'Femei 111'),
-     ('Barbati 118', 'Femei 112'),
-     ('Barbati 118', 'Femei 113'),
-     ('Barbati 118', 'Femei 114'),
-     ('Barbati 118', 'Femei 115'),
-     ('Barbati 118', 'Femei 116'),
-     ('Barbati 118', 'Femei 117'),
-     ('Barbati 118', 'Femei 118'),
-     ('Barbati 118', 'Femei 119'),
-     ('Barbati 118', 'Femei 120'),
-     ('Barbati 119', 'Barbati 120'),
-     ('Barbati 119', 'Femei 105'),
-     ('Barbati 119', 'Femei 106'),
-     ('Barbati 119', 'Femei 107'),
-     ('Barbati 119', 'Femei 108'),
-     ('Barbati 119', 'Femei 110'),
-     ('Barbati 119', 'Femei 111'),
-     ('Barbati 119', 'Femei 112'),
-     ('Barbati 119', 'Femei 113'),
-     ('Barbati 119', 'Femei 114'),
-     ('Barbati 119', 'Femei 115'),
-     ('Barbati 119', 'Femei 116'),
-     ('Barbati 119', 'Femei 117'),
-     ('Barbati 119', 'Femei 118'),
-     ('Barbati 119', 'Femei 119'),
-     ('Barbati 119', 'Femei 120'),
-     ('Barbati 120', 'Femei 105'),
-     ('Barbati 120', 'Femei 106'),
-     ('Barbati 120', 'Femei 107'),
-     ('Barbati 120', 'Femei 108'),
-     ('Barbati 120', 'Femei 110'),
-     ('Barbati 120', 'Femei 111'),
-     ('Barbati 120', 'Femei 112'),
-     ('Barbati 120', 'Femei 113'),
-     ('Barbati 120', 'Femei 114'),
-     ('Barbati 120', 'Femei 115'),
-     ('Barbati 120', 'Femei 116'),
-     ('Barbati 120', 'Femei 117'),
-     ('Barbati 120', 'Femei 118'),
-     ('Barbati 120', 'Femei 119'),
+     ...
      ('Barbati 120', 'Femei 120'),
      ('Barbati 18-24', 'men_18_24'),
      ('Barbati 25-34', 'men_25_34'),
@@ -2426,108 +2193,7 @@ _pairs
      ('Barbati 65+', 'men_65+'),
      ('Femei 105', 'Femei 106'),
      ('Femei 105', 'Femei 107'),
-     ('Femei 105', 'Femei 108'),
-     ('Femei 105', 'Femei 110'),
-     ('Femei 105', 'Femei 111'),
-     ('Femei 105', 'Femei 112'),
-     ('Femei 105', 'Femei 113'),
-     ('Femei 105', 'Femei 114'),
-     ('Femei 105', 'Femei 115'),
-     ('Femei 105', 'Femei 116'),
-     ('Femei 105', 'Femei 117'),
-     ('Femei 105', 'Femei 118'),
-     ('Femei 105', 'Femei 119'),
-     ('Femei 105', 'Femei 120'),
-     ('Femei 106', 'Femei 107'),
-     ('Femei 106', 'Femei 108'),
-     ('Femei 106', 'Femei 110'),
-     ('Femei 106', 'Femei 111'),
-     ('Femei 106', 'Femei 112'),
-     ('Femei 106', 'Femei 113'),
-     ('Femei 106', 'Femei 114'),
-     ('Femei 106', 'Femei 115'),
-     ('Femei 106', 'Femei 116'),
-     ('Femei 106', 'Femei 117'),
-     ('Femei 106', 'Femei 118'),
-     ('Femei 106', 'Femei 119'),
-     ('Femei 106', 'Femei 120'),
-     ('Femei 107', 'Femei 108'),
-     ('Femei 107', 'Femei 110'),
-     ('Femei 107', 'Femei 111'),
-     ('Femei 107', 'Femei 112'),
-     ('Femei 107', 'Femei 113'),
-     ('Femei 107', 'Femei 114'),
-     ('Femei 107', 'Femei 115'),
-     ('Femei 107', 'Femei 116'),
-     ('Femei 107', 'Femei 117'),
-     ('Femei 107', 'Femei 118'),
-     ('Femei 107', 'Femei 119'),
-     ('Femei 107', 'Femei 120'),
-     ('Femei 108', 'Femei 110'),
-     ('Femei 108', 'Femei 111'),
-     ('Femei 108', 'Femei 112'),
-     ('Femei 108', 'Femei 113'),
-     ('Femei 108', 'Femei 114'),
-     ('Femei 108', 'Femei 115'),
-     ('Femei 108', 'Femei 116'),
-     ('Femei 108', 'Femei 117'),
-     ('Femei 108', 'Femei 118'),
-     ('Femei 108', 'Femei 119'),
-     ('Femei 108', 'Femei 120'),
-     ('Femei 110', 'Femei 111'),
-     ('Femei 110', 'Femei 112'),
-     ('Femei 110', 'Femei 113'),
-     ('Femei 110', 'Femei 114'),
-     ('Femei 110', 'Femei 115'),
-     ('Femei 110', 'Femei 116'),
-     ('Femei 110', 'Femei 117'),
-     ('Femei 110', 'Femei 118'),
-     ('Femei 110', 'Femei 119'),
-     ('Femei 110', 'Femei 120'),
-     ('Femei 111', 'Femei 112'),
-     ('Femei 111', 'Femei 113'),
-     ('Femei 111', 'Femei 114'),
-     ('Femei 111', 'Femei 115'),
-     ('Femei 111', 'Femei 116'),
-     ('Femei 111', 'Femei 117'),
-     ('Femei 111', 'Femei 118'),
-     ('Femei 111', 'Femei 119'),
-     ('Femei 111', 'Femei 120'),
-     ('Femei 112', 'Femei 113'),
-     ('Femei 112', 'Femei 114'),
-     ('Femei 112', 'Femei 115'),
-     ('Femei 112', 'Femei 116'),
-     ('Femei 112', 'Femei 117'),
-     ('Femei 112', 'Femei 118'),
-     ('Femei 112', 'Femei 119'),
-     ('Femei 112', 'Femei 120'),
-     ('Femei 113', 'Femei 114'),
-     ('Femei 113', 'Femei 115'),
-     ('Femei 113', 'Femei 116'),
-     ('Femei 113', 'Femei 117'),
-     ('Femei 113', 'Femei 118'),
-     ('Femei 113', 'Femei 119'),
-     ('Femei 113', 'Femei 120'),
-     ('Femei 114', 'Femei 115'),
-     ('Femei 114', 'Femei 116'),
-     ('Femei 114', 'Femei 117'),
-     ('Femei 114', 'Femei 118'),
-     ('Femei 114', 'Femei 119'),
-     ('Femei 114', 'Femei 120'),
-     ('Femei 115', 'Femei 116'),
-     ('Femei 115', 'Femei 117'),
-     ('Femei 115', 'Femei 118'),
-     ('Femei 115', 'Femei 119'),
-     ('Femei 115', 'Femei 120'),
-     ('Femei 116', 'Femei 117'),
-     ('Femei 116', 'Femei 118'),
-     ('Femei 116', 'Femei 119'),
-     ('Femei 116', 'Femei 120'),
-     ('Femei 117', 'Femei 118'),
-     ('Femei 117', 'Femei 119'),
-     ('Femei 117', 'Femei 120'),
-     ('Femei 118', 'Femei 119'),
-     ('Femei 118', 'Femei 120'),
+     ...
      ('Femei 119', 'Femei 120'),
      ('Femei 18-24', 'women_18_24'),
      ('Femei 25-34', 'women_25_34'),
@@ -2557,6 +2223,9 @@ There's only one more step that we need to do: find the groups of columns that h
 
 This is the perfect job of the disjoint-set datastructure. 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 
 ```python
 _groups = DisjointSets()
@@ -2565,6 +2234,7 @@ for _a, _b in _pairs:
 _groups.sets()
 ```
 
+</details>
 
 
 
@@ -2624,6 +2294,8 @@ _groups.sets()
 
 From the list above we know we choose to drop the following columns:
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 drop_columns = ['Barbati 104', 'Barbati 106',
@@ -2639,12 +2311,12 @@ drop_columns = ['Barbati 104', 'Barbati 106',
 ]
 ```
 
-
 ```python
 df_final = df_full.drop(columns=drop_columns)
 df_final.columns
 ```
 
+</details>
 
 
 
@@ -2660,11 +2332,14 @@ df_final.columns
 
 And we end up with..
 
-
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+  
 ```python
 df_final.head().T
 ```
 
+</details>
 
 
 
