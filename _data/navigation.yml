@@ -3,17 +3,25 @@ main:
       url: /post-archive/
     - title: "Contact"
       url: /contact/
+    - title: "Topics"
+      url: /collection-archive/
     - title: "Archive"
       url: /year-archive/
-    - title: "Tags and Collections"
-      url: /collection-archive/
 
 
 posts:
-    - title: ML projects
-      children: 
-         - title: MNIST classification
-           url: /posts/MNIST_classification
+    - title: Tutorials
+      children:
+         - title: Singular Spectrum Analisys
+           url: /tutorial/SSA-(Singular-Spectrum-Analisys)/
+         - title: Drawing a map
+           url: /tutorial/visualisation/Mapping/
+         - title: Embeddings
+           url: /tutorial/Embeddings-explained/
+         - title: Mean Shift
+           url: /tutorial/Mean-Shift/ 
+         - title: Scikit-Learn
+           url: /scikit-learn/tutorial/Scikit-learn/
 
     - title: Posts
       children:
