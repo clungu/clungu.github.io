@@ -1,10 +1,14 @@
+---
+categories: 
+    - tutorial
+tags:
+    - deep learning
+    - mnist
+    - keras
+    - image processing
+---
 
 # Summary
-
-## About me
-
-* Cristian Lungu, Phd.c. UTCN, AI
-* Machine Learning Researcher @ ComplyAdvantage (Data Scientist)
 
 ## Contents
 
@@ -122,11 +126,11 @@ plots(x_train[:10], titles=y_train[:10])
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_18_1.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_18_1.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_18_2.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_18_2.png)
 
 
 ### Data massaging
@@ -219,7 +223,7 @@ plots(X[:10], titles=y_train[:10])
 ```
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_24_0.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_24_0.png)
 
 
 #### One-hot-encoding
@@ -416,11 +420,11 @@ plots(X[:5]), plots(X_[:5])
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_47_1.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_47_1.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_47_2.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_47_2.png)
 
 
 #### The actual model
@@ -1258,7 +1262,7 @@ print(batch_gen.N)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_121_1.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_121_1.png)
 
 
 #### Model implementation
@@ -1605,7 +1609,7 @@ plots(X_val[selected], titles=labels_pred[selected])
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_147_1.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_147_1.png)
 
 
 
@@ -1622,7 +1626,7 @@ plots(X_val[selected], titles=labels_pred[selected])
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_148_1.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_148_1.png)
 
 
 
@@ -1648,43 +1652,43 @@ for i in xrange(10):
 ```
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_0.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_0.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_1.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_1.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_2.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_2.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_3.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_3.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_4.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_4.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_5.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_5.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_6.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_6.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_7.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_7.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_8.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_8.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_9.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_149_9.png)
 
 
 
@@ -1711,43 +1715,43 @@ for i in xrange(10):
 ```
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_0.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_0.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_1.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_1.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_2.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_2.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_3.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_3.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_4.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_4.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_5.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_5.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_6.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_6.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_7.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_7.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_8.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_8.png)
 
 
 
-![png](../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_9.png)
+![png](../../assets/images/2018-05-08-Beating%2BMNIST_files/2018-05-08-Beating%2BMNIST_150_9.png)
 
 
 # Thank you!

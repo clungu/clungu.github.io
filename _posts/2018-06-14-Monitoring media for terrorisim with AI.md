@@ -1,3 +1,12 @@
+---
+categories: 
+    - application
+tags:
+    - deep learning
+    - nsa
+    - keras
+    - nlp
+---
 
 # Goal: SIGINT (i.e. Signals Inteligence)
 
