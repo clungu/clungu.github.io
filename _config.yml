@@ -18,11 +18,11 @@ search                   : true
 # Site Author
 author:
   name             : *name # *name is a YAML reference pointing to the &anchor earlier
-  avatar           : "/assets/images/profile-2.jpg"
-  bio              : "Stuff."
+  avatar           : "/assets/images/profile_clungu.png"
+  bio              : "AI/ML Consultant"
   location         : "Cluj-Napoca, Romania, EU"
-  email            : 
-  uri              : "http://www.clungu.com"
+  email            : "lungu.cristian(dot)gmai.com"
+  uri              : "http://www.curs-ml.com"
   home             : "http://www.clungu.com"
   bitbucket        :
   codepen          :
