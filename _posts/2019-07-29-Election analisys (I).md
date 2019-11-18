@@ -21,6 +21,8 @@ Just to remind ourselves what we're working with.
 
 This is the dataset:
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 import pandas as pd
@@ -29,7 +31,7 @@ df = pd.read_csv("_data/final.csv")
 df.head()
 ```
 
-
+</details>
 
 
 <div>
@@ -217,12 +219,14 @@ df.shape
 
 Some descriptive statistics about the dataset.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 df.describe(include="all")
 ```
 
-
+</details>
 
 
 <div>
@@ -540,12 +544,14 @@ df.describe(include="all")
 
 And all the available columns we have.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 list(df.columns)
 ```
 
-
+</details>
 
 
     [
@@ -553,6 +559,8 @@ list(df.columns)
 
 The first thing I'd like to see is the percentage of votes that each party has received.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def score(party):
@@ -562,7 +570,7 @@ parties = ["PSD", "USR-PLUS", "PRO Romania", "UDMR", "PNL", "ALDE", "PMP",]
 sorted([(party, np.round(score(party)*100, 2)) for party in parties], reverse=True, key=lambda x: x[1])
 ```
 
-
+</details>
 
 
     [('PNL', 26.25),
@@ -594,6 +602,8 @@ I'm going to compute the difference between my numbers and the official numbers 
 * absolute improvement, meaning the amount of percentage points that each party has changed with
 * relative score increase (i.e. how much did the absolute improvement above meant for the scores that each party got) 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 my_results = {party: np.round(score(party)*100, 2) for party in parties}
@@ -615,7 +625,7 @@ sorted([(
 ) for party in parties], key=lambda x: x[1], reverse=True)
 ```
 
-
+</details>
 
 
     [('UDMR', '+6.46% relative score increase', '+0.33% absolute improvement'),
@@ -630,6 +640,8 @@ sorted([(
 
 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 score_changes = pd.DataFrame.from_records([{"party":party, 
@@ -641,6 +653,7 @@ score_changes = score_changes[["party", "absolute improvement", "relative score 
 score_changes.sort_values(by="relative score improvement", ascending=False)
 ```
 
+</details>
 
 
 
@@ -758,6 +771,8 @@ Spearman correlation is often used to evaluate relationships involving ordinal v
 
 As a first example, we will take all the columns of our dataset and print the pairs with the highest correlation between them. Note that we've excluded from the results the (A, A) pairs that will have a score of 1 (naturally). 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 _corr = df[[column for column in df.columns if "Barbati" not in column and "Femei" not in column and "id_" not in column]].corr()
@@ -769,10 +784,11 @@ _pairs = {(_corr_val, _corr.columns[i], _corr.columns[j]) for i, j, _corr_val in
 sorted(_pairs, reverse=True)
 ```
 
+</details>
 
 
-
-    [(0.9999988405995148, 'Total alegatori', 'Total lista permanenta'),
+    [
+     (0.9999988405995148, 'Total alegatori', 'Total lista permanenta'),
      (0.9998662230466443, 'Total alegatori', 'Votanti lista'),
      (0.9998609492610934, 'Total lista permanenta', 'Votanti lista'),
      (0.9986963671087307, 'Total prezenti', 'Voturi valabile'),
@@ -806,234 +822,7 @@ sorted(_pairs, reverse=True)
      (0.8908618299795728, 'men_35_44', 'Voturi valabile'),
      (0.8888218041604524, 'women_25_34', 'USR-PLUS'),
      (0.8887240874383147, 'men_35_44', 'Total prezenti'),
-     (0.8860149146658227, 'total', 'men_35_44'),
-     (0.8747165727556893, 'men_35_44', 'women_25_34'),
-     (0.8729206517041824, 'men_25_34', 'men_35_44'),
-     (0.8637026563242342, 'women_25_34', 'Voturi valabile'),
-     (0.8593377684464183, 'women_25_34', 'Total prezenti'),
-     (0.8589415270450032, 'total', 'women_25_34'),
-     (0.857176283783107, 'liste_permanente', 'women_45_64'),
-     (0.8555291030023521, 'women_45_64', 'Prezenti lista permanenta'),
-     (0.8501787402222709, 'men_25_34', 'USR-PLUS'),
-     (0.8451625847881826, 'women_25_34', 'women_35_44'),
-     (0.8296537782008973, 'Voturi valabile', 'USR-PLUS'),
-     (0.8295418917497576, 'Total prezenti', 'Total voturi'),
-     (0.8273592381868828, 'Total voturi', 'Voturi valabile'),
-     (0.8272181179939182, 'total', 'Total voturi'),
-     (0.8265304038867696, 'men_35_44', 'USR-PLUS'),
-     (0.8207357960597029, 'Total prezenti', 'USR-PLUS'),
-     (0.8192307035006394, 'men_25_34', 'Voturi valabile'),
-     (0.8190729838269484, 'women_35_44', 'USR-PLUS'),
-     (0.8180420312893399, 'total', 'USR-PLUS'),
-     (0.8153670474875289, 'men_25_34', 'Total prezenti'),
-     (0.8138593556241418, 'women_35_44', 'women_45_64'),
-     (0.8127342804319291, 'total', 'men_25_34'),
-     (0.8117302058713984, 'liste_permanente', 'total'),
-     (0.8112533755954947, 'total', 'Prezenti lista permanenta'),
-     (0.8067669151863641, 'men_35_44', 'Total voturi'),
-     (0.8029910006823214, 'Total prezenti', 'Prezenti lista permanenta'),
-     (0.8016131049036849, 'liste_permanente', 'Total prezenti'),
-     (0.7990448966513194, 'liste_permanente', 'Voturi valabile'),
-     (0.7987923861712766, 'Prezenti lista permanenta', 'Voturi valabile'),
-     (0.7950079031310202, 'men_45_64', 'women_35_44'),
-     (0.7860224946965823, 'men_45_64', 'Total voturi'),
-     (0.7839708453323573, 'women_35_44', 'Total voturi'),
-     (0.7740197427607262, 'women_45_64', 'Votanti lista'),
-     (0.773963857795013, 'women_45_64', 'Total alegatori'),
-     (0.7739601605473143, 'women_45_64', 'Total lista permanenta'),
-     (0.7647309406800955, 'liste_permanente', 'men_45_64'),
-     (0.7644672026349517, 'men_45_64', 'Prezenti lista permanenta'),
-     (0.7617570239480886, 'men_35_44', 'men_45_64'),
-     (0.7611922539503859, 'men_25_34', 'women_35_44'),
-     (0.7501232242497844, 'men_65+', 'Prezenti lista permanenta'),
-     (0.74717912322135, 'liste_permanente', 'men_65+'),
-     (0.7456087369882822, 'women_45_64', 'Total voturi'),
-     (0.7409023076933792, 'women_65+', 'Prezenti lista permanenta'),
-     (0.7398691878680022, 'men_25_34', 'Prezenti lista suplimentara'),
-     (0.7397541277546892, 'lista_suplimentare', 'men_25_34'),
-     (0.7386603777289847, 'women_25_34', 'Total voturi'),
-     (0.7372965307428793, 'liste_permanente', 'women_65+'),
-     (0.7333825588918097, 'men_25_34', 'Total voturi'),
-     (0.7327504034393008, 'liste_permanente', 'women_35_44'),
-     (0.7310501998866197, 'women_35_44', 'Prezenti lista permanenta'),
-     (0.7293022553805606, 'total', 'men_18_24'),
-     (0.7289327350577404, 'men_18_24', 'Total prezenti'),
-     (0.7288113811199555, 'men_18_24', 'Voturi valabile'),
-     (0.7261606942057695, 'men_45_64', 'PNL'),
-     (0.7221733347347928, 'Total prezenti', 'PNL'),
-     (0.7197383645636486, 'Voturi valabile', 'PNL'),
-     (0.7183902680243516, 'total', 'PNL'),
-     (0.7145341764852035, 'men_35_44', 'Prezenti lista suplimentara'),
-     (0.7127539080142462, 'lista_suplimentare', 'men_35_44'),
-     (0.7074948272403041, 'total', 'Votanti lista'),
-     (0.7074411003449943, 'total', 'Total alegatori'),
-     (0.7074320136669552, 'total', 'Total lista permanenta'),
-     (0.7045203177292684, 'men_35_44', 'women_45_64'),
-     (0.7024018973661189, 'men_45_64', 'Votanti lista'),
-     (0.7023213138280959, 'men_45_64', 'Total alegatori'),
-     (0.7023155994268526, 'men_45_64', 'Total lista permanenta'),
-     (0.7019356748569177, 'men_18_24', 'men_25_34'),
-     (0.6983167086682324, 'Total prezenti', 'Votanti lista'),
-     (0.6982773254292051, 'Total alegatori', 'Total prezenti'),
-     (0.6982684664717136, 'Total lista permanenta', 'Total prezenti'),
-     (0.6970356922489198, 'USR-PLUS', 'George-Nicaolae Simion'),
-     (0.691999455646935, 'Voturi valabile', 'Votanti lista'),
-     (0.6919651605615834, 'Total alegatori', 'Voturi valabile'),
-     (0.6919565146203496, 'Total lista permanenta', 'Voturi valabile'),
-     (0.6878717344881574, 'Total voturi', 'USR-PLUS'),
-     (0.6877978555910668, 'men_18_24', 'women_25_34'),
-     (0.68554303507526, 'women_18_24', 'Voturi valabile'),
-     (0.6850249796700719, 'total', 'women_18_24'),
-     (0.684622668902946, 'women_18_24', 'Total prezenti'),
-     (0.684594002154606, 'men_35_44', 'George-Nicaolae Simion'),
-     (0.6830407634963409, 'men_18_24', 'USR-PLUS'),
-     (0.6788126994283751, 'Voturi valabile', 'George-Nicaolae Simion'),
-     (0.6751574009166196, 'Total prezenti', 'George-Nicaolae Simion'),
-     (0.674777042150644, 'men_35_44', 'PNL'),
-     (0.6729511358325007, 'Voturi valabile', 'PMP'),
-     (0.6725140990148408, 'women_18_24', 'USR-PLUS'),
-     (0.6715098567461779, 'total', 'PMP'),
-     (0.6703028345713855, 'men_65+', 'women_45_64'),
-     (0.6700747790081832, 'Total prezenti', 'PMP'),
-     (0.6698486024444747, 'total', 'George-Nicaolae Simion'),
-     (0.6664304019504717, 'women_18_24', 'women_25_34'),
-     (0.6638699667494284, 'men_25_34', 'George-Nicaolae Simion'),
-     (0.6602176336077453, 'women_25_34', 'George-Nicaolae Simion'),
-     (0.6600992921049851, 'men_65+', 'Votanti lista'),
-     (0.6598940395296187, 'men_65+', 'Total alegatori'),
-     (0.6598697309444518, 'men_65+', 'Total lista permanenta'),
-     (0.6587965714350892, 'women_25_34', 'women_45_64'),
-     (0.6587555384254217, 'men_45_64', 'women_25_34'),
-     (0.6553425750112236, 'women_45_64', 'PMP'),
-     (0.6540284546319199, 'Total voturi', 'George-Nicaolae Simion'),
-     (0.6523864095587261, 'PMP', 'George-Nicaolae Simion'),
-     (0.6507217748666585, 'women_35_44', 'George-Nicaolae Simion'),
-     (0.6490574642716371, 'women_35_44', 'PNL'),
-     (0.6488548953535342, 'total', 'women_65+'),
-     (0.6477731050629054, 'lista_suplimentare', 'women_25_34'),
-     (0.647503357372423, 'women_45_64', 'USR-PLUS'),
-     (0.6467578511067698, 'women_45_64', 'women_65+'),
-     (0.6462833867963701, 'total', 'men_65+'),
-     (0.644286453940188, 'women_25_34', 'Prezenti lista suplimentara'),
-     (0.6435985015318786, 'men_25_34', 'women_18_24'),
-     (0.6419038885142373, 'women_65+', 'Total prezenti'),
-     (0.6412039155491145, 'Total voturi', 'PNL'),
-     (0.6403344436381941, 'women_65+', 'Voturi valabile'),
-     (0.6400487402293206, 'women_45_64', 'PNL'),
-     (0.6389010201515093, 'Total voturi', 'Votanti lista'),
-     (0.6388138780430961, 'Total lista permanenta', 'Total voturi'),
-     (0.6388132090732743, 'Total alegatori', 'Total voturi'),
-     (0.6386794670316503, 'men_65+', 'Total prezenti'),
-     (0.6345965588687608, 'men_65+', 'Voturi valabile'),
-     (0.6332160431818976, 'men_25_34', 'men_45_64'),
-     (0.6327727988581671, 'Prezenti lista suplimentara', 'George-Nicaolae Simion'),
-     (0.6323820883892561, 'women_35_44', 'PMP'),
-     (0.6302278804016929, 'lista_suplimentare', 'George-Nicaolae Simion'),
-     (0.6287214644125425, 'Prezenti lista suplimentara', 'USR-PLUS'),
-     (0.6280239631212078, 'lista_suplimentare', 'USR-PLUS'),
-     (0.6258882850733374, 'women_65+', 'Votanti lista'),
-     (0.6257854226694695, 'women_35_44', 'Votanti lista'),
-     (0.6257797133880051, 'women_35_44', 'Total alegatori'),
-     (0.6257777344858919, 'women_35_44', 'Total lista permanenta'),
-     (0.6257716727079021, 'women_65+', 'Total alegatori'),
-     (0.6257422077955548, 'women_65+', 'Total lista permanenta'),
-     (0.6253483738440837, 'men_45_64', 'men_65+'),
-     (0.6251428174424312, 'women_45_64', 'PRO Romania'),
-     (0.6203316508218127, 'men_45_64', 'PMP'),
-     (0.6190891232026141, 'men_35_44', 'Voturi nefolosite'),
-     (0.6174768258038619, 'men_65+', 'PSD'),
-     (0.6166403358382414, 'men_18_24', 'men_35_44'),
-     (0.6080595915618895, 'men_18_24', 'women_35_44'),
-     (0.6072325198142238, 'liste_permanente', 'PRO Romania'),
-     (0.6067708749164424, 'women_25_34', 'PNL'),
-     (0.6063187755893609, 'men_25_34', 'PNL'),
-     (0.6044842057638279, 'Prezenti lista permanenta', 'PRO Romania'),
-     (0.5958420293965467, 'men_45_64', 'USR-PLUS'),
-     (0.5935108220931711, 'USR-PLUS', 'PMP'),
-     (0.589984869357973, 'women_45_64', 'George-Nicaolae Simion'),
-     (0.5867054463721634, 'men_35_44', 'PMP'),
-     (0.5860751001098103, 'Total prezenti', 'Voturi nefolosite'),
-     (0.5840665681994462, 'Prezenti lista suplimentara', 'Total voturi'),
-     (0.58355457702146, 'USR-PLUS', 'Gregoriana-Carmen Tudoran'),
-     (0.5830409080253222, 'total', 'Voturi nefolosite'),
-     (0.5827947563550113, 'Voturi nefolosite', 'Voturi valabile'),
-     (0.5820793102951033, 'men_45_64', 'Voturi nefolosite'),
-     (0.581053822137188, 'liste_permanente', 'Total voturi'),
-     (0.5809831828048029, 'lista_suplimentare', 'Total voturi'),
-     (0.5794296564996461, 'Prezenti lista permanenta', 'Total voturi'),
-     (0.5740124549259857, 'liste_permanente', 'women_25_34'),
-     (0.5732512573210689, 'women_25_34', 'PMP'),
-     (0.5722663356060166, 'women_18_24', 'women_35_44'),
-     (0.572245196185383, 'men_45_64', 'George-Nicaolae Simion'),
-     (0.5720356630614744, 'women_25_34', 'Prezenti lista permanenta'),
-     (0.5713365432475015, 'men_25_34', 'women_45_64'),
-     (0.5712295201731679, 'men_45_64', 'women_65+'),
-     (0.569117663543072, 'women_35_44', 'Voturi nefolosite'),
-     (0.5681810599387154, 'total', 'PRO Romania'),
-     (0.5677483617927789, 'Voturi valabile', 'Partidul Romania Unita'),
-     (0.5676972710038537, 'Total prezenti', 'Partidul Romania Unita'),
-     (0.5667618194870088, 'total', 'Partidul Romania Unita'),
-     (0.5637126309251154, 'Total prezenti', 'PRO Romania'),
-     (0.5635708916388684, 'PRO Romania', 'Votanti lista'),
-     (0.5634695476031741, 'Total lista permanenta', 'PRO Romania'),
-     (0.5634635933386309, 'Total alegatori', 'PRO Romania'),
-     (0.5631499579643666, 'Total voturi', 'PMP'),
-     (0.5629007841551946, 'Voturi valabile', 'PRO Romania'),
-     (0.562289647511278, 'Prezenti lista suplimentara', 'Voturi valabile'),
-     (0.5616477439369739, 'Voturi valabile', 'Gregoriana-Carmen Tudoran'),
-     (0.561499988521805, 'men_45_64', 'PRO Romania'),
-     (0.5613479440982699, 'men_18_24', 'men_45_64'),
-     (0.5606739796931852, 'total', 'Gregoriana-Carmen Tudoran'),
-     (0.56055132703434, 'Gregoriana-Carmen Tudoran', 'George-Nicaolae Simion'),
-     (0.5596755941730587, 'Total prezenti', 'Gregoriana-Carmen Tudoran'),
-     (0.5586316215998096, 'Total prezenti', 'Prezenti lista suplimentara'),
-     (0.5581676360585548, 'men_18_24', 'Total voturi'),
-     (0.5581092393788818, 'men_25_34', 'Voturi nefolosite'),
-     (0.5579416431840721, 'liste_permanente', 'men_35_44'),
-     (0.5569461176228407, 'men_35_44', 'Prezenti lista permanenta'),
-     (0.5559290436898493, 'lista_suplimentare', 'Voturi valabile'),
-     (0.5514179470769757, 'lista_suplimentare', 'Total prezenti'),
-     (0.5478992591187692, 'women_35_44', 'Partidul Romania Unita'),
-     (0.5470905333513876, 'men_35_44', 'women_18_24'),
-     (0.5443772802953679, 'women_65+', 'PSD'),
-     (0.5439340700260347, 'women_35_44', 'Gregoriana-Carmen Tudoran'),
-     (0.5435600664777013, 'total', 'Prezenti lista suplimentara'),
-     (0.5413330079681774, 'Total voturi', 'Partidul Romania Unita'),
-     (0.5407538772983785, 'lista_suplimentare', 'total'),
-     (0.540503194677919, 'women_45_64', 'Partidul Romania Unita'),
-     (0.5398935644528039, 'liste_permanente', 'USR-PLUS'),
-     (0.539611559112094, 'women_25_34', 'Voturi nefolosite'),
-     (0.5379839309149224, 'men_18_24', 'PNL'),
-     (0.5375607304617895, 'USR-PLUS', 'Partidul Romania Unita'),
-     (0.5374423691088724, 'men_35_44', 'Partidul Romania Unita'),
-     (0.5367282724713272, 'Prezenti lista permanenta', 'USR-PLUS'),
-     (0.5325373212271269, 'men_18_24', 'women_45_64'),
-     (0.5303841312440434, 'Voturi nefolosite', 'George-Nicaolae Simion'),
-     (0.5297788849134184, 'men_25_34', 'PMP'),
-     (0.529652237824334, 'women_45_64', 'Gregoriana-Carmen Tudoran'),
-     (0.5294727313720982, 'Partidul Romania Unita', 'George-Nicaolae Simion'),
-     (0.5258738497823281, 'women_45_64', 'Voturi nefolosite'),
-     (0.5231471295875563, 'Prezenti lista permanenta', 'PSD'),
-     (0.52294083023703, 'women_35_44', 'Prezenti lista suplimentara'),
-     (0.5225963595758947, 'liste_permanente', 'men_18_24'),
-     (0.5225267085510171, 'men_18_24', 'Prezenti lista permanenta'),
-     (0.5223874289581562, 'lista_suplimentare', 'women_35_44'),
-     (0.5220405307407661, 'women_35_44', 'PRO Romania'),
-     (0.5215786068355495, 'men_45_64', 'Partidul Romania Unita'),
-     (0.5206196004106123, 'women_25_34', 'Gregoriana-Carmen Tudoran'),
-     (0.5171260210863707, 'liste_permanente', 'PSD'),
-     (0.5144753162180705, 'Prezenti lista suplimentara', 'PNL'),
-     (0.5102334372504758, 'women_25_34', 'Partidul Romania Unita'),
-     (0.5097395261337209, 'lista_suplimentare', 'PNL'),
-     (0.5066271496753216, 'women_18_24', 'Prezenti lista permanenta'),
-     (0.5065347407411611, 'liste_permanente', 'women_18_24'),
-     (0.5037841097169911, 'women_18_24', 'Total voturi'),
-     (0.5021115961503974, 'men_45_64', 'PSD'),
-     (0.5019958584221322, 'USR-PLUS', 'PNL'),
-     (0.5018248228899487, 'liste_permanente', 'PNL'),
-     (0.5010697606084394, 'women_18_24', 'women_45_64'),
-     (0.5009242507495689, 'liste_permanente', 'PMP'),
-     (0.5001207719708801, 'Prezenti lista permanenta', 'PNL')]
+     ...]
 
 
 
@@ -1059,11 +848,13 @@ Since a correlation compares two variables at a time, we can compute the scores 
 
 For example, this is the correlation matrix that we get as a result of comparing all the demographic buckets to each other.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 df.iloc[:,range(20, 30)].corr().fillna(0)
 ```
-
+</details>
 
 
 
@@ -1238,12 +1029,15 @@ df.iloc[:,range(20, 30)].corr().fillna(0)
 
 Now that we know what a correlation is and how to obtain it, we will compute the full (`pearson` in this case) correlation matrix for all columns, and then get the top 10 most correlated columns for each party. The top most correlated column will always be itself (the diagonal value) so we will continue from 1.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 _corr = df.corr().fillna(0)
 _corr['PSD'].sort_values(ascending=False)[1:10]
 ```
 
+</details>
 
 
 
@@ -1256,18 +1050,20 @@ _corr['PSD'].sort_values(ascending=False)[1:10]
     Total alegatori              0.485193
     Total lista permanenta       0.485173
     Voturi anulate               0.474736
-    Name: PSD, dtype: float64
 
 
 
 For `PSD` it seems that the top two are `men_65+` and `women_65+`. 
 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
+
 ```python
 _corr['PNL'].sort_values(ascending=False)[1:10]
 ```
 
-
+</details>
 
 
     men_45_64          0.726161
@@ -1279,16 +1075,17 @@ _corr['PNL'].sort_values(ascending=False)[1:10]
     Total voturi       0.641204
     women_45_64        0.640049
     women_25_34        0.606771
-    Name: PNL, dtype: float64
 
 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 _corr['Voturi anulate'].sort_values(ascending=False)[1:10]
 ```
 
-
+</details>
 
 
     Votanti lista                0.475865
@@ -1300,7 +1097,6 @@ _corr['Voturi anulate'].sort_values(ascending=False)[1:10]
     liste_permanente             0.421464
     men_65+                      0.394126
     total                        0.387026
-    Name: Voturi anulate, dtype: float64
 
 
 
@@ -1308,6 +1104,8 @@ Of course there is a certain threshold bellow which, the numbers might mean nois
 
 We will list bellow the top 3 correlated columns, with each individual column using both methods. For some columns it's not worth showing the results because they are meaningless (`id_*` columns, `total`s columns and the like) so we will skip these.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 na_columns = df.columns[df.isna().sum() > 0]
@@ -1343,6 +1141,8 @@ for column in _corr.columns:
     if correlated_var:
         print(f"{column} -> {correlated_var}")
 ```
+
+</details>
 
     George-Nicaolae Simion -> [('USR-PLUS', 0.7), ('men_35_44', 0.68), ('Voturi valabile', 0.68)]
     Gregoriana-Carmen Tudoran -> [('USR-PLUS', 0.58), ('Voturi valabile', 0.56), ('total', 0.56)]
@@ -1383,6 +1183,8 @@ Other interesting results worth highlighting:
 
 Interesting how, on the 45-65 age range, women choose to vote `PRO Romania` whereas men, `PNL`.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 _corr = df[non_na_columns]._get_numeric_data().corr(method="spearman")
@@ -1392,6 +1194,8 @@ for column in _corr.columns:
     if correlated_var:
         print(f"{column} -> {correlated_var}")
 ```
+
+</details>
 
     ALDE -> [('Voturi valabile', 0.65), ('total', 0.65), ('Total prezenti', 0.65)]
     George-Nicaolae Simion -> [('USR-PLUS', 0.8), ('Gregoriana-Carmen Tudoran', 0.76), ('PMP', 0.75)]
@@ -1439,6 +1243,8 @@ Using all the columns is somewhat distracting because some columns (like the `to
 
 What we do is compute the correlation between each party and all the granular demographic data that we have, and then show the top 10 correlated columns for each party. 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 only_granular_demographic_columns = [column for column in df.columns if "Barbati" in column or "Femei" in column]
@@ -1457,6 +1263,7 @@ for party in parties:
     display(f"{party}", correlations(_granular_demographics, party))
 ```
 
+</details>
 
     'PSD'
 
@@ -1471,7 +1278,6 @@ for party in parties:
     Femei 70      0.424870
     Barbati 67    0.422452
     Barbati 72    0.422372
-    Name: PSD, dtype: float64
 
 
 
@@ -1488,7 +1294,6 @@ for party in parties:
     Femei 34      0.784999
     Barbati 33    0.784203
     Barbati 32    0.769324
-    Name: USR-PLUS, dtype: float64
 
 
 
@@ -1505,7 +1310,6 @@ for party in parties:
     Femei 62      0.481364
     Femei 60      0.473459
     Femei 59      0.469298
-    Name: PRO Romania, dtype: float64
 
 
 
@@ -1522,7 +1326,6 @@ for party in parties:
     Barbati 74    0.144867
     Barbati 76    0.125835
     Femei 67      0.120261
-    Name: UDMR, dtype: float64
 
 
 
@@ -1539,7 +1342,6 @@ for party in parties:
     Barbati 49    0.591697
     Barbati 42    0.589587
     Barbati 50    0.588989
-    Name: PNL, dtype: float64
 
 
 
@@ -1556,7 +1358,6 @@ for party in parties:
     Femei 44      0.281466
     Femei 63      0.280512
     Femei 64      0.280196
-    Name: ALDE, dtype: float64
 
 
 
@@ -1573,7 +1374,6 @@ for party in parties:
     Femei 35    0.534226
     Femei 36    0.532233
     Femei 42    0.532082
-    Name: PMP, dtype: float64
 
 
 So by age, the 10 most correlated groups for each party indicate the main support demographics (obvious to read and understand the results). 
@@ -1588,8 +1388,10 @@ We can read the above results but is rather hard to make an idea of the whole pi
     * the sum of the dimensions of the segments will be equals for all ages and so, the segment heights will actually be percentages of 100% (total voted for each age)
     * only the significant result will be included (correlation > 0.4)
 
-For easyer interpretation we will add some dominant colors for each party.
+For easier interpretation we will add some dominant colors for each party.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 party_colors = {
@@ -1673,19 +1475,21 @@ def plot_graphs(df, method='pearson', correlation_threshold=0.4):
     stacked_percentage_bar_plot(females, "Females")
 ```
 
-So here we have the results:
-
-
 ```python
 plot_graphs(df[parties+only_granular_demographic_columns], method="pearson", correlation_threshold=0.4)
 ```
 
+</details>
 
-![png](../assets/images/2019-07-29-Election_analisys_I_files/2019-07-29-Election_analisys_I_60_0.png)
+So here we have the results:
 
 
 
-![png](../assets/images/2019-07-29-Election_analisys_I_files/2019-07-29-Election_analisys_I_60_1.png)
+![png](../../assets/images/2019-07-29-Election_analisys_I_files/2019-07-29-Election_analisys_I_60_0.png)
+
+
+
+![png](../../assets/images/2019-07-29-Election_analisys_I_files/2019-07-29-Election_analisys_I_60_1.png)
 
 
 So, my interpretation:
@@ -1698,17 +1502,20 @@ So, my interpretation:
 
 The above were computed on the `perason` correlation scores. We can do the same with the `spearman` method.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 plot_graphs(df[parties+only_granular_demographic_columns], method="spearman", correlation_threshold=0.5)
 ```
 
+</details>
 
-![png](../assets/images/2019-07-29-Election_analisys_I_files/2019-07-29-Election_analisys_I_63_0.png)
+![png](../../assets/images/2019-07-29-Election_analisys_I_files/2019-07-29-Election_analisys_I_63_0.png)
 
 
 
-![png](../assets/images/2019-07-29-Election_analisys_I_files/2019-07-29-Election_analisys_I_63_1.png)
+![png](../../assets/images/2019-07-29-Election_analisys_I_files/2019-07-29-Election_analisys_I_63_1.png)
 
 
 These graphs show `ALDE` for the first time, and it seems to mostly be liked by women.
@@ -1725,6 +1532,8 @@ Depending on when in 1967 each person was born, on 26 may one may have been eith
 
 Since we also have age buckets already computed (`men_25_34`, etc..) we will also print the correlations of parties relative to these only. The interpretation is easy to make.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 from IPython.display import display
@@ -1741,6 +1550,7 @@ for party in parties:
     print("=====================")
 ```
 
+</details>
 
     'PSD'
 
@@ -1748,16 +1558,12 @@ for party in parties:
 
     women_65+    0.544377
     men_45_64    0.502112
-    Name: PSD, dtype: float64
-
 
     =====================
 
 
 
     'USR-PLUS'
-
-
 
     men_25_34      0.850179
     men_35_44      0.826530
@@ -1766,8 +1572,6 @@ for party in parties:
     women_18_24    0.672514
     women_45_64    0.647503
     men_45_64      0.595842
-    Name: USR-PLUS, dtype: float64
-
 
     =====================
 
@@ -1775,12 +1579,8 @@ for party in parties:
 
     'PRO Romania'
 
-
-
     men_45_64      0.561500
     women_35_44    0.522041
-    Name: PRO Romania, dtype: float64
-
 
     =====================
 
@@ -1788,10 +1588,7 @@ for party in parties:
 
     'UDMR'
 
-
-
-    Series([], Name: UDMR, dtype: float64)
-
+    Series([])
 
     =====================
 
@@ -1799,16 +1596,12 @@ for party in parties:
 
     'PNL'
 
-
-
     men_35_44      0.674777
     women_35_44    0.649057
     women_45_64    0.640049
     women_25_34    0.606771
     men_25_34      0.606319
     men_18_24      0.537984
-    Name: PNL, dtype: float64
-
 
     =====================
 
@@ -1816,10 +1609,7 @@ for party in parties:
 
     'ALDE'
 
-
-
-    Series([], Name: ALDE, dtype: float64)
-
+    Series([])
 
     =====================
 
@@ -1827,20 +1617,16 @@ for party in parties:
 
     'PMP'
 
-
-
     women_35_44    0.632382
     men_45_64      0.620332
     men_35_44      0.586705
     women_25_34    0.573251
     men_25_34      0.529779
-    Name: PMP, dtype: float64
-
 
     =====================
 
 
-# Interparty correlation
+# Inter-party correlation
 
 We've explored in some detail the effect of age and gender on the vote results associated with each candidate. 
 
@@ -1848,6 +1634,8 @@ In this section I'm going to try to plot the correlation that each party had, re
 
 In order to do this I'll use a dendogram plot, where at each step, the two most similar elements are linked together. 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 import scipy
@@ -1872,10 +1660,13 @@ def plot_correlation(_df, method='pearson'):
 plot_correlation(df[parties], method='pearson')
 ```
 
+</details>
 
-![png](../assets/images/2019-07-29-Election_analisys_I_files/2019-07-29-Election_analisys_I_71_0.png)
+![png](../../assets/images/2019-07-29-Election_analisys_I_files/2019-07-29-Election_analisys_I_71_0.png)
 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 _party_correlation = df[parties].corr().fillna(0)
@@ -1889,11 +1680,9 @@ for party in parties:
     display(f"{party}", correlations(_party_correlation, party))
     print("=====================")
 ```
-
+</details>
 
     'PSD'
-
-
 
     PRO Romania    0.382307
     ALDE           0.261416
@@ -1901,16 +1690,11 @@ for party in parties:
     PNL            0.206330
     USR-PLUS       0.079658
     UDMR          -0.223707
-    Name: PSD, dtype: float64
-
-
     =====================
 
 
 
     'USR-PLUS'
-
-
 
     PMP            0.593511
     PNL            0.501996
@@ -1918,8 +1702,6 @@ for party in parties:
     ALDE           0.231465
     PSD            0.079658
     UDMR          -0.042722
-    Name: USR-PLUS, dtype: float64
-
 
     =====================
 
@@ -1927,16 +1709,12 @@ for party in parties:
 
     'PRO Romania'
 
-
-
     PMP         0.462144
     USR-PLUS    0.418803
     PSD         0.382307
     PNL         0.267807
     ALDE        0.255237
     UDMR       -0.148242
-    Name: PRO Romania, dtype: float64
-
 
     =====================
 
@@ -1944,16 +1722,12 @@ for party in parties:
 
     'UDMR'
 
-
-
     USR-PLUS      -0.042722
     ALDE          -0.113350
     PMP           -0.130799
     PNL           -0.139204
     PRO Romania   -0.148242
     PSD           -0.223707
-    Name: UDMR, dtype: float64
-
 
     =====================
 
@@ -1961,16 +1735,12 @@ for party in parties:
 
     'PNL'
 
-
-
     USR-PLUS       0.501996
     PMP            0.447272
     PRO Romania    0.267807
     PSD            0.206330
     ALDE           0.168811
     UDMR          -0.139204
-    Name: PNL, dtype: float64
-
 
     =====================
 
@@ -1978,16 +1748,12 @@ for party in parties:
 
     'ALDE'
 
-
-
     PSD            0.261416
     PRO Romania    0.255237
     PMP            0.237606
     USR-PLUS       0.231465
     PNL            0.168811
     UDMR          -0.113350
-    Name: ALDE, dtype: float64
-
 
     =====================
 
@@ -1995,16 +1761,12 @@ for party in parties:
 
     'PMP'
 
-
-
     USR-PLUS       0.593511
     PRO Romania    0.462144
     PNL            0.447272
     ALDE           0.237606
     PSD            0.218082
     UDMR          -0.130799
-    Name: PMP, dtype: float64
-
 
     =====================
 
@@ -2018,6 +1780,8 @@ The data that we have also contains the `medium` information, telling us if vote
 
 In order to do this we first have to do some data manipulation, adding the gender column, and separating the data for each one. 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 non_demographic_columns = set(df.columns) - \
@@ -2044,8 +1808,6 @@ df_by_gender = pd.concat((
 ))
 ```
 
-And here are the results. You can read their interpretation from the titles.
-
 
 ```python
 age_columns = list(range(18, 90))
@@ -2067,14 +1829,17 @@ _pivot.loc[("R", "males"), age_columns] /= rural_males_votes
 _pivot.loc[("R", "females"), age_columns] /= rural_females_votes
 ```
 
-
 ```python
 _pivot.loc[[("U", "males"), ("U", "females")], :].T.plot(figsize=(10,10), title="In cities, men attendence is higher until the age of 47, after which women attendence is higher.")
 ```
 
+</details>
+
+And here are the results. You can read their interpretation from the titles.
 
 
-![png](../assets/images/2019-07-29-Election_analisys_I_files/2019-07-29-Election_analisys_I_80_1.png)
+
+![png](../../assets/images/2019-07-29-Election_analisys_I_files/2019-07-29-Election_analisys_I_80_1.png)
 
 
 
@@ -2085,18 +1850,21 @@ _pivot.loc[[("R", "males"), ("R", "females")], :].T.plot(figsize=(10,10), title=
 
 
 
-![png](../assets/images/2019-07-29-Election_analisys_I_files/2019-07-29-Election_analisys_I_81_1.png)
+![png](../../assets/images/2019-07-29-Election_analisys_I_files/2019-07-29-Election_analisys_I_81_1.png)
 
 
 # Other interesting findings
 
 Columns highly correlated with "Urna mobila" (mobile voting booth)
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 df[[column for column in df.columns if "Femei " not in column and "Barbati " not in column]].corrwith(df.urna_mobila).sort_values(ascending=False)[1:20]
 ```
 
+</details>
 
 
 
@@ -2119,18 +1887,19 @@ df[[column for column in df.columns if "Femei " not in column and "Barbati " not
     Votanti lista                0.073797
     men_35_44                    0.073775
     men_25_34                    0.070998
-    dtype: float64
 
 
 
 Columns highly correlated with "Liste suplimentare" (mobile voting booth)
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 df[[column for column in df.columns if "Femei " not in column and "Barbati " not in column]].corrwith(df.lista_suplimentare).sort_values(ascending=False)[1:20]
 ```
 
-
+</details>
 
 
     Prezenti lista suplimentara    0.993394
@@ -2152,18 +1921,19 @@ df[[column for column in df.columns if "Femei " not in column and "Barbati " not
     PMP                            0.431459
     Partidul Romania Unita         0.346605
     Peter Costea                   0.329325
-    dtype: float64
 
 
 
 Columns highly correlated with "Voturi anulate" (mobile voting booth)
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 df[[column for column in df.columns if "Femei " not in column and "Barbati " not in column]].corrwith(df["Voturi anulate"]).sort_values(ascending=False)[1:20]
 ```
 
-
+</details>
 
 
     Votanti lista                0.475865
@@ -2185,6 +1955,5 @@ df[[column for column in df.columns if "Femei " not in column and "Barbati " not
     Voturi nefolosite            0.313705
     women_35_44                  0.312228
     men_18_24                    0.281524
-    dtype: float64
 
 
