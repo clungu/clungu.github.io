@@ -47,13 +47,13 @@ author_profile: true
 
 
 {% include group-by-array collection=site.posts field="categories" %}
-<h3 id="{{ label | slugify }}" class="archive__title">Categories</h3>
+<h3 id="{{ label | slugify }}" class="archive__title" style="text-align: center;">Categories</h3>
 {% for category in group_names %}
   {% assign posts = group_items[forloop.index0] %}
   <h4 id="{{ category | slugify }}" class="archive__subtitle">{{ category }}</h4>
   {% for post in posts %}
     <article class="archive-item">
-      <h5><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></h5>
+      <h5><a href="{{ site.baseurl }}{{ post.url }}" style="padding-left:5em">{{post.title}}</a></h5>
     </article>
     <!-- {% include archive-single.html %} -->
   {% endfor %}
