@@ -4,18 +4,17 @@ permalink: /contact/
 author_profile: true
 ---
 
-I'm:
-* a machine learning engineer
-* a PhD.c at the Technical University of Cluj Napoca
-* an advocate for eliminating biases from ML models
-* entreprenour
+I'm a:
+* Machine Learning Consultant / Trainer
+* PhD.c at the Technical University of Cluj Napoca
+* Founder of www.curs-ml.com 
+* Conference Speaker 
 
+## Consulting for
 
-## Consulting
+Young startpus on AI / ML (usually for free)  
+Corporations with specific needs
 
-I advise young startpus on AI / ML  
-Sometime offer consulting to corporations that seek my help  
-
-I also teach and held several training sessions on applyed ML.  
+If you are a company that needs help on ML solutions, I'm available for discussion at:
 
 lungu(dot)cristian(dot)gmail(dot)com
