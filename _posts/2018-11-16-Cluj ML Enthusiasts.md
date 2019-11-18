@@ -148,31 +148,36 @@ df.drop(columns=['WorkAt']).head()
 
 
 The `Knowledge` field contains values that represent, in ascending order, the self-assessment of ML knowledge. The actual number-to-question relation is found bellow: 
-* 1 - I heard about ML
-* 2 - I understand what ML is and should be doing
-* 3 - I've used some packaged libraries / API's that used ML in the background 
-* 4 - I regularly read news articles or blogs about ML and wish to transition into ML
-* 5 - I've started online ML courses but gave up before finishing
-* 6 - I've finished 1-2 courses about ML (at university or online)
-* 7 - I've followed a few tutorials and executed their code ony my machine / forked the GitHub project
-* 8 - I've registered on Kaggle and ran some kernels other people wrote
-* 9 - I've wrote some ML hobby projects / played with some Kaggle datasets myself
-* 10- I've been recently employed on an ML position
-* 11- I've finished a PoC ML code for my employer but the project is young
-* 12- I know how to debug my ML model, I understand what it does and what are it's shortcomings
-* 13- I know the academic name, SoTA, previous work for the class of problems that I work on.
-* 14- I've competed and finished in top 10% in at least one Kaggle competition / I have active ML code in production
-* 15- I read ML academic papers and am trying to reproduce their results / Pursuing or have a PhD in AI
-* 16- I'm able to reproduce ML academic papers and can evaluate the correctness of their claims
-* 17- When I read a paper I can easily see where this fits in the current SoTA, and can anticipate some future directions of research
-* 18- I write ML papers with code released online that gets published in recognized venues / I work at DeepMind, FAIR or Microsoft Research
 
+```
+1 - I heard about ML
+2 - I understand what ML is and should be doing
+3 - I've used some packaged libraries / API's that used ML in the background 
+4 - I regularly read news articles or blogs about ML and wish to transition into ML
+5 - I've started online ML courses but gave up before finishing
+6 - I've finished 1-2 courses about ML (at university or online)
+7 - I've followed a few tutorials and executed their code ony my machine / forked the GitHub project
+8 - I've registered on Kaggle and ran some kernels other people wrote
+9 - I've wrote some ML hobby projects / played with some Kaggle datasets myself
+10- I've been recently employed on an ML position
+11- I've finished a PoC ML code for my employer but the project is young
+12- I know how to debug my ML model, I understand what it does and what are it's shortcomings
+13- I know the academic name, SoTA, previous work for the class of problems that I work on.
+14- I've competed and finished in top 10% in at least one Kaggle competition / I have active ML code in production
+15- I read ML academic papers and am trying to reproduce their results / Pursuing or have a PhD in AI
+16- I'm able to reproduce ML academic papers and can evaluate the correctness of their claims
+17- When I read a paper I can easily see where this fits in the current SoTA, and can anticipate some future directions of research
+18- I write ML papers with code released online that gets published in recognized venues / I work at DeepMind, FAIR or Microsoft Research
+```
 
 The `Degree` field is a 4 value list for the following enumeration:
-* 1 - Student
-* 2 - BsC
-* 3 - MsC
-* 4 - PhD
+
+```
+1 - Student
+2 - BsC
+3 - MsC
+4 - PhD
+```
 
 The other `Is..` fields are just expansions of the information contained in `Knowledge`, `Degree` and `WorkAt` columns taken as a whole which I've filled them myself.
 

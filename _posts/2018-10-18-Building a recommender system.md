@@ -1,3 +1,10 @@
+---
+tags:
+    - tutorial
+    - recommender system
+    - movies
+    - correlation
+---
 
 # Building a recommender system
 

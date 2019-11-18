@@ -1,3 +1,7 @@
+---
+categories: 
+    - course ml
+---
 
 As I've said in my last talk at Cluj.AI (the one about [Building a recommender system](http://www.clungu.com/Building-a-recommender-system/) I'm putting together a local course about machine learning. 
 

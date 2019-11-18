@@ -1,3 +1,12 @@
+---
+categories: 
+    - application
+tags:
+    - deep learning
+    - generative model
+    - keras
+    - nlp
+---
 
 # The problem
 
@@ -498,7 +507,7 @@ everything.count().plot(kind='bar')
 
 
 
-![png](../assets/images/2018-10-15-The_story_of_a_name_files/2018-10-15-The_story_of_a_name_22_1.png)
+![png](../../assets/images/2018-10-15-The_story_of_a_name_files/2018-10-15-The_story_of_a_name_22_1.png)
 
 
 It's evident from the above graph that the family names datasets is way larger than the other ones. We don't want it to be more represented than the other categories.
@@ -940,6 +949,8 @@ I'm not going to talk much about the model bellow as I guess most of the people 
 
 Suffice to say it's a character level, embeddings enabled RNN model.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 inp = Input(shape=(window_size,))
@@ -977,6 +988,7 @@ model.compile(optimizer="adam", loss="sparse_categorical_crossentropy", metrics=
     Non-trainable params: 0
     _________________________________________________________________
 
+</details>
 
 # Training data
 
@@ -1003,6 +1015,8 @@ Keras also needs data either in a list format or a generator that can yield batc
 
 Either way, bellow you'll find lots of boiler plate code that may not look so interesting so feel free to skip right to the `Train` section.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 # https://gist.github.com/codehacken/708f19ae746784cef6e68b037af65788
@@ -1126,6 +1140,7 @@ def step_per_epoch(sequence, batch_size):
 
 ```
 
+</details>
 
 # Train
 
@@ -1135,6 +1150,8 @@ I'm going to monitor the progress of how the training is progressing by using th
 
 I'm also run the training for 50 epochs.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 epochs = 50
@@ -1179,6 +1196,7 @@ model.fit_generator(
     Epoch 50/50
     586/586 [==============================] - 13s 21ms/step - loss: 2.6599 - acc: 0.2551 - val_loss: 2.6230 - val_acc: 0.2654
 
+</details>
 
 Now you might argue that 25% accuracy on predicting the next char is not that great but if you consider that this next char is predicted only by looking at the last 4 chars in the word and it can choose among 75 other characters, 25% looks decent enough!
 
@@ -1475,6 +1493,8 @@ We will do this until the seed list is exhausted and continue generating as befo
 
 The beautiful thing is, is that at this point we can also use the `STOP_CHAR` itself in the seed pattern, specifying that the generation of the name should stop as soon as we exhaust the seed list (i.e. we can pass `Run...io|` and this will predict only the in-lined 3 `wild-char` characters).
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 WILD_CHAR = "."
@@ -1506,7 +1526,7 @@ def nd_generate_weights_with_wildcards(start_char):
 nd_generate_weights_with_wildcards("K.y.c..|")
 ```
 
-
+</details>
 
 
     'Kaynca'
@@ -1523,6 +1543,8 @@ The uniqueness part means that we don't directly reproduce names from our datase
 
 At this stage we can also pass a list of registered domain names and make sure all the generations are not registered! 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def gen_new_name(seed, knwon_names, already_generated):
@@ -1541,6 +1563,7 @@ registered_domains = set(all_names.flatten().tolist())
 gen_new_names("Cool....io|", 10, registered_domains)
 ```
 
+</details>
 
 
 
