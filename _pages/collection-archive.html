@@ -46,7 +46,7 @@ author_profile: true
 
 
 {% include group-by-array collection=site.posts field="categories" %}
-<h2 id="{{ label | slugify }}" class="archive__title" style="text-align: center;">Collections</h2>
+<h2 id="{{ label | slugify }}" class="archive__title" style="text-align: center;">Topics</h2>
 {% for category in group_names %}
   {% assign posts = group_items[forloop.index0] %}
   <h4 id="{{ category | slugify }}" class="archive__subtitle">{{ category }}</h4>
