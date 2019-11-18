@@ -52,7 +52,10 @@ author_profile: true
   {% assign posts = group_items[forloop.index0] %}
   <h4 id="{{ category | slugify }}" class="archive__subtitle">{{ category }}</h4>
   {% for post in posts %}
-    {% include archive-single.html %}
+    <article class="archive-item">
+      <h5><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></h5>
+    </article>
+    <!-- {% include archive-single.html %} -->
   {% endfor %}
 {% endfor %}
 
