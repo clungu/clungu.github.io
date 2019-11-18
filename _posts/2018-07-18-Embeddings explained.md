@@ -1,3 +1,13 @@
+---
+categories: 
+    - tutorial
+tags:
+    - deep learning
+    - embeddings
+    - keras
+    - nlp
+---
+
 # Intuition
 
 Every presentation starts with a cat
@@ -175,7 +185,6 @@ word_model.fit([inputs[:, 0], inputs[:, 1], inputs[:, 2]], labels)
 
 
 
-    <keras.callbacks.History at 0x7fc787b17190>
 
 
 
@@ -623,7 +632,6 @@ model.fit([data[:, 0], data[:, 1], data[:, 2]], labels)
 
 
 
-    <keras.callbacks.History at 0x7fc713320e90>
 
 
 
@@ -759,7 +767,7 @@ plt.show()
 ```
 
 
-![png](../assets/images/2018-07-18-Embeddings_in_ML_models_files/2018-07-18-Embeddings_in_ML_models_72_0.png)
+![png](../../assets/images/2018-07-18-Embeddings_in_ML_models_files/2018-07-18-Embeddings_in_ML_models_72_0.png)
 
 
 ## Auto-encoders
@@ -813,11 +821,11 @@ plots(x_train[:10], titles=y_train[:10])
 
 
 
-![png](../assets/images/2018-07-18-Embeddings_in_ML_models_files/2018-07-18-Embeddings_in_ML_models_80_1.png)
+![png](../../assets/images/2018-07-18-Embeddings_in_ML_models_files/2018-07-18-Embeddings_in_ML_models_80_1.png)
 
 
 
-![png](../assets/images/2018-07-18-Embeddings_in_ML_models_files/2018-07-18-Embeddings_in_ML_models_80_2.png)
+![png](../../assets/images/2018-07-18-Embeddings_in_ML_models_files/2018-07-18-Embeddings_in_ML_models_80_2.png)
 
 
 The model that we are going to create will look as follows
@@ -928,9 +936,9 @@ plots(autoencoder.predict(np.array([X[0]])))
 ```
 
 
-![png](../assets/images/2018-07-18-Embeddings_in_ML_models_files/2018-07-18-Embeddings_in_ML_models_86_1.png)
+![png](../../assets/images/2018-07-18-Embeddings_in_ML_models_files/2018-07-18-Embeddings_in_ML_models_86_1.png)
 
-![png](../assets/images/2018-07-18-Embeddings_in_ML_models_files/2018-07-18-Embeddings_in_ML_models_80_1.png)
+![png](../../assets/images/2018-07-18-Embeddings_in_ML_models_files/2018-07-18-Embeddings_in_ML_models_80_1.png)
 
 
 ```python
