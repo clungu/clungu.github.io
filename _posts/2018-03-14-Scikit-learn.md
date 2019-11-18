@@ -490,7 +490,7 @@ plt.title("Prices vs Predicted prices: $Y_i$ vs $\hat{Y}_i$")
 
 
 
-![png](../assets/images/2018-03-14-Scikit-learn_files/2018-03-14-Scikit-learn_67_1.png)
+![png](../../../assets/images/2018-03-14-Scikit-learn_files/2018-03-14-Scikit-learn_67_1.png)
 
 
 A good way to measure regression tasks is to compute the average distance between the predictions and the expected values. 
@@ -749,7 +749,7 @@ chart(valid_labels, lm_2.predict(valid_inputs))
 ```
 
 
-![png](../assets/images/2018-03-14-Scikit-learn_files/2018-03-14-Scikit-learn_108_0.png)
+![png](../../../assets/images/2018-03-14-Scikit-learn_files/2018-03-14-Scikit-learn_108_0.png)
 
 
 How many of the predictions are bellow 0? These are clearly invalid prediction that we can filter out of the model
@@ -802,7 +802,7 @@ chart(valid_labels[valid_pred > 0], valid_pred[valid_pred > 0])
 ```
 
 
-![png](../assets/images/2018-03-14-Scikit-learn_files/2018-03-14-Scikit-learn_116_0.png)
+![png](../../../assets/images/2018-03-14-Scikit-learn_files/2018-03-14-Scikit-learn_116_0.png)
 
 
 
