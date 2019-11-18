@@ -1,3 +1,11 @@
+---
+categories: 
+    - application
+tags:
+    - analysis
+    - real data
+    - correlation
+---
 
 On the 26th of May, we had the European parliamentary elections. In Romania, the results and progress of the vote were published online in real time on the official electoral site.
 
