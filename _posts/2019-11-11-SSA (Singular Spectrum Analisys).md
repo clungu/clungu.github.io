@@ -1,4 +1,10 @@
 ---
+categories: 
+    - tutorial
+tags:
+    - fundamental
+    - svd
+    - timeseries
 mathjax: true
 ---
 
