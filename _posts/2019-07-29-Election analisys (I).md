@@ -628,8 +628,6 @@ sorted([(
 ) for party in parties], key=lambda x: x[1], reverse=True)
 ```
 
-</details>
-
 
     [('UDMR', '+6.46% relative score increase', '+0.33% absolute improvement'),
      ('PRO Romania',
@@ -641,10 +639,6 @@ sorted([(
      ('PMP', '+1.07% relative score increase', '+0.06% absolute improvement'),
      ('ALDE', '+0.0% relative score increase', '+0.0% absolute improvement')]
 
-
-
-{::options parse_block_html="true" /}
-<details><summary markdown='span'>Code</summary>
 
 ```python
 score_changes = pd.DataFrame.from_records([{"party":party, 
@@ -789,7 +783,7 @@ sorted(_pairs, reverse=True)
 
 </details>
 
-
+    <pre>
     [
      (0.9999988405995148, 'Total alegatori', 'Total lista permanenta'),
      (0.9998662230466443, 'Total alegatori', 'Votanti lista'),
@@ -801,8 +795,8 @@ sorted(_pairs, reverse=True)
      (0.9933939092376602, 'lista_suplimentare', 'Prezenti lista suplimentara'),
      (0.9847303875910568, 'siruta', 'Cod birou electoral'),
      (0.9363222144727064, 'Total voturi', 'Voturi nefolosite'),
-     (0.9340859461869343, 'men_25_34', 'women_25_34'),
-     (0.9207424840375259, 'women_35_44', 'Voturi valabile'),
+     <b>(0.9340859461869343, 'men_25_34', 'women_25_34'),
+     (0.9207424840375259, 'women_35_44', 'Voturi valabile'),</b>
      (0.9199551991340589, 'total', 'women_35_44'),
      (0.9189659926817213, 'women_35_44', 'Total prezenti'),
      (0.9163024438767253, 'men_45_64', 'women_45_64'),
@@ -823,10 +817,10 @@ sorted(_pairs, reverse=True)
      (0.8985049758239619, 'men_45_64', 'Voturi valabile'),
      (0.8967270820273472, 'men_18_24', 'women_18_24'),
      (0.8908618299795728, 'men_35_44', 'Voturi valabile'),
-     (0.8888218041604524, 'women_25_34', 'USR-PLUS'),
+     <b>(0.8888218041604524, 'women_25_34', 'USR-PLUS'),</b>
      (0.8887240874383147, 'men_35_44', 'Total prezenti'),
      ...]
-
+    </pre>
 
 
 So you can see some obvious correlations at the top, like, `('Total alegatori', 'Total lista permanenta')`. This means that the total number of votes is strongly correlated with the number of people allowed to vote, and this makes sense:
