@@ -1038,6 +1038,8 @@ _corr['PSD'].sort_values(ascending=False)[1:10]
 
 
 
+    PSD
+    ===========================
     men_65+                      0.617477
     women_65+                    0.544377
     Prezenti lista permanenta    0.523147
@@ -1062,7 +1064,8 @@ _corr['PNL'].sort_values(ascending=False)[1:10]
 
 </details>
 
-
+    PNL
+    ===========================
     men_45_64          0.726161
     Total prezenti     0.722173
     Voturi valabile    0.719738
@@ -1084,7 +1087,8 @@ _corr['Voturi anulate'].sort_values(ascending=False)[1:10]
 
 </details>
 
-
+    Voturi anulate
+    ===========================
     Votanti lista                0.475865
     Total alegatori              0.475692
     Total lista permanenta       0.475680
@@ -1140,7 +1144,9 @@ for column in _corr.columns:
 ```
 
 </details>
-
+    
+    Pearson correlation pairs
+    =========================
     George-Nicaolae Simion -> [('USR-PLUS', 0.7), ('men_35_44', 0.68), ('Voturi valabile', 0.68)]
     Gregoriana-Carmen Tudoran -> [('USR-PLUS', 0.58), ('Voturi valabile', 0.56), ('total', 0.56)]
     PMP -> [('Voturi valabile', 0.67), ('total', 0.67), ('Total prezenti', 0.67)]
@@ -1194,6 +1200,8 @@ for column in _corr.columns:
 
 </details>
 
+    Spearman correlation pairs
+    =========================
     ALDE -> [('Voturi valabile', 0.65), ('total', 0.65), ('Total prezenti', 0.65)]
     George-Nicaolae Simion -> [('USR-PLUS', 0.8), ('Gregoriana-Carmen Tudoran', 0.76), ('PMP', 0.75)]
     Gregoriana-Carmen Tudoran -> [('USR-PLUS', 0.78), ('George-Nicaolae Simion', 0.76), ('PMP', 0.74)]
@@ -1263,9 +1271,6 @@ for party in parties:
 </details>
 
     'PSD'
-
-
-
     Barbati 69    0.464600
     Femei 69      0.452073
     Barbati 70    0.449218
@@ -1279,9 +1284,6 @@ for party in parties:
 
 
     'USR-PLUS'
-
-
-
     Femei 31      0.790589
     Barbati 34    0.789017
     Femei 29      0.787429
@@ -1295,9 +1297,6 @@ for party in parties:
 
 
     'PRO Romania'
-
-
-
     Femei 51      0.575745
     Femei 50      0.519486
     Barbati 51    0.496390
@@ -1311,9 +1310,6 @@ for party in parties:
 
 
     'UDMR'
-
-
-
     Femei 75      0.184590
     Femei 77      0.183656
     Femei 74      0.172165
@@ -1327,9 +1323,6 @@ for party in parties:
 
 
     'PNL'
-
-
-
     Barbati 44    0.606405
     Barbati 46    0.599908
     Barbati 45    0.598910
@@ -1343,9 +1336,6 @@ for party in parties:
 
 
     'ALDE'
-
-
-
     Femei 51      0.337525
     Barbati 51    0.333236
     Femei 50      0.312419
@@ -1359,9 +1349,6 @@ for party in parties:
 
 
     'PMP'
-
-
-
     USR-PLUS    0.593511
     Femei 51    0.566518
     Femei 50    0.538230
@@ -1550,18 +1537,12 @@ for party in parties:
 </details>
 
     'PSD'
-
-
-
     women_65+    0.544377
     men_45_64    0.502112
-
-    =====================
 
 
 
     'USR-PLUS'
-
     men_25_34      0.850179
     men_35_44      0.826530
     women_35_44    0.819073
@@ -1570,29 +1551,20 @@ for party in parties:
     women_45_64    0.647503
     men_45_64      0.595842
 
-    =====================
-
 
 
     'PRO Romania'
-
     men_45_64      0.561500
     women_35_44    0.522041
-
-    =====================
 
 
 
     'UDMR'
-
     Series([])
-
-    =====================
 
 
 
     'PNL'
-
     men_35_44      0.674777
     women_35_44    0.649057
     women_45_64    0.640049
@@ -1600,27 +1572,19 @@ for party in parties:
     men_25_34      0.606319
     men_18_24      0.537984
 
-    =====================
-
 
 
     'ALDE'
-
     Series([])
-
-    =====================
 
 
 
     'PMP'
-
     women_35_44    0.632382
     men_45_64      0.620332
     men_35_44      0.586705
     women_25_34    0.573251
     men_25_34      0.529779
-
-    =====================
 
 
 # Inter-party correlation
@@ -1680,19 +1644,16 @@ for party in parties:
 </details>
 
     'PSD'
-
     PRO Romania    0.382307
     ALDE           0.261416
     PMP            0.218082
     PNL            0.206330
     USR-PLUS       0.079658
     UDMR          -0.223707
-    =====================
 
 
 
     'USR-PLUS'
-
     PMP            0.593511
     PNL            0.501996
     PRO Romania    0.418803
@@ -1700,12 +1661,9 @@ for party in parties:
     PSD            0.079658
     UDMR          -0.042722
 
-    =====================
-
 
 
     'PRO Romania'
-
     PMP         0.462144
     USR-PLUS    0.418803
     PSD         0.382307
@@ -1713,12 +1671,9 @@ for party in parties:
     ALDE        0.255237
     UDMR       -0.148242
 
-    =====================
-
 
 
     'UDMR'
-
     USR-PLUS      -0.042722
     ALDE          -0.113350
     PMP           -0.130799
@@ -1726,12 +1681,8 @@ for party in parties:
     PRO Romania   -0.148242
     PSD           -0.223707
 
-    =====================
-
-
 
     'PNL'
-
     USR-PLUS       0.501996
     PMP            0.447272
     PRO Romania    0.267807
@@ -1739,12 +1690,8 @@ for party in parties:
     ALDE           0.168811
     UDMR          -0.139204
 
-    =====================
-
-
 
     'ALDE'
-
     PSD            0.261416
     PRO Romania    0.255237
     PMP            0.237606
@@ -1752,20 +1699,14 @@ for party in parties:
     PNL            0.168811
     UDMR          -0.113350
 
-    =====================
-
-
 
     'PMP'
-
     USR-PLUS       0.593511
     PRO Romania    0.462144
     PNL            0.447272
     ALDE           0.237606
     PSD            0.218082
     UDMR          -0.130799
-
-    =====================
 
 
 * Close to 0 scores mean that the two parties have orthogonal behavior (when one's score is increasing it doesn't influence the score of the other - this means that they address wildly different people categories and interests).
