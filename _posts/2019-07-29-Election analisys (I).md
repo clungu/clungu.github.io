@@ -795,10 +795,10 @@ sorted(_pairs, reverse=True)
      (0.9933939092376602, 'lista_suplimentare', 'Prezenti lista suplimentara'),
      (0.9847303875910568, 'siruta', 'Cod birou electoral'),
      (0.9363222144727064, 'Total voturi', 'Voturi nefolosite'),
-     <b>(0.9340859461869343, 'men_25_34', 'women_25_34'),
+     <b style="background-color:#999999">(0.9340859461869343, 'men_25_34', 'women_25_34'),
      (0.9207424840375259, 'women_35_44', 'Voturi valabile'),</b>
      (0.9199551991340589, 'total', 'women_35_44'),
-     (0.9189659926817213, 'women_35_44', 'Total prezenti'),
+     <b style="background-color:#999999">(0.9189659926817213, 'women_35_44', 'Total prezenti'),</b>
      (0.9163024438767253, 'men_45_64', 'women_45_64'),
      (0.9111562909051516, 'men_35_44', 'women_35_44'),
      (0.9107249415201683, 'liste_permanente', 'Votanti lista'),
@@ -817,7 +817,7 @@ sorted(_pairs, reverse=True)
      (0.8985049758239619, 'men_45_64', 'Voturi valabile'),
      (0.8967270820273472, 'men_18_24', 'women_18_24'),
      (0.8908618299795728, 'men_35_44', 'Voturi valabile'),
-     <b>(0.8888218041604524, 'women_25_34', 'USR-PLUS'),</b>
+     <b style="background-color:#999999">(0.8888218041604524, 'women_25_34', 'USR-PLUS'),</b>
      (0.8887240874383147, 'men_35_44', 'Total prezenti'),
      ...]
 </pre>
