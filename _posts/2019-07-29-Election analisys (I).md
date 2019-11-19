@@ -783,7 +783,7 @@ sorted(_pairs, reverse=True)
 
 </details>
 
-    <pre>
+<pre>
     [
      (0.9999988405995148, 'Total alegatori', 'Total lista permanenta'),
      (0.9998662230466443, 'Total alegatori', 'Votanti lista'),
@@ -820,7 +820,7 @@ sorted(_pairs, reverse=True)
      <b>(0.8888218041604524, 'women_25_34', 'USR-PLUS'),</b>
      (0.8887240874383147, 'men_35_44', 'Total prezenti'),
      ...]
-    </pre>
+</pre>
 
 
 So you can see some obvious correlations at the top, like, `('Total alegatori', 'Total lista permanenta')`. This means that the total number of votes is strongly correlated with the number of people allowed to vote, and this makes sense:
