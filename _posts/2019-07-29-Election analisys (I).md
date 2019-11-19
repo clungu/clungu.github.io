@@ -1270,7 +1270,8 @@ for party in parties:
 
 </details>
 
-    'PSD'
+    PSD
+    ===========================
     Barbati 69    0.464600
     Femei 69      0.452073
     Barbati 70    0.449218
@@ -1281,9 +1282,8 @@ for party in parties:
     Barbati 67    0.422452
     Barbati 72    0.422372
 
-
-
-    'USR-PLUS'
+    USR-PLUS
+    ===========================
     Femei 31      0.790589
     Barbati 34    0.789017
     Femei 29      0.787429
@@ -1294,9 +1294,8 @@ for party in parties:
     Barbati 33    0.784203
     Barbati 32    0.769324
 
-
-
-    'PRO Romania'
+    PRO Romania
+    ===========================
     Femei 51      0.575745
     Femei 50      0.519486
     Barbati 51    0.496390
@@ -1307,9 +1306,8 @@ for party in parties:
     Femei 60      0.473459
     Femei 59      0.469298
 
-
-
-    'UDMR'
+    UDMR
+    ===========================
     Femei 75      0.184590
     Femei 77      0.183656
     Femei 74      0.172165
@@ -1320,9 +1318,8 @@ for party in parties:
     Barbati 76    0.125835
     Femei 67      0.120261
 
-
-
-    'PNL'
+    PNL
+    ===========================
     Barbati 44    0.606405
     Barbati 46    0.599908
     Barbati 45    0.598910
@@ -1333,9 +1330,8 @@ for party in parties:
     Barbati 42    0.589587
     Barbati 50    0.588989
 
-
-
-    'ALDE'
+    ALDE
+    ===========================
     Femei 51      0.337525
     Barbati 51    0.333236
     Femei 50      0.312419
@@ -1346,9 +1342,8 @@ for party in parties:
     Femei 63      0.280512
     Femei 64      0.280196
 
-
-
-    'PMP'
+    PMP
+    ===========================
     USR-PLUS    0.593511
     Femei 51    0.566518
     Femei 50    0.538230
@@ -1536,13 +1531,13 @@ for party in parties:
 
 </details>
 
-    'PSD'
+    PSD
+    ===========================
     women_65+    0.544377
     men_45_64    0.502112
 
-
-
-    'USR-PLUS'
+    USR-PLUS
+    ===========================
     men_25_34      0.850179
     men_35_44      0.826530
     women_35_44    0.819073
@@ -1551,20 +1546,17 @@ for party in parties:
     women_45_64    0.647503
     men_45_64      0.595842
 
-
-
-    'PRO Romania'
+    PRO Romania
+    ===========================
     men_45_64      0.561500
     women_35_44    0.522041
 
-
-
-    'UDMR'
+    UDMR
+    ===========================
     Series([])
 
-
-
-    'PNL'
+    PNL
+    ===========================
     men_35_44      0.674777
     women_35_44    0.649057
     women_45_64    0.640049
@@ -1572,14 +1564,12 @@ for party in parties:
     men_25_34      0.606319
     men_18_24      0.537984
 
-
-
-    'ALDE'
+    ALDE
+    ===========================
     Series([])
 
-
-
-    'PMP'
+    PMP
+    ===========================
     women_35_44    0.632382
     men_45_64      0.620332
     men_35_44      0.586705
@@ -1643,7 +1633,8 @@ for party in parties:
 ```
 </details>
 
-    'PSD'
+    PSD
+    ===========================
     PRO Romania    0.382307
     ALDE           0.261416
     PMP            0.218082
@@ -1651,9 +1642,8 @@ for party in parties:
     USR-PLUS       0.079658
     UDMR          -0.223707
 
-
-
-    'USR-PLUS'
+    USR-PLUS
+    ===========================
     PMP            0.593511
     PNL            0.501996
     PRO Romania    0.418803
@@ -1661,9 +1651,8 @@ for party in parties:
     PSD            0.079658
     UDMR          -0.042722
 
-
-
-    'PRO Romania'
+    PRO Romania
+    ===========================
     PMP         0.462144
     USR-PLUS    0.418803
     PSD         0.382307
@@ -1671,9 +1660,8 @@ for party in parties:
     ALDE        0.255237
     UDMR       -0.148242
 
-
-
-    'UDMR'
+    UDMR
+    ===========================
     USR-PLUS      -0.042722
     ALDE          -0.113350
     PMP           -0.130799
@@ -1681,8 +1669,8 @@ for party in parties:
     PRO Romania   -0.148242
     PSD           -0.223707
 
-
-    'PNL'
+    PNL
+    ===========================
     USR-PLUS       0.501996
     PMP            0.447272
     PRO Romania    0.267807
@@ -1690,8 +1678,8 @@ for party in parties:
     ALDE           0.168811
     UDMR          -0.139204
 
-
-    'ALDE'
+    ALDE
+    ===========================
     PSD            0.261416
     PRO Romania    0.255237
     PMP            0.237606
@@ -1699,8 +1687,8 @@ for party in parties:
     PNL            0.168811
     UDMR          -0.113350
 
-
-    'PMP'
+    PMP
+    ===========================
     USR-PLUS       0.593511
     PRO Romania    0.462144
     PNL            0.447272
