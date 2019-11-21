@@ -21536,13 +21536,10 @@ init(last,color="YlGnBu");plt.show();
 </details>
 
 <p float="left">
-  <img src="../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_0.png" width="300" />
-  <img src="../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_1.png" width="300" /> 
+  <img src="../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_0.png" width="600" />
+  <img src="../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_1.png" width="600" /> 
 </p>
 
-```
-![png](../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_0.png) ![png](../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_1.png)
-```
 
 And the animation of all the frames in-between is:
 
