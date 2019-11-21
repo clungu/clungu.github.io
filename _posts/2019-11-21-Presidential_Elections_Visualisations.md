@@ -274,7 +274,7 @@ single_frame(100, ax, title, subtitle)
 
 </details>
 
-![png](../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_11_0.png)
+![png](../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_11_0.png)
 
 
 And the final result is shown bellow:
@@ -21202,7 +21202,7 @@ map_df.plot(figsize=(10, 10))
 </details>
 
 
-![png](../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_19_1.png)
+![png](../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_19_1.png)
 
 
 Reading the data
@@ -21428,7 +21428,7 @@ romania_by_county.plot(column='percentages', cmap='YlOrRd')
 ```
 
 
-![png](../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_27_1.png)
+![png](../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_27_1.png)
 
 
 
@@ -21535,11 +21535,11 @@ init(last,color="YlGnBu");plt.show();
 
 </details>
 
-![png](../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_0.png)
+![png](../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_0.png)
 
 
 
-![png](../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_1.png)
+![png](../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_1.png)
 
 
 And the animation of all the frames in-between is:
