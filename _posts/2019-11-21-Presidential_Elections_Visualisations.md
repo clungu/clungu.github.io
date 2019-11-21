@@ -21536,8 +21536,8 @@ init(last,color="YlGnBu");plt.show();
 </details>
 
 <p float="left">
-  <img src="../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_0.png" width="500" />
-  <img src="../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_1.png" width="500" /> 
+  <img src="../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_0.png" width="400" />
+  <img src="../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_1.png" width="400" /> 
 </p>
 
 
