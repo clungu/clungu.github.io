@@ -21535,11 +21535,7 @@ init(last,color="YlGnBu");plt.show();
 
 </details>
 
-![png](../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_0.png)
-
-
-
-![png](../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_1.png)
+![png](../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_0.png) ![png](../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_1.png)
 
 
 And the animation of all the frames in-between is:
