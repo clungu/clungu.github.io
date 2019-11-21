@@ -271,9 +271,8 @@ def single_frame(i, ax, title, subtitle):
 
 single_frame(100, ax, title, subtitle)  
 ```
-{::options parse_block_html="true" /}
-<details><summary markdown='span'>Code</summary>
 
+</details>
 
 ![png](../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_11_0.png)
 
@@ -299,9 +298,8 @@ animator = animation.FuncAnimation(fig, single_frame, fargs=(ax, title, subtitle
 display(HTML(animator.to_html5_video()))
 plt.close()
 ```
-{::options parse_block_html="true" /}
-<details><summary markdown='span'>Code</summary>
 
+</details>
 
 <video width="864" height="576" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlABIDUm1kYXQAAAKvBgX//6vcRem9
@@ -34157,6 +34155,8 @@ Some counties will start at the top of the rankings (in blue) and others near th
 
 We will use the `color = 'Spectral'` [color pallete](http://www.sthda.com/english/wiki/colors-in-r) because we are looking at a divergent plot and want to emphasize on mid-range critical values and extremes at both ends of the data range. 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 vmin, vmax = None, None
@@ -34177,6 +34177,7 @@ display(HTML(anim.to_html5_video()))
 plt.close()
 ```
 
+</details>
 
 <video width="864" height="576" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAAmzQm1kYXQAAAKvBgX//6vcRem9
