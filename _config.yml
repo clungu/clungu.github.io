@@ -89,6 +89,13 @@ defaults:
       layout: single
       author_profile: true
 
+repository: clungu/clungu.github.io # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+comments:
+  provider: "utterances"
+  utterances:
+    theme: "github-light" # "github-dark"
+    issue_term: "pathname"
+
 
 plugins:
   - jekyll-include-cache
