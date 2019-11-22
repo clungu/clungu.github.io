@@ -54,6 +54,13 @@ analytics:
   google:
     tracking_id: "UA-53253619-2"
 
+repository: "clungu/clungu.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+comments:
+  provider: "utterances"
+  utterances:
+    theme: "github-light" # "github-dark"
+    issue_term: "pathname"
+    crossorigin: "anonymous"
 
 # Reading Files
 include:
@@ -77,7 +84,7 @@ defaults:
       breadcrumbs: true
       sidebar:
          nav: "posts"
-      toc: true
+      toc: false
       classes: wide
       # toc_label: "My Table of Contents"
       # toc_icon: "cog"
@@ -88,14 +95,6 @@ defaults:
     values:
       layout: single
       author_profile: true
-
-repository: "clungu/clungu.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-comments:
-  provider: "utterances"
-  utterances:
-    theme: "github-light" # "github-dark"
-    issue_term: "pathname"
-    crossorigin: "anonymous"
 
 
 plugins:
