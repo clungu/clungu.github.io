@@ -276,7 +276,7 @@ single_frame(100, ax, title, subtitle)
 
 </details>
 
-![png](assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_11_0.png)
+![png](../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_11_0.png)
 
 
 And the final result is shown bellow:
