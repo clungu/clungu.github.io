@@ -6523,3 +6523,12 @@ Retaining a higher variance (e.g. 99%) leads to many elementary components (with
 *Based on*: 
 1. [Wikipedia article](https://en.wikipedia.org/wiki/Singular_spectrum_analysis)
 2. [Kaggle kernel](https://www.kaggle.com/jdarcy/introducing-ssa-for-time-series-decomposition#3.-Time-Series-Component-Separation-and-Grouping)
+
+
+<script src="https://utteranc.es/client.js"
+        repo="clungu/clungu.github.io"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
