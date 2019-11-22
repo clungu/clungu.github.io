@@ -5,6 +5,8 @@ tags:
     - analysis
     - real data
     - correlation
+header:
+  teaser: https://www.ifri.org/sites/default/files/styles/image_contenu_article/public/thumbnails/image/image_site_-_etude_collective_-_elections_europeennes.png
 ---
 
 ![image.png](https://www.ifri.org/sites/default/files/styles/image_contenu_article/public/thumbnails/image/image_site_-_etude_collective_-_elections_europeennes.png)

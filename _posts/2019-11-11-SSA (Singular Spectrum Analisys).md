@@ -7,6 +7,8 @@ tags:
     - timeseries
 mathjax: true
 comments: true
+header:
+  teaser: /assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_165_0.png
 ---
 
 ![png](../../assets/images/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_files/2019-11-11-SSA_%28Singular_Spectrum_analisys%29_165_0.png)
