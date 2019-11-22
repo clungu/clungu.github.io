@@ -55,12 +55,12 @@ analytics:
     tracking_id: "UA-53253619-2"
 
 repository: "clungu/clungu.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+
 comments:
   provider: "utterances"
   utterances:
     theme: "github-light" # "github-dark"
     issue_term: "pathname"
-    crossorigin: "anonymous"
 
 # Reading Files
 include:
