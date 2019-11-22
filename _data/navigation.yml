@@ -19,6 +19,6 @@ posts:
          - title: Embeddings
            url: /tutorial/Embeddings-explained/
          - title: Mean Shift
-           url: /tutorial/Mean-Shift/ 
+           url: /Mean-Shift/ 
          - title: Scikit-Learn
            url: /scikit-learn/tutorial/Scikit-learn/

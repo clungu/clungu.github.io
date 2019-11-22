@@ -1,6 +1,5 @@
 ---
 categories: 
-    - tutorial
 tags:
     - clustering
 mathjax: true
