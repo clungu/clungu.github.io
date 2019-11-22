@@ -89,7 +89,7 @@ defaults:
       layout: single
       author_profile: true
 
-repository: clungu/clungu.github.io # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository: "clungu/clungu.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 comments:
   provider: "utterances"
   utterances:
