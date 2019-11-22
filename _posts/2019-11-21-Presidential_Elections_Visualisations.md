@@ -5,6 +5,8 @@ categories:
 tags:
     - analysis
     - real data
+header:
+  teaser: assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_32_1.png
 ---
 
 As I've said [last time](http://www.clungu.com/tutorial/visualisation/Mapping/) we're going to do some visualization exercises by using `matplotlib` animation and some custom made charts.
@@ -274,7 +276,7 @@ single_frame(100, ax, title, subtitle)
 
 </details>
 
-![png](../../../assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_11_0.png)
+![png](assets/images/2019-11-21-Presidential_Elections_Visualisations_files/2019-11-21-Presidential_Elections_Visualisations_11_0.png)
 
 
 And the final result is shown bellow:
