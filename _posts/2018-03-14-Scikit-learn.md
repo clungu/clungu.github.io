@@ -8,9 +8,7 @@ tags:
     - price prediction
 ---
 
-# Scikit-learn
-
-Today we will be talking about `Scikit-learn`
+Today we will be talking about predicting house prices using `Scikit-learn`
 
 
 ```python
