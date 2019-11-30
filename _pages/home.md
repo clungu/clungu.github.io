@@ -15,15 +15,15 @@ intro:
 feature_row:
   - image_path: assets/images/unsplash-image-3.jpg
     alt: "Super resolution"
-    title: "www.curs-ml.com"
+    title: "Machine Learning Course"
     excerpt: "Get the fundamentals right! This course will gradually get you up to speed with machine learning. You'll learn the relevant tools and by the end of it, be able to compete on Kaggle and apply ML to your day-to-day job."
     url: "http://www.curs-ml.com"
-    btn_label: "Read More"
+    btn_label: "curs-ml.com"
     btn_class: "btn--inverse"
   - image_path: /assets/images/mnist.png
     alt: "beating mnist"
     title: "Beating MNIST"
-    excerpt: "An iterative notebook that highlights how by applying recent **best practices** in image processing you can achieve state-of-the art results on the MNIST dataset."
+    excerpt: "An iterative notebook that highlights how to applying recent **best practices** in image processing so you can achieve state-of-the art results on the MNIST dataset."
     url: "/Beating-MNIST/"
     btn_label: "Read More"
     btn_class: "btn--inverse"
