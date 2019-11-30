@@ -15,10 +15,10 @@ intro:
 feature_row:
   - image_path: assets/images/unsplash-image-3.jpg
     alt: "Super resolution"
-    title: "Machine Learning Course"
+    title: "[Machine Learning Course](www.curs-ml.com)"
     excerpt: "Get the fundamentals right! This course will gradually get you up to speed with machine learning. You'll learn the relevant tools and by the end of it, be able to compete on Kaggle and apply ML to your day-to-day job. 
     www.curs-ml.com"
-    permalink: "http://www.curs-ml.com"
+    url: "http://www.curs-ml.com"
     btn_label: "Read More"
     btn_class: "btn--light-outline"
   - image_path: /assets/images/mnist.png
