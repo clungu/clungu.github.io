@@ -1,0 +1,135 @@
+* hyperparams of GA 
+	* nr of individuals (100)
+	* length of epoch (5 min)
+
+* RISKS
+	1. since we rely on random sessions, and given our current traffic, each individual might not receive enough sessions so as a single "wining" session might greatly influence that individual's performance
+		* for 100 individuals, on 5 mins epoch, our current (27.11.2019) traffic means 750 sessions / individual
+
+	2. testing the initial performance on a reduced context (accuweather, mobile) might lead to the problem above
+
+	3. testing the initial performance on a few parameters might show no or a marginal improvement, and might suggest that the project is not worth pursuing. In fact, the most gain from such an approach would come from the fact that ALL the hyperparameters are tunned AT ONCE
+
+	4. the timing of an epoch will DEFINITELY impact the behavior of sessions (e.g. epochs running at the beggining of the hour will have many bids, leading to a significant change in the fitness function evaluation of the individuals)
+
+	5. the timing of shifts between the epochs (inside the clients) MIGHT have a big impact on the behavior of the sessions (eg. a client running on ind. 1, gen. 1 might behave well. If in the middle of the session the generation will change to ind 1., gen. 2, this individual will catch only the last past of the runnning session, which is most of the times less productive than the begging of the session).
+		* if we force all that all epochs start only on new sessions, MIGHT optimize only for individuals that perform during the epoch length 
+		* at any given minute, 50% of sessions are ones that begun before that minute, 50% of sessions are ones that begun in that minute
+		* at any rate, the long running sessions should NOT be neglected
+		* SOLUTION: change ind. confing inside a long running session (with all the intial downsides)
+
+	* on the initial deployment, the first epoch will not evaluate against long running clinents:
+		* SOLUTION: 
+			* deploy the client changes with a flag to enable/diable the GA optimisations.
+			* wait for one hour to catch long sessions
+			* start the optimisations after this delay
+
+	* some parameters (like QPS) will be influenced by all the individuals. One bad individual will affect the behavior of the other individuals
+
+	* initial gene generation should be derived from the current production settings (with a small noise attached)
+
+	* should make sure we impose good constraints on genes (with ballpark figures)
+
+	* too many teams involved which might make the development really slow
+		* Dev Ops
+		* Algo Team
+		* Client Team
+		* Backend Team
+		* SOLUTION: Detailed white paper 
+
+	* ML systems (FloorPricePredictor, YOScore) use as training data, results generated from underperforming individuals. This will make the next model to POSSIBLY underperform as well. 
+		* FloorPrice tries to predict next bid prices. Assuming that DSPs are not affected by the individuals hyperparameters, the resulting bid values should be independent from the system hyperparameters. With the exception of the floorprice factor.
+		* SOLUTION: Segment traffic in two: 
+			* the one on which to apply the GA optimisation.
+			* the one from which to collect training data (using the last prod configuration) 
+
+	* when should we stop the optimisation
+		* SOLUTION: After the optimisation stops improving ((best gen x individual) - (best gen (x - 1) individual) < 0.0001)
+
+	* because of 4, stopping might not be trivial
+		* SOLUTION: Time bound overall optimisation window (x h total)
+
+	* all the components should implement a dynamic "update" procedure that will replace the hyperparameter values in a live running system without the need to restart that system. Implementing this everywhere might be hard due to technical debt.
+
+	* the optimisation might be to expensive (how much one optimisation will cost? Will it be smaller than the overall gain?)
+
+	* when should we restart the optimisation? 
+
+
+Agenda:
+
+* What is the event flow:
+	1. [UI] A human (user) opens a page of www.washingtonpost.com
+	2. [UI] www.washingtonpost.com contains a javascript script for the Connatix player (Player)
+	3. [UI][traffic segmentation] Player generates random number from 1 to 100 which will become the traffic slot (i.e. IndividualID)
+	4. [UI][PLS call] Player requests metadata from serving api (sending the IndividualID) 
+		5. [CORE API] Uses the hyperparamters for that IndividualID to get the demand that will be used in that (client) session
+							   --------------
+							   	  * MinimumSpendAmountFiltering
+							   	  * SpendTimeFrame
+							   	  * MaxWintime
+
+		6. [CORE API] By this time the WinTime CSV for this (and every other) IndividualID should have been updated (precomputed for this combination of hyperparameters)
+		7. [CORE API] Sends back the demand to the client and the needed hyperparameters of the client (includes the GenerationID)
+	8. [UI] Player starts the [Ad Server] - this is a JS client component - 
+					    		  (using the hyperparamers)
+								     		 -------------
+										   	 * time for reseting request caps (1 minute now)
+											 * time for reseting increasing window (1 minute now)
+											 * request pattern (bit array)
+											 		1___|____|_|_____|______|____
+											 		- the generation of inviduals on this element should be constrained 
+												 		- max requests per interval
+												 		- min requests per interval
+												 		- non consecutive
+											 * MaxWinTime
+
+	9. [UI] Calls RTB Seriving API sending the (IndividualID, GenerationID)
+	                                                  
+
+    10.[RTB Serving API] Received the call with the (GenerationID, IndividualID) and retirieves from memory (MemCache) the hyperparamters sepecific to it
+    --------------
+    * Content Cap for each partner
+    * Number Of Requests for each partner
+    * Floor Price Factors for each partner
+
+    The Individual config will contain only X (proposed 4) partner configs that should be applied to DSPs in order, sorted by their total spending percentage in the platform. In other words, the GA will only have enough bandwith to optimize for the top most X spenders, while the following smaller DSPs will borrow the configs of these large spenders. Having configs for each partner, although ideal, will probably increase the search space of the GA making the convergence intractable (in time).
+
+    11.[RTB Serving API] Sends calls to DSPs and logs the response along with the (GenerationID, IndividualID) as a field on the reply message. This is needed for segementing the traffic generated by each IndividualID and evaluating the fitness function later on.
+
+    12. [RTB Serving API] replies to the UI with the configuration computed from this IndividualID with: {
+    	'bids': ['bid1', 'bid2', ..],
+    	'prebids': ['preb1', 'prebd', ..],
+    	'individualID': 1,		-> Acknowledge that these were generated by these..
+    	'generationID': 1       ->
+    }
+
+
+    12. [RTB calls happen for some time] [Meantime the generation of individuals change]
+
+    13. [UI] The last RTB Serving API call will reply with: {
+    	'bids': ['bid1', 'bid2', ..],
+    	'prebids': ['preb1', 'prebd', ..],
+    	'individualID': 1,		
+    	'generationID': 1       
+    	'reset generation': True	-> There is a new generation available, client please update 								config 
+    }
+
+    14. [UI][DEMAND] Player requests new updated demand (sending the IndividualID).
+    15. [CORE API][DEMAND] Sends back the demand to the client and the needed hyperparameters of the client (includes the NEW GenerationID)
+
+    
+
+
+* Update the fitness function so as to promote balanced spending on all the DSPs 
+
+* How should we implement this?
+
+* What teams are involved in developing this?
+
+* What steps shoupd each take?
+
+
+
+
+
