@@ -236,6 +236,8 @@ for word in raw.iloc[sample].French_tokens:
 
 Applying some formalism and good software engineering, we're going to define some functions for later use, and documentation.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def random_sample():
@@ -251,12 +253,13 @@ def get_sample(sample_id=None):
     if sample_id is None:
         sample_id = random_sample()
     return raw.iloc[sample_id].French_tokens
-
-get_sample()
 ```
 
+</details>
 
-
+```python
+get_sample()
+```
 
     array(['À', 'quelle', 'heure', "l'atterrissage", 'de', "l'avion",
            'est-il', 'prévu', '?'], dtype=object)
@@ -348,6 +351,8 @@ How would you deal with this?
 * The dictionary also has a `part-of-speach` column that we can *maybe* use (if we really want to go on that route and learn a lot grammar rules) 
 * Me, I've chosen the first value :D
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def get_equivalent(fre_word):
@@ -359,11 +364,14 @@ def get_equivalent(fre_word):
         return df_fre_eng.loc[fre_word, "English"].iloc[0]
     except:
         return f"<?>"
-    
-get_equivalent("Maison")
 ```
 
+</details>
 
+
+```python 
+get_equivalent("Maison")
+```
 
 
     '<?>'
@@ -376,6 +384,8 @@ Of course we can't expect to have all possible captalisation forms *a Word CAN h
 
 Keeping it simple, we will convert everything to lower-case, and strip all the leading and ending space chars.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def normalize(word):
@@ -383,12 +393,13 @@ def normalize(word):
     Performs a simple normalization.
     """
     return word.lower().strip()
-
-normalize("Si")
 ```
 
+</details>
 
-
+```python
+normalize("Si")
+```
 
     'si'
 
@@ -559,16 +570,15 @@ def get_equivalent(fre_word):
             return df_fre_eng_2.loc[fre_word, "English"].iloc[0]
         except:
             return "<?>"
-    
+```
+
+</details>
+
+```python
 get_equivalent("nous")
 ```
 
-
-
-
     '<?>'
-
-</details>
 
 Unfortunately, it doesn't work any better..
 
@@ -578,9 +588,6 @@ fre_tokens = get_sample()
 eng_tokens = [get_equivalent(normalize(word)) for word in fre_tokens]
 list(zip(fre_tokens, eng_tokens))
 ```
-
-
-
 
     [('Je', '<?>'), ('suis', '<?>'), ('fiable', 'reliable'), ('.', '<?>')]
 
@@ -739,6 +746,7 @@ plt.yticks(np.arange(len(words)), labels=words);
 ```
 
 
+</details>
 
 
     [('curious', 'colorado'),
@@ -750,9 +758,6 @@ plt.yticks(np.arange(len(words)), labels=words);
      ('slum', 'snake'),
      ('snake', 'colorado'),
      ('microsoft', 'google')]
-
-
-</details>
 
 ![png](../assets/images/2020-01-13-Tutorial_on_Machine_Translation_files/2020-01-13-Tutorial_on_Machine_Translation_55_2.png)
 
@@ -836,12 +841,14 @@ class EmbeddingSpace:
         """Compute cosine similarity between vec_a and vec_b"""
         return np.dot(vec_a, vec_b) / \
                (np.linalg.norm(vec_a) * np.linalg.norm(vec_b))
+```
+</details>
 
+```
 french_space = EmbeddingSpace(french_embeddings)
 english_space = EmbeddingSpace(english_embeddings)
 ```
 
-</details>
 
 We're going to thest this out.. Let's take the word `je` from French.
 
@@ -861,7 +868,7 @@ Computing the `dot product` between it and all the embeddings of the english lan
 `K(X, Y) = <X, Y> / (||X||*||Y||)`
 
 
-Note that we're using embeddings already normalized by the l2 norm of each word (i.e. Emb(Y) = Orig(X) / ||Orig(X)||, and the l2 norm of Y (`je` the word we're comparing all the vocabulary with) has the same norm for all words (constant).
+Note that we're using embeddings already normalized by the l2 norm of each word (i.e. `Emb(Y) = Orig(X) / ||Orig(X)||`, and the l2 norm of Y (`je` the word we're comparing all the vocabulary with) has the same norm for all words (constant).
 
 This means that the order of similarity is the same only by doing the `dot product` without further dividing by the (constant) `||Y||`. That's why we do an `argsort` directly.
 
@@ -873,12 +880,7 @@ similarity_vector = np.matmul(english_space.embeddings_normalized, target_word)
 similarity_vector.shape
 ```
 
-
-
-
     (2519368,)
-
-
 
 
 ```python
@@ -926,11 +928,6 @@ english_space.translate_nearest_neighbour(french_embeddings['je'])
 
     (2519368, 300) (300,) (2519368,)
     [ 2411  8284    48    26  9424 19584 15942   281   898   492]
-
-
-
-
-
     ['myself',
      'btw',
      'you',
@@ -1007,12 +1004,14 @@ Since we need to allocate some weights and these should be fixed, we need to kno
 ```python
 max_eng_size = raw.English_length.max()
 max_fre_size = raw.French_length.max()
-
-max_eng_size, max_fre_size
 ```
 
 </details>
 
+
+```python
+max_eng_size, max_fre_size
+```
 
     (51, 60)
 
@@ -1172,12 +1171,13 @@ def phrase(tokens: list) -> list:
 # Each phrase increases with 2 more elements so the maxiums change as well
 max_eng_size = max_eng_size + 2
 max_fre_size = max_fre_size + 2
-
-phrase(['Va', '!'])
 ```
 
 </details>
 
+```python
+phrase(['Va', '!'])
+```
 
     ['>', 'va', '!', '_']
 
@@ -1199,16 +1199,15 @@ def indexed(tokens: List[str], vocabulary: Dict[str, int]) -> List[int]:
 from functools import partial
 fr_indexed = partial(indexed, vocabulary=fr2id)
 en_indexed = partial(indexed, vocabulary=en2id)
+```
 
+</details>
+
+```python
 indexed(phrase(['Va', '!']), vocabulary=fr2id), fr_indexed(phrase(['Comment', 'ca', 'va', '?']))
 ```
 
-
-
-
     ([0, 27005, 2, 1], [0, 4402, 3149, 27005, 234, 1])
-
-</details>
 
 Also, we will padd words (because we use batch training and each element in a batch should have the same size). This means that e need to right padd all the phrases with a `null` char until all are equal.
 
@@ -1234,14 +1233,8 @@ assert padded[-1] == 0
 padded
 ```
 
-</details>
-
-
     [1, 2, 3, 0, 0, 0, 0, 0, 0, 0]
 
-
-{::options parse_block_html="true" /}
-<details><summary markdown='span'>Code</summary>
 
 ## Debug functions
 
@@ -1373,15 +1366,15 @@ Even though the model doesn't actually predict `5597`, `20`, `1`, `1` at each st
 from sklearn.model_selection import train_test_split
 encode_input_train, encode_input_test, decode_input_train, decode_input_test, decode_output_train, decode_output_test = train_test_split(encode_input, decode_input, decode_output, test_size=0.2, shuffle=True)
 
+```
+
+</details>
+
+```python
 encode_input_train.shape, decode_input_train.shape, decode_output_train.shape
 ```
 
-
-
-
     ((128696, 62), (128696, 53), (128696, 53))
-
-</details>
 
 ### Training generators
 
@@ -1407,12 +1400,6 @@ gen = data_generator(encode_input_train, decode_input_train, decode_output_train
 [inp, tch], out = next(gen)
 inp.shape, tch.shape, out.shape
 ```
-
-    Using TensorFlow backend.
-
-
-
-
 
     ((64, 62), (64, 53), (64, 53, 14202))
 
@@ -1499,6 +1486,8 @@ model.summary()
 model.compile(optimizer="rmsprop", loss="categorical_crossentropy")
 ```
 
+</details>
+
     __________________________________________________________________________________________________
     Layer (type)                    Output Shape         Param #     Connected to                     
     ==================================================================================================
@@ -1522,8 +1511,6 @@ model.compile(optimizer="rmsprop", loss="categorical_crossentropy")
     Trainable params: 12,078,820
     Non-trainable params: 0
     __________________________________________________________________________________________________
-
-</details>
 
 Note:
 * that the model is quite large.
@@ -1869,6 +1856,8 @@ decoder = Model(inputs=[eng_one, hidden_state, const_state], outputs=[one_hot_wo
 decoder.summary()
 ```
 
+</details>
+
     _________________________________________________________________
     Layer (type)                 Output Shape              Param #   
     =================================================================
@@ -1903,8 +1892,6 @@ decoder.summary()
     Trainable params: 6,032,412
     Non-trainable params: 0
     __________________________________________________________________________________________________
-
-</details>
 
 The last piece now is going recursevly until we get to a STOP_WORD token.
 
@@ -1997,12 +1984,14 @@ def translate(fre_tokens: List[str], debug=True) -> List[str]:
         
 
     return en_decode(eng_inp)
-
-to_str(translate(["Allez", "a", "la", "maison", "avec", "nous", "."]))
-to_str(translate(["Va", "!"]))
 ```
 
 </details>
+
+```python
+to_str(translate(["Allez", "a", "la", "maison", "avec", "nous", "."]))
+to_str(translate(["Va", "!"]))
+```
 
     ---------------------------
     [0] French: 	allez a la maison avec nous . _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
