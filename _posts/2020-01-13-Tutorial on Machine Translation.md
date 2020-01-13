@@ -1,4 +1,14 @@
-
+---
+categories: 
+    - machine translation
+    - tutorial
+tags:
+    - seq2seq
+    - tutorial
+    - keras
+    - translation
+    - nlp
+---
 
 ```python
 import pandas as pd
