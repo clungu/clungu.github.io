@@ -121,23 +121,14 @@ It will yield rubish translations of course, but it's a good starting place.
 
 The dictionary is taken from [here](https://github.com/pquentin/wiktionary-translations). Btw, it took me a great deal of time to really find this dictionary. You'd think that a 1-1 mapping of words between 2 really common languages should be easy especially for a pair of really popular languages).
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 !wget https://raw.githubusercontent.com/pquentin/wiktionary-translations/master/frwiktionary-20140612-euradicfmt.csv -O ./_data/fre_eng.csv
 ```
 
-    --2019-09-04 23:37:33--  https://raw.githubusercontent.com/pquentin/wiktionary-translations/master/frwiktionary-20140612-euradicfmt.csv
-    Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.112.133
-    Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.112.133|:443... connected.
-    HTTP request sent, awaiting response... 200 OK
-    Length: 2950339 (2,8M) [text/plain]
-    Saving to: ‘./_data/fre_eng.csv’
-    
-    ./_data/fre_eng.csv 100%[===================>]   2,81M   526KB/s    in 5,2s    
-    
-    2019-09-04 23:37:39 (552 KB/s) - ‘./_data/fre_eng.csv’ saved [2950339/2950339]
-    
-
+</details>
 
 We're going to load the dataset to see what we can work with. Note that we have to figure out some hoops in order to properly load this.
 
@@ -225,6 +216,8 @@ df_fre_eng.head()
 
 Before we use the dictionary, let's load an example from the `to-be-translated` dataset to see an example. The snippet bellow also sketches a bit what we're going to do.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 sample = np.random.randint(raw.shape[0])
@@ -232,6 +225,8 @@ sample = np.random.randint(raw.shape[0])
 for word in raw.iloc[sample].French_tokens:
     print(word)
 ```
+
+</details>
 
     Est-ce
     tellement
@@ -426,42 +421,12 @@ list(zip(fre_tokens, eng_tokens))
 
 Maybe a better, more comprehensive dictionary would eliminate most of those `<?>` words...
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 !wget https://raw.githubusercontent.com/freedict/fd-dictionaries/master/eng-fra/eng-fra.tei -O ./_data/eng-fra.tei
 ```
-
-    --2019-09-05 11:34:05--  https://raw.githubusercontent.com/freedict/fd-dictionaries/master/eng-fra/eng-fra.tei
-    Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.112.133
-    Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.112.133|:443... connected.
-    HTTP request sent, awaiting response... 200 OK
-    Length: 3329108 (3,2M) [text/plain]
-    Saving to: ‘./_data/eng-fra.tei’
-    
-    ./_data/eng-fra.tei 100%[===================>]   3,17M  5,57MB/s    in 0,6s    
-    
-    2019-09-05 11:34:07 (5,57 MB/s) - ‘./_data/eng-fra.tei’ saved [3329108/3329108]
-    
-
-
-
-```python
-!wget https://raw.githubusercontent.com/freedict/fd-dictionaries/master/shared/freedict-dictionary.css -O ./_data/freedict-dictionary.css
-```
-
-    --2019-09-05 11:37:40--  https://raw.githubusercontent.com/freedict/fd-dictionaries/master/shared/freedict-dictionary.css
-    Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.112.133
-    Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.112.133|:443... connected.
-    HTTP request sent, awaiting response... 200 OK
-    Length: 4783 (4,7K) [text/plain]
-    Saving to: ‘./_data/freedict-dictionary.css’
-    
-    ./_data/freedict-di 100%[===================>]   4,67K  --.-KB/s    in 0s      
-    
-    2019-09-05 11:37:40 (41,1 MB/s) - ‘./_data/freedict-dictionary.css’ saved [4783/4783]
-    
-
-
 
 ```python
 import xml.etree.ElementTree as et 
@@ -481,13 +446,6 @@ def get_entries():
 entry = next(get_entries())
 entry
 ```
-
-
-
-
-    <Element '{http://www.tei-c.org/ns/1.0}entry' at 0x7feb4618a548>
-
-
 
 
 ```python
@@ -581,10 +539,12 @@ df_fre_eng_2.head()
 </table>
 </div>
 
-
+</details>
 
 We're now ready to write the translation function again, using this new datastructure.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def get_equivalent(fre_word):
@@ -608,7 +568,7 @@ get_equivalent("nous")
 
     '<?>'
 
-
+</details>
 
 Unfortunately, it doesn't work any better..
 
@@ -646,6 +606,8 @@ Word embeddings are such a common appearence in NLP that it's not worth describi
 
 The main idea of using them is that since an embedding encapsulates **semantic** representation, then we can solve the **polysemi** problem of the Model 1 above.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 class DictNumpyEmbeddings():
@@ -717,13 +679,11 @@ class NumpyReader():
 french_embeddings = NumpyReader("./_data/wiki.fr.small.npz").load()
 ```
 
+</details>
 
 ```python
 french_embeddings['je'].shape
 ```
-
-
-
 
     (300,)
 
@@ -735,6 +695,8 @@ Now if we take a few words (somewhat) at random, and print them on the first few
 
 For example `me` and `you` have lots of close values on lots of dimensions, some possibly describing the `refers to humans` capacity, or other common charateristics. 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 from matplotlib import pyplot as plt
@@ -748,12 +710,16 @@ words = ["curious", "google", "me", "you", "colorado", "donkey", "slum", "snake"
 show_words(words)
 ```
 
+</details>
 
 ![png](../assets/images/2020-01-13-Tutorial_on_Machine_Translation_files/2020-01-13-Tutorial_on_Machine_Translation_53_0.png)
 
 
 A few experiments with word embeddings
 
+
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 from sklearn.metrics.pairwise import cosine_similarity
@@ -786,11 +752,7 @@ plt.yticks(np.arange(len(words)), labels=words);
      ('microsoft', 'google')]
 
 
-
-
-    <Figure size 1080x864 with 0 Axes>
-
-
+</details>
 
 ![png](../assets/images/2020-01-13-Tutorial_on_Machine_Translation_files/2020-01-13-Tutorial_on_Machine_Translation_55_2.png)
 
@@ -801,10 +763,14 @@ A good measure for comparing two embeddings is by using the `cosine_similarity` 
 
 Of course, in order to make a translation we need both languages.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 english_embeddings = NumpyReader("./_data/wiki.en.small.npz").load()
 ```
+
+</details>
 
 The main idea of our second algorithm is a follows:
 * convert the french phrase to word tokens 
@@ -822,6 +788,9 @@ Fortunately for us we recently [have a way](https://arxiv.org/pdf/1804.07745.pdf
 
 We're also using some pieaces of code from [here](https://github.com/babylonhealth/fastText_multilingual/blob/master/fasttext.py).
 
+
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def lazy_property(fn):
@@ -872,6 +841,8 @@ french_space = EmbeddingSpace(french_embeddings)
 english_space = EmbeddingSpace(english_embeddings)
 ```
 
+</details>
+
 We're going to thest this out.. Let's take the word `je` from French.
 
 
@@ -880,21 +851,22 @@ target_word = french_embeddings['je']
 target_word.shape
 ```
 
-
-
-
     (300,)
 
 
 
 Computing the `dot product` between it and all the embeddings of the english language will yield the top part of the `cosine_similarity` formula.
 
-K(X, Y) = <X, Y> / (||X||*||Y||)
+
+`K(X, Y) = <X, Y> / (||X||*||Y||)`
+
 
 Note that we're using embeddings already normalized by the l2 norm of each word (i.e. Emb(Y) = Orig(X) / ||Orig(X)||, and the l2 norm of Y (`je` the word we're comparing all the vocabulary with) has the same norm for all words (constant).
 
-This means that the order of similarity is the same only by doing the `dot product` without further dividing by the (constant) ||Y||. That's why we do an `argsort` directly.
+This means that the order of similarity is the same only by doing the `dot product` without further dividing by the (constant) `||Y||`. That's why we do an `argsort` directly.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 similarity_vector = np.matmul(english_space.embeddings_normalized, target_word)
@@ -914,7 +886,7 @@ ids_sorted = np.argsort(similarity_vector)[::-1]
 ids_sorted[:10]
 ```
 
-
+</details>
 
 
     array([ 2411,  8284,    48,    26,  9424, 19584, 15942,   281,   898,
@@ -924,12 +896,14 @@ ids_sorted[:10]
 
 The most similar indexes of word in the english vocabulary, similar to `je`. These are represented by the list of words bellow:
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 [english_space.embeddings.id2word[target_id] for target_id in ids_sorted[:10]]
 ```
 
-
+</details>
 
 
     ['myself',
@@ -972,6 +946,8 @@ english_space.translate_nearest_neighbour(french_embeddings['je'])
 
 Now that we have a way for jumping from one language to the other with the help of alligned ambeddings, let's demonstrate how our (naive) algorithm (version 2) works.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def get_equivalent(word):
@@ -986,15 +962,7 @@ eng_tokens = [get_equivalent(normalize(word))[0] for word in tqdm(fre_tokens)]
 list(zip(fre_tokens, eng_tokens))
 ```
 
-
-    HBox(children=(IntProgress(value=0, max=11), HTML(value='')))
-
-
-    
-
-
-
-
+</details>
 
     [('Il', 'he'),
      ('y', '¿quíeres'),
@@ -1033,6 +1001,8 @@ We will build a model whose main idea is to **predict the next word**, given:
 
 Since we need to allocate some weights and these should be fixed, we need to know, in advance the **maximum** size of a phrase, in each language.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 max_eng_size = raw.English_length.max()
@@ -1041,7 +1011,7 @@ max_fre_size = raw.French_length.max()
 max_eng_size, max_fre_size
 ```
 
-
+</details>
 
 
     (51, 60)
@@ -1059,6 +1029,8 @@ We also need to build some auxiliary datastructures that will allow us to:
 
 ### Id2Word
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 subsample = 10000
@@ -1092,22 +1064,7 @@ max_fre_size = raw.French_length[:subsample].max()
 len(id2en), len(id2fr)
 ```
 
-
-    HBox(children=(IntProgress(value=0, max=160871), HTML(value='')))
-
-
-    
-
-
-
-    HBox(children=(IntProgress(value=0, max=160871), HTML(value='')))
-
-
-    
-
-
-
-
+</details>
 
     (14200, 28614)
 
@@ -1117,6 +1074,8 @@ len(id2en), len(id2fr)
 
 The model will rely on a set of special words that will be used to signal the start, ending and possibly padding characters which we will add to the dataset.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 START_WORD = ">"
@@ -1128,16 +1087,24 @@ assert set(SPECIAL_WORDS) & set(id2en) == set()
 assert set(SPECIAL_WORDS) & set(id2fr) == set()
 ```
 
+</details>
+
 We add the special words as the first elements of each vocabulary list
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 id2en = SPECIAL_WORDS + id2en
 id2fr = SPECIAL_WORDS + id2fr
 ```
 
+</details>
+
 It's always a good idea to save the vocabulary to ensure that reruning the notebook will not result in a reordering of the words (and invalidate subsequently trained and saved models).
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 np.savez("./_data/fr_en_vocabulary.npz", 
@@ -1150,8 +1117,12 @@ np.savez("./_data/fr_en_vocabulary.npz",
         )
 ```
 
+</details>
+
 ## Reversed lookup dictionary
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 from typing import Dict
@@ -1173,20 +1144,6 @@ assert en2id[STOP_WORD] == 1
 ```
 
 
-    HBox(children=(IntProgress(value=0, max=14202), HTML(value='')))
-
-
-    
-
-
-
-    HBox(children=(IntProgress(value=0, max=28616), HTML(value='')))
-
-
-    
-
-
-
 ```python
 id2fr[:10]
 ```
@@ -1196,12 +1153,14 @@ id2fr[:10]
 
     ['>', '_', '!', '$', '%', '&', "'", "''", "'maison", "'oublie"]
 
-
+</details>
 
 ## Data formatting
 
 We mark a "phrase" as a sequence of words, encapsulated by the `START_WORD` and `STOP_WORD`.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def phrase(tokens: list) -> list:
@@ -1217,13 +1176,15 @@ max_fre_size = max_fre_size + 2
 phrase(['Va', '!'])
 ```
 
-
+</details>
 
 
     ['>', 'va', '!', '_']
 
 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 from typing import List, Dict
@@ -1247,10 +1208,12 @@ indexed(phrase(['Va', '!']), vocabulary=fr2id), fr_indexed(phrase(['Comment', 'c
 
     ([0, 27005, 2, 1], [0, 4402, 3149, 27005, 234, 1])
 
-
+</details>
 
 Also, we will padd words (because we use batch training and each element in a batch should have the same size). This means that e need to right padd all the phrases with a `null` char until all are equal.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def padd_right(tokens: list, fixed_size=3, padd="|")-> list:
@@ -1271,15 +1234,16 @@ assert padded[-1] == 0
 padded
 ```
 
-
+</details>
 
 
     [1, 2, 3, 0, 0, 0, 0, 0, 0, 0]
 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ## Debug functions
-
 
 ```python
 def to_str(tokens: List[object]):
@@ -1313,10 +1277,12 @@ to_str(fr_decode(encode_input[0]))
 
     'va ! _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _'
 
-
+</details>
 
 ## Training set
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 fixed_length_fre_generator = map(lambda tokens: fr_indexed(fixed_length_fr(lower(tokens))), tqdm(raw.French_tokens[:subsample]))
@@ -1327,16 +1293,6 @@ decode_input = np.array(list(fixed_length_eng_generator), dtype=np.int32)
 
 encode_input.shape, decode_input.shape
 ```
-
-
-    HBox(children=(IntProgress(value=0, max=160871), HTML(value='')))
-
-
-
-    HBox(children=(IntProgress(value=0, max=160871), HTML(value='')))
-
-
-
 
 
     ((160871, 62), (160871, 53))
@@ -1382,7 +1338,7 @@ decode_input[0], decode_output[0]
                1,    1,    1,    1,    1,    1,    1,    1,    1], dtype=int32))
 
 
-
+</details>
 
 ```python
 np.array(fr_decode(decode_input[0]))
@@ -1410,6 +1366,8 @@ all in one go!
 
 Even though the model doesn't actually predict `5597`, `20`, `1`, `1` at each step, on next steps of the training we will asume that those were the correct answers and continue (with the same state) with thsese (also called teacher-forcing).
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 from sklearn.model_selection import train_test_split
@@ -1423,12 +1381,14 @@ encode_input_train.shape, decode_input_train.shape, decode_output_train.shape
 
     ((128696, 62), (128696, 53), (128696, 53))
 
-
+</details>
 
 ### Training generators
 
 The full training data (lables), when one-hot-encoded take arround 11GB of RAM space, which is larger than we might want. We use a generator to split batches and one-hot-encode a batch at a time. This is more time consuming but way more space efficient.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 from keras.utils import to_categorical
@@ -1471,7 +1431,7 @@ def _en(data):
 _fr(inp[sample]), _en(tch[sample]), _en(np.argmax(out[sample], axis=-1))
 ```
 
-
+</details>
 
 
     ('je suis désolé , je ne parle pas français . _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ ',
@@ -1482,6 +1442,8 @@ _fr(inp[sample]), _en(tch[sample]), _en(np.argmax(out[sample], axis=-1))
 
 ## Model implementation
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 from keras.layers import Input, Embedding, LSTM, Dense, TimeDistributed
@@ -1561,12 +1523,15 @@ model.compile(optimizer="rmsprop", loss="categorical_crossentropy")
     Non-trainable params: 0
     __________________________________________________________________________________________________
 
+</details>
 
 Note:
 * that the model is quite large.
 
 ## Training
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 subsample_train = None # encode_input_train.shape[0]
@@ -1583,87 +1548,9 @@ test_gen = data_generator(encode_input_test, decode_input_test, decode_output_te
 history2 = model.fit_generator(train_gen, steps_per_epoch=steps_per_epoch_train, epochs=epochs, validation_data=test_gen, validation_steps=steps_per_epoch_test)
 ```
 
-    WARNING: Logging before flag parsing goes to stderr.
-    W0905 17:40:47.624840 140650209232704 deprecation.py:323] From /home/tecknoworks/~Envs/deep3.6/lib/python3.6/site-packages/tensorflow/python/ops/math_grad.py:102: div (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
-    Instructions for updating:
-    Deprecated in favor of operator or tf.math.divide.
-    W0905 17:40:48.635371 140650209232704 deprecation.py:323] From /home/tecknoworks/~Envs/deep3.6/lib/python3.6/site-packages/tensorflow/python/ops/array_grad.py:425: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
-    Instructions for updating:
-    Use tf.cast instead.
-
 
     Epoch 1/100
       23/2010 [..............................] - ETA: 17:15 - loss: 3.3896
-
-
-    ---------------------------------------------------------------------------
-
-    KeyboardInterrupt                         Traceback (most recent call last)
-
-    <ipython-input-50-5f73b23539b6> in <module>
-         10 test_gen = data_generator(encode_input_test, decode_input_test, decode_output_test, batch_size=batch_size, subsample=subsample_test)
-         11 
-    ---> 12 history2 = model.fit_generator(train_gen, steps_per_epoch=steps_per_epoch_train, epochs=epochs, validation_data=test_gen, validation_steps=steps_per_epoch_test)
-    
-
-    ~/~Envs/deep3.6/lib/python3.6/site-packages/keras/legacy/interfaces.py in wrapper(*args, **kwargs)
-         89                 warnings.warn('Update your `' + object_name + '` call to the ' +
-         90                               'Keras 2 API: ' + signature, stacklevel=2)
-    ---> 91             return func(*args, **kwargs)
-         92         wrapper._original_function = func
-         93         return wrapper
-
-
-    ~/~Envs/deep3.6/lib/python3.6/site-packages/keras/engine/training.py in fit_generator(self, generator, steps_per_epoch, epochs, verbose, callbacks, validation_data, validation_steps, class_weight, max_queue_size, workers, use_multiprocessing, shuffle, initial_epoch)
-       1416             use_multiprocessing=use_multiprocessing,
-       1417             shuffle=shuffle,
-    -> 1418             initial_epoch=initial_epoch)
-       1419 
-       1420     @interfaces.legacy_generator_methods_support
-
-
-    ~/~Envs/deep3.6/lib/python3.6/site-packages/keras/engine/training_generator.py in fit_generator(model, generator, steps_per_epoch, epochs, verbose, callbacks, validation_data, validation_steps, class_weight, max_queue_size, workers, use_multiprocessing, shuffle, initial_epoch)
-        215                 outs = model.train_on_batch(x, y,
-        216                                             sample_weight=sample_weight,
-    --> 217                                             class_weight=class_weight)
-        218 
-        219                 outs = to_list(outs)
-
-
-    ~/~Envs/deep3.6/lib/python3.6/site-packages/keras/engine/training.py in train_on_batch(self, x, y, sample_weight, class_weight)
-       1215             ins = x + y + sample_weights
-       1216         self._make_train_function()
-    -> 1217         outputs = self.train_function(ins)
-       1218         return unpack_singleton(outputs)
-       1219 
-
-
-    ~/~Envs/deep3.6/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py in __call__(self, inputs)
-       2713                 return self._legacy_call(inputs)
-       2714 
-    -> 2715             return self._call(inputs)
-       2716         else:
-       2717             if py_any(is_tensor(x) for x in inputs):
-
-
-    ~/~Envs/deep3.6/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py in _call(self, inputs)
-       2673             fetched = self._callable_fn(*array_vals, run_metadata=self.run_metadata)
-       2674         else:
-    -> 2675             fetched = self._callable_fn(*array_vals)
-       2676         return fetched[:len(self.outputs)]
-       2677 
-
-
-    ~/~Envs/deep3.6/lib/python3.6/site-packages/tensorflow/python/client/session.py in __call__(self, *args, **kwargs)
-       1438           ret = tf_session.TF_SessionRunCallable(
-       1439               self._session._session, self._handle, args, status,
-    -> 1440               run_metadata_ptr)
-       1441         if run_metadata:
-       1442           proto_data = tf_session.TF_GetBuffer(run_metadata_ptr)
-
-
-    KeyboardInterrupt: 
-
 
 
 ```python
@@ -1675,8 +1562,12 @@ model.save_weights("./_data/fre_eng_lstm_fixed.ep101.hdf5",overwrite=True)
 model.load_weights("./_data/fre_eng_lstm_fixed.ep100.hdf5")
 ```
 
+</details>
+
 ## Inference model
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 def strip_indexed(tokens):
@@ -1776,7 +1667,7 @@ fr_input(tokens), en_input([START_WORD])
              1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
              1, 1, 1, 1, 1, 1, 1, 1, 1]]))
 
-
+</details>
 
 Trying to manually add one word at a time
 
@@ -1861,9 +1752,10 @@ model.predict(x=[fr_input(tokens), en_input([START_WORD])]).shape
 
 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
-# tokens = ["Allez", "a", "la", "voiture", "avec", "nous", "."]
 tokens = encode_input_train[12]
 tokens = strip_plaintext(fr_decode(tokens))
 
@@ -1874,6 +1766,7 @@ while pred[-1] != STOP_WORD:
     print(id2en[p])
 " ".join(tokens), " ".join(pred)
 ```
+
 
     we
     find
@@ -1887,7 +1780,7 @@ while pred[-1] != STOP_WORD:
     _
 
 
-
+</details>
 
 
     ("on trouvera un moyen de l'utiliser .", '> we find a way to happen to it . _')
@@ -1898,6 +1791,8 @@ Before implementing the generating loop I'm going to quickly simulate it in orde
 
 *Note: I've been blocked at the bellow couple of cells much, much more than it seems, as it was the main debug point that helped me see that the model was not performing and made me go back and fix the model (several times).*
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 tokens = ["Elle", "est", "une", "belle", "jeune"]
@@ -1941,9 +1836,12 @@ print(en_decode(np.argmax(model.predict(x=[fr_input(tokens), en_input([START_WOR
     ['why', 'did', 'you', 'keep', 'that', 'a', 'secret', '_', '_', '_']
     ['why', 'did', 'you', 'keep', 'that', 'a', 'secret', '?', '_', '_']
 
+</details>
 
 We now need to separate the decoder layers into a new keras Model so we can use it later on.
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 # get encoder states
@@ -2006,8 +1904,12 @@ decoder.summary()
     Non-trainable params: 0
     __________________________________________________________________________________________________
 
+</details>
 
 The last piece now is going recursevly until we get to a STOP_WORD token.
+
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 *Note: The code bellow also contains lots of debug code and output because getting the right tensors to line up wasn't as straigh forward as I'd planned*
 
@@ -2100,81 +2002,48 @@ to_str(translate(["Allez", "a", "la", "maison", "avec", "nous", "."]))
 to_str(translate(["Va", "!"]))
 ```
 
+</details>
+
     ---------------------------
     [0] French: 	allez a la maison avec nous . _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     [0] Indexed: 	[  992   236 14552 15685  2176 17655    19     1     1     1]
     
-    [0] Hidden:	[ 0.08  0.03  0.   -0.    0.46 -0.14  0.   -0.26  0.06 -0.  ]
-    [0] Const:	[ 0.13  0.16  1.09 -0.07 21.51 -0.37  0.   -0.94  2.74 -0.89]
     [0] Input: 	>
-    (14202,) (201,) (201,)
-    ()
     [0] Top: 	['he', 'go', 'come', 'home', 'we', 'his', 'look', 'get', 'i', 'from']
     [0] Score: 	[0.57, 0.33, 0.03, 0.01, 0.01, 0.01, 0.01, 0.0, 0.0, 0.0]
     [0] Pred: 	`>` ~~~: he
     
-    [1] Hidden:	[ 0.07  0.34 -0.06  0.73  0.83 -0.05  0.14 -0.64  0.93 -0.32]
-    [1] Const:	[ 0.1   0.35 -0.06  0.93  9.08 -0.05  0.19 -1.36  1.66 -0.44]
     [1] Input: 	he
-    (14202,) (201,) (201,)
-    ()
     [1] Top: 	["'s", 'is', 'has', 'lives', 'went', 'left', 'goes', 'turned', 'leaves', 'cut']
     [1] Score: 	[0.76, 0.1, 0.04, 0.03, 0.02, 0.02, 0.01, 0.0, 0.0, 0.0]
     [1] Pred: 	`> he` ~~~: 's
     
-    [2] Hidden:	[ 0.11  0.18 -0.53 -0.02  0.71 -0.09  0.19 -0.71  0.9  -0.25]
-    [2] Const:	[ 0.11  0.18 -0.59 -0.02  9.08 -0.09  0.19 -1.85  1.48 -0.37]
     [2] Input: 	's
-    (14202,) (201,) (201,)
-    ()
     [2] Top: 	['home', 'house', 'gone', 'left', 'building', 'room', 'been', 'tv', 'built', 'part']
     [2] Score: 	[0.57, 0.16, 0.11, 0.06, 0.04, 0.01, 0.01, 0.01, 0.0, 0.0]
     [2] Pred: 	`> he 's` ~~~: home
     
-    [3] Hidden:	[ 0.11 -0.2  -0.2  -0.    0.92 -0.28 -0.58 -0.64  0.45  0.15]
-    [3] Const:	[ 1.100e-01 -2.000e-01 -8.500e-01 -1.000e-02  1.002e+01 -2.900e-01
-     -6.700e-01 -1.880e+00  4.800e-01  2.200e-01]
     [3] Input: 	home
-    (14202,) (201,) (201,)
-    ()
     [3] Top: 	['with', '.', 'has', "'s", 'and', 'get', 'left', 'is', 'go', 'have']
     [3] Score: 	[0.59, 0.11, 0.07, 0.05, 0.04, 0.02, 0.02, 0.01, 0.01, 0.01]
     [3] Pred: 	`> he 's home` ~~~: with
     
-    [4] Hidden:	[ 0.4  -0.12 -0.57 -0.    1.    0.45  0.29 -0.57 -0.    0.76]
-    [4] Const:	[ 4.300e-01 -1.200e-01 -7.200e-01 -0.000e+00  1.074e+01  4.900e-01
-      3.500e-01 -1.290e+00 -1.000e-02  9.900e-01]
     [4] Input: 	with
-    (14202,) (201,) (201,)
-    ()
     [4] Top: 	['the', 'them', 'their', 'us', 'all', 'left', 'two', 'work', 'one', ',']
     [4] Score: 	[0.96, 0.02, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     [4] Pred: 	`> he 's home with` ~~~: the
     
-    [5] Hidden:	[ 0.55  0.44 -0.5   0.    1.    0.81 -0.32 -0.63  0.26 -0.4 ]
-    [5] Const:	[ 0.61  0.89 -1.55  0.22 11.21  1.13 -0.33 -1.47  0.27 -0.42]
     [5] Input: 	the
-    (14202,) (201,) (201,)
-    ()
     [5] Top: 	['work', 'left', 'back', 'of', 'while', 'and', 'two', 'after', 'we', ',']
     [5] Score: 	[0.09, 0.09, 0.07, 0.07, 0.06, 0.05, 0.05, 0.04, 0.04, 0.03]
     [5] Pred: 	`> he 's home with the` ~~~: work
     
-    [6] Hidden:	[ 0.38  0.01 -0.94  0.1   1.    0.48  0.69 -0.64 -0.03 -0.74]
-    [6] Const:	[ 4.000e-01  1.000e-02 -1.720e+00  2.200e-01  1.203e+01  5.200e-01
-      8.400e-01 -1.600e+00 -3.000e-02 -9.500e-01]
     [6] Input: 	work
-    (14202,) (201,) (201,)
-    ()
     [6] Top: 	['.', 'two', 'and', 'with', ',', 'of', '?', 'for', 'many', 'their']
     [6] Score: 	[0.9, 0.03, 0.03, 0.02, 0.02, 0.0, 0.0, 0.0, 0.0, 0.0]
     [6] Pred: 	`> he 's home with the work` ~~~: .
     
-    [7] Hidden:	[ 0.62  0.76  0.03  0.55  1.    0.43  0.   -0.7   0.7   0.48]
-    [7] Const:	[ 0.73  1.    0.03  1.03  7.41  0.46  1.32 -1.43  0.86  0.55]
     [7] Input: 	.
-    (14202,) (201,) (201,)
-    ()
     [7] Top: 	['_', 'let', 'have', 'stopped', 'failed', 'could', 'quit', 'gave', 'spoke', 'seldom']
     [7] Score: 	[1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     [7] Pred: 	`> he 's home with the work .` ~~~: _
@@ -2183,37 +2052,21 @@ to_str(translate(["Va", "!"]))
     [0] French: 	va ! _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
     [0] Indexed: 	[27005     2     1     1     1     1     1     1     1     1]
     
-    [0] Hidden:	[ 0.35 -0.    0.    0.03  0.69  0.26  0.26  0.17  0.15 -0.  ]
-    [0] Const:	[ 0.66 -2.35  1.61  0.32 22.39  0.54  0.76  0.2   3.4  -0.  ]
     [0] Input: 	>
-    (14202,) (201,) (201,)
-    ()
     [0] Top: 	['go', 'come', 'get', 'see', 'leave', 'take', 'eat', 'start', 'be', 'make']
     [0] Score: 	[0.99, 0.01, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     [0] Pred: 	`>` ~~~: go
     
-    [1] Hidden:	[ 0.53 -0.93  0.6   0.74  0.75  0.59  0.53 -0.35  0.98  0.16]
-    [1] Const:	[ 0.62 -1.67  0.7   1.19  8.29  0.68  1.22 -0.54  2.28  0.31]
     [1] Input: 	go
-    (14202,) (201,) (201,)
-    ()
     [1] Top: 	['.', '!', 'away', 'ahead', 'down', 'wash', 'to', 'of', 'off', 'there']
     [1] Score: 	[0.93, 0.02, 0.01, 0.01, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     [1] Pred: 	`> go` ~~~: .
     
-    [2] Hidden:	[ 0.69 -0.55 -0.16 -0.    0.88  0.28 -0.54 -0.4   0.97  0.12]
-    [2] Const:	[ 0.85 -0.67 -0.16 -1.    9.29  0.29 -0.64 -0.76  2.04  0.97]
     [2] Input: 	.
-    (14202,) (201,) (201,)
-    ()
     [2] Top: 	['_', "''", '``', 'will', 'let', 'do', 'can', 'shall', 'they', 'tell']
     [2] Score: 	[1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     [2] Pred: 	`> go .` ~~~: _
     
-
-
-
-
 
     '> go . _'
 
@@ -2258,6 +2111,8 @@ Let's say our beam is of size 10:
 *Note: In order to promote longer phrases (actually penalize the shorter one, there's some weighting going on), a division by the length of the phrase raised to the power of the hyper-parameter `alpha` (`0.7` is a good value for this but is dataset specific).
 
 
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ```python
 alpha = 0.7
@@ -2419,6 +2274,8 @@ sample = np.random.randint(0, decode_input_train.shape[0])
 print(to_str(en_decode(strip_indexed(decode_input_train[sample]))))
 print(beam_search(fr_decode(strip_indexed(encode_input_train[sample])), alpha=0.7, width=20))
 ```
+</details>
+
 
     > did anyone see you come in here ?
     ---------------------------
@@ -2467,8 +2324,6 @@ print(beam_search(fr_decode(strip_indexed(encode_input_train[sample])), alpha=0.
     > did anybody front of them here ? _
     [0.252] 1.0 0.989 0.124 0.737 0.996 0.059 0.837 0.949 0.638)
 
-
-    /home/tecknoworks/~Envs/deep3.6/lib/python3.6/site-packages/ipykernel_launcher.py:65: RuntimeWarning: divide by zero encountered in log
 
 
 Above you can se the candidates generated by a beam-search with 20 candidates, that tried to translate the french sentence: 
