@@ -729,7 +729,7 @@ show_words(words)
 
 </details>
 
-![png](../assets/images/2020-01-13-Tutorial_on_Machine_Translation_files/2020-01-13-Tutorial_on_Machine_Translation_53_0.png)
+![png](../../../assets/images/2020-01-13-Tutorial_on_Machine_Translation_files/2020-01-13-Tutorial_on_Machine_Translation_53_0.png)
 
 
 A few experiments with word embeddings
@@ -769,7 +769,7 @@ plt.yticks(np.arange(len(words)), labels=words);
      ('snake', 'colorado'),
      ('microsoft', 'google')]
 
-![png](../assets/images/2020-01-13-Tutorial_on_Machine_Translation_files/2020-01-13-Tutorial_on_Machine_Translation_55_2.png)
+![png](../../../assets/images/2020-01-13-Tutorial_on_Machine_Translation_files/2020-01-13-Tutorial_on_Machine_Translation_55_2.png)
 
 
 A good measure for comparing two embeddings is by using the `cosine_similarity` metric. We use it above to compute a squared similarity matrix by comparing each word by the others. The highest values (max. is 1) represents words really similar. Close to 0 are words that have not relation, and close to -1 are words that should represent opposite concepts.
