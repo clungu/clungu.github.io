@@ -1,7 +1,16 @@
+---
+categories: 
+    - tutorial
+tags:
+    - nlp
+    - dataset
+    - romanian
+---
+
 
 # A Romanian text corpus
 
-![image.png](attachment:image.png)
+![image.png](https://www.channelone.com/wp-content/uploads/2015/03/bigstock-Pile-Of-Words-1896131-crop.jpg)
 
 As strange as it may seem I wasn't able to find a fully Romanian text corpus that I needed for one of my project. (there is [this](http://corola.racai.ro/) but didn't figure out if a full download was available). There's also a [romanian corpus of newspaper articles](https://web.eecs.umich.edu/~mihalcea/downloads.html#romanian) which you have to request access to and is only for research).  
 
@@ -24,7 +33,7 @@ Of course, English has Wikipedia derived datasets, and Wikipedia also has a Roma
 
 The first thing to do is download a Wikipedia dump. A single romanian language dump for 2016 is 1.5 archived and 85 GB decompressed. But if you look closely, you can download only the bit that you're interested in (in this case, the articles archive). Wikipedia also exposes a miriad other info as you can see bellow.
 
-![image.png](attachment:image.png)
+![image.png](../../assets/images/2020-01-16-Romanian_Wiki_Corpus_files/screenshot.png)
 
 So we only got the articles file.
 
@@ -102,7 +111,7 @@ strip_wiki_markup("rowiki-20160305-pages-articles.xml.bz2", "wiki_ro.txt")
 !ls -al wiki_ro.txt
 ```
 
-    -rw-rw-r-- 1 tecknoworks tecknoworks 454283813 ian 16 11:53 wiki_ro.txt
+    -rw-rw-r-- 1 cristi cristi 454283813 ian 16 11:53 wiki_ro.txt
 
 
 We can make a zip archive an call it a day
