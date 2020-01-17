@@ -36,24 +36,12 @@ So we only got the articles file.
 
 
 ```python
-!wget https://archive.org/download/rowiki-20160305/rowiki-20160305-pages-articles.xml.bz2
+!wget https://dumps.wikimedia.org/rowiki/20200101/rowiki-20200101-pages-articles.xml.bz2
 ```
 
-    --2020-01-16 10:26:46--  https://archive.org/download/rowiki-20160305/rowiki-20160305-pages-articles.xml.bz2
-    Resolving archive.org (archive.org)... 207.241.224.2
-    Connecting to archive.org (archive.org)|207.241.224.2|:443... connected.
-    HTTP request sent, awaiting response... 302 Found
-    Location: https://ia800204.us.archive.org/25/items/rowiki-20160305/rowiki-20160305-pages-articles.xml.bz2 [following]
-    --2020-01-16 10:26:50--  https://ia800204.us.archive.org/25/items/rowiki-20160305/rowiki-20160305-pages-articles.xml.bz2
-    Resolving ia800204.us.archive.org (ia800204.us.archive.org)... 207.241.230.24
-    Connecting to ia800204.us.archive.org (ia800204.us.archive.org)|207.241.230.24|:443... connected.
-    HTTP request sent, awaiting response... 200 OK
-    Length: 350721614 (334M) [application/octet-stream]
-    Saving to: ‘rowiki-20160305-pages-articles.xml.bz2’
+    rowiki-20200101-pag 100%[===================>] 334,47M  1,42MB/s    in 3m 44s  
     
-    rowiki-20160305-pag 100%[===================>] 334,47M  1,42MB/s    in 3m 44s  
-    
-    2020-01-16 10:30:36 (1,49 MB/s) - ‘rowiki-20160305-pages-articles.xml.bz2’ saved [350721614/350721614]
+    2020-01-16 10:30:36 (1,49 MB/s) - ‘rowiki-20200101-pages-articles.xml.bz2’ saved [350721614/350721614]
     
 
 
@@ -91,10 +79,12 @@ def strip_wiki_markup(wiki_dump_file_path, output_file_path):
         number_of_documents = len(wiki)
         for texts in tqdm(wiki.get_texts(), total=number_of_documents):
             article = ' '.join(texts)
+            #only keep articles that are at least 100 characters long
+            if len(one_line_article) < 100: continue  
             one_line_article = article.replace("\n", " ")
             f.write(one_line_article + "\n")
             
-strip_wiki_markup("rowiki-20160305-pages-articles.xml.bz2", "wiki_ro.txt")
+strip_wiki_markup("rowiki-20200101-pages-articles.xml.bz2", "wiki_2019_ro.txt")
 ```
 
 # Packaging up
@@ -104,14 +94,14 @@ strip_wiki_markup("rowiki-20160305-pages-articles.xml.bz2", "wiki_ro.txt")
 !ls -al wiki_ro.txt
 ```
 
-    -rw-rw-r-- 1 cristi cristi 454283813 ian 16 11:53 wiki_ro.txt
+    -rw-rw-r-- 1 cristi cristi 454283813 ian 16 11:53 wiki_2019_ro.txt
 
 
 We can make a zip archive an call it a day
 
 
 ```python
-!zip -9 wiki_ro.zip wiki_ro.txt 
+!zip -9 wiki_2019_ro.zip wiki_2019_ro.txt 
 ```
 
-I've hosted the file for you and you can downloaded it [here](https://drive.google.com/file/d/1Do2qN55N--NVtEj_OMxJwLzoB75sB2yR/view?usp=sharing) if you need it. You're welcomed!
+I've hosted the file for you and you can downloaded it [here](https://drive.google.com/open?id=1hU7avOYRMsLqh2OyMqa2pfyPW6MJ0BkB) if you need it. You're welcomed!
