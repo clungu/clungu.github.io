@@ -1,3 +1,10 @@
+---
+categories: 
+    - tutorial
+tags:
+    - fundamental
+    - loss
+---
 
 Cross entropy can be used to define a loss function in machine learning and is usualy used when training a classification problem. 
 
@@ -9,18 +16,11 @@ This post tries to implement it in pure python to better understand it's inner w
 
 
 ```
-try:
-    %tensorflow_version 2.x
-except:
-    pass
-
 import numpy as np
 import tensorflow as tf
 import torch 
 from matplotlib import pyplot as plt
 ```
-
-    TensorFlow 2.x selected.
 
 
 The crossentropy function is defined as:
@@ -30,7 +30,7 @@ $$Loss = -\sum_{i}{target_i * \log(prediction_i)}$$
 This seems simple enough so let's implement this!
 
 
-```
+```python
 def categorical_crossentropy(y_true, y_pred):
     # - SUM(target * log(pred))
     return -np.sum(y_true * np.log(y_pred))
@@ -46,7 +46,7 @@ categorical_crossentropy([0, 1], [0.5, 0.5])
 
 
 
-```
+```python
 categorical_crossentropy([0, 1], [0.5, 0.5])
 ```
 
@@ -62,7 +62,7 @@ I don't trust my code so I need to certify that my implementation is working cor
 The first one that comes to mind is the `sklearn` one. It is not (confusingly) called `crossentropy` but goes by its other name: `log_loss`
 
 
-```
+```python
 from sklearn.metrics import log_loss
 
 log_loss([0, 1], [0.5, 0.5])
@@ -78,7 +78,7 @@ log_loss([0, 1], [0.5, 0.5])
 Ok! The results matched on both (and also match my analitical computation). Time for a few more tests to make sure we're not missing something with this happy flow.
 
 
-```
+```python
 def certify():
     tests = [
             [[0, 0, 1], [0.3, 0.7, 0.0]],
@@ -124,7 +124,7 @@ certify()
 Hmm.. it crashes on the first example..
 
 
-```
+```python
 categorical_crossentropy([0, 0, 1], [0.3, 0.7, 0.0]), log_loss([0, 0, 1], [0.3, 0.7, 0.0])
 ```
 
@@ -150,7 +150,7 @@ The clipping is performed, employing a sufficiently small `epsilon` value (`skle
 We can use the above or make use of `np.clip` which will implement the exact formula above, but faster (they claim).
 
 
-```
+```python
 def _clip_for_log(y_pred, eps=1e-15): 
     # y_pred = np.maximum(eps, np.minimum((1-eps), y_pred)) # equivalent
     y_pred = np.clip(y_pred, eps, 1-eps)
@@ -170,7 +170,7 @@ _clip_for_log(1), _clip_for_log(np.array([1, 1, 0, 1, 0, 0.5, 0.4, 0.3]))
 The improved `crossentropy` function is now:
 
 
-```
+```python
 def categorical_crossentropy(y_true, y_pred):
     y_pred = _clip_for_log(y_pred)
     return -np.sum(y_true * np.log(y_pred))
@@ -186,7 +186,7 @@ categorical_crossentropy([0, 0, 1], [0.3, 0.7, 0.0])
 
 
 
-```
+```python
 certify()
 ```
 
@@ -213,7 +213,7 @@ certify()
 Trying to run the test again shows that (even if the code doesn't crashes anymore) we are getting different results:
 
 
-```
+```python
 categorical_crossentropy([0, 0, 1], [0.3, 0.7, 0.0]), log_loss([0, 0, 1], [0.3, 0.7, 0.0])
 ```
 
@@ -248,7 +248,7 @@ where each list is a batch of predictions. So the log_loss is actually used as a
 Explicitly, we have:
 
 
-```
+```python
 (log_loss([0], [0.3], labels=[0, 1]) +
  log_loss([0], [0.7], labels=[0, 1]) + 
  log_loss([1], [0.0], labels=[0, 1])) / 3
@@ -264,7 +264,7 @@ Explicitly, we have:
 This means that we need to make the `sklearn` `log_loss` think that we're not having batches but a single prediction to evaluate (so instead of shape `(3,)` we need a `(1, 3)`).
 
 
-```
+```python
 categorical_crossentropy([0, 0, 1], [0.3, 0.7, 0.0]), log_loss([[0, 0, 1]], [[0.3, 0.7, 0.0]])
 ```
 
@@ -276,7 +276,7 @@ categorical_crossentropy([0, 0, 1], [0.3, 0.7, 0.0]), log_loss([[0, 0, 1]], [[0.
 
 
 
-```
+```python
 def certify():
     tests = [
             [[0, 0, 1], [0.3, 0.7, 0.0]],
@@ -299,7 +299,7 @@ certify()
 Does this mean that our implementation does not work on batches?
 
 
-```
+```python
 categorical_crossentropy([[0, 0, 1], [0, 1, 0]], [[0.3, 0.7, 0.0], [0.5, 0.2, 0.3]]), log_loss([[0, 0, 1], [0, 1, 0]], [[0.3, 0.7, 0.0], [0.5, 0.2, 0.3]])
 ```
 
@@ -313,7 +313,7 @@ categorical_crossentropy([[0, 0, 1], [0, 1, 0]], [[0.3, 0.7, 0.0], [0.5, 0.2, 0.
 The results of our computatin and `sklearn`'s `log_loss` with batches is different..
 
 
-```
+```python
 categorical_crossentropy([[0, 1, 0]], [[0.5, 0.2, 0.3]]) + categorical_crossentropy([0, 0, 1], [0.3, 0.7, 0.0])
 ```
 
@@ -327,7 +327,7 @@ categorical_crossentropy([[0, 1, 0]], [[0.5, 0.2, 0.3]]) + categorical_crossentr
 It works but not correctly. Our implementation does a `sum` over all errors in a batch but we need to return a mean, so we need to divide it by the number of examples in the batch (the batch_size). As such, the new implementation is:
 
 
-```
+```python
 def ensure_ndarray(value):
     if not isinstance(value, np.ndarray):
         value = np.asarray(value)
@@ -361,7 +361,7 @@ categorical_crossentropy([[0, 0, 1], [0, 1, 0]], [[0.3, 0.7, 0.0], [0.5, 0.2, 0.
 
 
 
-```
+```python
 certify()
 ```
 
@@ -391,7 +391,7 @@ Hmm... We're back to square one. The first example doesn't fit anymore because w
 We need to compute the `batch_size` a little more carefully (considering we have a batch computation if the inputs have at least 2 dimensions, else if only a single dimensions is used, the inputs are a single prediction)
 
 
-```
+```python
 def ensure_ndarray(value):
     if not isinstance(value, np.ndarray):
         value = np.asarray(value)
@@ -462,12 +462,8 @@ For my taste and implementation I'm going to assume that we always compute the `
 # Keras / Tensorflow crossentropy
 
 
-```
+```python
 from tensorflow.keras.metrics import categorical_crossentropy as keras_cat_xent
-```
-
-
-```
 keras_cat_xent([0, 1], [0.5, 0.5]).numpy()
 ```
 
@@ -479,7 +475,7 @@ keras_cat_xent([0, 1], [0.5, 0.5]).numpy()
 
 
 
-```
+```python
 targets = [[0, 0, 1], [0, 1, 0]]
 predics = [[0.3, 0.7, 0.0], [0.5, 0.2, 0.3]]
 categorical_crossentropy(targets, predics), keras_cat_xent(targets, predics).numpy()
@@ -504,7 +500,7 @@ This is because the `K.categorical_crossentropy` function also has a `axis=-1` p
 We can demonstrate this by showing that calling the `K.categorical_crossentropy` function individually for each sample in a batch with size 1 will lead the the same 2 values as above.
 
 
-```
+```python
 keras_cat_xent([[0, 0, 1]], [[0.3, 0.7, 0.0]]), keras_cat_xent([[0, 1, 0]], [[0.5, 0.2, 0.3]])
 ```
 
@@ -521,7 +517,7 @@ Now for the last question ("how can we make our previous numbers match" / "why d
 Recall that on the first sample, our function returned `34.538`, the same for `log_loss` whereas the keras version returned `16.118`.. 
 
 
-```
+```python
 targets = [[0, 0, 1]]
 predics = [[0.3, 0.7, 0.0]]
 categorical_crossentropy(targets, predics), log_loss(targets, predics), keras_cat_xent(targets, predics).numpy().sum()
@@ -537,7 +533,7 @@ categorical_crossentropy(targets, predics), log_loss(targets, predics), keras_ca
 After reading the source code of the keras implementation and couldn't find any difference with our implementation, I decided to recompute by hand their answer, when I noticed something strange.
 
 
-```
+```python
 TF_EPSILON = 1e-7
 SK_EPSILON = 1e-15
 
@@ -583,7 +579,7 @@ On the TensorFlow `keras` port you can get:
 What about the batching dilema (the one where `sklearn` and ours diverged?)
 
 
-```
+```python
 keras_cat_xent([0, 0, 1], [0.3, 0.7, 0.0])
 ```
 
@@ -623,18 +619,6 @@ This means that while we are **required to scale** the `lables` we are **require
 # PyTorch crossentropy
 
 
-```
-from torch import nn
-nn.CrossEntropyLoss()(torch.tensor([[0.5, 0.5]]))
-```
-
-
-
-
-    CrossEntropyLoss()
-
-
-
 [NLLLoss](https://pytorch.org/docs/master/nn.html#nllloss) is the negative log likelihood implementation:
 * uses the format `(y_pred, y_true)` instead of the common `(y_true, y_pred)` found in `sklearn`, `keras`, `tensorflow`
 * `y_pred` is expected to have log values (i.e. `y_pred == log(orig_y_pred)`
@@ -647,7 +631,7 @@ nn.CrossEntropyLoss()(torch.tensor([[0.5, 0.5]]))
 **Obervation**: Because the function **requires** the `y_pred` values to be in `log` format that means that is up to the called to do the `clipping` with whatever values he wishes to use.
 
 
-```
+```python
 def f(values):
     return torch.tensor(values).float()
 
@@ -668,7 +652,7 @@ nn.NLLLoss()(f([np.log([0.5, 0.5])]), l([1]))
 So let's respect these **documented** assumptions and try to check that we can correctly match the results of the `sklearn.metrics.log_loss` and `torch.nn.NLLLoss`
 
 
-```
+```python
 orig_targets = [[0, 0, 1], [0, 1, 0]]
 orig_predics = [[0.3, 0.7, 0.0], [0.5, 0.2, 0.3]]
 
@@ -693,7 +677,7 @@ Notice that by default, calling `.float()` on a PyTorch tensor yields a `float32
 Let's try to make the tensor a `float64` value and notice what happens 
 
 
-```
+```python
 def f(values):
     return torch.tensor(values).type(torch.DoubleTensor)
 
@@ -725,7 +709,7 @@ This means that either we need to invert the softmax before calling it, or we ap
 It's easyer to do the second option.
 
 
-```
+```python
 nn.CrossEntropyLoss()(f(orig_predics), l(targets)), log_loss(orig_targets, softmax(orig_predics))
 ```
 
@@ -752,9 +736,3 @@ My **main** takeawys are these:
 
 A realy nice article about the cross-entropy loss can also be found [here](https://gombru.github.io/2018/05/23/cross_entropy_loss/)
 
-
-
-```
-
-
-```
