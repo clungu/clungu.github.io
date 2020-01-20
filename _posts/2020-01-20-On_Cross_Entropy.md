@@ -4,9 +4,10 @@ categories:
 tags:
     - fundamental
     - loss
+mathjax: true
 ---
 
-Cross entropy can be used to define a loss function in machine learning and is usualy used when training a classification problem. 
+Cross entropy can be used to define a loss function in machine learning and is usually used when training a classification problem. 
 
 > In information theory, the cross entropy between two probability distributions $p$ and $q$ over the same underlying set of events measures the average number of bits needed to identify an event drawn from the set if a coding scheme used for the set is optimized for an estimated probability distribution $q$, rather than the true distribution $p$. ([source](https://en.wikipedia.org/wiki/Cross_entropy))
 
@@ -45,18 +46,6 @@ categorical_crossentropy([0, 1], [0.5, 0.5])
 
 
 
-
-```python
-categorical_crossentropy([0, 1], [0.5, 0.5])
-```
-
-
-
-
-    0.6931471805599453
-
-
-
 I don't trust my code so I need to certify that my implementation is working correctly by comparing it to known and proven implementations. 
 
 The first one that comes to mind is the `sklearn` one. It is not (confusingly) called `crossentropy` but goes by its other name: `log_loss`
@@ -75,7 +64,7 @@ log_loss([0, 1], [0.5, 0.5])
 
 
 
-Ok! The results matched on both (and also match my analitical computation). Time for a few more tests to make sure we're not missing something with this happy flow.
+Ok! The results matched on both (and also match my analytical computation). Time for a few more tests to make sure we're not missing something with this happy flow.
 
 
 ```python
@@ -243,7 +232,7 @@ log_loss([
 ])
 ``` 
 
-where each list is a batch of predictions. So the log_loss is actually used as a `binary_crossentropy` on each pair of (target, prediction) and the results (equal to the number of values in the lists) is averaged togheter. 
+where each list is a batch of predictions. So the log_loss is actually used as a `binary_crossentropy` on each pair of (target, prediction) and the results (equal to the number of values in the lists) is averaged together. 
 
 Explicitly, we have:
 
@@ -310,7 +299,7 @@ categorical_crossentropy([[0, 0, 1], [0, 1, 0]], [[0.3, 0.7, 0.0], [0.5, 0.2, 0.
 
 
 
-The results of our computatin and `sklearn`'s `log_loss` with batches is different..
+The results of our computation and `sklearn`'s `log_loss` with batches is different..
 
 
 ```python
@@ -437,7 +426,7 @@ This makes the behavior on the:
 
 This is actually the behavior of the `sklearn` implementation. **It always assumes you send in batches**. It may make sense, since the vast majority of the time you want to use this function is in a stochastic gradient descent (batch based) training loop.
 
-Unfortunately this still adds some uncertainties (or heterogenous behaviour) as the pairs above `[(0, 0.3), (0, 0.7), (1, 0.0)]` cannot be plainly computed anymore with the initial formula:
+Unfortunately this still adds some uncertainties (or heterogeneous behavior) as the pairs above `[(0, 0.3), (0, 0.7), (1, 0.0)]` cannot be plainly computed anymore with the initial formula:
 $$Loss = -\sum_{i}{target_i*\log(prediction_i)}$$ since this formulation is valid for a one-hot-encoded `target` variable where there is exactly one value of `1`. In the pair `(0, 0.3)` there is no 1 value in the target, so using this formula yields the result `0` (and it always is `0` for targets equal to `0`). This basically leads to the `Loss` value only represent the errors of the `positive` (`target == 1`) samples in the batch, because these are the only ones in which (the single) product is not `0`.
 
 ## Binary Crossentropy
@@ -449,13 +438,13 @@ The `sklearn` implementation solves this case by assuming that if your input dim
 This redefinition can be translated as:
 `the correct output is label 0 but the prediction for label 1 is 0.3. So basically I want to say that I predict 0 because I predict a really low label 1 value.`. 
 
-Generically, the pairs $(label, pred)$ where $label \in \{0,1\}$ and $pred \in (0, 1]$ are equivaleted to `target = [1 - label, label]` and `prediction = [1 - pred, pred]`. Now we can compute the regular crossentropy formula:
+Generically, the pairs $(label, pred)$ where $label \in \{0,1\}$ and $pred \in (0, 1]$ are equivalenced to `target = [1 - label, label]` and `prediction = [1 - pred, pred]`. Now we can compute the regular crossentropy formula:
 $$ Loss = - \sum_{i}{target_i} *\log(prediction_i) $$
 $$ Loss = - [( 1 - label) * \log(1 - pred) + label * \log(pred)]$$ 
 
 The last formulation is called **binary crossentropy**. 
 
-So in essence, `sklearn.log_loss` chooses to assume that we allways have batches in the input, and when in doubt (single dimension inputs), doesn't compute the `categorical crossentropy` but the `binary crossentropy`. 
+So in essence, `sklearn.log_loss` chooses to assume that we always have batches in the input, and when in doubt (single dimension inputs), doesn't compute the `categorical crossentropy` but the `binary crossentropy`. 
 
 For my taste and implementation I'm going to assume that we always compute the `categorical crossentropy` and relax the batching assumption as the function is called `categroical..`. I always do `categorical`.
 
@@ -488,7 +477,7 @@ categorical_crossentropy(targets, predics), keras_cat_xent(targets, predics).num
 
 
 
-Ok, using the tensorflow / keras version leads to the following 3 questions:
+OK, using the tensorflow / keras version leads to the following 3 questions:
 * why do we get 2 values?
 * what do these values mean?
 * how can make our numbers match?
@@ -549,12 +538,12 @@ SK_EPSILON = 1e-15
 
 Tensorflow / Keras uses a different epsilon! 
 
-We were previously using `1e-15` but they choose `1e-7`. It is a bit surprinsing that the resulting errors are that large, while the change between them is rather small. 
+We were previously using `1e-15` but they choose `1e-7`. It is a bit surprising that the resulting errors are that large, while the change between them is rather small. 
 
-Sure, mathematically it make sense that the log of a `10^8` smaller value should result in a bigger error, but from an API point of view, predicting either `1/10^7` or `1/10^15` while the correct answer is `1`, should give pretty close errors. These two predictions are after all synonimus to `pure wrong`. 
+Sure, mathematically it make sense that the log of a `10^8` smaller value should result in a bigger error, but from an API point of view, predicting either `1/10^7` or `1/10^15` while the correct answer is `1`, should give pretty close errors. These two predictions are after all synonymous to `pure wrong`. 
 
 
-Now, for the question of "why we have 2 values instead of a single one per on a batch_size == 2?" the answer is both suprising and confusing..
+Now, for the question of "why we have 2 values instead of a single one per on a batch_size == 2?" the answer is both surprising and confusing..
 
 * [`tensorflow.keras.metrics.categorical_crossentropy`](https://github.com/tensorflow/tensorflow/blob/r2.1/tensorflow/python/keras/backend.py#L4443-L4504) is a `function` and only computes the per-sample result (without doing a mean over the results).
 
@@ -562,12 +551,12 @@ Now, for the question of "why we have 2 values instead of a single one per on a 
 
 * even more surprising, the official [`keras.io`](www.keras.io) implementation of the [`keras.losses.CategoricalCrossentropy`](https://github.com/keras-team/keras/blob/master/keras/losses.py) is returning the per-batch result but defaults to reducing it by doing the `losses_utils.Reduction.SUM_OVER_BATCH_SIZE`, so not a mean, but a **sum**. 
 
-* Should I tell you that there's also a [`keras.**metrics**.CategoricalCrossentropy`](https://github.com/keras-team/keras/blob/7a39b6c62d43c25472b2c2476bd2a8983ae4f682/keras/metrics.py#L857) **`class`** that mirros the Tensorflow implementation (it does the mean)? Presumably you'd use the first version for the `loss=` part and the second one in the `metrics=` part..
+* Should I tell you that there's also a [`keras.**metrics**.CategoricalCrossentropy`](https://github.com/keras-team/keras/blob/7a39b6c62d43c25472b2c2476bd2a8983ae4f682/keras/metrics.py#L857) **`class`** that mirrors the Tensorflow implementation (it does the mean)? Presumably you'd use the first version for the `loss=` part and the second one in the `metrics=` part..
 
 * and there is also the [`keras.losses.categorical_crossentropy`](https://github.com/keras-team/keras/blob/7a39b6c62d43c25472b2c2476bd2a8983ae4f682/keras/backend/tensorflow_backend.py#L3360) `function` which redirects to the Tensorflow `function` (the first point) which returns the per-sample crossentropy.. 
 
 
-In all, using the vanila `keras.io` you can get (depending on what you use):
+In all, using the vanilla `keras.io` you can get (depending on what you use):
 * per-batch with SUM reduction
 * per-batch with MEAN reduction
 * per-sample 
@@ -576,7 +565,7 @@ On the TensorFlow `keras` port you can get:
 * per-batch with MEAN reduction
 * per-sample
 
-What about the batching dilema (the one where `sklearn` and ours diverged?)
+What about the batching dilemma (the one where `sklearn` and ours diverged?)
 
 
 ```python
@@ -596,7 +585,7 @@ One last note about Tensorflow / Keras. The `categroical_crossentropy` has also 
 
     lables = [1, 0, 0, 1]
 
-where the network is expected to produce results for mutiple classes at the same time. This is interpreted as if each value of the lable represents a `binary_crossentropy` evaluation.
+where the network is expected to produce results for multiple classes at the same time. This is interpreted as if each value of the label represents a `binary_crossentropy` evaluation.
 
 Setting `from_logits=True` redirects you to using the [tensorflow.nn.softmax_cross_entropy_with_logits_v2](https://github.com/tensorflow/tensorflow/blob/e5bf8de410005de06a7ff5393fafdf832ef1d4ad/tensorflow/python/ops/nn_ops.py#L3108) function. This function has a few caveats to understand:
 
@@ -605,7 +594,7 @@ Setting `from_logits=True` redirects you to using the [tensorflow.nn.softmax_cro
   a valid probability distribution.  If they are not, the computation of the
   gradient will be incorrect.
 
-This means that even I've stated you could have `lables=[1, 0, 0, 1]` this function actually requires that you send it something like `lables = [0.5, 0, 0, 0.5]` for it to be a valid probability distribution. You can convert `[1, 0, 0, 1]` to `[0.5, 0, 0, 0.5]` by passing it through a `softmax` or through a simples scalling method:
+This means that even I've stated you could have `labels=[1, 0, 0, 1]` this function actually requires that you send it something like `labels = [0.5, 0, 0, 0.5]` for it to be a valid probability distribution. You can convert `[1, 0, 0, 1]` to `[0.5, 0, 0, 0.5]` by passing it through a `softmax` or through a simples scaling method:
 
     def scale(values):
         return values / np.sum(values)
@@ -614,7 +603,7 @@ This means that even I've stated you could have `lables=[1, 0, 0, 1]` this funct
   on `logits` internally for efficiency.  Do not call this op with the
   output of `softmax`, as it will produce incorrect results.
 
-This means that while we are **required to scale** the `lables` we are **required NOT to scale** the `logits` (i.e. predictions) 
+This means that while we are **required to scale** the `labels` we are **required NOT to scale** the `logits` (i.e. predictions) 
 
 # PyTorch crossentropy
 
@@ -628,7 +617,7 @@ This means that while we are **required to scale** the `lables` we are **require
     * `torch.Float` for the `y_pred`
 
 
-**Obervation**: Because the function **requires** the `y_pred` values to be in `log` format that means that is up to the called to do the `clipping` with whatever values he wishes to use.
+**Observation**: Because the function **requires** the `y_pred` values to be in `log` format that means that is up to the caller to do the `clipping` with whatever values he wishes to use.
 
 
 ```python
@@ -672,7 +661,7 @@ nn.NLLLoss()(f(predics), l(targets)).numpy(), log_loss(orig_targets, orig_predic
 
 
 
-Notice that by default, calling `.float()` on a PyTorch tensor yields a `float32` values wich leads to a reduction in precision of the results.
+Notice that by default, calling `.float()` on a PyTorch tensor yields a `float32` values which leads to a reduction in precision of the results.
 
 Let's try to make the tensor a `float64` value and notice what happens 
 
@@ -706,7 +695,7 @@ There is also the [CrossEntropyLoss](https://pytorch.org/docs/master/nn.html?hig
 
 This means that either we need to invert the softmax before calling it, or we apply the softmax on the `sklearn` one if we wish to compare the results.
 
-It's easyer to do the second option.
+It's easier to do the second option.
 
 
 ```python
@@ -727,12 +716,13 @@ It worked!!
 * I wasn't expected things to be so nuanced when I started writing this!
 * `keras` in bit of a mess. There are multiple confusing ways to compute the crossentropy.
 * small details (the epsilon) matter
-* if not carefull we may sometime get to see the results of a `binary_crossentropy` rather than a `categorical_crossentropy`
-* PyTorch makes you to explicitly do stuff (like the applying the `log`, the `clipping` or the `softmax`) in order to make you aware of the subtle details that if made implicit (like `keras` and `sklearn` supperbly do) might make you shoot yourself in the foot (without even noticing it)
+* if not careful we may sometime get to see the results of a `binary_crossentropy` rather than a `categorical_crossentropy`
+* PyTorch makes you to explicitly do stuff (like the applying the `log`, the `clipping` or the `softmax`) in order to make you aware of the subtle details that if made implicit (like `keras` and `sklearn` superbly do) might make you shoot yourself in the foot (without even noticing it)
 
-My **main** takeawys are these:
-* implement everything yourself (or read the sourcecode). I'm affraid of how many details I've missed until now in other more convoluted (get it?!) layers / concepts.
+A relay nice article about the cross-entropy loss can also be found [here](https://gombru.github.io/2018/05/23/cross_entropy_loss/)
+
+### My **main** takeaways are these:
+* implement everything yourself (or read the source-code). I'm afraid of how many details I've missed until now in other more convoluted (get it?!) layers / concepts.
 * [details matter](https://www.curs-ml.com/)
 
-A realy nice article about the cross-entropy loss can also be found [here](https://gombru.github.io/2018/05/23/cross_entropy_loss/)
 
