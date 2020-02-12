@@ -1,11 +1,3 @@
----
-categories: 
-	- beginner
-tags:
-    - tools
-    - frameworks
-    - talks
----
 
 This is an **opinionated** presentation where I talk about what are the beginner tools that you need to know, when you want to start doing machine learning.
 
