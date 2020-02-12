@@ -1,7 +1,6 @@
 ---
 categories: 
 	- beginner
-    - tutorial
 tags:
     - tools
     - frameworks
