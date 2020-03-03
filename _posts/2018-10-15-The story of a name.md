@@ -1699,10 +1699,11 @@ function formatParams( params ){
 function generate_name(){
     $.ajax({
         type: "GET",
-        url: "https://namer.azurewebsites.net/api/name" + formatParams({
-           name: $("#pattern").val(),
-           code: "044enuQwRePzoKxj3DrNNqgtZB8NTsXSpppi1vm/Ca2kSY8WsTkj7w=="
-        }),
+        url: "https://namer.azurewebsites.net/api/name" + "?" + "name=" + encodeURIComponent($("#pattern").val()) + "code=044enuQwRePzoKxj3DrNNqgtZB8NTsXSpppi1vm/Ca2kSY8WsTkj7w==",
+        // url: "https://namer.azurewebsites.net/api/name" + formatParams({
+        //    name: $("#pattern").val(),
+        //    code: "044enuQwRePzoKxj3DrNNqgtZB8NTsXSpppi1vm/Ca2kSY8WsTkj7w=="
+        // }),
         crossDomain: true,
         contentType: "application/json",
         success: function(data, textStatus, jqXHR){
