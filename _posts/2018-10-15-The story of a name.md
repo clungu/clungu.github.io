@@ -1687,17 +1687,24 @@ function generate_name(){
 -->
 
 <script type="text/javascript">
+function formatParams( params ){
+  return "?" + Object
+        .keys(params)
+        .map(function(key){
+          return key+"="+encodeURIComponent(params[key])
+        })
+        .join("&")
+}
+
 function generate_name(){
     $.ajax({
         type: "GET",
-        url: "https://namer.azurewebsites.net/api/name",
-        crossDomain: true,
-        contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify({
+        url: "https://namer.azurewebsites.net/api/name" + formatParams({
            name: $("#pattern").val(),
            code: "044enuQwRePzoKxj3DrNNqgtZB8NTsXSpppi1vm/Ca2kSY8WsTkj7w=="
         }),
+        crossDomain: true,
+        contentType: "application/json",
         success: function(data, textStatus, jqXHR){
            $("#generated-name").text(data);
         },
