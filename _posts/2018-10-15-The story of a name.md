@@ -1661,7 +1661,7 @@ If this name wins, and you'll see a billion dollar company with this name in the
 This is the age of ML.
 
 # Interactive demo 
-
+<!--
 <script type="text/javascript">
 function generate_name(){
     $.ajax({
@@ -1684,6 +1684,31 @@ function generate_name(){
     });
 }
 </script>
+-->
+
+<script type="text/javascript">
+function generate_name(){
+    $.ajax({
+        type: "GET",
+        url: "https://namer.azurewebsites.net/api/name",
+        crossDomain: true,
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+           name: $("#pattern").val(),
+           code: "044enuQwRePzoKxj3DrNNqgtZB8NTsXSpppi1vm/Ca2kSY8WsTkj7w=="
+        }),
+        success: function(data, textStatus, jqXHR){
+           $("#generated-name").text(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+           $("#generated-name").text(textStatus);
+        },
+    });
+}
+</script>
+<!-- https://namer.azurewebsites.net/api/name?name=Gu..&code=044enuQwRePzoKxj3DrNNqgtZB8NTsXSpppi1vm/Ca2kSY8WsTkj7w== -->
+
 <input id="pattern" type="text" value="Name.."/>
 <button onclick="generate_name()">Generate</button>
 
