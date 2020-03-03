@@ -24,6 +24,44 @@ With this knowledge in hand I've set out to conquer the challenge!
 
 **I'm going to build an ML system that would generate the future name for our company!**
 
+# Result
+
+Before diving too much into how I've solved this, see it first in action bellow!
+
+You can specify a preudo-regex:
+- `.` is the wild-char (means any char can fill that place)
+- `|` means the end of a name
+- any other char you put in will be enforced on the result
+
+eg.: `Co..|` may result in `Cory`
+
+<script type="text/javascript">
+function generate_name(){
+    $.ajax({
+        type: "GET",
+        url: "https://namer.azurewebsites.net/api/name" + "?" + "name=" + encodeURIComponent($("#pattern").val()) + "&code=044enuQwRePzoKxj3DrNNqgtZB8NTsXSpppi1vm/Ca2kSY8WsTkj7w==",
+        crossDomain: true,
+        contentType: "application/json",
+        success: function(data, textStatus, jqXHR){
+           $("#generated-name").text(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+           $("#generated-name").text(textStatus);
+        },
+    });
+}
+</script>
+
+
+<input id="pattern" type="text" value="Name...."/>
+<button onclick="generate_name()">Generate</button>
+
+<div id="generated-name">
+UNKOWN
+</div>
+
+# Solution 
+
 ## Problem analysis
 
 The above formulation needs a few clarifications (added by me) that would make the problem more specific:
@@ -1660,7 +1698,7 @@ If this name wins, and you'll see a billion dollar company with this name in the
 
 This is the age of ML.
 
-# Interactive demo 
+<!-- # Interactive demo  -->
 <!--
 <script type="text/javascript">
 function generate_name(){
@@ -1684,44 +1722,6 @@ function generate_name(){
     });
 }
 </script>
--->
-
-<script type="text/javascript">
-function formatParams( params ){
-  return "?" + Object
-        .keys(params)
-        .map(function(key){
-          return key+"="+encodeURIComponent(params[key])
-        })
-        .join("&")
-}
-
-function generate_name(){
-    $.ajax({
-        type: "GET",
-        url: "https://namer.azurewebsites.net/api/name" + "?" + "name=" + encodeURIComponent($("#pattern").val()) + "&code=044enuQwRePzoKxj3DrNNqgtZB8NTsXSpppi1vm/Ca2kSY8WsTkj7w==",
-        crossDomain: true,
-        contentType: "application/json",
-        success: function(data, textStatus, jqXHR){
-           $("#generated-name").text(data);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-           $("#generated-name").text(textStatus);
-        },
-    });
-}
-</script>
-
-
-<!-- 
-        // url: "https://namer.azurewebsites.net/api/name" + formatParams({
-        //    name: $("#pattern").val(),
-        //    code: "044enuQwRePzoKxj3DrNNqgtZB8NTsXSpppi1vm/Ca2kSY8WsTkj7w=="
-        // }),
-
-  https://namer.azurewebsites.net/api/name?name=Gu..&code=044enuQwRePzoKxj3DrNNqgtZB8NTsXSpppi1vm/Ca2kSY8WsTkj7w== 
-
--->
 
 <input id="pattern" type="text" value="Name.."/>
 <button onclick="generate_name()">Generate</button>
@@ -1729,3 +1729,5 @@ function generate_name(){
 <div id="generated-name">
 UNKOWN
 </div>
+-->
+
