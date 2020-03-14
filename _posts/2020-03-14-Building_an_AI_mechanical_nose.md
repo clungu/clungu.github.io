@@ -45,7 +45,7 @@ To be more specific, can we distinguish between these objects:
 <img src="https://images.theconversation.com/files/126820/original/image-20160615-14016-njqw65.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip" alt="Drawing" style="float:left; width: 300px;"/>
 
 
-<h1 style="float:none"/>
+<h1 style="clear:left"/>
 
 # Validating assumptions before the experiment
 
@@ -150,7 +150,7 @@ If you'd be presented with the charts bellow, would you conclude that the readin
 
 <img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/ice-cream.png" alt="Drawing" style="float:left; width: 300px;"/>
 
-
+<div style="clear:left"/>
 
 We think that (for anyone able to interpret a boxplot) is easy to see that there are sensors with distinct shapes, specific to only one category. The only question that we need to be able to solve now, with machine learning, is finding out *what pattern of sensor readings is associated with each category*.
 
