@@ -45,7 +45,7 @@ To be more specific, can we distinguish between these objects:
 <img src="https://images.theconversation.com/files/126820/original/image-20160615-14016-njqw65.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip" alt="Drawing" style="float:left; width: 300px;"/>
 
 
-
+<h1 style="float:none"/>
 
 # Validating assumptions before the experiment
 
