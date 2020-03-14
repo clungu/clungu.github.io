@@ -1,10 +1,10 @@
 
 # We work with cool projects
 
-Here at [Tecknoworks](..) we deal with a lot of interesting projects, but more than the projects themselves we also get to work with some cool pieces of equipment. One example of such equipment is the [Breathomix](https://www.breathomix.com/) [eNose](https://www.breathomix.com/spironose-2/) device.
+One of the companies that I collaboratw with (i.e. [Tecknoworks](www.tecknoworks.com)) deals with a lot of interesting projects, but besides the projects themselves, there's also a nice mix off cool pieces of equipment. One example of such equipment is the [Breathomix](https://www.breathomix.com/) [eNose](https://www.breathomix.com/spironose-2/) device.
 
 
-<img src="attachment:image.png" alt="Drawing" style="width: 300px;"/>
+<img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/e_nose.png" alt="Drawing" style="width: 300px;"/>
 
 > This device analyzes the mixture of molecules in exhaled breath in real-time based on advanced signal processing and an extensive online reference database, infused with AI.
 
@@ -12,7 +12,7 @@ Here at [Tecknoworks](..) we deal with a lot of interesting projects, but more t
 
 The device itself is quite interesting to interact with but since it's main purpose was to be used in medical diagnosis of various pulmonary diseases, you can't do much with it, except for breathing into it. 
 
-<img src="./_data/Screenshot 2020-03-09 at 10.31.30.png" alt="Drawing" style="width: 500px;"/>
+<img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/Screenshot_2020-03-09_at_10.31.30.png" alt="Drawing" style="width: 500px;"/>
 
 ..or can you?
 
@@ -98,7 +98,7 @@ In addition to the three categroies above we've added a forth one, which was a c
 
 ## What a measurement looks like..
 
-<img src="./_data/Screenshot 2020-03-05 at 13.57.59.png" alt="Drawing" style="width: 700px;"/>
+<img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/Screenshot_2020-03-05_at_13.57.59.png" alt="Drawing" style="width: 700px;"/>
 
 In the figure above you can see how the system reacts when someone breathese multiple times into it. While the peaks are quite clear in their meaning, the tail end of each spike is a period of `decalibration` where chemicals aren't actually detected, but the sensors, being `saturated`, still send detection signals untile they level off. 
 
@@ -134,11 +134,11 @@ What we wanted to (literally) see was how obvious (for a human) it would be to d
 
 If you'd be presented with the charts bellow, would you conclude that the readings of the sensors in each case shows that the categories are separable?
 
-<img src="./_data/coffee.png" alt="Drawing" style="float:left; width: 300px;"/>
+<img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/coffee.png" alt="Drawing" style="float:left; width: 300px;"/>
 
-<img src="./_data/tea.png" alt="Drawing" style="float:left; width: 300px;"/>
+<img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/tea.png" alt="Drawing" style="float:left; width: 300px;"/>
 
-<img src="./_data/ice-cream.png" alt="Drawing" style="float:left; width: 300px;"/>
+<img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/ice-cream.png" alt="Drawing" style="float:left; width: 300px;"/>
 
 We think that (for anyone able to interpret a boxplot) is easy to see that there are sensors with distinct shapes, specific to only one category. The only question that we need to be able to solve now, with machine learning, is finding out *what pattern of sensor readings is associated with each category*.
 
@@ -155,19 +155,19 @@ we've gone with the data scientist's way of deduplicating them.
 The main goal was to only keep the readings of the sensors that showed to be *most promissing in terms of information gain*. On this end, we've computed the [perason correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) and put everything into a dendogram plot that you can see bellow.
 
 
-<img src="./_data/deduplication_1.png" alt="Drawing" style="width: 600px;"/>
+<img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/deduplication_1.png" alt="Drawing" style="width: 600px;"/>
 
 At the same time, we've trained a simple [logistical regression model](https://en.wikipedia.org/wiki/Logistic_regression) for inspecting the learned weight magnitudes (the results of which you can see bellow). The basic idea is that large weights (either positive or negative) are a proxy for important features that we want to keep.
 
-<img src="./_data/feature_importance_1.png" alt="Drawing" style="width: 600px;"/>
+<img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/feature_importance_1.png" alt="Drawing" style="width: 600px;"/>
 
 Since this wasn't enough we've also computed a more scientifically valid feature importance plot by training a [Random Forest](https://en.wikipedia.org/wiki/Random_forest). 
 
-<img src="./_data/feature_importance_2.png" alt="Drawing" style="width: 600px;"/>
+<img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/feature_importance_2.png" alt="Drawing" style="width: 600px;"/>
 
 All in all, through a semi manual process that took all the above results into considetation we've selected only the reading of the following sensors bellow:
 
-<img src="./_data/deduplication_2.png" alt="Drawing" style="width: 600px;"/>
+<img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/deduplication_2.png" alt="Drawing" style="width: 600px;"/>
 
 ## Model tunning
 
@@ -210,7 +210,7 @@ The final thing we did was to deploy this into "production":
 * write a quick web app that would do the measurements, and use the deployed model to predict on the outcome.
 
 
-<img src="./_data/20190730_175200.jpg" alt="Drawing" style="width: 500px; transform:rotate(90deg);"/>
+<img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/20190730_175200.jpg" alt="Drawing" style="width: 500px; transform:rotate(90deg);"/>
 
 # Conclusions
 
@@ -219,10 +219,3 @@ In the end we were able to build an end-to-end system for detecting coffee, ice-
 Having said that, we know this was rather a hack and could improve a lot in regards to the methodolody, modeling and analisys, should we iterate this. All this process is up to this point quite rudimentary. We haven't spent much time on finding better classification algorithms, building a more robust pipeline and doing feature engineering. 
 
 Keep in mind this was just a quick, fun, prof-of-concept experiment, with **87% accuracy**.
-
-
-
-
-```python
-
-```
