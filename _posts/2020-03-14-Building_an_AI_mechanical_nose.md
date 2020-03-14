@@ -4,12 +4,12 @@ categories:
 tags:
     - consulting
     - real projects
-    - health
+    - healthcare
 ---
 
 # We work with cool projects
 
-One of the companies that I collaboratw with (i.e. [Tecknoworks](www.tecknoworks.com)) deals with a lot of interesting projects, but besides the projects themselves, there's also a nice mix off cool pieces of equipment. One example of such equipment is the [Breathomix](https://www.breathomix.com/) [eNose](https://www.breathomix.com/spironose-2/) device.
+One of the companies that I collaborate with (i.e. [Tecknoworks](www.tecknoworks.com)) deals with a lot of interesting projects, but besides the projects themselves, there's also a nice mix off cool pieces of equipment. One example of such equipment is the [Breathomix](https://www.breathomix.com/) [eNose](https://www.breathomix.com/spironose-2/) device.
 
 
 <img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/e_nose.png" alt="Drawing" style="width: 300px;"/>
@@ -30,7 +30,7 @@ The `eNose` device has multiple sensors that can detect various types of chemica
 
 > Since most real-life objects interact with these sensors in their own distinct way, is it possible that we can use the eNose to detect various classes of objects?
 
-To be more specific, there's a great need in our company to know what one is eating at all times so we set out to build a system that can smell and distinguish between three types of objects:
+To be more specific, can we distinguish between these objects:
 * tea
 * ice-cream
 * coffee
@@ -43,6 +43,8 @@ To be more specific, there's a great need in our company to know what one is eat
 <img src="https://www.cfacdn.com/img/order/COM/Menu_Refresh/Drinks/Drinks%20PDP/_0000s_0027_%5BFeed%5D_0006s_0013_Drinks_Ice-Dream.png" alt="Drawing" style="float:left; width: 200px;"/>
 
 <img src="https://images.theconversation.com/files/126820/original/image-20160615-14016-njqw65.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip" alt="Drawing" style="float:left; width: 300px;"/>
+
+
 
 
 # Validating assumptions before the experiment
@@ -138,7 +140,7 @@ And for each one we've collected 100 samples for a total of 400 datapoints.
 
 After loading the data into [pandas](https://pandas.pydata.org/) and a few not so sexy data massaging steps we've graphed the outputs of all the sensors from all the samples, using [boxplots](https://en.wikipedia.org/wiki/Box_plot).
 
-What we wanted to (literally) see was how obvious (for a human) it would be to distinguish between the three.
+What we wanted to (literally) see was if it was obvious for a human, or at least possible, to distinguish between the three. I think this is a fair rule of thumb for quickly validating the feasability of any ML project (this doesn't mean that anything a human can't do quickly is equally hard to a machine, just the opposite - *if a human can, ML could as well*). 
 
 If you'd be presented with the charts bellow, would you conclude that the readings of the sensors in each case shows that the categories are separable?
 
@@ -147,6 +149,8 @@ If you'd be presented with the charts bellow, would you conclude that the readin
 <img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/tea.png" alt="Drawing" style="float:left; width: 300px;"/>
 
 <img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/ice-cream.png" alt="Drawing" style="float:left; width: 300px;"/>
+
+
 
 We think that (for anyone able to interpret a boxplot) is easy to see that there are sensors with distinct shapes, specific to only one category. The only question that we need to be able to solve now, with machine learning, is finding out *what pattern of sensor readings is associated with each category*.
 
@@ -218,7 +222,7 @@ The final thing we did was to deploy this into "production":
 * write a quick web app that would do the measurements, and use the deployed model to predict on the outcome.
 
 
-<img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/20190730_175200.jpg" alt="Drawing" style="width: 500px; transform:rotate(90deg);"/>
+<img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/20190730_175200.jpg" alt="Drawing" style="width: 500px; height:500px; transform:rotate(90deg);"/>
 
 # Conclusions
 
@@ -227,3 +231,10 @@ In the end we were able to build an end-to-end system for detecting coffee, ice-
 Having said that, we know this was rather a hack and could improve a lot in regards to the methodolody, modeling and analisys, should we iterate this. All this process is up to this point quite rudimentary. We haven't spent much time on finding better classification algorithms, building a more robust pipeline and doing feature engineering. 
 
 Keep in mind this was just a quick, fun, prof-of-concept experiment, with **87% accuracy**.
+
+
+```
+Post made in collaboration with **Florin Bobis**
+
+Special thanks to **Tecknoworks, Breathomix** for allowing us to publish these results.
+```
