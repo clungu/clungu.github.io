@@ -7,7 +7,7 @@ tags:
     - healthcare
 ---
 
-# We work with cool projects
+# Working with cool projects
 
 One of the companies that I collaborate with (i.e. [Tecknoworks](www.tecknoworks.com)) deals with a lot of interesting projects, but besides the projects themselves, there's also a nice mix off cool pieces of equipment. One example of such equipment is the [Breathomix](https://www.breathomix.com/) [eNose](https://www.breathomix.com/spironose-2/) device.
 
@@ -222,7 +222,7 @@ The final thing we did was to deploy this into "production":
 * write a quick web app that would do the measurements, and use the deployed model to predict on the outcome.
 
 
-<img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/20190730_175200.jpg" alt="Drawing" style="width: 500px; height:500px; transform:rotate(90deg);"/>
+<img src="../../assets/images/2020-03-14-Building_an_AI_mechanical_nose_files/20190730_175200.jpg" alt="Drawing" style="width: 500px; height:800px; transform:rotate(90deg);"/>
 
 # Conclusions
 
@@ -235,6 +235,5 @@ Keep in mind this was just a quick, fun, prof-of-concept experiment, with **87% 
 
 ```
 Post made in collaboration with **Florin Bobis**
-
-Special thanks to **Tecknoworks, Breathomix** for allowing us to publish these results.
+Special thanks to **Tecknoworks and Breathomix** for allowing us to publish these results.
 ```
