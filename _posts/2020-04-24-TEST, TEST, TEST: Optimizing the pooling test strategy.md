@@ -1,5 +1,3 @@
-# TEST, TEST, TEST: Optimizing the pooling test strategy
-
 ## TL;DR
 
 The best strategy to use for doing a [pooled test on COVID-19](https://aktuelles.uni-frankfurt.de/englisch/pool-testing-of-sars-cov-02-samples-increases-worldwide-test-capacities-many-times-over/) is shown in the table bellow:
@@ -120,7 +118,7 @@ Instead we've optimized the problem using a [genetic algorithm](https://en.wikip
 Each setup required on average 12 generation to find the best solution, so along with the early stopping condition that meant 32 generation on average for it to finish. This was a dramatic improvement over the 2^25 steps brute force required.
 
 
-# Discussions 
+## Discussions 
 
 There are a number of limitations and possible improvements to the way that we've modeled the testing problem:
 * First of all, we do not account for what happens to how pooled test behave where one of the individuals, tested separately would be an `inconclusive` case (worse case being that on a retest he's shown to be positive). We suspect (hope) that a single `inconclusive` sample in a pool would make the whole pool `inconclusive` as well, otherwise this pooling method might not work, regardless of the strategy.
