@@ -1,4 +1,3 @@
-
 # TEST, TEST, TEST: Optimizing the pooling test strategy
 
 ## TL;DR
