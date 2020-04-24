@@ -5,7 +5,7 @@
 
 The best strategy to use for doing a [pooled test on COVID-19](https://aktuelles.uni-frankfurt.de/englisch/pool-testing-of-sars-cov-02-samples-increases-worldwide-test-capacities-many-times-over/) is shown in the table bellow:
 
-![image.png](attachment:image.png)
+![image.png](./images/pooling_strategy_results.png)
 
 What this table essentially says is that for the case of `Italy` for example, where there is an expected `0.33%` infection rate among the full population, the optimal strategy for testing 100 people (`cohort size`), where you are allowed a maximum of 16 samples per pool, is to test:
 * first in groups of 15
@@ -48,7 +48,7 @@ This seems to work because the following assumptions are valid:
 
 To give you a concrete example of how this might work, look at the image bellow:
 
-![image.png](attachment:image.png)
+![image.png](./images/pooling_strategy.png)
 
 We start with 20 suspect patients, we pool them in groups of 4 and the positive (infected) pools, we test each case individually. 
 
@@ -80,7 +80,7 @@ So we can rephrase our goal as:
 
 I'll first present the results, to spare some readers from having to search for it at the end, and then continue with the methodology and some later discussions.
 
-![image.png](attachment:image.png)
+![image.png](./images/pooling_strategy_results.png)
 
 What this table essentially says is that for the case of `Italy` for example, where there is an expected `0.33%` infection rate among the full population, the optimal strategy for testing 100 people (`cohort size`), where you are allowed a maximum of 16 samples per pool, is to test:
 * first in groups of 15
@@ -127,8 +127,3 @@ There are a number of limitations and possible improvements to the way that we'v
 * First of all, we do not account for what happens to how pooled test behave where one of the individuals, tested separately would be an `inconclusive` case (worse case being that on a retest he's shown to be positive). We suspect (hope) that a single `inconclusive` sample in a pool would make the whole pool `inconclusive` as well, otherwise this pooling method might not work, regardless of the strategy.
 * The `infection ratios` above might not be accurate. We've done only some limited computations using the data provided at the [John's Hopkins COVID-19 Dashboard](https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6). If some numbers are inaccurate of you'd like to include other cases as well, we'd be more than happy to rerun the simulations and update the table above.
 
-
-
-```python
-
-```
