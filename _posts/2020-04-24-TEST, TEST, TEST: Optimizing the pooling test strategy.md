@@ -2,7 +2,9 @@
 
 The best strategy to use for doing a [pooled test on COVID-19](https://aktuelles.uni-frankfurt.de/englisch/pool-testing-of-sars-cov-02-samples-increases-worldwide-test-capacities-many-times-over/) is shown in the table bellow:
 
-![image.png](../assets/images/2020-04-24-Test_Test_Test_files/pooling_strategy_results.png)
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR7yrJtjoDaelqXX1eW9Ef4MjITKuRlAPYf8dEOI2u-s4IDJViDMejy4d_HCBJJuiYdfk2YJIcpmfK2/pubhtml?gid=1693215587&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+
+<!--![image.png](../assets/images/2020-04-24-Test_Test_Test_files/pooling_strategy_results.png)-->
 
 What this table essentially says is that for the case of `Italy` for example, where there is an expected `0.33%` infection rate among the full population, the optimal strategy for testing 100 people (`cohort size`), where you are allowed a maximum of 16 samples per pool, is to test:
 * first in groups of 15
