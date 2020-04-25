@@ -2,7 +2,7 @@
 
 The best strategy to use for doing a [pooled test on COVID-19](https://aktuelles.uni-frankfurt.de/englisch/pool-testing-of-sars-cov-02-samples-increases-worldwide-test-capacities-many-times-over/) is shown in the table bellow:
 
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR7yrJtjoDaelqXX1eW9Ef4MjITKuRlAPYf8dEOI2u-s4IDJViDMejy4d_HCBJJuiYdfk2YJIcpmfK2/pubhtml?gid=1693215587&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR7yrJtjoDaelqXX1eW9Ef4MjITKuRlAPYf8dEOI2u-s4IDJViDMejy4d_HCBJJuiYdfk2YJIcpmfK2/pubhtml?gid=1693215587&amp;single=true&amp;widget=true&amp;headers=false" width="860" height="515"></iframe>
 
 <!--![image.png](../assets/images/2020-04-24-Test_Test_Test_files/pooling_strategy_results.png)-->
 
