@@ -1,3 +1,5 @@
+![image.png](https://static.wixstatic.com/media/nsplsh_726e72384433464e554e59~mv2.jpg/v1/fill/w_1480,h_833,al_c,q_90,usm_0.66_1.00_0.01/nsplsh_726e72384433464e554e59~mv2.webp)
+
 ## TL;DR
 
 The best strategy to use for doing a [pooled test on COVID-19](https://aktuelles.uni-frankfurt.de/englisch/pool-testing-of-sars-cov-02-samples-increases-worldwide-test-capacities-many-times-over/) is shown in the table bellow:
