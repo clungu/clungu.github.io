@@ -24,7 +24,7 @@ So, a 4 step strategy of (15, 4, 2, 1) where you should expect, on average, to f
 
 ## Argument
 
-It's no doubt that `COVID-19` already made a great impact on us all. [Stopping this pandemic](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-Global-Impact-26-03-2020v2.pdf) is a challenge that may prove to hard in the end, but if one strategy has shown significant results in halting (and even reversing this disease), this has been to quarantine infected people.
+It's no doubt that `COVID-19` already made a great impact on us all. [Stopping this pandemic](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-Global-Impact-26-03-2020v2.pdf) is a tough challenge, but if one strategy has shown significant results in halting (and even reversing this disease), this has been to quarantine infected people.
 
 I'll leave you to watch this excellent simulation from [3Blue1Brown](https://www.3blue1brown.com/) bellow that outlines different prevention strategies and their outcome, which prove the point above.
 
@@ -65,7 +65,7 @@ Also, note that this examples has a 10% `infection ratio` (which is a bit unreal
 
 It may be obvious from the above example that the pool size has a big impact on the total number of tests conducted:
 * if the pool is too large (say 10 in our example), we end up with most (all, in our case) pooled tests ending up positive, essentially wasting these tests because only a few pools were eliminated.
-* if the pool size is too small (say 2) we do way to many tests (in our example we'd do 14 total tests, compared to 13 for pool size of 4). 
+* if the pool size is too small (say 2) we do way too many tests (in our example we'd do 14 total tests, compared to 13 for pool size of 4). 
 
 Generically speaking, the `pool size` is dependent on both the `cohort size` (the number of tested people) and the expected `infection ratio` 
 
