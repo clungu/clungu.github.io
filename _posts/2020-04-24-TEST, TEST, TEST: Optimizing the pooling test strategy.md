@@ -2,7 +2,11 @@
 
 ## TL;DR
 
-The best strategy to use for doing a [pooled test on COVID-19](https://aktuelles.uni-frankfurt.de/englisch/pool-testing-of-sars-cov-02-samples-increases-worldwide-test-capacities-many-times-over/) is shown in the table bellow:
+Recently, test pooling [has been suggested](https://aktuelles.uni-frankfurt.de/englisch/pool-testing-of-sars-cov-02-samples-increases-worldwide-test-capacities-many-times-over/) by the Frankfurt Goethe University where you test a group of nasal swabs, all in a single test. If the test is negative this means all the samples in the group (pool) were negative, sparing a lot of unnecessary individual tests.
+
+Unfortunately, the Frankfurt group didn't publish any recommended pool size, so anyone using this approach would make a guess for the pool size and use that, which isn't optimal.
+
+Our simulations show that the best strategy to use for doing a pooled test on COVID-19 varies from context to context, as shown bellow:
 
 <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vR7yrJtjoDaelqXX1eW9Ef4MjITKuRlAPYf8dEOI2u-s4IDJViDMejy4d_HCBJJuiYdfk2YJIcpmfK2/pubhtml?gid=1693215587&amp;single=true&amp;widget=true&amp;headers=false" width="100%" height="315"></iframe>
 
@@ -14,9 +18,9 @@ What this table essentially says is that for the case of `Italy` for example, wh
 * the remaining people in the positive groups, regrouped in groups of 2
 * the remaining people, individually 
 
-So, a 4 step strategy of (15, 4, 2, 1) where you should expect, on average, to find all the infections using only 9.47 tests! 
+So, a 4 step strategy of (15, 4, 2, 1) where you should expect, on average, to find all the infections using only approx. 10 tests!
 
-**That means an approximately 10x increase in capacity!**  
+**That means approximately 10x less tests used, or a 10x increase in testing capacity!**  
 
 ## Argument
 
