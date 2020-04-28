@@ -24,22 +24,26 @@ So, a 4 step strategy of (15, 4, 2, 1) where you should expect, on average, to f
 
 ## Argument
 
-It's no doubt that `COVID-19` already made a great impact on us all. [Stopping this pandemic](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-Global-Impact-26-03-2020v2.pdf) is a tough challenge, but if one strategy has shown significant results in halting (and even reversing this disease), this has been to quarantine infected people.
-
-I'll leave you to watch this excellent simulation from [3Blue1Brown](https://www.3blue1brown.com/) bellow that outlines different prevention strategies and their outcome, which prove the point above.
+As we have seen in country after country, and as the below video from [3Blue1Brown](https://www.3blue1brown.com/) makes clear, one of the most effective ways [to slow down](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-Global-Impact-26-03-2020v2.pdf) or halt the pandemic is through quarantining sick people:
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/gxAaO2rsdIs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-The problem with quarantines though is that you need to know which persons are infected, and to know that, you need to do tests, lots of tests! 
+The problem with quarantines, though, is that you need to know which persons are infected. And to know that, you need to do tests — lots of tests!
 
 > We have a simple message for all countries: **test, test, test**. (*WHO Director-General's opening remarks at the media briefing on COVID-19 - 16 March 2020*)
 
 
-At the same time, tests are a limited resource and most countries have fewer tests than they need. 
+However, as we all know, tests are a limited resource, and most countries have fewer tests than they need.
 
 Romania for example only made 113.336 tests for a population of 19.6 million inhabitants, which means a [0.585% testing rate](https://ourworldindata.org/what-can-data-on-testing-tell-us-about-the-pandemic), for a total daily capacity of 8000 tests / day. This is clearly insufficient for a comprehensive testing scenario, that would ensure the success of a quarantining effort. 
 
+We see similar problems in the United States, the United Kingdom, and Italy.
+
+
 <iframe src="https://ourworldindata.org/grapher/number-of-covid-19-tests-per-confirmed-case?time=2020-04-23&country=ROU+POL+ISL+United%20Kingdom%2C%20tests%20performed+DEU+FRA+ITA" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+This is clearly insufficient for a comprehensive testing scenario that would ensure the success of a quarantine effort.
+
 
 ## Pooled testing
 
