@@ -50,7 +50,7 @@ To overcome this, you actually need not continue on step `i` from the intermedia
 
 Let’s take an example. Suppose we want to predict the next word in the sequence `(I, am, new)` which is `at`. 
 
-![rnn_training_without_teacher_forcing.png](../../assets/images/2020-06_12_Teacher_Forcing_files/rnn_training_without_teacher_forcing.png)
+![rnn_training_without_teacher_forcing.png](../../assets/images/2020-06-12-Teacher_Forcing_files/rnn_training_without_teacher_forcing.png)
 
 What would normally happen is that you’d pass all the words into the RNN `I`, `am`, `new` and let the RNN build up an internal state representing this sequence, into an internal state (the red arrow above) and and then unroll this hidden state for 3 steps to get the final output.
 
@@ -64,7 +64,7 @@ To correct these issues, the backpropagtion step has to compute the loss values 
 
 Teacher forcing solves this by sending in all the *correct* predictions as priors, and only deal of forcing (correcting) a single step of the output. It’s as if, we are sending *cummulative sequences* as inputs, and expect the next token and only backpropagate for that loss value, as you can see in the image bellow.  
 
-![rnn_training_with_teacher_forcing.png](../../assets/images/2020-06_12_Teacher_Forcing_files/rnn_training_with_teacher_forcing.png)
+![rnn_training_with_teacher_forcing.png](../../assets/images/2020-06-12-Teacher_Forcing_files/rnn_training_with_teacher_forcing.png)
 
 So, we compute the intermediary predictions, we act on their errors (through backpropagation) but only once, since from that point forward we’ll make next tokens depend on the correct previous tokens. 
 
@@ -72,7 +72,7 @@ This speeds up training because now we have a linear training schedule, one word
 
 
 
-![teacher_forcing.png](../../assets/images/2020-06_12_Teacher_Forcing_files/teacher_forcing.png)
+![teacher_forcing.png](../../assets/images/2020-06-12-Teacher_Forcing_files/teacher_forcing.png)
 
 [Credits for this image](https://roberttlange.github.io/posts/2020/03/blog-post-10/)
 
