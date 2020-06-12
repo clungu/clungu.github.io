@@ -1,3 +1,12 @@
+---
+categories: 
+    - tutorial
+tags:
+    - fundamental
+    - recurent neural networks
+    - training
+---
+
 # Training an RNN with teacher forcing.
 20200608182759
 
