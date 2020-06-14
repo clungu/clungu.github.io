@@ -1,5 +1,13 @@
-
-# Replicating a famous gif
+---
+categories: 
+    - tutorial
+tags:
+    - fundamental
+    - optimizations
+    - training
+    - visualizations
+mathjax: true
+---
 
 There is this chart from [Alec Radford](https://twitter.com/alecrad) that became quite famous for showing a comparative run between different optimizers.
 
@@ -7,15 +15,18 @@ There is this chart from [Alec Radford](https://twitter.com/alecrad) that became
 
 Let's try replicating it ourselves. We will use the framework developed in our [previous post](http://www.clungu.com/Optimisation-playground/) for this. 
 
-Since this gif is 4 years old now, I'll also add a few additional optimizers for comparision.
+Since this gif is 4 years old now, I'll also add a few additional optimizers for comparison.
 
-It looks almost the same! I wasn't actualy able to find the exact setup used for generating the gif (the initial starting point, and the learning rates used on all the optimizers) but I did a best effort approach on finding these and I thing  my results replicate the behavior shown in the original image.
+It looks almost the same! I wasn't actually able to find the exact setup used for generating the gif (the initial starting point, and the learning rates used on all the optimizers) but I did a best effort approach on finding these and I thing  my results replicate the behavior shown in the original image.
 
-Since we're here, let's play arround and learn how these optimizers behave in different settings!
+Since we're here, let's play around and learn how these optimizers behave in different settings!
+
+{::options parse_block_html="true" /}
+<details><summary markdown='span'>Code</summary>
 
 ## Loading the playground
 
-All code on this blog is released under the following licence.
+All code on this blog is released under the following license.
 
 ```
 # Copyright 2020 Cristian Lungu
@@ -36,7 +47,7 @@ All code on this blog is released under the following licence.
 ### The test functions
 
 
-```
+```python
 import numpy as np
 import numpy as np
 from mpl_toolkits import mplot3d
@@ -269,7 +280,7 @@ Function
 ### The charting utils
 
 
-```
+```python
 from typing import Tuple
 from functools import lru_cache
 from tqdm.notebook import tqdm
@@ -281,7 +292,7 @@ def contour(function: Ifunction, x_min=-5, x_max=5, y_min=-5, y_max=5, mesh_size
     mesh of size (mesh_size, mesh_size) generated from the linear space defined by 
     the boundaries returned by `function.domain()`.
 
-    This function is usually used for displaying the contour of the diven function.
+    This function is usually used for displaying the contour of the given function.
     """
     xx, yy = np.meshgrid( 
         np.linspace(x_min, x_max, num=mesh_size),
@@ -353,7 +364,7 @@ def rotate(_x: np.ndarray, _y: np.ndarray, angle=45) -> Tuple[np.ndarray, np.nda
     elif __is_single_dimension(np.squeeze(_x)) and __is_single_dimension(np.squeeze(_y)):
         def __squeeze(_x):
             """
-            We need to reduce the redundant 1 domensions from shapes like (3, 1, 2) to (3, 2), 
+            We need to reduce the redundant 1 dimensions from shapes like (3, 1, 2) to (3, 2), 
             but at the same time, making sure we don't end up with scalar values (going from (1, 1) to a shape ())
 
             We need at least a shape of (1,)
@@ -383,7 +394,7 @@ def plot_function_2d(function: Ifunction, ax=None, angle=45, zoom_factor=0, cont
 
     ax = ax if ax else plt.gca()
     
-    xx, yy = rotate(xx, yy, angle=angle)    # I wonder why I shoudn't also rotate zz?!
+    xx, yy = rotate(xx, yy, angle=angle)    # I wonder why I shouldn't also rotate zz?!
 
     contour_levels = log_contour_levels(zz) if contour_log_scale else 200
     contour_color_normalisation = colors.LogNorm(vmin=contour_levels.min(), vmax=contour_levels.max()) if contour_log_scale else colors.Normalize(vmin=zz.min(), vmax=zz.max())
@@ -466,22 +477,13 @@ plot_function(himmelblau(), angle=225)
 ```
 
 
-
-
-    (<Figure size 1872x720 with 2 Axes>,
-     <matplotlib.axes._subplots.Axes3DSubplot at 0x7f45c6ee3c50>,
-     <matplotlib.axes._subplots.AxesSubplot at 0x7f45c6e37860>)
-
-
-
-
-![png](../assets/images/2020-06-14-Replicating_a_famous_optmisation_gif_files/2020-06-14-Replicating_a_famous_optmisation_gif_10_1.png)
+![png](../../assets/images/2020-06-14-Replicating_a_famous_optmisation_gif_files/2020-06-14-Replicating_a_famous_optmisation_gif_10_1.png)
 
 
 ### The `jax` optimizer utils
 
 
-```
+```python
 from jax import grad
 
 class optimize:
@@ -514,10 +516,7 @@ class optimize:
         """
         self.x.append(float(_x))
         self.y.append(float(_y))
-```
 
-
-```
 class optimize_multi:
     def __init__(self, function):
         self.function = function
@@ -537,7 +536,7 @@ class optimize_multi:
 ### The animation utils
 
 
-```
+```python
 import matplotlib.animation as animation
 from IPython.display import HTML, display
 from itertools import cycle
@@ -628,10 +627,7 @@ def animate(optimisations, frames=20, interval=250, use_flat_colors=True, contou
     plt.close()
 
     return video
-```
 
-
-```
 from jax.experimental.optimizers import sgd
 animate(
     optimize_multi(holder_table())\
@@ -646,9 +642,6 @@ animate(
     legend_location="lower right"
 );
 ```
-
-    .....
-
 
 <video width="936" height="360" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAAEO0G1kYXQAAAKtBgX//6ncRem9
@@ -1889,7 +1882,7 @@ AAAAAAAAAAAAAAAtaWxzdAAAACWpdG9vAAAAHWRhdGEAAAABAAAAAExhdmY1Ny44My4xMDA=
 
 
 
-```
+```python
 from jax.experimental.optimizers import adam, adagrad, rmsprop, sgd, rmsprop_momentum, adamax 
 
 step_size = 0.03
@@ -1913,8 +1906,7 @@ animate(
 );
 ```
 
-    .........................................................................................................................................................................................................
-
+</details>
 
 <video width="936" height="360" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAAFcvG1kYXQAAAKuBgX//6rcRem9
@@ -3556,43 +3548,23 @@ plot_all_functions(Function)
 ```
 
 
-    HBox(children=(FloatProgress(value=0.0, max=6.0), HTML(value='')))
-
-
-    /usr/local/lib/python3.6/dist-packages/ipykernel_launcher.py:117: UserWarning: Log scale: values of z <= 0 have been masked
-    /usr/local/lib/python3.6/dist-packages/matplotlib/contour.py:1489: UserWarning: Warning: converting a masked element to nan.
-      self.zmin = float(z.min())
-    /usr/local/lib/python3.6/dist-packages/matplotlib/contour.py:1163: RuntimeWarning: invalid value encountered in greater
-      inside = (self.levels > self.zmin) & (self.levels < self.zmax)
-    /usr/local/lib/python3.6/dist-packages/ipykernel_launcher.py:117: UserWarning: No contour levels were found within the data range.
-    /usr/local/lib/python3.6/dist-packages/numpy/core/function_base.py:274: RuntimeWarning: overflow encountered in power
-      return _nx.power(base, y)
-    /usr/local/lib/python3.6/dist-packages/numpy/lib/function_base.py:1269: RuntimeWarning: invalid value encountered in subtract
-      a = op(a[slice1], a[slice2])
-
-
-    
-
-
-
-![png](../assets/images/2020-06-14-Replicating_a_famous_optmisation_gif_files/2020-06-14-Replicating_a_famous_optmisation_gif_20_3.png)
+![png](../../assets/images/2020-06-14-Replicating_a_famous_optmisation_gif_files/2020-06-14-Replicating_a_famous_optmisation_gif_20_3.png)
 
 
 ## SGD with "just right" `step_size`
 
-From the animation above we've saw that SGD, did poorly compared with the others. This is a design weakenes, but a learning rate setting faliure as well.
+From the animation above we've saw that SGD, did poorly compared with the others. This is a design weakenes, but a learning rate setting failure as well.
 
 Let's see how each optimizer fares, when compared to an SGD instance that has the "just right" learning rate set. 
 
 
-```
+```python
 from jax.experimental.optimizers import adam, adagrad, rmsprop, sgd, rmsprop_momentum, adamax, momentum, nesterov
 
 animate(
     optimize_multi(himmelblau())\
         .using([
                 (sgd(step_size=0.01), "sgd"),
-
                 (adam(step_size=0.01), "adam"),
                 (adagrad(step_size=0.01), "adagrad"),
                 (adamax(step_size=0.1), "adamax"),
@@ -3605,9 +3577,6 @@ animate(
     interval=50
 );
 ```
-
-    .....................................................................................................
-
 
 <video width="936" height="360" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAADioG1kYXQAAAKuBgX//6rcRem9
@@ -4673,7 +4642,7 @@ It seems that SGD is really good at this function.
 
 Adamax did almost equally well but wasn't as stable as SGD was near the minimum.
 
-You can't really see the trace of all the other optimizers because they are overimposed and follow roughly the same path.
+You can't really see the trace of all the other optimizers because they are over-imposed and follow roughly the same path.
 
 My conclusion from this experiment is that SGD, when set up correctly surpasses the other optimizers. 
 
@@ -4684,7 +4653,7 @@ My conclusion from this experiment is that SGD, when set up correctly surpasses 
 Finding a good `step_size` (also known as `learning_rate`) is hard (or not trivial). Let's see how all of the optimizers fare when given a rather *large* (but not too large) `step_size`.
 
 
-```
+```python
 from jax.experimental.optimizers import adam, adagrad, rmsprop, sgd, rmsprop_momentum, adamax, sm3 
 
 animate(
@@ -4706,9 +4675,6 @@ animate(
     angle=85
 );
 ```
-
-    .........................................................................................................................................................................................................
-
 
 <video width="936" height="360" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAAFg7G1kYXQAAAKuBgX//6rcRem9
@@ -6357,12 +6323,12 @@ cGwAAAAAAAAAAAAAAAAtaWxzdAAAACWpdG9vAAAAHWRhdGEAAAABAAAAAExhdmY1Ny44My4xMDA=
 </video>
 
 
-SGD with 0.01 is off the charts and doesn't converges, while the others, even with a suboptimal step_size manage to run twards the minimum.
+SGD with 0.01 is off the charts and doesn't converges, while the others, even with a suboptimal step_size manage to run towards the minimum.
 
-For example, here is the output of the first 5 update steps that SGD computes if we start from `(-2, -2)`. It's obvious that the `step_size` is too large as the optimisation moves from negative to positive and back, increasing the magnitude each time ending with a `-inf` value by it's fifth update. 
+For example, here is the output of the first 5 update steps that SGD computes if we start from `(-2, -2)`. It's obvious that the `step_size` is too large as the optimization moves from negative to positive and back, increasing the magnitude each time ending with a `-inf` value by it's fifth update. 
 
 
-```
+```python
 optimize(beale())\
     .using(sgd(step_size=0.01))\
     .start_from([-2., -2.])\
@@ -6377,11 +6343,11 @@ optimize(beale())\
 
 
 
-Let's finetune the SGD variants so we can still compare them with the others. Just in case, we will zoom out a bit so we can see the larger picture in case SGD goes off the charts again.
+Let's fine tune the SGD variants so we can still compare them with the others. Just in case, we will zoom out a bit so we can see the larger picture in case SGD goes off the charts again.
 
 
-```
-from jax.experimental.optimizers import adam, adagrad, rmsprop, sgd, rmsprop_momentum, adamax, sm3, momentum, nesterov, sm3
+```python
+from jax.experimental.optimizers import adam, adagrad, rmsprop, sgd, rmsprop_momentum, adamax, momentum, nesterov
 
 animate(
     optimize_multi(beale())\
@@ -6407,9 +6373,6 @@ animate(
     zoom_factor=-2
 );
 ```
-
-    .........................................................................................................................................................................................................
-
 
 <video width="936" height="360" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAAEehm1kYXQAAAKuBgX//6rcRem9
@@ -7769,17 +7732,17 @@ Conclusions:
     * stumbles a bit but gets to the minimum quickly
     * when the minimum is reached, it follows a rather erratic path
 
-* all sgd variants had to have the learning rate lowered to 0.00001 so not to explode so this comparision is rather misleading.
+* all SGD variants had to have the learning rate lowered to 0.00001 so not to explode so this comparison is rather misleading.
 
 
-## What hapens when we have really large step sizes?
+## What happens when we have really large step sizes?
 
 In the setup above we've assumed a "large but not too large" `step_size`, but what happens with an obvious *too large* value?
 
-It's clear that the SGD variants need to have the right `step_size` set in order to work properlly, so we will ignore them in this experiment.
+It's clear that the SGD variants need to have the right `step_size` set in order to work properly, so we will ignore them in this experiment.
 
 
-```
+```python
 from jax.experimental.optimizers import adam, adagrad, rmsprop, sgd, rmsprop_momentum, adamax, sm3, momentum, nesterov, sm3
 
 animate(
@@ -7802,8 +7765,6 @@ animate(
     zoom_factor=-2
 );
 ```
-
-    .........................................................................................................................................................................................................
 
 
 <video width="936" height="360" controls autoplay loop>
@@ -9310,13 +9271,13 @@ YXRhAAAAAQAAAABMYXZmNTcuODMuMTAw
 Conclusions:
 * rmsprop is still stable, except near the optimum value
 * rmsprop *with momentum* is quite erratic but manages to get to the correct result
-* ada* variants found a local minimum and settled there
+* ada\* variants found a local minimum and settled there
 
-## What happens when there are more than one minium and the step_size is too large?
+## What happens when there are more than one minimum and the step_size is too large?
 
 
 
-```
+```python
 animate(
     optimize_multi(himmelblau())\
         .using([
@@ -9339,9 +9300,6 @@ animate(
     interval=50,
 );
 ```
-
-    .....................................................................................................
-
 
 <video width="936" height="360" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAAGM0W1kYXQAAAKuBgX//6rcRem9
@@ -11169,17 +11127,17 @@ dmY1Ny44My4xMDA=
 
 
 * rmsprop found a solution quickly
-* rmsprop *with momentum* shoots off with so much momentum, that soon reaches a really high point from which it falls back down, passes near the closest minimum, and goes on settling on the second most distant one. It's beggining was quite erratic but on a high dimensional optimisation (like a neural network, where the minimum is quite likely far away from the initialisation), the initial large momentum might not be a problem because it takes a few hundred batches (updates) to get near a minimum anyway. Also, in this instance, it takes a lot of steps.
+* rmsprop *with momentum* shoots off with so much momentum, that soon reaches a really high point from which it falls back down, passes near the closest minimum, and goes on settling on the second most distant one. It's beggining was quite erratic but on a high dimensional optimization (like a neural network, where the minimum is quite likely far away from the initialization), the initial large momentum might not be a problem because it takes a few hundred batches (updates) to get near a minimum anyway. Also, in this instance, it takes a lot of steps.
 * sgd, sgd with momentum, and sgd with nesterov fell off the grid so I removed them.
 * adagrad fell smoothly to the nearest minimum but with some drag
 * adamax, because of the momentum, **moved past** the minimum (while finding it!) and went to another minimum.
     * this means, that were we to start from a high point, close to one a local minimum, we will get ouf of it due to momentum.
 * adam almost did the same as *adamax* but went for the closest minimum in the end.
 
-## What happens to a really hard optimisation function when the learning rate is too high?
+## What happens to a really hard optimization function when the learning rate is too high?
 
 
-```
+```python
 animate(
     optimize_multi(holder_table())\
         .using([
@@ -11202,8 +11160,6 @@ animate(
     interval=50,
 );
 ```
-
-    .....................
 
 
 <video width="936" height="360" controls autoplay loop>
@@ -12456,10 +12412,10 @@ ZGF0YQAAAAEAAAAATGF2ZjU3LjgzLjEwMA==
 
 Basically all, except rmsprop *with momentum* settle to a local minimum while it diverges off the chart
 
-## Who can solve holter_table, if we tune the step_size correctly?
+## Who can solve holder_table, if we tune the step_size correctly?
 
 
-```
+```python
 animate(
     optimize_multi(holder_table())\
         .using([
@@ -12473,9 +12429,6 @@ animate(
     interval=50,
 );
 ```
-
-    ................
-
 
 <video width="936" height="360" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAADz1m1kYXQAAAKuBgX//6rcRem9
@@ -13598,7 +13551,7 @@ TGF2ZjU3LjgzLjEwMA==
 
 
 
-```
+```python
 animate(
     optimize_multi(holder_table())\
         .using([
@@ -13612,8 +13565,6 @@ animate(
     interval=50,
 );
 ```
-
-    .....................
 
 
 <video width="936" height="360" controls autoplay loop>
@@ -14808,16 +14759,16 @@ AAAAAExhdmY1Ny44My4xMDA=
 </video>
 
 
-I can't seem to find any good paramters for either SGD with momentum or rmsprop with momentum. Since these are the ones that exhibit the stronger ability to escape from a local minimum, due to their large momentum factor, I must conclude that this function may not be possible to be optimized with any of these optimizers.
+I can't seem to find any good parameters for either SGD with momentum or rmsprop with momentum. Since these are the ones that exhibit the stronger ability to escape from a local minimum, due to their large momentum factor, I must conclude that this function may not be possible to be optimized with any of these optimizers.
 
-This is a bit troubling find, since, if the objective function of a neural network may resemble such a shape, then, only by chance of a random initialisation we could expect to optimize it to a local minimum with these optimizers.. 
+This is a bit troubling find, since, if the objective function of a neural network may resemble such a shape, then, only by chance of a random initialization we could expect to optimize it to a local minimum with these optimizers.. 
 
 So `holter_table` seems not to be solvable if we start from [-1, -1]
 
-Let's try another function with lots of ravines and see if on that, any of these two can find anything usefull.
+Let's try another function with lots of ravines and see if on that, any of these two can find anything useful.
 
 
-```
+```python
 animate(
     optimize_multi(eggholder())\
         .using([
@@ -14833,8 +14784,6 @@ animate(
     zoom_factor=-0.5
 );
 ```
-
-    .....................
 
 
 <video width="936" height="360" controls autoplay loop>
@@ -15762,10 +15711,10 @@ Ny44My4xMDA=
 </video>
 
 
-With RMSprop, if we happen to pe initialized into a local plateau, the momentum won't help us escape it. Let's try initializing from a diffrent place, on the edge of a steeper ravine.
+With RMSprop, if we happen to be initialized into a local plateau, the momentum won't help us escape it. Let's try initializing from a different place, on the edge of a steeper ravine.
 
 
-```
+```python
 animate(
     optimize_multi(eggholder())\
         .using([
@@ -15781,9 +15730,6 @@ animate(
     zoom_factor=-0.5
 );
 ```
-
-    .........................................................................................................................................................................................................
-
 
 <video width="936" height="360" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAAEFim1kYXQAAAKuBgX//6rcRem9
@@ -17023,8 +16969,8 @@ b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU3LjgzLjEwMA==
 </video>
 
 
-I must conclude again, that functions with lots of local minima cannot be optimized with any of these optimizers, **if using a single `step_size` value**!.
+I must conclude again, that functions with lots of local minimum cannot be optimized with any of these optimizers, **if using a single `step_size` value**!.
 
-I assume that augmenting the oprimizer with a learning rate schedulling might be usefull in solving these type of functions. 
+I assume that augmenting the optimizer with a learning rate scheduling might be useful in solving these type of functions. 
 
 I plan on exploring this assumptions in a future blog post, stay tunned!
