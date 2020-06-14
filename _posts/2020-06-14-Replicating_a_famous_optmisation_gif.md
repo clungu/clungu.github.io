@@ -17,9 +17,6 @@ Let's try replicating it ourselves. We will use the framework developed in our [
 
 Since this gif is 4 years old now, I'll also add a few additional optimizers for comparison.
 
-It looks almost the same! I wasn't actually able to find the exact setup used for generating the gif (the initial starting point, and the learning rates used on all the optimizers) but I did a best effort approach on finding these and I thing  my results replicate the behavior shown in the original image.
-
-Since we're here, let's play around and learn how these optimizers behave in different settings!
 
 {::options parse_block_html="true" /}
 <details><summary markdown='span'>Code</summary>
@@ -3537,6 +3534,9 @@ NTcuODMuMTAw
   Your browser does not support the video tag.
 </video>
 
+It looks almost the same! I wasn't actually able to find the exact setup used for generating the gif (the initial starting point, and the learning rates used on all the optimizers) but I did a best effort approach on finding these and I thing  my results replicate the behavior shown in the original image.
+
+Since we're here, let's play around and learn how these optimizers behave in different settings!
 
 # Experiments
 
