@@ -43614,3 +43614,9 @@ AExhdmY1Ny44My4xMDA=
 
 
 Not that good...
+
+
+
+# Later update
+
+Well, if I knew before about [this post](http://louistiao.me/notes/visualizing-and-animating-optimization-algorithms-with-matplotlib/) it would have spared me a lot of trouble..
