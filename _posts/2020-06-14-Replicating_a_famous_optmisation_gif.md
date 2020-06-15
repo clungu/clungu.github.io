@@ -3534,9 +3534,9 @@ NTcuODMuMTAw
   Your browser does not support the video tag.
 </video>
 
-It looks almost the same! I wasn't actually able to find the exact setup used for generating the gif (the initial starting point, and the learning rates used on all the optimizers) but I did a best effort approach on finding these and I thing  my results replicate the behavior shown in the original image.
+I wasn't actually able to find the *exact* setup used for generating the GIF (the initial starting point, and the learning rates used on all the optimizers) but I did a best effort approach on finding these and I think these results replicate the behavior shown in the original image.
 
-Since we're here, let's play around and learn how these optimizers behave in different settings!
+Since we've come so far, let's play around and learn how these optimizers behave in different settings!
 
 # Experiments
 
