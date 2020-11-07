@@ -1,3 +1,26 @@
+---
+tags:
+	- pca
+	- books
+	- retinanet
+	- retinaface
+	- face
+	- vgg-face
+	- image
+	- deep-fakes
+	- computer
+	- processing
+	- recognition
+	- arcface
+	- vision
+	- dl
+	- ml
+	- face-embedding
+mathjax: true
+comments: true
+header:
+    teaser: /assets/images/2020-11-07-3D_Morphable_Models_files/ml_3dmm_pca.png
+---
 # 3D Morphable Models
 20200825140617
 
@@ -43,20 +66,20 @@ This new approach (2019) introduced a non-linear (aka NN based) approached the *
 
 ![dl_3dmm_non_linear.png](/assets/images/2020-11-07-3D_Morphable_Models_files/dl_3dmm_non_linear.png)
 
-This is a [video demo](https://www.youtube.com/watch?v=ukEzVvsapG8) of the paper and goes a long way of explaining the relation between 3DMMs and #deep-fakes. They also provide a [GitHub repo](https://github.com/tranluan/Nonlinear_Face_3DMM) with the working code.
+This is a [video demo](https://www.youtube.com/watch?v=ukEzVvsapG8) of the paper and goes a long way of explaining the relation between 3DMMs and [#deep-fakes](/tags/#deep-fakes). They also provide a [GitHub repo](https://github.com/tranluan/Nonlinear_Face_3DMM) with the working code.
 
 ## [Dense 3D Face Decoding over 2500FPS: Joint Texture & Shape Convolutional Mesh Decoders](https://ibug.doc.ic.ac.uk/media/uploads/documents/0332_(9).pdf)
 
 Is a high performance / real-time (2500fps) 3DMM face decoder that uses CNN layers in the NN implemented in the above paper in order to achieve faster training in inference time. 
 
-This paper is also the one used while training [#retinaface](/tags/#retinaface) ([[20200903232600]] RetinaFace) and is published by the same authors of both [#retinaface](/tags/#retinaface) and [#arcface,](/tags/#arcface,) the ones behind the insightface.ai startup.
+This paper is also the one used while training [#retinaface](/tags/#retinaface) ([[20200903232600]] RetinaFace) and is published by the same authors of both [#retinaface](/tags/#retinaface) and [#arcface](/tags/#arcface), the ones behind the insightface.ai startup.
 
 Among other things, they mention that they encode the face texture as a [UV map](https://en.wikipedia.org/wiki/UV_mapping) which is a way to map / unmap a 3D object into a 2D surface, origami style.
 
 ![dl_3dmm_uv_mapping.png](/assets/images/2020-11-07-3D_Morphable_Models_files/dl_3dmm_uv_mapping.png)
 ## Unsupervised Training for 3D Morphable Model Regression
 
-This is a work published by Google in the 2018 paper titled ["Unsupervised Training for 3D Morphable Model Regression"](https://openaccess.thecvf.com/content_cvpr_2018/papers/Genova_Unsupervised_Training_for_CVPR_2018_paper.pdf), where they present an end-to-end network that can learn **unsupervised** 3D faces from images. This paper presents an auto-encoder architecture, which takes and image, converts it to an embedding (via [FaceNet](https://arxiv.org/pdf/1503.03832.pdf) or [#vgg-face),](/tags/#vgg-face),) then pass that embedding to a 3DMM decoder that outputs a 3D image, feed that 3D image in the differentible renderer to get a 2D image (projection) which is compared (via a loss function - this bit simplifying things) to the initial image, and the errors are backpropagated on the full architecture. So we have:
+This is a work published by Google in the 2018 paper titled ["Unsupervised Training for 3D Morphable Model Regression"](https://openaccess.thecvf.com/content_cvpr_2018/papers/Genova_Unsupervised_Training_for_CVPR_2018_paper.pdf), where they present an end-to-end network that can learn **unsupervised** 3D faces from images. This paper presents an auto-encoder architecture, which takes and image, converts it to an embedding (via [FaceNet](https://arxiv.org/pdf/1503.03832.pdf) or [#vgg-face](/tags/#vgg-face)), then pass that embedding to a 3DMM decoder that outputs a 3D image, feed that 3D image in the differentible renderer to get a 2D image (projection) which is compared (via a loss function - this bit simplifying things) to the initial image, and the errors are backpropagated on the full architecture. So we have:
 * FaceNet(Target 2D Image) => [#face-embedding](/tags/#face-embedding)
 * 3DMM(Face-Embedding) => 3D object
 * Renderer(3D object) => Predicted 2D Image
@@ -66,7 +89,7 @@ The Renderer needs to be differentiable in order to for this system to be an end
 
 The authors of [#retinanet](/tags/#retinanet) reused only the Renderer to incorporate it into their network, because they replace Google's 3DMM step, with one based on the mesh convolutions (via graph convolutions). The basic idea though is that this step takes an input image and outputs a tuple $(S, T, P, I)$ for shape, texture, pose, illumination which is then decoded into a 2D image via Google's renderer.
 
-Google's 3DMM decoder uses a 2-layer NN to transform the embeddings into s and t parameters that can be fed into the [Basel Face Model 2017 3DMM](https://arxiv.org/pdf/1709.08398.pdf). This makes Google's approach really specific to faces, while (I believe) that the mesh convolutions approach can be applyed to any known regular object (like [#books)](/tags/#books)) as long as you can map them to a class of 3D morphable objects.
+Google's 3DMM decoder uses a 2-layer NN to transform the embeddings into s and t parameters that can be fed into the [Basel Face Model 2017 3DMM](https://arxiv.org/pdf/1709.08398.pdf). This makes Google's approach really specific to faces, while (I believe) that the mesh convolutions approach can be applyed to any known regular object (like [#books](/tags/#books)) as long as you can map them to a class of 3D morphable objects.
 
 
 ## 3DDFA_V2
