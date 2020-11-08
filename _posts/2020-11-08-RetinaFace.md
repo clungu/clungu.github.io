@@ -78,7 +78,7 @@ Loss = & \> \> \> \> \> \> \> \> \> \> \> \> \> \>  {\color{red}Loss_{Classifica
 $$
 
 
-${\color{red}Loss_{Classification}}(p_i, p_i^*)$ is the classification loss where $p_i$ is the **predicted** probability of anchor i to being a face and $p_i^*$ is 1 for the positive anchor (an anchor that is indeed a face) and 0 for the negative anchor (an anchor that is not a face). The classification is a **binary crossentropy** (they say it's `the softmax loss for binary classes`). 
+${\color{red}Loss_{Classification}}(p_i, p_i^\*)$ is the classification loss where $p_i$ is the **predicted** probability of anchor i to being a face and $p_i^\*$ is 1 for the positive anchor (an anchor that is indeed a face) and 0 for the negative anchor (an anchor that is not a face). The classification is a **binary crossentropy** (they say it's `the softmax loss for binary classes`). 
 
 
 ${\color{blue}Loss_{RegressionBox}}(t_i, t_i^*)$ where $t_i=\{t_x, t_y, t_{height}, t_{width}\}_i$ is the *predicted* box and $t_i^*=\{t_x^*, t_y^*, t_{height}^*, t_{width}^*\}_i$ is the ground truth box associated with the *positive anchor*. The function ${\color{blue}Loss_{RegressionBox}}(t_i, t_i^*)=RobustLoss(t_i, t_i^*)$ where $R$ is the **[robust loss function](https://arxiv.org/pdf/1504.08083.pdf)** (first defined in Fast R-CNN). The [#robust](/tags/#robust) loss function is defined as:
