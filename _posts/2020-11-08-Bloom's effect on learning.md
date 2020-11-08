@@ -1,10 +1,10 @@
 ---
 tags:
-    - learning
-    - teach
     - ”good
-    - casiana
     - teaching
+    - learning
+    - casiana
+    - teach
 mathjax: true
 comments: true
 title:  Bloom's effect on learning
@@ -12,11 +12,11 @@ header:
   teaser: /assets/images/2020-11-08-Bloom's_effect_on_learning_files/teaching_bloom_2_sigma.png
 ---
 
-[20200824182725](# Bloom's effect on learning)
+20200824182725
+[#learning](/tags/#learning) [#”good](/tags/#”good) way of learning” [#teaching](/tags/#teaching) [#casiana](/tags/#casiana) [#teach](/tags/#teach)
 
 ---
 
-[#learning](/tags/#learning) [#”good](/tags/#”good) way of learning” [#teaching](/tags/#teaching) [#casiana](/tags/#casiana) [#teach](/tags/#teach)
 
 In 1984 psychologist Benjamin Bloom found out that one-on-one learning made a student score by 2 std better than a normally educated student. This means that students taught in a one-on-one sessions were in the top 2% of their peers. This is also called [Bloom's 2 sigma problem](https://en.wikipedia.org/wiki/Bloom%27s_2_sigma_problem) after a challenge set by Bloom to make mass learning as efficient as one-on-one.
 
