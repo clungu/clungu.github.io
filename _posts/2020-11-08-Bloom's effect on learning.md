@@ -1,18 +1,18 @@
 ---
 tags:
-    - ”good
-    - teach
-    - learning
-    - teaching
     - casiana
+    - learning
+    - teach
+    - teaching
+    - ”good
 mathjax: true
 comments: true
-title: Bloom's effect on learning this
+title:  Bloom's effect on learning
 header:
   teaser: /assets/images/2020-11-08-Bloom's_effect_on_learning_files/teaching_bloom_2_sigma.png
 ---
 
-[> Bloom's effect on learning]('20200824182725')
+[20200824182725](20200824182725)
 ---
 
 [#learning](/tags/#learning) [#”good](/tags/#”good) way of learning” [#teaching](/tags/#teaching) [#casiana](/tags/#casiana) [#teach](/tags/#teach)
