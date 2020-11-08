@@ -1,8 +1,6 @@
 ---
 tags:
     - teaching
-    - casiana
-    - ”good
     - teach
     - learning
 mathjax: true
@@ -12,7 +10,7 @@ header:
   teaser: /assets/images/2020-11-08-Bloom's_effect_on_learning_files/teaching_bloom_2_sigma.png
 ---
 
-[#learning](/tags/#learning) [#”good](/tags/#”good) way of learning” [#teaching](/tags/#teaching) [#casiana](/tags/#casiana) [#teach](/tags/#teach)
+[#learning](/tags/#learning) [#teaching](/tags/#teaching)
 
 20200824182725
 
