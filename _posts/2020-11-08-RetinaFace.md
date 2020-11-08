@@ -1,24 +1,24 @@
 ---
 tags:
-    - vgg-face
-    - dl
-    - retinaface
-    - docker-ized
-    - learning
-    - processing
-    - robust
-    - ml
-    - face-embedding
-    - graph-convolutional-networks
-    - recognition
-    - books
-    - pyramids
-    - image
-    - amazon's
-    - detection
     - deep
+    - pyramids
+    - recognition
+    - learning
+    - vgg-face
+    - books
+    - ml
+    - retinaface
     - face
     - arcface
+    - dl
+    - docker-ized
+    - image
+    - detection
+    - processing
+    - amazon's
+    - graph-convolutional-networks
+    - face-embedding
+    - robust
 mathjax: true
 comments: true
 title:  RetinaFace
@@ -69,33 +69,29 @@ The model is trained to predict **simultaneously**:
 #### Loss function 
 The loss function is a composition of the losses for all 3 detection objectives above:
 
-$$
-\begin{aligned}
+$$$\begin{aligned}
 Loss = & \> \> \> \> \> \> \> \> \> \> \> \> \> \>  {\color{red}Loss_{Classification}}(p_i, p_i^*) + \\ &\lambda_1(=0.25){\color{red}p_i^*}*{\color{blue}Loss_{RegressionBox}}(t_i, t_i^*) + \\
 &\lambda_2(=0.1){\color{red}p_i^*}*{\color{green}Loss_{LandmarkPoints}}(l_i, l_i^*) + \\
 &\lambda_3(=0.01){\color{red}p_i^*}*{\color{gray}Loss_{3DPixelPose}}
 \end{aligned}
-$$
+$$$
+
+$$\color{red}Loss_{Classification}}(p_i, p_i^*)$$is the classification loss where $$_i$$is the **predicted** probability of anchor i to being a face and $$_i^*$$is 1 for the positive anchor (an anchor that is indeed a face) and 0 for the negative anchor (an anchor that is not a face). The classification is a **binary crossentropy** (they say it's `the softmax loss for binary classes`). 
 
 
-${\color{red}Loss_{Classification}}(p_i, p_i^\*)$ is the classification loss where $p_i$ is the **predicted** probability of anchor i to being a face and $p_i^\*$ is 1 for the positive anchor (an anchor that is indeed a face) and 0 for the negative anchor (an anchor that is not a face). The classification is a **binary crossentropy** (they say it's `the softmax loss for binary classes`). 
+$$\color{blue}Loss_{RegressionBox}}(t_i, t_i^*)$$where $$_i=\{t_x, t_y, t_{height}, t_{width}\}_i$$is the *predicted* box and $$_i^*=\{t_x^*, t_y^*, t_{height}^*, t_{width}^*\}_i$$is the ground truth box associated with the *positive anchor*. The function $$\color{blue}Loss_{RegressionBox}}(t_i, t_i^*)=RobustLoss(t_i, t_i^*)$$where $$$$is the **[robust loss function](https://arxiv.org/pdf/1504.08083.pdf)** (first defined in Fast R-CNN). The [#robust](/tags/#robust) loss function is defined as:
+* $$obustLoss(t_i, t_i^*) = \sum_{j \in \{x, y, w, h\}}smooth_{L1}(t_{ij} - t_{ij}^*)$$* and $$mooth_{L1}$$is
+    * $$mooth_{L1}(x)=0.5x^2$$if $$x| < 1$$    * $$mooth_{L1}(x) = |x| - 0.5$$otherwise.
+Since all the values of $$_i$$and $$_i^*$$are continuous, each one is normalised using a standard scaler (mean=0,  std=1) - at train time, as a preprocessing step.
 
 
-$${\color{blue}Loss_{RegressionBox}}(t_i, t_i^*)$$ where $$t_i=\{t_x, t_y, t_{height}, t_{width}\}_i$$ is the *predicted* box and $t_i^*=\{t_x^*, t_y^*, t_{height}^*, t_{width}^*\}_i$ is the ground truth box associated with the *positive anchor*. The function ${\color{blue}Loss_{RegressionBox}}(t_i, t_i^*)=RobustLoss(t_i, t_i^*)$ where $R$ is the **[robust loss function](https://arxiv.org/pdf/1504.08083.pdf)** (first defined in Fast R-CNN). The [#robust](/tags/#robust) loss function is defined as:
-* $RobustLoss(t_i, t_i^*) = \sum_{j \in \{x, y, w, h\}}smooth_{L1}(t_{ij} - t_{ij}^*)$
-* and $smooth_{L1}$ is
-    * $smooth_{L1}(x)=0.5x^2$ if $|x| < 1$
-    * $smooth_{L1}(x) = |x| - 0.5$ otherwise.
-Since all the values of $t_i$ and $t_i^*$ are continuous, each one is normalised using a standard scaler (mean=0,  std=1) - at train time, as a preprocessing step.
+$$\color{green}Loss_{LandmarkPoints}}(l_i, l_i^*)$$where $$_i = \{l_{x1}, l_{y1}, …, l_{x5}, l_{y5}\}_i$$is the *predicted* 5 facial landmarks, and  $$_i^* = \{l_{x1}^*, l_{y1}^*, …, l_{x5}^*, l_{y5}^*\}_i$$represent the ground-truth associated with the *positive anchor*. Again, since all the values of $$_i$$and $$_i^*$$are continuous, each one is normalised using a standard scaler (mean=0,  std=1).
 
 
-${\color{green}Loss_{LandmarkPoints}}(l_i, l_i^*)$ where $l_i = \{l_{x1}, l_{y1}, …, l_{x5}, l_{y5}\}_i$ is the *predicted* 5 facial landmarks, and  $l_i^* = \{l_{x1}^*, l_{y1}^*, …, l_{x5}^*, l_{y5}^*\}_i$ represent the ground-truth associated with the *positive anchor*. Again, since all the values of $l_i$ and $l_i^*$ are continuous, each one is normalised using a standard scaler (mean=0,  std=1).
-
-
-${\color{gray}Loss_{3DPixelPose}}$ is a loss based on the [#graph-convolutional-networks](/tags/#graph-convolutional-networks) of the ideal face mesh and the current prediction ( [[20200820200300]] Graph Convolutional Networks ) over a 3DMM ( discussed in [[20200825140617]] 3D Morphable Models ), where you have a mesh of a generic person and try to morph that face template so as the projected 2D image matches your target image.
+$$\color{gray}Loss_{3DPixelPose}}$$is a loss based on the [#graph-convolutional-networks](/tags/#graph-convolutional-networks) of the ideal face mesh and the current prediction ( [[20200820200300]] Graph Convolutional Networks ) over a 3DMM ( discussed in [[20200825140617]] 3D Morphable Models ), where you have a mesh of a generic person and try to morph that face template so as the projected 2D image matches your target image.
 
 ![dl_graph_convolutions.png](/assets/images/2020-11-08-RetinaFace_files/dl_graph_convolutions.png)
-After estimating the face $(S, T)$ (shape and texture parameters), $P$ (the projection, or $(camera\_location, camera\_pose, camera\_focal\_length)$ triple ) of the faces, and $I$ (the illumination properties, i.e. location of point light source, colour values and colour of ambient lighting), they use a fast differentiable [3D mesh renderer](https://github.com/google/tf_mesh_renderer) for converting the expressed 3D face (given by $(S,T, P, I)$) onto a 2D projection (I don't fully understand why they need a **differentiable** rendered or what does that imply).
+After estimating the face $$S, T)$$(shape and texture parameters), $$$$(the projection, or $$camera\_location, camera\_pose, camera\_focal\_length)$$triple ) of the faces, and $$$$(the illumination properties, i.e. location of point light source, colour values and colour of ambient lighting), they use a fast differentiable [3D mesh renderer](https://github.com/google/tf_mesh_renderer) for converting the expressed 3D face (given by $$S,T, P, I)$$ onto a 2D projection (I don't fully understand why they need a **differentiable** rendered or what does that imply).
 
 The 3D mesh renderer used was published in the 2018 paper titled ["Unsupervised Training for 3D Morphable Model Regression"](https://openaccess.thecvf.com/content_cvpr_2018/papers/Genova_Unsupervised_Training_for_CVPR_2018_paper.pdf) by Google, where they present an end-to-end network that can learn **unsupervised** 3D faces from images. This paper presents an auto-encoder architecture, which takes and image, converts it to an embedding (via [FaceNet](https://arxiv.org/pdf/1503.03832.pdf) or [#vgg-face](/tags/#vgg-face)), then pass that embedding to a 3DMM decoder that outputs a 3D image, feed that 3D image in the differentible renderer to get a 2D image (projection) which is compared (via a loss function - this bit simplifying things) to the initial image, and the errors are backpropagated on the full architecture. So we have:
 * FaceNet(Target 2D Image) => [#face-embedding](/tags/#face-embedding)
@@ -105,13 +101,13 @@ The 3D mesh renderer used was published in the 2018 paper titled ["Unsupervised 
 
 The Renderer needs to be differentiable in order to for this system to be an end-to-end trainable one (all the pieces need to be differentiable).
 
-The authors of RetinaNet reused only the Renderer to incorporate it into their network, because they replace Google's 3DMM step, with one based on the mesh convolutions (via graph convolutions). The basic idea though is that this step takes an input image and outputs a tuple $(S, T, P, I)$ for shape, texture, pose, illumination which is then decoded into a 2D image via Google's renderer.
+The authors of RetinaNet reused only the Renderer to incorporate it into their network, because they replace Google's 3DMM step, with one based on the mesh convolutions (via graph convolutions). The basic idea though is that this step takes an input image and outputs a tuple $$S, T, P, I)$$for shape, texture, pose, illumination which is then decoded into a 2D image via Google's renderer.
 
 Google's 3DMM decoder uses a 2-layer NN to transform the embeddings into s and t parameters that can be fed into the [Basel Face Model 2017 3DMM](https://arxiv.org/pdf/1709.08398.pdf). This makes Google's approach really specific to faces, while (I believe) that the mesh convolutions approach can be applied to any known regular object (like [#books](/tags/#books)) as long as you can map them to a class of 3D morphable objects.
 
 
 
-From the 2D image obtained in this way, and the target image a MSE (or something similar) is computed for the  ${\color{gray}Loss_{3DPixelPose}}$ value.
+From the 2D image obtained in this way, and the target image a MSE (or something similar) is computed for the  $$\color{gray}Loss_{3DPixelPose}}$$value.
 
 ### A Dockerized container
 
