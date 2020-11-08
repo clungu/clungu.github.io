@@ -1,10 +1,10 @@
 ---
 tags:
-    - casiana
+    - ”good
+    - teaching
     - learning
     - teach
-    - teaching
-    - ”good
+    - casiana
 mathjax: true
 comments: true
 header:
