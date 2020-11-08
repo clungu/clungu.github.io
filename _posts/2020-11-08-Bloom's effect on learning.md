@@ -1,18 +1,19 @@
 ---
 tags:
     - ”good
-    - teaching
-    - learning
     - teach
+    - learning
+    - teaching
     - casiana
 mathjax: true
 comments: true
+title: > Bloom's effect on learning]('20200824182725')
 header:
   teaser: /assets/images/2020-11-08-Bloom's_effect_on_learning_files/teaching_bloom_2_sigma.png
 ---
 
-# Bloom's effect on learning
-20200824182725
+[> Bloom's effect on learning]('20200824182725')
+---
 
 [#learning](/tags/#learning) [#”good](/tags/#”good) way of learning” [#teaching](/tags/#teaching) [#casiana](/tags/#casiana) [#teach](/tags/#teach)
 
@@ -29,4 +30,3 @@ Addopting any one of them make the student learn faster and be better than the n
 This has been discussed on [HackerNews as well](https://news.ycombinator.com/item?id=24261345) 
 
 > [Salman Kahn] believed that the current accepted method of teaching - students attending lectures and sitting in classrooms getting knowledge from teachers, then later doing homework alone trying to apply it - needs to be inverted. Lectures, presentations, textbooks can all be online and automated. Teaching resources, limited as they are, are much better spent helping students specifically when they are stuck and need more personalized help
-
