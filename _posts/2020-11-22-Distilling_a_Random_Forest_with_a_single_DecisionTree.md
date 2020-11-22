@@ -1,5 +1,5 @@
 ---
-title: Distilling a Random Forest with a single DecisionTree
+title: Distilling a Random Forest to a single DecisionTree
 tags:
     - decision tree
     - optimizations
