@@ -1,4 +1,15 @@
-# Distilling a Random Forest with a single DecisionTree
+---
+title: Distilling a Random Forest with a single DecisionTree
+tags:
+    - decision tree
+    - optimizations
+    - deploy
+    - code
+mathjax: true
+header:
+  teaser: /assets/images/2020-11-22-Distilling_a_Random_Forest_with_a_single_DecisionTree_files/2020-11-22-Distilling_a_Random_Forest_with_a_single_DecisionTree_19_0.svg
+---
+
 
 On HackerNews there was a topic discussed at some point about ways to distill knowledge from a complex (almost black box) large tree ensamble (a RandomForest with lots of sub-trees was used as an example).
 
@@ -17,7 +28,7 @@ This post is my attempt of testing this strategy out.
 I'll first use a clean and small dataset not to make things to complicated.
 
 
-```
+```python
 from sklearn.datasets import load_iris
 import pandas as pd
 
@@ -106,7 +117,7 @@ df.head()
 Then I'm going to split this dataset into a training set (random 70% of the data) and a test set (the other 15% of the data).
 
 
-```
+```python
 from sklearn.model_selection import train_test_split
 
 df_train, df_test = train_test_split(df, test_size=0.3)
@@ -125,7 +136,7 @@ df_train.shape, df_test.shape, df_train.shape[0] / (df_train.shape[0] + df_test.
 And then I'm going to train a `RandomForestClassifier` that will solve this problem. I'm not going to be too concerned on the model performence (so I'm not going to really make it generalize well) because I'm really more interested in achieving the same behaviour (either good or bad as it is) with a `DecisionTree` proxy. 
 
 
-```
+```python
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 
@@ -161,7 +172,7 @@ What this actually means is doing the following steps:
 What this basically does is creating a single DecisionTree that can predict exactly the same stuff as the RandomForest. We know that a `DecisionTree` has the ability to overfitt perfectly the training data if it is allowed to (for example, if we leave it to grow until leaf nodes contain only one datapoint).
 
 
-```
+```python
 def __inp(df, exclude_columns=['target']):
     return df.drop(columns=list(set(exclude_columns) & set(df.columns)))
 
@@ -265,7 +276,7 @@ df_train_tree.head()
 We *want* to overfit the training data with the decision tree because what we are actually looking for is a single condensed tree that behaves exactly the same as the original `RandomForest`. And we want the DecisionTree to behave **exactly** the same as the RandomForest on the test data as well. That's why we train on the full dataset here.
 
 
-```
+```python
 from sklearn.tree import DecisionTreeClassifier
 from functools import partial
 from sklearn.metrics import f1_score
@@ -330,52 +341,10 @@ Neverthless, what tree did we got?
 !pip install dtreeviz
 ```
 
-    Ign:1 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64  InRelease
-    Hit:2 https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/ InRelease
-    Ign:3 https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64  InRelease
-    Hit:4 https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64  Release
-    Hit:5 http://security.ubuntu.com/ubuntu bionic-security InRelease
-    Hit:6 http://archive.ubuntu.com/ubuntu bionic InRelease
-    Hit:7 http://ppa.launchpad.net/c2d4u.team/c2d4u4.0+/ubuntu bionic InRelease
-    Hit:8 https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64  Release
-    Hit:9 http://archive.ubuntu.com/ubuntu bionic-updates InRelease
-    Hit:10 http://archive.ubuntu.com/ubuntu bionic-backports InRelease
-    Hit:11 http://ppa.launchpad.net/graphics-drivers/ppa/ubuntu bionic InRelease
-    Reading package lists... Done
-    Reading package lists... Done
-    Building dependency tree       
-    Reading state information... Done
-    graphviz is already the newest version (2.40.1-2).
-    0 upgraded, 0 newly installed, 0 to remove and 57 not upgraded.
-    Requirement already satisfied: dtreeviz in /usr/local/lib/python3.6/dist-packages (1.1.2)
-    Requirement already satisfied: pyspark in /usr/local/lib/python3.6/dist-packages (from dtreeviz) (3.0.1)
-    Requirement already satisfied: graphviz>=0.9 in /usr/local/lib/python3.6/dist-packages (from dtreeviz) (0.10.1)
-    Requirement already satisfied: colour in /usr/local/lib/python3.6/dist-packages (from dtreeviz) (0.1.5)
-    Requirement already satisfied: scikit-learn in /usr/local/lib/python3.6/dist-packages (from dtreeviz) (0.22.2.post1)
-    Requirement already satisfied: pytest in /usr/local/lib/python3.6/dist-packages (from dtreeviz) (3.6.4)
-    Requirement already satisfied: xgboost in /usr/local/lib/python3.6/dist-packages (from dtreeviz) (0.90)
-    Requirement already satisfied: numpy in /usr/local/lib/python3.6/dist-packages (from dtreeviz) (1.18.5)
-    Requirement already satisfied: matplotlib in /usr/local/lib/python3.6/dist-packages (from dtreeviz) (3.2.2)
-    Requirement already satisfied: pandas in /usr/local/lib/python3.6/dist-packages (from dtreeviz) (1.1.4)
-    Requirement already satisfied: py4j==0.10.9 in /usr/local/lib/python3.6/dist-packages (from pyspark->dtreeviz) (0.10.9)
-    Requirement already satisfied: joblib>=0.11 in /usr/local/lib/python3.6/dist-packages (from scikit-learn->dtreeviz) (0.17.0)
-    Requirement already satisfied: scipy>=0.17.0 in /usr/local/lib/python3.6/dist-packages (from scikit-learn->dtreeviz) (1.4.1)
-    Requirement already satisfied: atomicwrites>=1.0 in /usr/local/lib/python3.6/dist-packages (from pytest->dtreeviz) (1.4.0)
-    Requirement already satisfied: attrs>=17.4.0 in /usr/local/lib/python3.6/dist-packages (from pytest->dtreeviz) (20.2.0)
-    Requirement already satisfied: pluggy<0.8,>=0.5 in /usr/local/lib/python3.6/dist-packages (from pytest->dtreeviz) (0.7.1)
-    Requirement already satisfied: more-itertools>=4.0.0 in /usr/local/lib/python3.6/dist-packages (from pytest->dtreeviz) (8.6.0)
-    Requirement already satisfied: six>=1.10.0 in /usr/local/lib/python3.6/dist-packages (from pytest->dtreeviz) (1.15.0)
-    Requirement already satisfied: py>=1.5.0 in /usr/local/lib/python3.6/dist-packages (from pytest->dtreeviz) (1.9.0)
-    Requirement already satisfied: setuptools in /usr/local/lib/python3.6/dist-packages (from pytest->dtreeviz) (50.3.2)
-    Requirement already satisfied: cycler>=0.10 in /usr/local/lib/python3.6/dist-packages (from matplotlib->dtreeviz) (0.10.0)
-    Requirement already satisfied: kiwisolver>=1.0.1 in /usr/local/lib/python3.6/dist-packages (from matplotlib->dtreeviz) (1.3.1)
-    Requirement already satisfied: pyparsing!=2.0.4,!=2.1.2,!=2.1.6,>=2.0.1 in /usr/local/lib/python3.6/dist-packages (from matplotlib->dtreeviz) (2.4.7)
-    Requirement already satisfied: python-dateutil>=2.1 in /usr/local/lib/python3.6/dist-packages (from matplotlib->dtreeviz) (2.8.1)
-    Requirement already satisfied: pytz>=2017.2 in /usr/local/lib/python3.6/dist-packages (from pandas->dtreeviz) (2018.9)
 
 
 
-```
+```python
 from dtreeviz.trees import *
 viz = dtreeviz(dt, 
                __inp(df_tree),
@@ -391,7 +360,7 @@ viz
 
 
     
-![svg](../assets/images/2020-11-22-Distilling_a_Random_Forest_with_a_single_DecisionTree_files/2020-11-22-Distilling_a_Random_Forest_with_a_single_DecisionTree_19_0.svg)
+![svg](/assets/images/2020-11-22-Distilling_a_Random_Forest_with_a_single_DecisionTree_files/2020-11-22-Distilling_a_Random_Forest_with_a_single_DecisionTree_19_0.svg)
     
 
 
@@ -403,7 +372,7 @@ As I've said before, the only problem is that this strategy applies strictly onl
 To thest this out we will do a three-way split, leaving the third unseen to the DecitionTree and we will replicate the experiment above
 
 
-```
+```python
 from sklearn.model_selection import train_test_split
 
 df_train, df_rest = train_test_split(df, test_size=0.3)
@@ -427,7 +396,7 @@ We now have:
 * `df_future` - 15% of (simulated) future data
 
 
-```
+```python
 # train a "generizable" RandomForest
 rf = RandomForestClassifier(n_estimators=100, max_depth=5, n_jobs=-1)
 rf.fit(__inp(df_train), __out(df_train))
@@ -498,14 +467,11 @@ assert __f1_score(__out(df_test), rf.predict(__inp(df_test_tree))) == __f1_score
     
 
 
-    /usr/local/lib/python3.6/dist-packages/sklearn/tree/_classes.py:301: FutureWarning: The min_impurity_split parameter is deprecated. Its default value will change from 1e-7 to 0 in version 0.23, and it will be removed in 0.25. Use the min_impurity_decrease parameter instead.
-      FutureWarning)
-
-
+ 
 Let's see how we do on the future data now!
 
 
-```
+```python
 print("Random Forest performance on future data:")
 print(classification_report(__out(df_future), rf.predict(__inp(df_future))))
 
@@ -554,7 +520,7 @@ For this we've choosen the [forest covertype dataset](https://scikit-learn.org/s
 
 
 
-```
+```python
 from sklearn.datasets import fetch_covtype 
 import pandas as pd
 
@@ -943,7 +909,7 @@ df.head()
 We will again save a `future` dataset for later use.
 
 
-```
+```python
 from sklearn.model_selection import train_test_split
 
 df_train, df_rest = train_test_split(df, test_size=0.3)
@@ -961,7 +927,7 @@ df_train.shape, df_test.shape,  df_future.shape, df_test.shape[0] / (df_train.sh
 
 
 
-```
+```python
 # train a "generizable" RandomForest
 rf = RandomForestClassifier(n_estimators=100, max_depth=5, n_jobs=-1)
 rf.fit(__inp(df_train), __out(df_train))
@@ -992,9 +958,6 @@ assert __f1_score(__out(df_test), rf.predict(__inp(df_test_tree))) == __f1_score
     RandomForest performance:
 
 
-    /usr/local/lib/python3.6/dist-packages/sklearn/metrics/_classification.py:1272: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-      _warn_prf(average, modifier, msg_start, len(result))
-
 
                   precision    recall  f1-score   support
     
@@ -1012,12 +975,6 @@ assert __f1_score(__out(df_test), rf.predict(__inp(df_test_tree))) == __f1_score
     
 
 
-    /usr/local/lib/python3.6/dist-packages/sklearn/tree/_classes.py:301: FutureWarning: The min_impurity_split parameter is deprecated. Its default value will change from 1e-7 to 0 in version 0.23, and it will be removed in 0.25. Use the min_impurity_decrease parameter instead.
-      FutureWarning)
-
-
-    
-    
     
     This should show that we've completely overfitted the predictions (i.e. F1 score == 1.0). 
     So we've mimiked the RandomForest's behaviour perfectly!
@@ -1052,14 +1009,10 @@ assert __f1_score(__out(df_test), rf.predict(__inp(df_test_tree))) == __f1_score
     
 
 
-    /usr/local/lib/python3.6/dist-packages/sklearn/metrics/_classification.py:1272: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-      _warn_prf(average, modifier, msg_start, len(result))
-
-
 Now that we have everything prepared, let's just test what happens with the two models on this more plausible dataset.
 
 
-```
+```python
 print("Random Forest performance on future data:")
 print(classification_report(__out(df_future), rf.predict(__inp(df_future))))
 
@@ -1068,12 +1021,6 @@ print(classification_report(__out(df_future), dt.predict(__inp(df_future))))
 ```
 
     Random Forest performance on future data:
-
-
-    /usr/local/lib/python3.6/dist-packages/sklearn/metrics/_classification.py:1272: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-      _warn_prf(average, modifier, msg_start, len(result))
-    /usr/local/lib/python3.6/dist-packages/sklearn/metrics/_classification.py:1272: UndefinedMetricWarning: Precision and F-score are ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
-      _warn_prf(average, modifier, msg_start, len(result))
 
 
                   precision    recall  f1-score   support
@@ -1116,7 +1063,7 @@ We will train a XGBoost model and try to reproduce the results above with it so 
 We will use the same `covtype` dataset since it's large and tune the training and instantiation of the model to obtain a nice performant model. While in the previous experiment we didn't really bother optimising the model, it is possible that a great generalizable model will show some differences when applying this process.
 
 
-```
+```python
 from sklearn.datasets import fetch_covtype 
 import pandas as pd
 
@@ -1503,7 +1450,7 @@ df.head()
 
 
 
-```
+```python
 from sklearn.model_selection import train_test_split
 
 df_train, df_rest = train_test_split(df, test_size=0.3)
@@ -1521,7 +1468,7 @@ df_train.shape, df_test.shape,  df_future.shape, df_test.shape[0] / (df_train.sh
 
 
 
-```
+```python
 from xgboost import XGBClassifier
 
 # train a "generizable" RandomForest
@@ -1572,98 +1519,7 @@ assert __f1_score(__out(df_test), xgb.predict(__inp(df_test_tree))) == __f1_scor
     [1]	validation_0-mlogloss:1.62483
     [2]	validation_0-mlogloss:1.50959
     [3]	validation_0-mlogloss:1.41254
-    [4]	validation_0-mlogloss:1.32897
-    [5]	validation_0-mlogloss:1.25724
-    [6]	validation_0-mlogloss:1.19438
-    [7]	validation_0-mlogloss:1.13841
-    [8]	validation_0-mlogloss:1.08877
-    [9]	validation_0-mlogloss:1.04369
-    [10]	validation_0-mlogloss:1.00364
-    [11]	validation_0-mlogloss:0.967579
-    [12]	validation_0-mlogloss:0.934488
-    [13]	validation_0-mlogloss:0.905293
-    [14]	validation_0-mlogloss:0.878637
-    [15]	validation_0-mlogloss:0.854214
-    [16]	validation_0-mlogloss:0.831893
-    [17]	validation_0-mlogloss:0.81107
-    [18]	validation_0-mlogloss:0.792415
-    [19]	validation_0-mlogloss:0.77495
-    [20]	validation_0-mlogloss:0.759048
-    [21]	validation_0-mlogloss:0.744567
-    [22]	validation_0-mlogloss:0.731076
-    [23]	validation_0-mlogloss:0.718687
-    [24]	validation_0-mlogloss:0.707045
-    [25]	validation_0-mlogloss:0.695962
-    [26]	validation_0-mlogloss:0.685939
-    [27]	validation_0-mlogloss:0.676211
-    [28]	validation_0-mlogloss:0.667509
-    [29]	validation_0-mlogloss:0.659425
-    [30]	validation_0-mlogloss:0.651654
-    [31]	validation_0-mlogloss:0.644297
-    [32]	validation_0-mlogloss:0.637633
-    [33]	validation_0-mlogloss:0.631391
-    [34]	validation_0-mlogloss:0.625518
-    [35]	validation_0-mlogloss:0.61975
-    [36]	validation_0-mlogloss:0.614328
-    [37]	validation_0-mlogloss:0.609253
-    [38]	validation_0-mlogloss:0.604604
-    [39]	validation_0-mlogloss:0.600179
-    [40]	validation_0-mlogloss:0.595672
-    [41]	validation_0-mlogloss:0.591668
-    [42]	validation_0-mlogloss:0.587884
-    [43]	validation_0-mlogloss:0.584106
-    [44]	validation_0-mlogloss:0.580601
-    [45]	validation_0-mlogloss:0.576968
-    [46]	validation_0-mlogloss:0.573537
-    [47]	validation_0-mlogloss:0.570581
-    [48]	validation_0-mlogloss:0.568026
-    [49]	validation_0-mlogloss:0.565185
-    [50]	validation_0-mlogloss:0.562348
-    [51]	validation_0-mlogloss:0.559119
-    [52]	validation_0-mlogloss:0.556793
-    [53]	validation_0-mlogloss:0.55439
-    [54]	validation_0-mlogloss:0.552006
-    [55]	validation_0-mlogloss:0.549798
-    [56]	validation_0-mlogloss:0.547591
-    [57]	validation_0-mlogloss:0.545573
-    [58]	validation_0-mlogloss:0.543886
-    [59]	validation_0-mlogloss:0.542113
-    [60]	validation_0-mlogloss:0.540389
-    [61]	validation_0-mlogloss:0.537976
-    [62]	validation_0-mlogloss:0.536513
-    [63]	validation_0-mlogloss:0.534732
-    [64]	validation_0-mlogloss:0.533412
-    [65]	validation_0-mlogloss:0.53167
-    [66]	validation_0-mlogloss:0.530359
-    [67]	validation_0-mlogloss:0.52876
-    [68]	validation_0-mlogloss:0.527035
-    [69]	validation_0-mlogloss:0.525793
-    [70]	validation_0-mlogloss:0.524423
-    [71]	validation_0-mlogloss:0.52235
-    [72]	validation_0-mlogloss:0.521258
-    [73]	validation_0-mlogloss:0.519966
-    [74]	validation_0-mlogloss:0.518731
-    [75]	validation_0-mlogloss:0.517765
-    [76]	validation_0-mlogloss:0.516584
-    [77]	validation_0-mlogloss:0.515267
-    [78]	validation_0-mlogloss:0.514166
-    [79]	validation_0-mlogloss:0.513287
-    [80]	validation_0-mlogloss:0.512135
-    [81]	validation_0-mlogloss:0.510947
-    [82]	validation_0-mlogloss:0.510011
-    [83]	validation_0-mlogloss:0.509051
-    [84]	validation_0-mlogloss:0.508119
-    [85]	validation_0-mlogloss:0.507152
-    [86]	validation_0-mlogloss:0.506181
-    [87]	validation_0-mlogloss:0.505228
-    [88]	validation_0-mlogloss:0.504472
-    [89]	validation_0-mlogloss:0.503728
-    [90]	validation_0-mlogloss:0.502491
-    [91]	validation_0-mlogloss:0.501492
-    [92]	validation_0-mlogloss:0.500893
-    [93]	validation_0-mlogloss:0.499965
-    [94]	validation_0-mlogloss:0.498986
-    [95]	validation_0-mlogloss:0.49769
+    ...
     [96]	validation_0-mlogloss:0.497148
     [97]	validation_0-mlogloss:0.496566
     [98]	validation_0-mlogloss:0.495456
@@ -1682,13 +1538,6 @@ assert __f1_score(__out(df_test), xgb.predict(__inp(df_test_tree))) == __f1_scor
         accuracy                           0.79     87152
        macro avg       0.80      0.66      0.70     87152
     weighted avg       0.79      0.79      0.78     87152
-    
-
-
-    /usr/local/lib/python3.6/dist-packages/sklearn/tree/_classes.py:301: FutureWarning: The min_impurity_split parameter is deprecated. Its default value will change from 1e-7 to 0 in version 0.23, and it will be removed in 0.25. Use the min_impurity_decrease parameter instead.
-      FutureWarning)
-
-
     
     
     
@@ -1730,7 +1579,7 @@ assert __f1_score(__out(df_test), xgb.predict(__inp(df_test_tree))) == __f1_scor
 
 
 
-```
+```python
 print("XGBoost performance on future data:")
 print(classification_report(__out(df_future), xgb.predict(__inp(df_future))))
 

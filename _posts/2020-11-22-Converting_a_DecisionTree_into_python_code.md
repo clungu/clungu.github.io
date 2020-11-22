@@ -5,6 +5,7 @@ tags:
     - deploy
     - code
 mathjax: true
+title: Converting a DecissionTree into python code
 ---
 
 It is sometimes usefull to be able to convert a decision tree into and actual usefull code snippet. This notebook shows how you'd go around to achieve this.
