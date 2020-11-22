@@ -1,3 +1,12 @@
+---
+tags:
+    - decision tree
+    - optimizations
+    - deploy
+    - code
+mathjax: true
+---
+
 It is sometimes usefull to be able to convert a decision tree into and actual usefull code snippet. This notebook shows how you'd go around to achieve this.
 
 We will use as an example, the iris dataset (which is a toy example and not really that interesting but sufficiently interesting that we can show a usable final result and make a point).
@@ -9,7 +18,7 @@ With the above trained decision tree we can convert it into actual python code.
 # Setup
 
 
-```
+```python
 import pandas as pd
 
 from sklearn.datasets import load_iris
@@ -22,7 +31,7 @@ import numpy as np
 Get the dataset
 
 
-```
+```python
 dataset = load_iris()
 df = pd.DataFrame(data=dataset.data, columns=dataset.feature_names)
 df['target'] = dataset.target
@@ -123,7 +132,7 @@ df_train.shape, df_test.shape, df_train.shape[0] / (df_train.shape[0] + df_test.
 Train the `DecisionTree` model that we will work on.
 
 
-```
+```python
 dt = DecisionTreeClassifier(max_depth=5, random_state=0)
 dt.fit(df_train.drop(columns='target'), df_train['target'])
 
@@ -155,7 +164,7 @@ Ok, so we have a `DecisionTree` object that functions as you can see above and w
 We will largely use and improve upon the code @paulkernfeld and @NirIzr provided in [this stackoverflow answer](https://stackoverflow.com/questions/20224526/how-to-extract-the-decision-rules-from-scikit-learn-decision-tree).
 
 
-```
+```python
 from sklearn.tree import _tree
 PYTHON_INDENT_STEP = "  "
 
@@ -253,7 +262,7 @@ tree_to_code(dt, df.columns)
 Let's also store this code into a python file that we can later on load and use.
 
 
-```
+```python
 import io
 from contextlib import redirect_stdout
 
@@ -290,7 +299,7 @@ So, now that we've wrote the code into a python file, let's load it and certify 
 Our `tree_model` function is actually the equivalent of `predict_proba` method of a `DecisionTree` so we will compare these two on all datapoints of the dataset.
 
 
-```
+```python
 %load_ext autoreload
 %autoreload 2
 
