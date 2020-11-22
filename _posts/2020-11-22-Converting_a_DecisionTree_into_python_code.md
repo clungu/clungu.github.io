@@ -237,7 +237,7 @@ def tree_to_code(tree, feature_names):
 
 tree_to_code(dt, df.columns)
 ```
-
+```python
     def tree_model(sepal_length_cm_, sepal_width_cm_, petal_length_cm_, petal_width_cm_, target):
       if (petal_width_cm_ <= 0.75):
         return [1.0, 0.0, 0.0]
@@ -258,7 +258,7 @@ tree_to_code(dt, df.columns)
               return [0.0, 1.0, 0.0]
           else:  # if (petal_width_cm_ > 1.75)
             return [0.0, 0.0, 1.0]
-
+```
 
 Let's also store this code into a python file that we can later on load and use.
 
@@ -272,28 +272,6 @@ with open("python_code_model.py", "w") as buf, redirect_stdout(buf):
 
 !cat python_code_model.py
 ```
-
-    def tree_model(sepal_length_cm_, sepal_width_cm_, petal_length_cm_, petal_width_cm_):
-      if (petal_width_cm_ <= 0.75):
-        return [1.0, 0.0, 0.0]
-      else:  # if (petal_width_cm_ > 0.75)
-        if (petal_length_cm_ <= 4.950000047683716):
-          if (petal_width_cm_ <= 1.6500000357627869):
-            return [0.0, 1.0, 0.0]
-          else:  # if (petal_width_cm_ > 1.6500000357627869)
-            if (sepal_width_cm_ <= 3.100000023841858):
-              return [0.0, 0.0, 1.0]
-            else:  # if (sepal_width_cm_ > 3.100000023841858)
-              return [0.0, 1.0, 0.0]
-        else:  # if (petal_length_cm_ > 4.950000047683716)
-          if (petal_width_cm_ <= 1.75):
-            if (petal_width_cm_ <= 1.6500000357627869):
-              return [0.0, 0.0, 1.0]
-            else:  # if (petal_width_cm_ > 1.6500000357627869)
-              return [0.0, 1.0, 0.0]
-          else:  # if (petal_width_cm_ > 1.75)
-            return [0.0, 0.0, 1.0]
-
 
 So, now that we've wrote the code into a python file, let's load it and certify that all the predictions between the original scikit-learn model and the hardcoded one predict the same outcome.
 
@@ -317,20 +295,7 @@ print(f"All {df.shape[0]} datapoints had the same predictions in both the Decisi
 code_prediction, dt_prediction
 ```
 
-    The autoreload extension is already loaded. To reload it, use:
-      %reload_ext autoreload
-
-
-
-    HBox(children=(FloatProgress(value=0.0, max=150.0), HTML(value='')))
-
-
-    
     All 150 datapoints had the same predictions in both the DecisionTree and the code generation model!
-
-
-
-
 
     (array([0., 0., 1.]), array([0., 0., 1.]))
 
