@@ -347,7 +347,7 @@ This has several advantages:
 * This code has no dependency whatsoever (it doesn't depend on `pandas`, `scikit-learn`, `numpy`, etc..). I'd even argue that it doesn't even depend on `python` as well, since you can use other language constructs for crafting a valid code generation (for `C#`, `Java`, etc..)
 * Being code, you can push that into a `git` repository.
 * Being code, you can deploy the actual compiled artifact of this code in production (this doesn't really apply to `python` but other languages might benefit from this quite a lot). Let's say we are working in `C++`. Instead of pushing to production a blob of data (the model) along with the `dlls` that can read, instantiate and use the model (and of its dependencies) you can compile the code and send only tha `dll` of the code. No model data, no deserialisation code / dependencies, no code for interpreting the model data.
-* Coupled with the previous strategy of distilling a more powerfull model (a `RandomForest` or a `XGBoost` model) to a `DecisionTree` (discussed here) you get a way of deploying a powerfull model with 0 dependencies.
+* Coupled with the [previous strategy of distilling a more powerfull model](http://www.clungu.com/Distilling_a_Random_Forest_with_a_single_DecisionTree/) (a `RandomForest` or a `XGBoost` model) to a `DecisionTree` (discussed here) you get a way of deploying a powerfull model with 0 dependencies.
 
 Sure, there are some disadvantages as well:
 * This only applies to a `DecisionTree`
