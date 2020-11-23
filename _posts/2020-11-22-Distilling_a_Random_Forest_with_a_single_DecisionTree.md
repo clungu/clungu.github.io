@@ -11,9 +11,9 @@ header:
 ---
 
 
-On HackerNews there was a topic discussed at some point about ways to distill knowledge from a complex (almost black box) large tree ensamble (a RandomForest with lots of sub-trees was used as an example).
+On HackerNews there was a topic discussed at some point about ways to distil knowledge from a complex (almost black box) large tree ensemble (a RandomForest with lots of sub-trees was used as an example).
 
-You would like to do this for multiple resones, but one of them is model exaplainability, so a way to understand how that complex model behaves so you can draw conclusions and improve it (or guard against its failures).
+You would like to do this for multiple reasons, but one of them is model exaplainability, so a way to understand how that complex model behaves so you can draw conclusions and improve it (or guard against its failures).
 
 One comment really caught my eye:
 
@@ -327,10 +327,6 @@ assert __f1_score(__out(df_test), rf.predict(__inp(df_test_tree))) == __f1_score
     
 
 
-    /usr/local/lib/python3.6/dist-packages/sklearn/tree/_classes.py:301: FutureWarning: The min_impurity_split parameter is deprecated. Its default value will change from 1e-7 to 0 in version 0.23, and it will be removed in 0.25. Use the min_impurity_decrease parameter instead.
-      FutureWarning)
-
-
 So this did work, we have a `DecisionTree` that behaves exactly as the `RandomForest`. The only problem is that this applies only on the seen data (so it may be possible that the RandomForest generalises well on new / other data, but the DecisionTree will not, because it is a perfect aproximator trained only on the data available at that moment of training). We will test this in the following section.
 
 Neverthless, what tree did we got?
@@ -382,12 +378,7 @@ df_all = pd.concat((df_train, df_test))
 df_train.shape, df_test.shape,  df_future.shape, df_test.shape[0] / (df_train.shape[0] + df_test.shape[0] + df_future.shape[0])
 ```
 
-
-
-
     ((105, 5), (22, 5), (23, 5), 0.14666666666666667)
-
-
 
 We now have:
 * `df_train` - 70% of the data
@@ -434,7 +425,6 @@ assert __f1_score(__out(df_test), rf.predict(__inp(df_test_tree))) == __f1_score
         accuracy                           1.00        22
        macro avg       1.00      1.00      1.00        22
     weighted avg       1.00      1.00      1.00        22
-    
     
     
     
@@ -920,11 +910,7 @@ df_train.shape, df_test.shape,  df_future.shape, df_test.shape[0] / (df_train.sh
 ```
 
 
-
-
     ((406708, 55), (87152, 55), (87152, 55), 0.1500003442269695)
-
-
 
 
 ```python
@@ -1460,12 +1446,7 @@ df_all = pd.concat((df_train, df_test))
 df_train.shape, df_test.shape,  df_future.shape, df_test.shape[0] / (df_train.shape[0] + df_test.shape[0] + df_future.shape[0])
 ```
 
-
-
-
     ((406708, 55), (87152, 55), (87152, 55), 0.1500003442269695)
-
-
 
 
 ```python
