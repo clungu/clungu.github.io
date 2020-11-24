@@ -5,16 +5,17 @@ tags:
     - deploy
     - code
 mathjax: true
-title: Converting a DecissionTree into python code
+title: Converting a DecisionTree into python code
 ---
 
-It is sometimes usefull to be able to convert a decision tree into and actual usefull code snippet. This notebook shows how you'd go around to achieve this.
+It is sometimes useful to be able to convert a decision tree into and actual useful code snippet. This notebook shows how you’d go around to achieve this.
 
 We will use as an example, the iris dataset (which is a toy example and not really that interesting but sufficiently interesting that we can show a usable final result and make a point).
 
 We will take the dataset, split it into training set and testing set (70%/15%) and we will train a minimal DecisionTree over it.
 
 With the above trained decision tree we can convert it into actual python code.
+
 
 # Setup
 
