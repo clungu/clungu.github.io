@@ -25,13 +25,8 @@ Astfel, am inceput sa ma joc putin cu datele pentru a obtine niste comparatii in
 
 <iframe width="812" height="539" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRVplGVvEHB3e41nurm_0pP_gC-ME4s9jSizAVF8YP6Ja0KDltlugAjtbz98KmocbtMInOg21JFkaPp/pubchart?oid=259452031&amp;format=interactive"></iframe>
 
-[Portfoloio evolution comparision graph](https://docs.google.com/spreadsheets/d/e/2PACX-1vRVplGVvEHB3e41nurm_0pP_gC-ME4s9jSizAVF8YP6Ja0KDltlugAjtbz98KmocbtMInOg21JFkaPp/pubchart?oid=259452031&format=interactive)
-
-
 
 <iframe width="812" height="630" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRVplGVvEHB3e41nurm_0pP_gC-ME4s9jSizAVF8YP6Ja0KDltlugAjtbz98KmocbtMInOg21JFkaPp/pubchart?oid=798092964&amp;format=interactive"></iframe>
-
-[Portfolio performance over time](https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vRVplGVvEHB3e41nurm_0pP_gC-ME4s9jSizAVF8YP6Ja0KDltlugAjtbz98KmocbtMInOg21JFkaPp/pubchart?oid=798092964&format=interactive)
 
 
 Totusi, considerand o contributie lunara constanta de 200 RON pe toata existenta fondurilor de pensii 2010 - 2020 (echivalenta cu 25000 RON contributie neta) si aplicand randamentele lunare publicate de ASF, obtinem suma (fara excluderea comisioanelor si a altor costuri de administrare) pe care ar trebui sa o avem in contul nostru de pensii pentru fiecare fond de investitii.
@@ -55,5 +50,5 @@ Daca presupunem ca oprim complet contributiile pentru pilonul II si randamentele
 Daca presupunem ca vom continua aceleasi contributii ca pana acum (200 RON / luna = 41 EUR / luna) si randamentele fondurilor se pastreaza, pana la varsta pensionarii ne asteptam sa avem in cont intre 50 000 EUR si 41 000 EUR in functie de fondul ales. E clar astfel ca desi diferentele dintre randamente sunt de ordinul zecimilor de procente, in timp, aceste diferente pot duce la diferente de rezultate de pana la 16%.
 
 
-Graficele si tabelul de mai sus au fost calculate folosind aceasta calcul de [foaie Google docs.](https://docs.google.com/spreadsheets/d/1mgpDnN2sj7tvc2ZiBU0vOU_21hN_UM3hBzEjqgrXTW4/edit?usp=sharing)
+Graficele si tabelul de mai sus au fost calculate folosind aceasta [foaie de calcul Google docs.](https://docs.google.com/spreadsheets/d/1mgpDnN2sj7tvc2ZiBU0vOU_21hN_UM3hBzEjqgrXTW4/edit?usp=sharing)
 
