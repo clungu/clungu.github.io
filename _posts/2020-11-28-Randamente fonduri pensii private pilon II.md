@@ -23,7 +23,13 @@ Din intamplare am dat de [site-ul ASF](https://asfromania.ro/csspp/rate-de-renta
 
 Astfel, am inceput sa ma joc putin cu datele pentru a obtine niste comparatii intre randamentele tuturor fondurilor, in incercarea de a obtine un clasament a randamentelor totale ale acestora. Binenteles, in functie de profilul de investitie, si a plasamentelor efectuate, randamentele fiecarui fond fluctueaza in fiecare luna, si e dificil de stabilit, doar din una-doua luni, care e fondul care a performat cel mai bine.
 
+<iframe width="1024" height="768" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRVplGVvEHB3e41nurm_0pP_gC-ME4s9jSizAVF8YP6Ja0KDltlugAjtbz98KmocbtMInOg21JFkaPp/pubchart?oid=259452031&amp;format=interactive"></iframe>
+
 [Portfoloio evolution comparision graph](https://docs.google.com/spreadsheets/d/e/2PACX-1vRVplGVvEHB3e41nurm_0pP_gC-ME4s9jSizAVF8YP6Ja0KDltlugAjtbz98KmocbtMInOg21JFkaPp/pubchart?oid=259452031&format=interactive)
+
+
+
+<iframe width="1024" height="768" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRVplGVvEHB3e41nurm_0pP_gC-ME4s9jSizAVF8YP6Ja0KDltlugAjtbz98KmocbtMInOg21JFkaPp/pubchart?oid=798092964&amp;format=interactive"></iframe>
 
 [Portfolio performance over time](https://docs.google.com/spreadsheets/u/1/d/e/2PACX-1vRVplGVvEHB3e41nurm_0pP_gC-ME4s9jSizAVF8YP6Ja0KDltlugAjtbz98KmocbtMInOg21JFkaPp/pubchart?oid=798092964&format=interactive)
 
