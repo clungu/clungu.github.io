@@ -27,10 +27,15 @@ Keep this in mind for a moment.
 The incremental mean of a sequence $$x_1, x_2, x_3, …$$ expressed as $$\mu_1, \mu_2, \mu_3, ..$$ can be computed incrementally:
 
 $$\mu_k = \frac{1}{k}\sum_{j=1}^kx_j$$ 
+
 $$\mu_k = \frac{1}{k}(x_k+\sum_{j=1}^{k-1}x_j)$$
+
 $$\mu_k = \frac{1}{k}(x_k+\frac{\sum_{j=1}^{k-1}x_j*(k-1)}{k-1})$$
+
 $$\mu_k = \frac{1}{k}(x_k+(k-1)\frac{\sum_{j=1}^{k-1}x_j}{k-1})$$
+
 $$\mu_k = \frac{1}{k}(x_k + (k-1)\mu_{k-1})$$ 
+
 $$\color{red}\mu_k = \mu_{k-1} + \frac{1}{k}(x_k - \mu_{k-1})$$
 
 * In this, $$(x_k - \mu_{k-1})$$ is an "error" term where $$\mu_{k-1}$$ is the "prediction" and $$x_k$$ is the current observation.  
@@ -51,6 +56,7 @@ Under this interpretation:
 If we are to use $$\mu_{k-1}$$ above in an update rule, this would look like:
 
 $$\mu = \mu + {\color{red}\alpha}(x - \mu)$$ 
+
 $$\mu = \mu - {\color{red}\alpha}(\mu - x)$$ 
 
 which says that the previous value $$\mu$$ (the lvalue of the assignment), which was a moving average over a period in time - whose length is defined by $$\alpha$$ - was updated with the moving average value over computed on the shifted sequence, the one that also includes $$x$$ now (the rvalue of the assignment).
