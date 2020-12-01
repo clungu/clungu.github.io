@@ -1,6 +1,7 @@
 ---
 tags:
-    - 
+    - ml
+    - optimisation
 mathjax: true
 comments: true
 title:  SGD update and the intuition behind it
@@ -8,7 +9,7 @@ header:
   teaser: 
 ---
 
-
+[#ml](/tags/#ml) [#optimisation](/tags/#optimisation)
 
 20200905172135
 
