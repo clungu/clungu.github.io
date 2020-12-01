@@ -67,3 +67,7 @@ This really explains the intuition of why the SDG update step really looks the w
 This intuition is also presented in [[20200729171147]] RL Course by David Silver - Lesson 4.
 
 On the other hand, you can find a different explanation (or intuition) for why SGD update works in [Yann LeCun's Lesson 4](https://www.youtube.com/watch?v=--NZb480zlg&feature=youtu.be)  ( [[20201201214511]] Yann LeCun video course)
+
+Another great (different) explanation comes from [3Blue1Brown](https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw) channel:
+
+<iframe width="1425" height="652" src="https://www.youtube.com/embed/IHZwWFHWa-w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
