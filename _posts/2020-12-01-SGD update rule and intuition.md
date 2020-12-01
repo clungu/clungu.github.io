@@ -1,7 +1,7 @@
 ---
 tags:
-    - ml
     - optimisation
+    - ml
 mathjax: true
 comments: true
 title:  SGD update and the intuition behind it
