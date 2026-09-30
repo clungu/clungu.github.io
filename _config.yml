@@ -1,14 +1,11 @@
-# theme: jekyll-theme-tactile
-# remote_theme: mmistakes/so-simple-theme
-
-remote_theme: mmistakes/minimal-mistakes
+remote_theme: mmistakes/minimal-mistakes@4.28.1
 
 minimal_mistakes_skin    : "default" # "default", "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 locale                   : "en-US"
 title                    : "Machine Learning Blog"
 title_separator          : "-"
-#url                      : https://www.clungu.com
+url                      : "https://www.clungu.com"
 name                     : &name "C. Lungu" # &name is a YAML anchor which can be *referenced later
 description              : &description "Experiments and failures on training humans and computers."
 words_per_minute         : 200
@@ -49,11 +46,6 @@ author:
   youtube          :
 
 
-analytics:
-  provider: "google-universal"
-  google:
-    tracking_id: "UA-53253619-2"
-
 repository: "clungu/clungu.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 
 comments:
@@ -66,7 +58,13 @@ comments:
 include:
   - .htaccess
   - _pages
-  - _includes
+
+exclude:
+  - README.md
+  - scripts/
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
 
 defaults:
   # _posts
@@ -98,7 +96,13 @@ defaults:
 
 
 plugins:
+  - jekyll-remote-theme
   - jekyll-include-cache
+
+sass:
+  quiet_deps: true
+  silence_deprecations:
+    - import
 
 # Conversion
 markdown: kramdown
@@ -137,5 +141,3 @@ category_archive:
 tag_archive:
   type: liquid
   path: /tags/
-
-
