@@ -178,6 +178,7 @@ h1 em { font-family: var(--serif); font-weight: 400; color: var(--accent); lette
 .article-description { font-size: 19px; color: var(--muted); max-width: 770px; }
 .article-byline { display: flex; align-items: center; gap: 13px; font-size: 12px; margin-top: 28px; }
 .avatar { aspect-ratio: 1; border-radius: 50%; object-fit: cover; align-self: start; box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px var(--line); }
+.avatar, .portrait img { filter: none; opacity: 1; mix-blend-mode: normal; }
 .article-byline img { width: 42px; height: 42px; }
 .article-byline a { font-weight: 600; text-decoration: none; }
 .article-byline > div > span { display: block; color: var(--muted); font-size: 11px; margin-top: 1px; }

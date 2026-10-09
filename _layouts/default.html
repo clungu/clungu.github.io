@@ -8,7 +8,7 @@
     {% feed_meta %}
     <link rel="icon" href="{{ '/assets/images/monogram.svg' | relative_url }}" type="image/svg+xml">
     <link rel="alternate icon" href="{{ '/favicon.ico' | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     {% if page.legacy_jquery %}
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     {% endif %}
