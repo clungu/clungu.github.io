@@ -1,74 +1,10 @@
 ---
 layout: archive
+title: "Follow your curiosity."
+eyebrow: "Explore by topic"
+description: "From the fundamentals to the details that make a model work. Pick a thread and see where it leads."
 permalink: /collection-archive/
-author_profile: true
+section: topics
 ---
-
-<!-- 
-{% capture written_label %}'None'{% endcapture %}
-<h1 id="{{ label | slugify }}" class="archive__title">Collection</h1>
-{% for collection in site.collections %}
-  {% unless collection.output == false or collection.label == "posts" %}
-    {% capture label %}{{ collection.label }}{% endcapture %}
-    {% if label != written_label %}
-      <h2 id="{{ label | slugify }}" class="archive__subtitle">{{ label }}</h2>
-      {% capture written_label %}{{ label }}{% endcapture %}
-    {% endif %}
-  {% endunless %}
-  {% for post in collection.docs %}
-    {% unless collection.output == false or collection.label == "posts" %}
-      {% include archive-single.html %}
-    {% endunless %}
-  {% endfor %}
-{% endfor %}
-
-
-
-<div id="archives">
-{% for category in site.categories %}
-  <div class="archive-group">
-    {% capture category_name %}{{ category | first }}{% endcapture %}
-    <div id="#{{ category_name | slugize }}"></div>
-    <p></p>
-
-    <h3 class="category-head">{{ category_name }}</h3>
-    <a name="{{ category_name | slugize }}"></a>
-    {% for post in site.categories[category_name] %}
-    <article class="archive-item">
-      <h4><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></h4>
-    </article>
-    {% endfor %}
-  </div>
-{% endfor %}
-</div>
-
- -->
-
-
-{% include group-by-array collection=site.posts field="categories" %}
-<h2 id="{{ label | slugify }}" class="archive__title" style="text-align: center;">Topics</h2>
-{% for category in group_names %}
-  {% assign posts = group_items[forloop.index0] %}
-  <h4 id="{{ category | slugify }}" class="archive__subtitle">{{ category }}</h4>
-  {% for post in posts %}
-    <article class="archive-item">
-      <h5><a href="{{ site.baseurl }}{{ post.url }}" style="padding-left:5em">{{post.title}}</a></h5>
-    </article>
-    <!-- {% include archive-single.html %} -->
-  {% endfor %}
-{% endfor %}
-
-
-{% include group-by-array collection=site.posts field="tags" %}
-<h2 id="{{ label | slugify }}" class="archive__title" style="text-align: center;">Tags</h2>
-{% for tag in group_names %}
-  {% assign posts = group_items[forloop.index0] %}
-  <h4 id="{{ tag | slugify }}" class="archive__subtitle">{{ tag }}</h4>
-  {% for post in posts %}
-    <article class="archive-item">
-      <h5><a href="{{ site.baseurl }}{{ post.url }}" style="padding-left:5em">{{post.title}}</a></h5>
-    </article>
-    <!-- {% include archive-single.html %} -->
-  {% endfor %}
-{% endfor %}
-
+<div class="archive-summary"><span>Explore the subject index</span><a href="{{ '/categories/' | relative_url }}">Browse categories &rarr;</a></div>
+{% include topic-groups.html groups=site.tags %}

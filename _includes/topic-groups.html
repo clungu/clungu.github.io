@@ -1,0 +1,7 @@
+<nav class="topic-index" aria-label="Jump to a topic">{% assign groups = include.groups | sort %}{% for group in groups %}<a href="#{{ group[0] | slugify }}">{{ group[0] | escape }} <span>{{ group[1].size }}</span></a>{% endfor %}</nav>
+{% for group in groups %}
+<section class="topic-group" id="{{ group[0] | slugify }}">
+  <div class="section-heading"><h2>{{ group[0] | escape }}</h2><span class="muted">{{ group[1].size }} {% if group[1].size == 1 %}article{% else %}articles{% endif %}</span></div>
+  {% for post in group[1] %}<article class="topic-post"><h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%b %Y' }}</time></article>{% endfor %}
+</section>
+{% endfor %}

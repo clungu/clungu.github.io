@@ -1,10 +1,14 @@
 ---
-layout: archive
-title: "Page Archive"
+layout: page
+title: "Find your way around."
 permalink: /page-archive/
-author_profile: false
+sitemap: false
 ---
-
-{% for post in site.pages %}
-  {% include archive-single.html %}
-{% endfor %}
+<ul>
+  <li><a href="{{ '/' | relative_url }}">Home</a></li>
+  <li><a href="{{ '/post-archive/' | relative_url }}">All writing</a></li>
+  <li><a href="{{ '/collection-archive/' | relative_url }}">Topics</a></li>
+  <li><a href="{{ '/year-archive/' | relative_url }}">Archive by year</a></li>
+  <li><a href="{{ '/about/' | relative_url }}">About Cristian</a></li>
+  <li><a href="{{ '/contact/' | relative_url }}">Consulting and contact</a></li>
+</ul>

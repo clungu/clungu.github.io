@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f6f7f3"/>
+  <rect x="780" width="420" height="630" fill="#193e34"/>
+  <g fill="none" stroke="#8fb699" stroke-width="1.5" transform="rotate(-25 1000 310)">
+    <ellipse cx="1000" cy="310" rx="280" ry="220" opacity=".2"/>
+    <ellipse cx="1000" cy="310" rx="240" ry="182" opacity=".3"/>
+    <ellipse cx="1000" cy="310" rx="200" ry="145" opacity=".4"/>
+    <ellipse cx="1000" cy="310" rx="160" ry="110" opacity=".5"/>
+    <ellipse cx="1000" cy="310" rx="120" ry="77" opacity=".6"/>
+    <ellipse cx="1000" cy="310" rx="80" ry="48" opacity=".7"/>
+    <ellipse cx="1000" cy="310" rx="40" ry="22" opacity=".8"/>
+  </g>
+  <path d="M843 180 918 214 905 300 960 278 977 333 1000 310" fill="none" stroke="#e6c184" stroke-width="2" stroke-dasharray="7 7"/>
+  <g fill="#e6c184"><circle cx="843" cy="180" r="6"/><circle cx="918" cy="214" r="5"/><circle cx="905" cy="300" r="5"/><circle cx="960" cy="278" r="5"/><circle cx="977" cy="333" r="5"/><circle cx="1000" cy="310" r="6"/></g>
+  <rect x="0" width="780" height="630" fill="#f6f7f3"/>
+  <text x="64" y="104" font-family="Arial,sans-serif" font-size="45" font-weight="700" letter-spacing="-4" fill="#193e34">cl.</text>
+  <text x="137" y="101" font-family="Arial,sans-serif" font-size="22" font-weight="600" fill="#193e34">Cristian Lungu</text>
+  <text x="64" y="254" font-family="Arial,sans-serif" font-size="63" font-weight="600" letter-spacing="-3" fill="#182f29">Machine learning.</text>
+  <text x="64" y="335" font-family="Georgia,serif" font-size="70" font-style="italic" letter-spacing="-3" fill="#285e4b">Beyond the notebook.</text>
+  <text x="67" y="403" font-family="Arial,sans-serif" font-size="23" fill="#596b63">Practical experiments. Clear explanations.</text>
+  <path d="M64 509H713" stroke="#dce2d9"/>
+  <text x="67" y="551" font-family="Arial,sans-serif" font-size="18" fill="#596b63">Machine learning &amp; applied AI</text>
+  <text x="588" y="551" font-family="Arial,sans-serif" font-size="18" fill="#285e4b">clungu.com</text>
+</svg>

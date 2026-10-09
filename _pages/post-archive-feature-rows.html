@@ -1,10 +1,17 @@
 ---
 layout: archive
-title: "Recent Posts"
+title: "The working notebook."
+description: "Experiments, tutorials, and ideas in machine learning. Some polished, some exploratory. All with the working shown."
 permalink: /post-archive/
-author_profile: true
+section: writing
 ---
-
-{% for post in site.posts limit: 5 %}
-  {% include archive-single.html %}
-{% endfor %}
+<section data-search aria-label="Article archive">
+  <form class="search-controls" data-search-controls hidden role="search">
+    <div class="search-field"><label for="article-search">Find something worth exploring</label><input id="article-search" data-search-input type="search" placeholder="Search articles, tools, or ideas..." autocomplete="off"></div>
+    <div class="topic-field"><label for="article-topic">Filter by topic</label><select id="article-topic" data-search-topic><option value="">All topics</option>{% assign topics = site.tags | sort %}{% for topic in topics %}<option value="{{ topic[0] | slugify }}">{{ topic[0] | escape }}</option>{% endfor %}</select></div>
+  </form>
+  <div class="archive-summary"><span data-search-count role="status" aria-live="polite">{{ site.posts.size }} articles</span><a href="{{ '/year-archive/' | relative_url }}">Browse by year <span aria-hidden="true">&rarr;</span></a></div>
+  <div class="post-list">{% for post in site.posts %}{% include post-row.html post=post searchable=true %}{% endfor %}</div>
+  <div class="search-empty" data-search-empty hidden><h2>No articles found.</h2><p>Try a broader search or choose "All topics".</p></div>
+  <noscript><p>All articles are listed above. Search and filtering are available with JavaScript enabled.</p></noscript>
+</section>

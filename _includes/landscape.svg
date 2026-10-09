@@ -1,0 +1,26 @@
+<svg class="landscape" viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="landscape-title landscape-desc">
+  <title id="landscape-title">Finding a better path</title>
+  <desc id="landscape-desc">A contour map of a loss landscape, with a series of steps converging toward a minimum.</desc>
+  <defs>
+    <pattern id="field-grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M 28 0 L 0 0 0 28" fill="none" stroke="#b3d2c7" stroke-opacity=".09"/></pattern>
+    <radialGradient id="field-glow"><stop offset="0" stop-color="#338b73" stop-opacity=".3"/><stop offset="1" stop-color="#122e29" stop-opacity="0"/></radialGradient>
+  </defs>
+  <path fill="url(#field-grid)" d="M0 0h560v440H0z"/>
+  <ellipse cx="330" cy="255" rx="225" ry="180" fill="url(#field-glow)"/>
+  <g fill="none" stroke="#71b39c" transform="rotate(-26 310 232)">
+    <ellipse cx="310" cy="232" rx="253" ry="162" opacity=".22"/>
+    <ellipse cx="310" cy="232" rx="219" ry="139" opacity=".3"/>
+    <ellipse cx="310" cy="232" rx="185" ry="115" opacity=".4"/>
+    <ellipse cx="310" cy="232" rx="150" ry="90" opacity=".5"/>
+    <ellipse cx="310" cy="232" rx="114" ry="65" opacity=".6"/>
+    <ellipse cx="310" cy="232" rx="78" ry="43" opacity=".75"/>
+    <ellipse cx="310" cy="232" rx="42" ry="23" opacity=".9"/>
+  </g>
+  <path d="M92 88 185 131 158 217 248 185 234 253 291 219 310 232" fill="none" stroke="#e6c184" stroke-width="2" stroke-dasharray="5 5"/>
+  <g fill="#e6c184"><circle cx="92" cy="88" r="5"/><circle cx="185" cy="131" r="4"/><circle cx="158" cy="217" r="4"/><circle cx="248" cy="185" r="4"/><circle cx="234" cy="253" r="4"/><circle cx="291" cy="219" r="4"/></g>
+  <circle cx="310" cy="232" r="11" fill="#e6c184" fill-opacity=".15" stroke="#e6c184"/>
+  <circle cx="310" cy="232" r="4" fill="#e6c184"/>
+  <g font-family="monospace" font-size="11" fill="#bad3c8"><text x="67" y="67">start with a question</text><text x="331" y="259">iterate toward clarity</text></g>
+  <g stroke="#bad3c8" stroke-opacity=".4"><path d="M34 362v40h40" fill="none"/><path d="M520 54V28h-26" fill="none"/></g>
+  <text x="90" y="403" font-family="monospace" font-size="10" fill="#bad3c8">AN EXPLORATION, NOT A STRAIGHT LINE</text>
+</svg>

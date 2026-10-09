@@ -7,6 +7,7 @@ tags:
 mathjax: true
 comments: true
 title:  Visualising grid search results
+description: "Look beyond the winning score. Explore hyperparameter relationships and model robustness with dendrogram heatmaps."
 header:
   teaser: /assets/images/2022-01-27-Visualising_grid_search_results_files/viz_gridsearch_dendogram_heatmap.png
 ---

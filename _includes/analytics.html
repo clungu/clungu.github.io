@@ -1,0 +1,14 @@
+{% if jekyll.environment == 'production' and site.analytics.measurement_id != '' and site.analytics.measurement_id != nil %}
+  <script id="site-analytics" type="application/json">{"measurementId": {{ site.analytics.measurement_id | jsonify }}}</script>
+  <aside class="consent-banner" data-consent-banner aria-label="Optional analytics" hidden>
+    <div>
+      <strong>A small note on privacy</strong>
+      <p>Optional Google Analytics helps me understand which writing is useful. It stays off unless you opt in. <a href="{{ '/privacy/' | relative_url }}">Privacy details</a></p>
+      <p class="consent-status" data-consent-status role="status"></p>
+    </div>
+    <div class="consent-actions">
+      <button type="button" class="button button-small" data-consent-accept>Allow analytics</button>
+      <button type="button" class="button button-secondary button-small" data-consent-reject>No thanks</button>
+    </div>
+  </aside>
+{% endif %}

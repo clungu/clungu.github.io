@@ -1,0 +1,15 @@
+- path: "_posts/2022-01-27-Visualising grid search results.md"
+  label: "Practical machine learning"
+  title: "See the bigger picture in your grid search."
+  description: "Go beyond the best score. Use dendrogram heatmaps to understand the shape of your hyperparameter search."
+  visual: grid
+- path: "_posts/2020-01-20-On Cross Entropy.md"
+  label: "From first principles"
+  title: "What is cross entropy, really?"
+  description: "Build a loss function from scratch, compare implementations, and find out where the intuition breaks."
+  visual: entropy
+- path: "_posts/2020-11-22-Distilling_a_Random_Forest_with_a_single_DecisionTree.md"
+  label: "Interpretable models"
+  title: "A forest, explained by a single tree."
+  description: "Explore model distillation: can a simpler decision tree capture what a random forest has learned?"
+  visual: tree

@@ -1,14 +1,12 @@
 ---
 layout: archive
+title: "A record of exploration."
+eyebrow: "The archive"
+description: "The complete notebook, organised by year. Older posts reflect the tools and thinking of their time."
 permalink: /year-archive/
-title: "Posts by Year"
-author_profile: true
+section: writing
 ---
-
-{% assign postsByYear = site.posts | group_by_exp:"post", "post.date | date: '%Y'"  %}
-{% for year in postsByYear %}
-  <h2 id="{{ year.name | slugify }}" class="archive__subtitle">{{ year.name }}</h2>
-  {% for post in year.items %}
-    {% include archive-single.html %}
-  {% endfor %}
+{% assign years = site.posts | group_by_exp: 'post', "post.date | date: '%Y'" %}
+{% for year in years %}
+<section class="year-group" id="year-{{ year.name }}"><h2>{{ year.name }}<span>{{ year.items.size }} articles</span></h2>{% for post in year.items %}{% include post-row.html post=post %}{% endfor %}</section>
 {% endfor %}

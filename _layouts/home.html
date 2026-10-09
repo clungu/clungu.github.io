@@ -1,0 +1,55 @@
+---
+layout: default
+---
+<div class="shell">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="eyebrow-line"></span> Notes from an ML practitioner</p>
+      <h1 id="hero-title">Machine learning.<br><em>Beyond the<br> notebook.</em></h1>
+      <p class="hero-description">I'm Cristian Lungu. I explore how machine learning works &mdash; and help teams put it to work.</p>
+      <p class="hero-subtext">Practical experiments. Clear explanations. A healthy skepticism of the hype.</p>
+      <div class="hero-actions"><a class="button" href="{{ '/post-archive/' | relative_url }}">Explore the writing <span aria-hidden="true">&rarr;</span></a><a class="text-link" href="{{ '/contact/' | relative_url }}">Work with me <span aria-hidden="true">&nearr;</span></a></div>
+    </div>
+    <div class="hero-art">
+      <div class="art-caption"><span><span class="status-dot"></span> THE LEARNING PROCESS</span><span>FIG. 01</span></div>
+      {% include landscape.svg %}
+      <div class="art-footer"><code>understand. experiment. iterate.</code><span aria-hidden="true">&nearr;</span></div>
+    </div>
+  </section>
+  <div class="expertise-strip"><span class="strip-label">At the intersection of</span><span>Applied machine learning</span><span>Engineering &amp; experimentation</span><span>Teaching &amp; consulting</span></div>
+
+  <section class="section-block" aria-labelledby="featured-title">
+    <div class="section-heading"><div><p class="eyebrow">A few good places to start</p><h2 id="featured-title">Ideas, with the working shown.</h2></div><a class="text-link" href="{{ '/collection-archive/' | relative_url }}">Browse topics <span aria-hidden="true">&rarr;</span></a></div>
+    <div class="featured-grid">
+      {% for feature in site.data.featured %}
+      {% assign post = site.posts | where: 'path', feature.path | first %}
+      {% if post %}
+      <article class="feature-card">
+        <a class="feature-visual visual-{{ feature.visual }}" href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true">
+          {% case feature.visual %}
+          {% when 'grid' %}
+            <div class="heatmap-art">{% for cell in (1..48) %}<span></span>{% endfor %}</div><span class="visual-caption">SEARCH THE SPACE</span>
+          {% when 'entropy' %}
+            <span class="formula-art">H(p, q)<span>= &minus;&sum; p(x) log q(x)</span></span><span class="visual-caption">UNDERSTAND THE OBJECTIVE</span>
+          {% when 'tree' %}
+            <svg viewBox="0 0 300 150" fill="none"><g stroke="currentColor" stroke-width="1.5"><path d="M150 23v25M150 48H80v30M150 48h70v30M80 90v18H40v20M80 108h40v20M220 90v18h-40v20M220 108h40v20"/></g><g fill="currentColor"><rect x="130" y="8" width="40" height="22" rx="4"/><rect x="60" y="70" width="40" height="22" rx="4"/><rect x="200" y="70" width="40" height="22" rx="4"/><circle cx="40" cy="132" r="7"/><circle cx="120" cy="132" r="7"/><circle cx="180" cy="132" r="7"/><circle cx="260" cy="132" r="7"/></g></svg><span class="visual-caption">MAKE IT INTERPRETABLE</span>
+          {% endcase %}
+        </a>
+        <div class="feature-body"><p class="eyebrow">{{ feature.label }}</p><h3><a href="{{ post.url | relative_url }}">{{ feature.title }}</a></h3><p>{{ feature.description }}</p><div class="feature-meta"><span>{{ post.date | date: '%b %Y' }} &middot; {{ post.content | strip_html | number_of_words | divided_by: site.words_per_minute | at_least: 1 }} min read</span><span aria-hidden="true">&nearr;</span></div></div>
+      </article>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="section-block latest-section" aria-labelledby="latest-title">
+    <div class="section-heading"><div><p class="eyebrow">From the notebook</p><h2 id="latest-title">Latest writing</h2></div><a class="text-link" href="{{ '/post-archive/' | relative_url }}">All articles <span aria-hidden="true">&rarr;</span></a></div>
+    {% for post in site.posts limit: 4 %}{% include post-row.html post=post %}{% endfor %}
+  </section>
+
+  <section class="about-strip" aria-labelledby="home-about-title">
+    <img src="{{ site.author.avatar | relative_url }}" width="112" height="112" alt="Cristian Lungu" loading="lazy">
+    <div><p class="eyebrow">The person behind the notebook</p><h2 id="home-about-title">A practitioner. A teacher. Always a learner.</h2><p>I work at the intersection of machine learning and software engineering. This is where I share the experiments, explanations, and lessons along the way.</p><a class="text-link" href="{{ '/about/' | relative_url }}">A little more about me <span aria-hidden="true">&rarr;</span></a></div>
+  </section>
+  {% include consulting-cta.html %}
+</div>

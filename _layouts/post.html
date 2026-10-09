@@ -1,0 +1,45 @@
+---
+layout: default
+---
+<article class="shell article-shell">
+  <header class="article-header">
+    <a class="back-link" href="{{ '/post-archive/' | relative_url }}"><span aria-hidden="true">&larr;</span> All writing</a>
+    <div class="article-topics">{% for category in page.categories %}<a class="eyebrow" href="{{ '/categories/' | relative_url }}#{{ category | slugify }}">{{ category }}</a>{% endfor %}</div>
+    <h1>{{ page.title | escape }}</h1>
+    {% if page.description %}<p class="article-description">{{ page.description }}</p>{% endif %}
+    <div class="article-byline">
+      <img src="{{ site.author.avatar | relative_url }}" width="42" height="42" alt="" class="avatar">
+      <div><a href="{{ '/about/' | relative_url }}">{{ site.author.name }}</a><span><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %-d, %Y' }}</time><span aria-hidden="true"> &middot; </span>{{ content | strip_html | number_of_words | divided_by: site.words_per_minute | at_least: 1 }} min read</span></div>
+    </div>
+  </header>
+  <div class="article-grid">
+    <div class="article-main">
+      <div class="prose" data-code-collapse="{{ page.code_collapse | default: false }}">{{ content }}</div>
+      {% if page.tags.size > 0 %}
+      <nav class="article-tags" aria-label="Article tags">{% for tag in page.tags %}<a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag | escape }}</a>{% endfor %}</nav>
+      {% endif %}
+      <aside class="author-note">
+        <img src="{{ site.author.avatar | relative_url }}" width="64" height="64" alt="Cristian Lungu" class="avatar" loading="lazy">
+        <div><h2>Hi, I'm Cristian.</h2><p>I write about how machine learning works, where it fails, and how to put it to use. I also help teams work through their own ML challenges.</p><a class="text-link" href="{{ '/contact/' | relative_url }}">Work with me <span aria-hidden="true">&nearr;</span></a></div>
+      </aside>
+      <nav class="post-pagination" aria-label="More writing">
+        {% if page.previous %}<a href="{{ page.previous.url | relative_url }}"><span>&larr; Previous article</span>{{ page.previous.title | escape }}</a>{% endif %}
+        {% if page.next %}<a href="{{ page.next.url | relative_url }}"><span>Next article &rarr;</span>{{ page.next.title | escape }}</a>{% endif %}
+      </nav>
+      {% if page.comments and site.comments.provider == 'utterances' %}
+      <section class="comments" data-comments data-repository="{{ site.repository }}" aria-labelledby="comments-title">
+        <p class="eyebrow">Keep the conversation going</p>
+        <h2 id="comments-title">Questions or a different perspective?</h2>
+        <p>Comments are hosted on GitHub. Loading them connects to GitHub and Utterances.</p>
+        <button type="button" class="button button-secondary button-small" data-load-comments>Load comments</button>
+        <p data-comments-status role="status"></p>
+        <noscript><a href="https://github.com/{{ site.repository }}/issues">Join the discussion on GitHub</a>.</noscript>
+      </section>
+      {% endif %}
+    </div>
+    <aside class="article-sidebar">
+      <div class="toc" data-toc hidden><h2>On this page</h2><ol data-toc-list></ol></div>
+      <div class="sidebar-note"><span class="small-mark" aria-hidden="true">cl.</span><p>Less hype.<br>More understanding.</p><a href="{{ '/feed.xml' | relative_url }}">Follow via RSS &rarr;</a></div>
+    </aside>
+  </div>
+</article>

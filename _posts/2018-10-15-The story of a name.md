@@ -1,4 +1,5 @@
 ---
+legacy_jquery: true
 categories: 
     - application
 tags:
@@ -1730,4 +1731,3 @@ function generate_name(){
 UNKOWN
 </div>
 -->
-

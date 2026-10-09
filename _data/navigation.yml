@@ -1,24 +1,10 @@
 main:
-    - title: "Posts"
-      url: /post-archive/
-    - title: "Contact"
-      url: /contact/
-    - title: "Topics"
-      url: /collection-archive/
-    - title: "Archive"
-      url: /year-archive/
-
-
-posts:
-    - title: Tutorials
-      children:
-         - title: Singular Spectrum Analisys
-           url: /tutorial/SSA-(Singular-Spectrum-Analisys)/
-         - title: Drawing a map
-           url: /tutorial/visualisation/Mapping/
-         - title: Embeddings
-           url: /tutorial/Embeddings-explained/
-         - title: Mean Shift
-           url: /Mean-Shift/ 
-         - title: Scikit-Learn
-           url: /scikit-learn/tutorial/Scikit-learn/
+  - title: Writing
+    url: /post-archive/
+    section: writing
+  - title: Topics
+    url: /collection-archive/
+    section: topics
+  - title: About
+    url: /about/
+    section: about

@@ -4,6 +4,7 @@ tags:
 mathjax: true
 comments: true
 title:  Connecting Colab to a local machine
+description: "Use the Colab notebook interface with your own compute. A practical guide to connecting a local runtime."
 header:
   teaser: /assets/images/2022-02-09-Connecting_Colab_to_a_local_machine_files/eng_colab_instance_types.png
 ---

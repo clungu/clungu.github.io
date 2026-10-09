@@ -1,9 +1,12 @@
 ---
 tags:
-    - scrollto=7tzc6rcmwhi2
+    - numpy
+    - python
+    - vectorization
 mathjax: true
 comments: true
 title:  Finding substrings in a numpy vectorized function
+description: "Find a needle in a NumPy haystack: unpacking a vectorized approach to matching subsequences in large arrays."
 header:
   teaser: 
 ---

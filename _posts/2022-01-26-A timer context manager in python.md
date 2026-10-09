@@ -5,6 +5,7 @@ tags:
 mathjax: true
 comments: true
 title:  A timer context manager in python
+description: "A small Python utility for measuring execution time, built around the context manager protocol."
 header:
   teaser: 
 ---
