@@ -10,7 +10,8 @@ repository: "clungu/clungu.github.io"
 
 author:
   name: "Cristian Lungu"
-  avatar: "/assets/images/profile_clungu.png"
+  avatar: "/assets/images/profile-3-avatar.jpeg"
+  portrait: "/assets/images/profile-3.jpeg"
   bio: "Independent machine learning consultant, trainer, and technical writer."
   location: "Cluj-Napoca, Romania"
   email: "lungu.cristian@gmail.com"
