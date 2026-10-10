@@ -117,7 +117,7 @@ Legacy post bodies include some hard-coded root-relative links; those assume the
 | LaTeX configuration | `assets/js/math.js` |
 | Social sharing artwork | `assets/images/social-card.svg` and its 1200 x 630 PNG export |
 
-The About page uses the original `assets/images/profile-3.jpeg` portrait at its natural aspect ratio. Smaller author photos use `profile-3-avatar.jpeg`, a face-focused 336 x 336 crop, to keep circular avatars sharp without downloading the full portrait. Both paths are configured under `author` in `_config.yml`; preserve natural colour rather than applying a desaturation filter.
+The About page uses the original `assets/images/profile-4.jpeg` portrait at its natural aspect ratio. Smaller author photos use `profile-4-avatar.jpeg`, a face-focused 336 x 336 crop, to keep circular avatars sharp without downloading the full portrait. Both paths are configured under `author` in `_config.yml`; preserve natural colour rather than applying a desaturation filter.
 
 Featured `path` values must match published post source paths exactly. Search works locally over rendered titles, descriptions, categories, and tags; all posts remain accessible without JavaScript. Archives, old category/tag anchors, RSS (`/feed.xml`), a sitemap (`/sitemap.xml`), metadata, and a custom 404 page are generated statically.
 
