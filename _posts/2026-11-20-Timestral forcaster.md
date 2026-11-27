@@ -4,8 +4,8 @@ created: 2026-11-27
 tags: [timeseries, forecasting, foundation-models, timestral, reference]  
 ---  
 
-![[./assets/images/2026-11-20-Timestral%20forcaster/backtest.png]]
-![[./assets/images/2026-11-20-Timestral%20forcaster/forecast.png]]
+![png](../../assets/images/2026-11-20-Timestral%20forcaster/backtest.png)
+![png](../../assets/images/2026-11-20-Timestral%20forcaster/forecast.png)
 
 ## The gist
 
